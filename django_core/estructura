@@ -1,0 +1,18 @@
+proyecto_gestion_cabanas/
+├── cabanas_project/
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+│   └── asgi.py
+├── cabanas_app/
+│   ├── __init__.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── views.py
+│   └── urls.py
+├── django_core/
+│   ├── __init__.py
+│   ├── management.py
+│   └── config.py
+├── manage.py
+└── requirements.txt

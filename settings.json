@@ -1,0 +1,9 @@
+{
+  "sqltools.useNodeRuntime": true
+}
+{
+  "name": "SQLite",
+  "driver": "SQLite",
+  "database": "./sqlite/test_db.db", // if you use a relative path the base folder is the currently open folder (or workspace).
+  "connectionTimeout": 15
+}

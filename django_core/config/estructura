@@ -1,0 +1,11 @@
+App/
+│__config/
+│   ├── __init__.py              # Hace que config sea un paquete
+│   ├── settings.py              # Configuración global (carga .env, seguridad, apps instaladas)
+│   ├── database.py              # Configuración de la base de datos (PostgreSQL, SQLite)
+│   ├── urls.py                  # Rutas principales del proyecto
+│   ├── wsgi.py                  # Configuración para servidor WSGI
+│   ├── asgi.py                  # Configuración para servidor ASGI (websockets)
+│   ├── logging.py               # Configuración de logs
+│   ├── middleware.py            # Middlewares personalizados
+│   └── utils.py                 # Funciones auxiliares (helpers, validaciones)

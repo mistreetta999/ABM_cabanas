@@ -1,0 +1,18 @@
+{% extends 'cabana_apps/base.html' %}
+
+{% block title %}Confirmar baja{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm tarjeta">
+    <div class="card-body p-4">
+        <h1 class="h4 text-verde-medio">Confirmar baja</h1>
+        <p>Seguro que queres borrar este registro?</p>
+        <p class="fw-bold">{{ object }}</p>
+        <form method="post" class="d-flex gap-2">
+            {% csrf_token %}
+            <button class="btn btn-danger" type="submit">Borrar</button>
+            <a class="btn btn-secondary" href="{{ object.get_absolute_url }}">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

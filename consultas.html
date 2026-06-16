@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Consultas{% endblock %}
+
+{% block content %}
+<h1>Consultas</h1>
+<p class="required-note">Estas consultas se ejecutan desde Django sobre los datos del sistema.</p>
+
+<section class="form-panel no-print">
+    <h2>Seleccionar consulta Django</h2>
+    <form method="get" action="{% url 'cabana_apps:consultas' %}">
+        {{ form.tipo.label_tag }}
+        {{ form.tipo }}
+        <button class="action-button" type="submit">Ver consulta</button>
+    </form>
+    <div class="button-row">
+        <button class="action-button secondary" type="button" onclick="window.print()">Imprimir consulta</button>
+    </div>
+</section>
+
+<h2>{{ consulta.titulo }}</h2>
+<p class="required-note">{{ consulta.descripcion }}</p>
+
+{% if filas %}
+<table>
+    <thead>
+        <tr>
+            {% for columna in columnas %}
+            <th>{{ columna }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for fila in filas %}
+        <tr>
+            {% for valor in fila.values %}
+            <td>{{ valor|default:"-" }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="empty">No hay resultados para esta consulta.</p>
+{% endif %}
+{% endblock %}

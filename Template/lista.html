@@ -1,0 +1,34 @@
+{% extends 'cabanas_app/base.html' %}
+
+{% block title %}Lista de Huéspedes{% endblock %}
+
+{% block content %}
+<h2 class="mb-3">Lista de Huéspedes</h2>
+<table class="table table-striped table-hover">
+    <thead class="table-success">
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for persona in personas %}
+        <tr>
+            <td>{{ persona.nombre }}</td>
+            <td>{{ persona.apellido }}</td>
+            <td>{{ persona.email }}</td>
+            <td>{{ persona.telefono }}</td>
+            <td>
+                <a href="{% url 'detalle_persona' persona.pk %}" class="btn btn-info btn-sm">Ver</a>
+                <a href="{% url 'editar_persona' persona.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'borrar_persona' persona.pk %}" class="btn btn-danger btn-sm">Borrar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'crear_persona' %}" class="btn btn-success">Registrar nuevo huésped</a>
+{% endblock %}
