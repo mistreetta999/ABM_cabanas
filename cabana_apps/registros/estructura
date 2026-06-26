@@ -1,0 +1,10 @@
+cabana_apps/registros/
+│-- __init__.py
+│-- admin.py
+│-- apps.py
+│-- models.py
+│-- views.py
+│-- urls.py
+│-- tests.py
+└── migrations/
+    └── __init__.py

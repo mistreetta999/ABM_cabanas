@@ -1,14 +1,15 @@
-"""
-Django settings for cabanas project.
-"""
+import os
 from pathlib import Path
 
+# Base directory del proyecto
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-cambia-esta-clave'
+# Seguridad
+SECRET_KEY = 'django-insecure-tu-clave-secreta-aqui'
 DEBUG = True
 ALLOWED_HOSTS = []
 
+# Aplicaciones instaladas
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -16,9 +17,30 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cabanas_api',   # tu app
+
+    # Apps propias
+    'cabana_api',
+    'cabana_apps.reservas',
+    'cabana_apps.clientes',
+    'cabana_apps.registros',
+
+    # Django REST Framework y drf-spectacular (si usas API)
+    'rest_framework',
+    'drf_spectacular',
 ]
 
+# Configuración de DRF + drf-spectacular
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Gestión de Cabañas API',
+    'DESCRIPTION': 'Documentación de la API para reservas, clientes y cabañas',
+    'VERSION': '1.0.0',
+}
+
+# Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -29,12 +51,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'cabanas.urls'   # o 'tesis_gestion_cabanas.urls' según tu carpeta
+# URLs principales
+ROOT_URLCONF = 'cabanas.urls'
 
+# Templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],
+        'DIRS': [BASE_DIR / 'templates'],  # carpeta global de templates
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -47,24 +71,37 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'cabanas.wsgi.application'   # ajusta al nombre de tu carpeta
+WSGI_APPLICATION = 'cabanas.wsgi.application'
 
+# Base de datos (SQLite por defecto)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / "db.sqlite3",
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
+# Validación de contraseñas
+AUTH_PASSWORD_VALIDATORS = [
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+]
+
+# Internacionalización
 LANGUAGE_CODE = 'es-ar'
 TIME_ZONE = 'America/Argentina/Cordoba'
 USE_I18N = True
 USE_TZ = True
 
+# Archivos estáticos
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
+# Archivos multimedia
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = BASE_DIR / 'media'
 
+# Configuración por defecto
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

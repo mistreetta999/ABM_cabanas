@@ -194,6 +194,16 @@
                 <img src="{% static 'images/foto_principal.jpg.jpeg' %}" alt="Vista principal de las cabanas" class="galeria-img foto-principal">
                 <span class="foto-texto">Cabanas rodeadas de naturaleza</span>
             </div>
+            <!-- Sección del Chatbot en pagina_principal.html -->
+            <div class="chatbot-container" style="margin-top:20px;">
+                <h2>Chatbot</h2>
+                <iframe src="{% url 'chatbot:chatbot_home' %}" 
+                        width="100%" 
+                        height="400" 
+                        style="border:1px solid #ccc; border-radius:8px;">
+                </iframe>
+            </div>
+            
 
             <div class="d-grid gap-3">
                 <div class="foto-card shadow-sm">

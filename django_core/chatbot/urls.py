@@ -1,10 +1,10 @@
+""" esta es la urls de chatbot, donde se definen las rutas para la vista del chatbot y su API. """
 from django.urls import path
-
-from chatbot import chatbot_views
+from . import views
 
 app_name = "chatbot"
 
 urlpatterns = [
-    path("", chatbot_views.chatbot_view, name="chatbot"),
-    path("api/", chatbot_views.chatbot_api, name="chatbot_api"),
+    path("", views.chatbot_home, name="chatbot_home"),
+    path("ask/", views.chatbot_ask, name="chatbot_ask"),
 ]

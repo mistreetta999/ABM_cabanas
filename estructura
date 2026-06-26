@@ -1,0 +1,73 @@
+cabanas/
+│__manage.py                 # Entrada estándar Django
+│__ main.py                   # Entrada alternativa (OOP)
+|__ levantar_programa.bat      # Script arranque local
+│-- render.yaml                # Configuración Render
+│-- requirements.txt
+│-- README.md
+│-- db.sqlite3                 # BD local
+│
+│-- cabanas_project/           # Configuración principal del proyecto
+│   │-- __init__.py
+│   │-- settings.py
+│   │-- urls.py
+│   │-- wsgi.py
+│   └-- asgi.py
+│
+│-- cabana_apps/               # Apps internas
+│   │-- clientes/              # App clientes
+│   │   │-- __init__.py
+│   │   │-- apps.py
+│   │   │-- models.py
+│   │   │-- views.py
+│   │   │-- urls.py
+│   │   └-- migrations/
+│   │
+│   │-- reservas/              # App reservas
+│   │   │-- __init__.py
+│   │   │-- apps.py
+│   │   │-- models.py
+│   │   │-- views.py
+│   │   │-- urls.py
+│   │   └-- migrations/
+│   │
+│   └-- cabanas/               # App cabanas
+│       │-- __init__.py
+│       │-- apps.py
+│       │-- models.py
+│       │-- views.py
+│       │-- urls.py
+│       └-- migrations/
+│
+│-- chatbot/                   # App chatbot
+│   │-- __init__.py
+│   │-- apps.py
+│   │-- urls.py
+│   └-- views.py
+│
+│-- core/                      # Código reutilizable (antes django_core/local)
+│   │-- __init__.py
+│   │-- management.py
+│   └-- config.py
+│
+│-- database/                  # Configuración BD modular
+│   │-- __init__.py
+│   │-- sqlite.py
+│   └-- postgresql.py
+│
+│-- templates/                 # Plantillas globales
+│   │-- base.html
+│   │-- pagina_principal.html
+│   │-- cabanas/
+│   │   └-- panel.html
+│   │-- reservas/
+│   │   └-- panel.html
+│   └-- chatbot/
+│       └-- panel.html
+│
+│-- static/                    # Archivos estáticos
+│   │-- css/
+│   │-- js/
+│   └-- img/
+│
+└-- media/                     # Archivos subidos por usuarios
