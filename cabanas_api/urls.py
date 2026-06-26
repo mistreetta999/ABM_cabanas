@@ -2,9 +2,10 @@
 from django.urls import path
 from . import views
 
-app_name = "cabana_api"
-
 urlpatterns = [
-    path("", views.index, name="index"),
-    path("cabanas/", views.lista_cabanas, name="lista_cabanas"),
+    path('', views.index, name='index'),
+    path('clientes/', views.clientes, name='clientes'),
+    path('reservas/', views.reservas, name='reservas'),
+    path('alquileres/', views.alquileres, name='alquileres'),
+    path('registros/', views.registros, name='registros'),
 ]

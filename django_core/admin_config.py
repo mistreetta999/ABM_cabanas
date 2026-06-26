@@ -1,4 +1,4 @@
-""'"module admin""""
+""" archivo para configurar el panel de administración de Django para los modelos de la aplicación de cabañas. """
 from django.conf import settings
 from django.contrib import admin
 from models.cabana_models import Cabana

@@ -1,6 +1,6 @@
-import os
+""" archivo de configuración principal de Django """
+
 from pathlib import Path
-from django_core.chatbot.chatbot import chatbot
 
 # Base directory del proyecto
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,9 +20,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Apps propias
-    
-    'cabanas_api',
+     'cabanas_api',
     'cabanas_apps.reservas',
+    'cabanas_apps.cabanas',
     'cabanas_apps.alquileres',
     'cabanas_apps.clientes',
     'cabanas_apps.registros',

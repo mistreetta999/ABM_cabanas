@@ -161,22 +161,6 @@
         "documentation": {}
     },
     {
-        "label": "Path",
-        "importPath": "pathlib",
-        "description": "pathlib",
-        "isExtraImport": true,
-        "detail": "pathlib",
-        "documentation": {}
-    },
-    {
-        "label": "admin",
-        "importPath": "django.contrib",
-        "description": "django.contrib",
-        "isExtraImport": true,
-        "detail": "django.contrib",
-        "documentation": {}
-    },
-    {
         "label": "admin",
         "importPath": "django.contrib",
         "description": "django.contrib",
@@ -354,6 +338,14 @@
     },
     {
         "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
         "importPath": "django.urls",
         "description": "django.urls",
         "isExtraImport": true,
@@ -553,107 +545,43 @@
         "documentation": {}
     },
     {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
         "isExtraImport": true,
-        "detail": "django.apps",
+        "detail": "django.db",
         "documentation": {}
     },
     {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
         "isExtraImport": true,
-        "detail": "django.apps",
+        "detail": "django.db",
         "documentation": {}
     },
     {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
         "isExtraImport": true,
-        "detail": "django.apps",
+        "detail": "django.db",
         "documentation": {}
     },
     {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
         "isExtraImport": true,
-        "detail": "django.apps",
+        "detail": "django.db",
         "documentation": {}
     },
     {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
         "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
+        "detail": "django.db",
         "documentation": {}
     },
     {
@@ -857,6 +785,110 @@
         "documentation": {}
     },
     {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
         "label": "TestCase",
         "importPath": "django.test",
         "description": "django.test",
@@ -993,11 +1025,43 @@
         "documentation": {}
     },
     {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
+        "label": "Cabana",
+        "importPath": "cabanas_apps.cabanas.models",
+        "description": "cabanas_apps.cabanas.models",
         "isExtraImport": true,
-        "detail": "django.shortcuts",
+        "detail": "cabanas_apps.cabanas.models",
+        "documentation": {}
+    },
+    {
+        "label": "Reserva",
+        "importPath": "cabanas_apps.reservas.models",
+        "description": "cabanas_apps.reservas.models",
+        "isExtraImport": true,
+        "detail": "cabanas_apps.reservas.models",
+        "documentation": {}
+    },
+    {
+        "label": "Cliente",
+        "importPath": "cabanas_apps.clientes",
+        "description": "cabanas_apps.clientes",
+        "isExtraImport": true,
+        "detail": "cabanas_apps.clientes",
+        "documentation": {}
+    },
+    {
+        "label": "Cliente",
+        "importPath": "cabanas_apps.clientes.models",
+        "description": "cabanas_apps.clientes.models",
+        "isExtraImport": true,
+        "detail": "cabanas_apps.clientes.models",
+        "documentation": {}
+    },
+    {
+        "label": "Cliente",
+        "importPath": "cabanas_apps.clientes.models",
+        "description": "cabanas_apps.clientes.models",
+        "isExtraImport": true,
+        "detail": "cabanas_apps.clientes.models",
         "documentation": {}
     },
     {
@@ -1129,86 +1193,6 @@
         "documentation": {}
     },
     {
-        "label": "Cabanas",
-        "importPath": "cabanas_apps.models",
-        "description": "cabanas_apps.models",
-        "isExtraImport": true,
-        "detail": "cabanas_apps.models",
-        "documentation": {}
-    },
-    {
-        "label": "Cabana",
-        "importPath": "cabanas_apps.models",
-        "description": "cabanas_apps.models",
-        "isExtraImport": true,
-        "detail": "cabanas_apps.models",
-        "documentation": {}
-    },
-    {
-        "label": "Cliente",
-        "importPath": "cabanas_apps.models",
-        "description": "cabanas_apps.models",
-        "isExtraImport": true,
-        "detail": "cabanas_apps.models",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "cabanas_apps.models",
-        "description": "cabanas_apps.models",
-        "isExtraImport": true,
-        "detail": "cabanas_apps.models",
-        "documentation": {}
-    },
-    {
-        "label": "Chatbot",
-        "importPath": "cabanas_apps.models",
-        "description": "cabanas_apps.models",
-        "isExtraImport": true,
-        "detail": "cabanas_apps.models",
-        "documentation": {}
-    },
-    {
-        "label": "Cabana",
-        "importPath": "cabanas_apps.cabanas.models",
-        "description": "cabanas_apps.cabanas.models",
-        "isExtraImport": true,
-        "detail": "cabanas_apps.cabanas.models",
-        "documentation": {}
-    },
-    {
-        "label": "Reserva",
-        "importPath": "cabanas_apps.reservas.models",
-        "description": "cabanas_apps.reservas.models",
-        "isExtraImport": true,
-        "detail": "cabanas_apps.reservas.models",
-        "documentation": {}
-    },
-    {
-        "label": "Cliente",
-        "importPath": "cabanas_apps.clientes",
-        "description": "cabanas_apps.clientes",
-        "isExtraImport": true,
-        "detail": "cabanas_apps.clientes",
-        "documentation": {}
-    },
-    {
-        "label": "Cliente",
-        "importPath": "cabanas_apps.clientes.models",
-        "description": "cabanas_apps.clientes.models",
-        "isExtraImport": true,
-        "detail": "cabanas_apps.clientes.models",
-        "documentation": {}
-    },
-    {
-        "label": "Cliente",
-        "importPath": "cabanas_apps.clientes.models",
-        "description": "cabanas_apps.clientes.models",
-        "isExtraImport": true,
-        "detail": "cabanas_apps.clientes.models",
-        "documentation": {}
-    },
-    {
         "label": "ListView",
         "importPath": "django.views.generic",
         "description": "django.views.generic",
@@ -1326,6 +1310,38 @@
         "description": "django.views.generic",
         "isExtraImport": true,
         "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "Cabana",
+        "importPath": "cabanas_apps.models",
+        "description": "cabanas_apps.models",
+        "isExtraImport": true,
+        "detail": "cabanas_apps.models",
+        "documentation": {}
+    },
+    {
+        "label": "Cliente",
+        "importPath": "cabanas_apps.models",
+        "description": "cabanas_apps.models",
+        "isExtraImport": true,
+        "detail": "cabanas_apps.models",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "cabanas_apps.models",
+        "description": "cabanas_apps.models",
+        "isExtraImport": true,
+        "detail": "cabanas_apps.models",
+        "documentation": {}
+    },
+    {
+        "label": "Chatbot",
+        "importPath": "cabanas_apps.models",
+        "description": "cabanas_apps.models",
+        "isExtraImport": true,
+        "detail": "cabanas_apps.models",
         "documentation": {}
     },
     {
@@ -2448,14 +2464,6 @@
         "documentation": {}
     },
     {
-        "label": "chatbot",
-        "importPath": "django_core.chatbot.chatbot",
-        "description": "django_core.chatbot.chatbot",
-        "isExtraImport": true,
-        "detail": "django_core.chatbot.chatbot",
-        "documentation": {}
-    },
-    {
         "label": "application",
         "kind": 5,
         "importPath": "cabanas.asgi",
@@ -2654,11 +2662,92 @@
         "documentation": {}
     },
     {
+        "label": "Alquiler",
+        "kind": 6,
+        "importPath": "cabanas_api.models.alquileres",
+        "description": "cabanas_api.models.alquileres",
+        "peekOfCode": "class Alquiler(models.Model):\n    cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE)\n    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)\n    fecha_inicio = models.DateField()\n    fecha_fin = models.DateField()\n    precio_total = models.DecimalField(max_digits=10, decimal_places=2)\n    pagado = models.BooleanField(default=False)\n    def __str__(self):\n        return f\"Alquiler {self.id} - {self.cliente.nombre}\"",
+        "detail": "cabanas_api.models.alquileres",
+        "documentation": {}
+    },
+    {
+        "label": "Cabana",
+        "kind": 6,
+        "importPath": "cabanas_api.models.cabana_models",
+        "description": "cabanas_api.models.cabana_models",
+        "peekOfCode": "class Cabana(models.Model):\n    nombre = models.CharField(max_length=100)\n    capacidad = models.IntegerField()\n    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)\n    precio_por_cabana = models.DecimalField(max_digits=10, decimal_places=2)\n    def __str__(self):\n        return self.nombre",
+        "detail": "cabanas_api.models.cabana_models",
+        "documentation": {}
+    },
+    {
+        "label": "Cliente",
+        "kind": 6,
+        "importPath": "cabanas_api.models.clientes_models",
+        "description": "cabanas_api.models.clientes_models",
+        "peekOfCode": "class Cliente(models.Model):\n    nombre = models.CharField(max_length=100)\n    email = models.EmailField(unique=True)\n    telefono = models.CharField(max_length=20)\n    def __str__(self):\n        return self.nombre",
+        "detail": "cabanas_api.models.clientes_models",
+        "documentation": {}
+    },
+    {
+        "label": "Registro",
+        "kind": 6,
+        "importPath": "cabanas_api.models.registros",
+        "description": "cabanas_api.models.registros",
+        "peekOfCode": "class Registro(models.Model):\n    reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE)\n    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)\n    fecha_registro = models.DateTimeField(auto_now_add=True)\n    detalle = models.TextField()\n    def __str__(self):\n        return f\"Registro {self.id} - {self.cliente.nombre}\"",
+        "detail": "cabanas_api.models.registros",
+        "documentation": {}
+    },
+    {
+        "label": "Reserva",
+        "kind": 6,
+        "importPath": "cabanas_api.models.reservas",
+        "description": "cabanas_api.models.reservas",
+        "peekOfCode": "class Reserva(models.Model):\n    ESTADOS = [\n        (\"pendiente\", \"Pendiente\"),\n        (\"confirmada\", \"Confirmada\"),\n        (\"cancelada\", \"Cancelada\"),\n    ]\n    cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE)\n    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)\n    fecha_inicio = models.DateField()\n    fecha_fin = models.DateField()",
+        "detail": "cabanas_api.models.reservas",
+        "documentation": {}
+    },
+    {
         "label": "CabanaAdmin",
         "kind": 6,
         "importPath": "cabanas_api.admin",
         "description": "cabanas_api.admin",
-        "peekOfCode": "class CabanaAdmin(admin.ModelAdmin):\n    list_display = (\"nombre\", \"capacidad\", \"precio_por_noche\", \"disponible\")\n    search_fields = (\"nombre\",)",
+        "peekOfCode": "class CabanaAdmin(admin.ModelAdmin):\n    list_display = (\"nombre\", \"capacidad\", \"precio_por_noche\", \"precio_por_cabana\")\n    search_fields = (\"nombre\",)\n@admin.register(Cliente)\nclass ClienteAdmin(admin.ModelAdmin):\n    list_display = (\"nombre\", \"email\", \"telefono\")\n    search_fields = (\"nombre\", \"email\")\n@admin.register(Reserva)\nclass ReservaAdmin(admin.ModelAdmin):\n    list_display = (\"cabana\", \"cliente\", \"fecha_inicio\", \"fecha_fin\", \"estado\")",
+        "detail": "cabanas_api.admin",
+        "documentation": {}
+    },
+    {
+        "label": "ClienteAdmin",
+        "kind": 6,
+        "importPath": "cabanas_api.admin",
+        "description": "cabanas_api.admin",
+        "peekOfCode": "class ClienteAdmin(admin.ModelAdmin):\n    list_display = (\"nombre\", \"email\", \"telefono\")\n    search_fields = (\"nombre\", \"email\")\n@admin.register(Reserva)\nclass ReservaAdmin(admin.ModelAdmin):\n    list_display = (\"cabana\", \"cliente\", \"fecha_inicio\", \"fecha_fin\", \"estado\")\n    list_filter = (\"estado\", \"fecha_inicio\", \"fecha_fin\")\n@admin.register(Alquiler)\nclass AlquilerAdmin(admin.ModelAdmin):\n    list_display = (\"cabana\", \"cliente\", \"fecha_inicio\", \"fecha_fin\", \"precio_total\", \"pagado\")",
+        "detail": "cabanas_api.admin",
+        "documentation": {}
+    },
+    {
+        "label": "ReservaAdmin",
+        "kind": 6,
+        "importPath": "cabanas_api.admin",
+        "description": "cabanas_api.admin",
+        "peekOfCode": "class ReservaAdmin(admin.ModelAdmin):\n    list_display = (\"cabana\", \"cliente\", \"fecha_inicio\", \"fecha_fin\", \"estado\")\n    list_filter = (\"estado\", \"fecha_inicio\", \"fecha_fin\")\n@admin.register(Alquiler)\nclass AlquilerAdmin(admin.ModelAdmin):\n    list_display = (\"cabana\", \"cliente\", \"fecha_inicio\", \"fecha_fin\", \"precio_total\", \"pagado\")\n    list_filter = (\"pagado\", \"fecha_inicio\", \"fecha_fin\")\n@admin.register(Registro)\nclass RegistroAdmin(admin.ModelAdmin):\n    list_display = (\"reserva\", \"cliente\", \"fecha_registro\", \"detalle\")",
+        "detail": "cabanas_api.admin",
+        "documentation": {}
+    },
+    {
+        "label": "AlquilerAdmin",
+        "kind": 6,
+        "importPath": "cabanas_api.admin",
+        "description": "cabanas_api.admin",
+        "peekOfCode": "class AlquilerAdmin(admin.ModelAdmin):\n    list_display = (\"cabana\", \"cliente\", \"fecha_inicio\", \"fecha_fin\", \"precio_total\", \"pagado\")\n    list_filter = (\"pagado\", \"fecha_inicio\", \"fecha_fin\")\n@admin.register(Registro)\nclass RegistroAdmin(admin.ModelAdmin):\n    list_display = (\"reserva\", \"cliente\", \"fecha_registro\", \"detalle\")\n    list_filter = (\"fecha_registro\",)\n    search_fields = (\"detalle\",)",
+        "detail": "cabanas_api.admin",
+        "documentation": {}
+    },
+    {
+        "label": "RegistroAdmin",
+        "kind": 6,
+        "importPath": "cabanas_api.admin",
+        "description": "cabanas_api.admin",
+        "peekOfCode": "class RegistroAdmin(admin.ModelAdmin):\n    list_display = (\"reserva\", \"cliente\", \"fecha_registro\", \"detalle\")\n    list_filter = (\"fecha_registro\",)\n    search_fields = (\"detalle\",)",
         "detail": "cabanas_api.admin",
         "documentation": {}
     },
@@ -2690,20 +2779,11 @@
         "documentation": {}
     },
     {
-        "label": "app_name",
-        "kind": 5,
-        "importPath": "cabanas_api.urls",
-        "description": "cabanas_api.urls",
-        "peekOfCode": "app_name = \"cabana_api\"\nurlpatterns = [\n    path(\"\", views.index, name=\"index\"),\n    path(\"cabanas/\", views.lista_cabanas, name=\"lista_cabanas\"),\n]",
-        "detail": "cabanas_api.urls",
-        "documentation": {}
-    },
-    {
         "label": "urlpatterns",
         "kind": 5,
         "importPath": "cabanas_api.urls",
         "description": "cabanas_api.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", views.index, name=\"index\"),\n    path(\"cabanas/\", views.lista_cabanas, name=\"lista_cabanas\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('', views.index, name='index'),\n    path('clientes/', views.clientes, name='clientes'),\n    path('reservas/', views.reservas, name='reservas'),\n    path('alquileres/', views.alquileres, name='alquileres'),\n    path('registros/', views.registros, name='registros'),\n]",
         "detail": "cabanas_api.urls",
         "documentation": {}
     },
@@ -2712,25 +2792,43 @@
         "kind": 2,
         "importPath": "cabanas_api.views",
         "description": "cabanas_api.views",
-        "peekOfCode": "def index(request):\n    return HttpResponse(\"cabanas API funcionando correctamente\")\ndef lista_cabanass(request):\n    cabanass = Cabanas.objects.all()\n    return render(request, \"Cabanas_api/lista.html\", {\"cabanass\": cabanass})",
+        "peekOfCode": "def index(request):\n    return HttpResponse(\"Bienvenida Carolina 💙, tu app cabanas_api está funcionando.\")\ndef clientes(request):\n    return HttpResponse(\"Vista de Clientes\")\ndef reservas(request):\n    return HttpResponse(\"Vista de Reservas\")\ndef alquileres(request):\n    return HttpResponse(\"Vista de Alquileres\")\ndef registros(request):\n    return HttpResponse(\"Vista de Registros\")",
         "detail": "cabanas_api.views",
         "documentation": {}
     },
     {
-        "label": "lista_cabanass",
+        "label": "clientes",
         "kind": 2,
         "importPath": "cabanas_api.views",
         "description": "cabanas_api.views",
-        "peekOfCode": "def lista_cabanass(request):\n    cabanass = Cabanas.objects.all()\n    return render(request, \"Cabanas_api/lista.html\", {\"cabanass\": cabanass})",
+        "peekOfCode": "def clientes(request):\n    return HttpResponse(\"Vista de Clientes\")\ndef reservas(request):\n    return HttpResponse(\"Vista de Reservas\")\ndef alquileres(request):\n    return HttpResponse(\"Vista de Alquileres\")\ndef registros(request):\n    return HttpResponse(\"Vista de Registros\")",
         "detail": "cabanas_api.views",
         "documentation": {}
     },
     {
-        "label": "directories",
-        "kind": 5,
+        "label": "reservas",
+        "kind": 2,
         "importPath": "cabanas_api.views",
         "description": "cabanas_api.views",
-        "peekOfCode": "directories = Path(\".\").parents\ndef index(request):\n    return HttpResponse(\"cabanas API funcionando correctamente\")\ndef lista_cabanass(request):\n    cabanass = Cabanas.objects.all()\n    return render(request, \"Cabanas_api/lista.html\", {\"cabanass\": cabanass})",
+        "peekOfCode": "def reservas(request):\n    return HttpResponse(\"Vista de Reservas\")\ndef alquileres(request):\n    return HttpResponse(\"Vista de Alquileres\")\ndef registros(request):\n    return HttpResponse(\"Vista de Registros\")",
+        "detail": "cabanas_api.views",
+        "documentation": {}
+    },
+    {
+        "label": "alquileres",
+        "kind": 2,
+        "importPath": "cabanas_api.views",
+        "description": "cabanas_api.views",
+        "peekOfCode": "def alquileres(request):\n    return HttpResponse(\"Vista de Alquileres\")\ndef registros(request):\n    return HttpResponse(\"Vista de Registros\")",
+        "detail": "cabanas_api.views",
+        "documentation": {}
+    },
+    {
+        "label": "registros",
+        "kind": 2,
+        "importPath": "cabanas_api.views",
+        "description": "cabanas_api.views",
+        "peekOfCode": "def registros(request):\n    return HttpResponse(\"Vista de Registros\")",
         "detail": "cabanas_api.views",
         "documentation": {}
     },
@@ -2762,11 +2860,11 @@
         "documentation": {}
     },
     {
-        "label": "app_name",
+        "label": "APP_NAME",
         "kind": 5,
         "importPath": "cabanas_apps.alquileres.urls",
         "description": "cabanas_apps.alquileres.urls",
-        "peekOfCode": "app_name = \"reservas_alquileres\"\nurlpatterns = [\n    path(\"reservas/\", views.reservas_list, name=\"reservas_list\"),\n    path(\"alquileres/\", views.alquileres_list, name=\"alquileres_list\"),\n]",
+        "peekOfCode": "APP_NAME = \"reservas_alquileres\"\nurlpatterns = [\n    path(\"reservas/\", views.reservas_list, name=\"reservas_list\"),\n    path(\"alquileres/\", views.alquileres_list, name=\"alquileres_list\"),\n]",
         "detail": "cabanas_apps.alquileres.urls",
         "documentation": {}
     },
@@ -2838,7 +2936,7 @@
         "kind": 5,
         "importPath": "cabanas_apps.cabanas.urls",
         "description": "cabanas_apps.cabanas.urls",
-        "peekOfCode": "app_name = \"cabanas\"\nurlpatterns = [\n    path(\"\", views.index, name=\"index\"),\n    path(\"lista/\", views.lista_cabanas, name=\"lista_cabanas\"),\n]",
+        "peekOfCode": "app_name = \"cabanas\"\nurlpatterns = [\n    path(\"\", views.index, name=\"index\"),\n    path(\"lista/\", views.lista_cabanas, name=\"lista_cabanas\"),\n    path('',include('cabanas_api.urls')),\n]",
         "detail": "cabanas_apps.cabanas.urls",
         "documentation": {}
     },
@@ -2847,7 +2945,7 @@
         "kind": 5,
         "importPath": "cabanas_apps.cabanas.urls",
         "description": "cabanas_apps.cabanas.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", views.index, name=\"index\"),\n    path(\"lista/\", views.lista_cabanas, name=\"lista_cabanas\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", views.index, name=\"index\"),\n    path(\"lista/\", views.lista_cabanas, name=\"lista_cabanas\"),\n    path('',include('cabanas_api.urls')),\n]",
         "detail": "cabanas_apps.cabanas.urls",
         "documentation": {}
     },
@@ -2874,7 +2972,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.cabanas_app.admin",
         "description": "cabanas_apps.cabanas_app.admin",
-        "peekOfCode": "class ClienteAdmin(admin.ModelAdmin):\n    list_display = (\"nombre\", \"apellido\", \"email\", \"telefono\", \"fecha_registro\")\n    search_fields = (\"nombre\", \"apellido\", \"email\")",
+        "peekOfCode": "class ClienteAdmin(admin.ModelAdmin):\n    \"\"\"Clase de administración para el modelo Cliente, que define cómo se muestran los registros de clientes en el panel de administración de Django.\"\"\"\n    list_display = (\"nombre\", \"apellido\", \"email\", \"telefono\", \"fecha_registro\")\n    search_fields = (\"nombre\", \"apellido\", \"email\")",
         "detail": "cabanas_apps.cabanas_app.admin",
         "documentation": {}
     },
@@ -2906,11 +3004,11 @@
         "documentation": {}
     },
     {
-        "label": "app_name",
+        "label": "APP_NAME",
         "kind": 5,
         "importPath": "cabanas_apps.cabanas_app.urls",
         "description": "cabanas_apps.cabanas_app.urls",
-        "peekOfCode": "app_name = \"clientes\"\nurlpatterns = [\n    path(\"lista/\", views.lista_clientes, name=\"lista_clientes\"),\n]",
+        "peekOfCode": "APP_NAME = \"clientes\"\nurlpatterns = [\n    path(\"lista/\", views.lista_clientes, name=\"lista_clientes\"),\n]",
         "detail": "cabanas_apps.cabanas_app.urls",
         "documentation": {}
     },
@@ -3036,7 +3134,7 @@
         "kind": 5,
         "importPath": "cabanas_apps.registros.urls",
         "description": "cabanas_apps.registros.urls",
-        "peekOfCode": "app_name = \"registros\"\nurlpatterns = [\n    path(\"actividades/\", views.lista_actividades, name=\"lista_actividades\"),\n]",
+        "peekOfCode": "app_name = \"registros\"  # pylint: disable=invalid-name\nurlpatterns = [\n    path(\"actividades/\", views.lista_actividades, name=\"lista_actividades\"),\n]",
         "detail": "cabanas_apps.registros.urls",
         "documentation": {}
     },
@@ -5642,11 +5740,11 @@
         "documentation": {}
     },
     {
-        "label": "app_name",
+        "label": "APP_NAME",
         "kind": 5,
         "importPath": "registros.urls",
         "description": "registros.urls",
-        "peekOfCode": "app_name = \"registros\"\nurlpatterns = [\n    path(\"\", views.index, name=\"index\"),\n]",
+        "peekOfCode": "APP_NAME = \"registros\"\nurlpatterns = [\n    path(\"\", views.index, name=\"index\"),\n]",
         "detail": "registros.urls",
         "documentation": {}
     },
@@ -5934,7 +6032,7 @@
         "kind": 5,
         "importPath": "settings",
         "description": "settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    # Apps propias\n    'cabanas_api',\n    'cabanas_apps.reservas',",
+        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    # Apps propias\n     'cabanas_api',\n    'cabanas_apps.reservas',",
         "detail": "settings",
         "documentation": {}
     },

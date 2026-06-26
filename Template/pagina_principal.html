@@ -179,6 +179,18 @@
     </style>
 </head>
 <body>
+    {% block content %}
+    <!-- Aquí se cargan las vistas específicas -->
+    {% endblock %}
+
+    <!-- Scripts globales -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/clientes.js' %}"></script>
+    <script src="{% static 'js/reservas.js' %}"></script>
+    <script src="{% static 'js/pagos.js' %}"></script>
+    <script src="{% static 'js/alquileres.js' %}"></script>
+</body>
+<body>
 
     <header class="bg-verde-oscuro text-white text-center py-5 shadow">
         <div class="container">
