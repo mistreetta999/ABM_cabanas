@@ -6,7 +6,7 @@ get_sqlite_config, get_postgresql_config y get_database_settings proporcionan la
 
 import os
 from pathlib import Path
-from cabana_apps.models import models
+from cabanas_apps.models import models
 from django.db import models
 from django.db.models import Model
 from django.db.models import ForeignKey

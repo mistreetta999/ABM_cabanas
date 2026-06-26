@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from cabana_apps.models import CabanaListView
+from cabanas_apps.models import CabanaListView
 from .models import Cabana, Reserva, Alquiler, Cliente, Pago, 
 
 

@@ -5,7 +5,7 @@ from django.core.wsgi import get_wsgi_application
 from django.core.management import execute_from_command_line
 
 class DjangoAppRunner:
-    """Clase para ejecutar comandos de Django sin usar la línea de comandos directamente."""    
+    """Class para ejecutar comandos de Django sin usar la línea de comandos directamente."""    
     def __init__(self, settings_module="cabanas_project.settings"):
         # Configura el módulo de settings
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", settings_module)

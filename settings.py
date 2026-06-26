@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Apps propias
+    
     'cabana_api',
     'cabana_apps.reservas',
     'cabana_apps.clientes',

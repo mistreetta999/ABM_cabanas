@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from django_core.views import chatbot_view
-from cabana_apps.views  import index 
+from cabanas_apps.views  import index 
 from django_core.chatbot.views import ChatbotViews
 from chatbot.chatbot import chatbot
 from typing import Any

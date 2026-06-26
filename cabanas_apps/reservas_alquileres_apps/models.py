@@ -2,8 +2,8 @@ from django.db import models
 
 # Create your models here.
 from django.db import models
-from cabana_apps.clientes_app.models import Cliente
-from cabana_apps.cabanas_app.models import Cabana
+from cabanas_apps.clientes.models import Cliente
+from cabanas_apps.cabanas_app.models import Cabana
 
 class Reserva(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)

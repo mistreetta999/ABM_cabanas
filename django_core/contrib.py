@@ -1,9 +1,9 @@
 from django.contrib import admin
-from cabana_apps.models.cabana_models import Cabana
-from cabana_apps.models.clientes_models import Cliente
-from cabana_apps.models.reservas_models import Reserva
-from cabana_apps.models.alquileres_models import Alquiler
-from cabana_apps.models.registros_models import Registro
+from cabanas_apps.models.cabana_models import Cabana
+from cabanas_apps.models.clientes_models import Cliente
+from cabanas_apps.models.reservas_models import Reserva
+from cabanas_apps.models.alquileres_models import Alquiler
+from cabanas_apps.models.registros_models import Registro
 
 class ContribAdmin:
     """Clase central que organiza el registro de todos los modelos en el admin."""
