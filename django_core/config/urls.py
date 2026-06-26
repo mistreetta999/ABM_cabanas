@@ -1,14 +1,14 @@
 """Django URL Configuration"""
-from pathlib import Path
 from django.contrib import admin
 from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView  
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("reservas/", include("cabana_apps.reservas.urls")),
-    path("clientes/", include("cabana_apps.clientes.urls")),
-    path("registros/", include("cabana_apps.registros.urls")),
+    path("reservas/", include("cabanas_apps.reservas.urls")),
+    path("alquileres/", include("cabanas_apps.alquileres.urls")),
+    path("clientes/", include("cabanas_apps.clientes.urls")),
+    path("registros/", include("cabanas_apps.registros.urls")),
     path("cabanas/", include("cabanas.urls")),
 ]
 

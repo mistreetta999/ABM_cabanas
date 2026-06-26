@@ -1,6 +1,8 @@
+""" Este archivo contiene las urls de la app registros."""
+from django.contrib import admin
 from django.urls import path
 
-from cabanas_apps.registros import views
+from . import views
 
 app_name = "registros"
 

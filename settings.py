@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from django_core.chatbot.chatbot import chatbot
 
 # Base directory del proyecto
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +21,12 @@ INSTALLED_APPS = [
 
     # Apps propias
     
-    'cabana_api',
-    'cabana_apps.reservas',
-    'cabana_apps.clientes',
-    'cabana_apps.registros',
+    'cabanas_api',
+    'cabanas_apps.reservas',
+    'cabanas_apps.alquileres',
+    'cabanas_apps.clientes',
+    'cabanas_apps.registros',
+    'chatbot',
 
     # Django REST Framework y drf-spectacular (si usas API)
     'rest_framework',

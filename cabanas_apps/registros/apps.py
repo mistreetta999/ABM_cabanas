@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 
 class RegistrosConfig(AppConfig):
+    """Configuración de la aplicación Registros."""
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'cabana_apps.registros'
+    name = 'cabanas_apps.registros'

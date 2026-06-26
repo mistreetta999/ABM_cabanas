@@ -1,10 +1,12 @@
+""" archivo de chatbot para el proyecto Django """
 from django.http import JsonResponse
-from django_core.views.views import CabanaListView
-from django_core.models.models import Reservas
-
-from cabanas_proyect.DATABASE.sqlite3 import sqlite3
+from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime, timedelta
-from django_core.models import Reserva, Alquileres,Pagos
+from django_core.models import Reserva
+from django_core.models import Alquiler
+
+import json
+import sqlite3
 class chatbot:
     def __init__(self):
         self.mensajes = []
@@ -28,11 +30,7 @@ class chatbot:
         """, (fecha_fin, fecha_inicio))
         reservas = cursor.fetchall()
         cursor.close()
-        return reservas
-
-     def obtener_
-    def get(request):
-        return JsonResponse()  
+        return reservas  
 @csrf_exempt
 def chatbot_api(request):
     if request.method == "POST":

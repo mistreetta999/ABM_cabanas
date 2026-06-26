@@ -1,26 +1,28 @@
+"""archivo contiene los modelos del programa."""
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Sum
 from django.views.generic import ListView
-from django_core.chatbot
+from cabanas_apps.models import Chatbot
+from cabanas_apps.cabanas import Cabanas
+from chatbot .chatbot import Chatbot
+
 
 class Chatbot(models.Model):
+    """ esta clase es del chatbot"""
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100, default="Chatbot Cabañas")
     descripcion = models.TextField(blank=True, null=True)
 
-    def __str__(self) -> str:
-        return self.Chatbot.nombre
+    def __str__(self:Chatbot) -> str:
+        return self.nombre
 
-
-class CabanaListView(ListView):
-    model = Cabana
-    template_name = "cabanas/lista.html"
-    context_object_name = "cabanas"
 
 class Cabana(models.Model):
+    """ esta clase es de la cabaña"""
+    
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100, unique=True)
     capacidad = models.PositiveIntegerField()

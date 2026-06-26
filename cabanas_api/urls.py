@@ -1,3 +1,4 @@
+"""URL configuration for cabanas_api project."""
 from django.urls import path
 from . import views
 
