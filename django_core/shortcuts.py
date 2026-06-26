@@ -1,6 +1,8 @@
-# appcabanas/shortcuts.py
+"""
+Module for shortcut functions to handle cabanas rendering and retrieval.
+"""
 from django.shortcuts import render, get_object_or_404
-from cabanas_project.cabana_proyect.cabana_project.models import Cabanas
+from .models import Cabanas
 
 def render_with_cabanas(request, template_name, extra_context=None):
     """

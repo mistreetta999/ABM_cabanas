@@ -4,9 +4,10 @@ from django_core.views import chatbot_view
 from cabana_apps.views  import index 
 from chatbot.chatbot_views import ChatbotViews
 from chatbot.chatbot import chatbot
+from typing import Any
 class urls
     def __init__(self):
-        self.urlpatterns = None
+        self.urlpatterns = Any
         self.urlpatterns = [
             path("admin/", admin.site.urls),
             path('', index, name='index'),
@@ -22,7 +23,7 @@ class urls
             path("cabanas/", include("cabanas.urls")),
             path("reservas/", include("cabana_apps.reservas.urls")),
 
-        ]
+            ]
 urlpatterns = [
     # Panel de administración
     path("admin/", admin.site.urls),
