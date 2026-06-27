@@ -1,4 +1,5 @@
 """ archivo de configuración principal de Django """
+import os
 
 from pathlib import Path
 
@@ -20,11 +21,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Apps propias
-     'cabanas_api',
+    'cabanas_api',
     'cabanas_apps.reservas',
     'cabanas_apps.cabanas',
     'cabanas_apps.alquileres',
     'cabanas_apps.clientes',
+    'cabanas_apps.pagos',
     'cabanas_apps.registros',
     'chatbot',
 
@@ -82,8 +84,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'USER': os.getenv('DB_USER', 'carolina'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'superseguro'),
+        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'PORT': os.getenv('DB_PORT', '5432'),
     }
-}
+           }
+
 
 # Validación de contraseñas
 AUTH_PASSWORD_VALIDATORS = [

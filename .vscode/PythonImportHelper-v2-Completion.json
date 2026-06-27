@@ -305,6 +305,14 @@
         "documentation": {}
     },
     {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
         "label": "path",
         "importPath": "django.urls",
         "description": "django.urls",
@@ -401,6 +409,14 @@
         "documentation": {}
     },
     {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
         "label": "reverse_lazy",
         "importPath": "django.urls",
         "description": "django.urls",
@@ -697,6 +713,14 @@
         "documentation": {}
     },
     {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "connections",
         "importPath": "django.db",
         "description": "django.db",
@@ -798,6 +822,14 @@
         "description": "django.db",
         "isExtraImport": true,
         "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
         "documentation": {}
     },
     {
@@ -1297,6 +1329,14 @@
         "documentation": {}
     },
     {
+        "label": "ListView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
         "label": "TemplateView",
         "importPath": "django.views.generic",
         "description": "django.views.generic",
@@ -1386,14 +1426,6 @@
     },
     {
         "label": "Cliente",
-        "importPath": "cabanas_apps.models",
-        "description": "cabanas_apps.models",
-        "isExtraImport": true,
-        "detail": "cabanas_apps.models",
-        "documentation": {}
-    },
-    {
-        "label": "Pago",
         "importPath": "cabanas_apps.models",
         "description": "cabanas_apps.models",
         "isExtraImport": true,
@@ -2118,6 +2150,14 @@
         "documentation": {}
     },
     {
+        "label": "execute_from_command_line",
+        "importPath": "django.core.management",
+        "description": "django.core.management",
+        "isExtraImport": true,
+        "detail": "django.core.management",
+        "documentation": {}
+    },
+    {
         "label": "BaseCommand",
         "importPath": "django.core.management.base",
         "description": "django.core.management.base",
@@ -2688,7 +2728,7 @@
         "kind": 5,
         "importPath": "cabanas.urls",
         "description": "cabanas.urls",
-        "peekOfCode": "urlpatterns = [\n    # Panel de administración\n    path('admin/', admin.site.urls),\n    # App principal API\n    path('', include('cabanas_api.urls')),  # corregido: siempre cabanas_api\n    # Apps internas\n    path('reservas/', include('cabanas_apps.reservas.urls')),\n    path('clientes/', include('cabanas_apps.clientes.urls')),\n    path('registros/', include('cabanas_apps.registros.urls')),\n]",
+        "peekOfCode": "urlpatterns = [\n    # Panel de administración\n    path('admin/', admin.site.urls),\n    # App principal API\n    path('', include('cabanas_api.urls')),  # corregido: siempre cabanas_api\n    # Apps internas\n    path('reservas/', include('cabanas_apps.reservas.urls')),\n    path('pagos/', include('cabanas_apps.pagosurls')),\n    path('alquileres/', include('cabanas_apps.alquileres.urls')),\n    path('clientes/', include('cabanas_apps.clientes.urls')),",
         "detail": "cabanas.urls",
         "documentation": {}
     },
@@ -3075,7 +3115,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.clientes.apps",
         "description": "cabanas_apps.clientes.apps",
-        "peekOfCode": "class ClientesConfig(AppConfig):\n    name = 'clientes'",
+        "peekOfCode": "class ClientesConfig(AppConfig):\n    \"\"\" Configuración de la app clientes \"\"\"\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.clientes'",
         "detail": "cabanas_apps.clientes.apps",
         "documentation": {}
     },
@@ -3170,6 +3210,60 @@
         "documentation": {}
     },
     {
+        "label": "PagoAdmin",
+        "kind": 6,
+        "importPath": "cabanas_apps.pagos.admin",
+        "description": "cabanas_apps.pagos.admin",
+        "peekOfCode": "class PagoAdmin(admin.ModelAdmin):\n    list_display = (\"id\", \"fecha\", \"monto\")",
+        "detail": "cabanas_apps.pagos.admin",
+        "documentation": {}
+    },
+    {
+        "label": "PagosConfig",
+        "kind": 6,
+        "importPath": "cabanas_apps.pagos.apps",
+        "description": "cabanas_apps.pagos.apps",
+        "peekOfCode": "class PagosConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabana_apps.pagos'",
+        "detail": "cabanas_apps.pagos.apps",
+        "documentation": {}
+    },
+    {
+        "label": "Pago",
+        "kind": 6,
+        "importPath": "cabanas_apps.pagos.models",
+        "description": "cabanas_apps.pagos.models",
+        "peekOfCode": "class Pago(models.Model):\n    fecha = models.DateField()\n    monto = models.DecimalField(max_digits=10, decimal_places=2)\n    def __str__(self):\n        return f\"Pago {self.id} - {self.monto}\"",
+        "detail": "cabanas_apps.pagos.models",
+        "documentation": {}
+    },
+    {
+        "label": "APP_NAME",
+        "kind": 5,
+        "importPath": "cabanas_apps.pagos.urls",
+        "description": "cabanas_apps.pagos.urls",
+        "peekOfCode": "APP_NAME = \"pagos\"\nurlpatterns = [\n    path(\"list/\", PagoListView.as_view(), name=\"pago_list\"),\n]",
+        "detail": "cabanas_apps.pagos.urls",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "cabanas_apps.pagos.urls",
+        "description": "cabanas_apps.pagos.urls",
+        "peekOfCode": "urlpatterns = [\n    path(\"list/\", PagoListView.as_view(), name=\"pago_list\"),\n]",
+        "detail": "cabanas_apps.pagos.urls",
+        "documentation": {}
+    },
+    {
+        "label": "PagoListView",
+        "kind": 6,
+        "importPath": "cabanas_apps.pagos.views",
+        "description": "cabanas_apps.pagos.views",
+        "peekOfCode": "class PagoListView(ListView):\n    \"\"\" Vista para listar los pagos \"\"\"\n    model = Pago\n    template_name = \"pagos/list.html\"\n    context_object_name = \"pagos\"",
+        "detail": "cabanas_apps.pagos.views",
+        "documentation": {}
+    },
+    {
         "label": "ActividadCabanaAdmin",
         "kind": 6,
         "importPath": "cabanas_apps.registros.admin",
@@ -3255,7 +3349,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.reservas.models",
         "description": "cabanas_apps.reservas.models",
-        "peekOfCode": "class Reserva(models.Model):\n    \"\"\"Modelo que representa una reserva de cabaña.\"\"\"\n    id=models.AutoField(primary_key=True)\n    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)\n    cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE)\n    fecha_inicio = models.DateField()\n    fecha_fin = models.DateField()\n    estado = models.CharField(max_length=20, default=\"pendiente\")\n    def __str__(self):\n        return f\"Reserva {self.id} - {self.cliente}\"",
+        "peekOfCode": "class Reserva(models.Model):\n    \"\"\"Modelo que representa una reserva de cabaña.\"\"\"\n    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)\n    cabana = models.ForeignKey('cabanas.Cabana', on_delete=models.CASCADE)\n    fecha_inicio = models.DateTimeField()\n    fecha_fin = models.DateTimeField()\n    estado = models.CharField(max_length=20, default=\"pendiente\")\n    objects = models.Manager()\n    @staticmethod\n    def get_reservas_by_cliente(cliente_id):",
         "detail": "cabanas_apps.reservas.models",
         "documentation": {}
     },
@@ -3291,7 +3385,7 @@
         "kind": 2,
         "importPath": "cabanas_apps.reservas.views",
         "description": "cabanas_apps.reservas.views",
-        "peekOfCode": "def lista_reservas(request):\n    reservas = Reserva.objects.all()\n    return render(request, \"reservas/lista.html\", {\"reservas\": reservas})",
+        "peekOfCode": "def lista_reservas(request):\n    \"\"\"Vista para mostrar la lista de reservas.\"\"\"\n    reservas = Reserva\n    return render(request, \"reservas/lista.html\", {\"reservas\": reservas})",
         "detail": "cabanas_apps.reservas.views",
         "documentation": {}
     },
@@ -3309,7 +3403,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.forms",
         "description": "cabanas_apps.forms",
-        "peekOfCode": "class BootstrapModelForm(forms.ModelForm):\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        for field in self.fields.values():\n            css_class = 'form-select' if isinstance(field.widget, forms.Select) else 'form-control'\n            if isinstance(field.widget, forms.CheckboxInput):\n                css_class = 'form-check-input'\n            field.widget.attrs.setdefault('class', css_class)\nclass ClienteForm(BootstrapModelForm):\n    class Meta:",
+        "peekOfCode": "class BootstrapModelForm(forms.ModelForm):\n    \"\"\"A base form class that adds Bootstrap classes to form fields.\n    \"\"\"\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        for field in self.fields.values():\n            css_class = 'form-select' if isinstance(field.widget, forms.Select) else 'form-control'\n            if isinstance(field.widget, forms.CheckboxInput):\n                css_class = 'form-check-input'\n            field.widget.attrs.setdefault('class', css_class)",
         "detail": "cabanas_apps.forms",
         "documentation": {}
     },
@@ -3318,7 +3412,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.forms",
         "description": "cabanas_apps.forms",
-        "peekOfCode": "class ClienteForm(BootstrapModelForm):\n    class Meta:\n        model = Cliente\n        fields = ['nombre', 'apellido', 'dni', 'telefono', 'email']\nclass CabanaForm(BootstrapModelForm):\n    class Meta:\n        model = Cabana\n        fields = ['nombre', 'capacidad', 'precio_por_noche', 'disponible']\nclass ReservaForm(BootstrapModelForm):\n    class Meta:",
+        "peekOfCode": "class ClienteForm(BootstrapModelForm):\n    \"\"\"Form para el modelo Cliente.\"\"\"\n    class Meta:\n        \"\"\"\"Meta class para ClienteForm.\"\"\"\n        model = Cliente\n        fields = ['nombre', 'apellido', 'dni', 'telefono', 'email']\nclass CabanaForm(BootstrapModelForm):\n    \"\"\"Form para el modelo Cabana.\"\"\"\n    class Meta:\n        \"\"\"\"Meta class para CabanaForm.\"\"\"",
         "detail": "cabanas_apps.forms",
         "documentation": {}
     },
@@ -3327,7 +3421,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.forms",
         "description": "cabanas_apps.forms",
-        "peekOfCode": "class CabanaForm(BootstrapModelForm):\n    class Meta:\n        model = Cabana\n        fields = ['nombre', 'capacidad', 'precio_por_noche', 'disponible']\nclass ReservaForm(BootstrapModelForm):\n    class Meta:\n        model = Reserva\n        fields = ['cliente', 'cabana', 'fecha_ingreso', 'fecha_salida', 'estado', 'observaciones']\n        widgets = {\n            'fecha_ingreso': forms.DateInput(attrs={'type': 'date'}),",
+        "peekOfCode": "class CabanaForm(BootstrapModelForm):\n    \"\"\"Form para el modelo Cabana.\"\"\"\n    class Meta:\n        \"\"\"\"Meta class para CabanaForm.\"\"\"\n        model = Cabana\n        fields = ['nombre', 'capacidad', 'precio_por_noche', 'disponible']\nclass ReservaForm(BootstrapModelForm):\n    \"\"\"Form para el modelo Reserva.\"\"\"\n    class Meta:\n        \"\"\"\"Meta class para ReservaForm.\"\"\"",
         "detail": "cabanas_apps.forms",
         "documentation": {}
     },
@@ -3336,7 +3430,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.forms",
         "description": "cabanas_apps.forms",
-        "peekOfCode": "class ReservaForm(BootstrapModelForm):\n    class Meta:\n        model = Reserva\n        fields = ['cliente', 'cabana', 'fecha_ingreso', 'fecha_salida', 'estado', 'observaciones']\n        widgets = {\n            'fecha_ingreso': forms.DateInput(attrs={'type': 'date'}),\n            'fecha_salida': forms.DateInput(attrs={'type': 'date'}),\n        }\nclass AlquilerForm(BootstrapModelForm):\n    class Meta:",
+        "peekOfCode": "class ReservaForm(BootstrapModelForm):\n    \"\"\"Form para el modelo Reserva.\"\"\"\n    class Meta:\n        \"\"\"\"Meta class para ReservaForm.\"\"\"\n        model = Reserva\n        fields = ['cliente', 'cabana', 'fecha_ingreso', 'fecha_salida', 'estado', 'observaciones']\n        widgets = {\n            'fecha_ingreso': forms.DateInput(attrs={'type': 'date'}),\n            'fecha_salida': forms.DateInput(attrs={'type': 'date'}),\n        }",
         "detail": "cabanas_apps.forms",
         "documentation": {}
     },
@@ -3345,7 +3439,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.forms",
         "description": "cabanas_apps.forms",
-        "peekOfCode": "class AlquilerForm(BootstrapModelForm):\n    class Meta:\n        model = Alquiler\n        fields = ['reserva', 'cliente', 'cabana', 'fecha_inicio', 'fecha_fin', 'monto_total', 'estado']\n        widgets = {\n            'fecha_inicio': forms.DateInput(attrs={'type': 'date'}),\n            'fecha_fin': forms.DateInput(attrs={'type': 'date'}),\n        }\nclass PagoForm(BootstrapModelForm):\n    class Meta:",
+        "peekOfCode": "class AlquilerForm(BootstrapModelForm):\n    \"\"\"Form para el modelo Alquiler.\"\"\"\n    class Meta:\n        \"\"\"\"Meta class para AlquilerForm.\"\"\"\n        model = Alquiler\n        fields:list = ['reserva', 'cliente', 'cabana', 'fecha_inicio', 'fecha_fin', 'monto_total', 'estado']\n        widgets = {\n            'fecha_inicio': forms.DateInput(attrs={'type': 'date'}),\n            'fecha_fin': forms.DateInput(attrs={'type': 'date'}),\n        }",
         "detail": "cabanas_apps.forms",
         "documentation": {}
     },
@@ -3354,7 +3448,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.forms",
         "description": "cabanas_apps.forms",
-        "peekOfCode": "class PagoForm(BootstrapModelForm):\n    class Meta:\n        model = Pago\n        fields = ['alquiler', 'fecha', 'monto', 'metodo', 'comprobante']\n        widgets = {\n            'fecha': forms.DateInput(attrs={'type': 'date'}),\n        }\nclass RegistroForm(BootstrapModelForm):\n    class Meta:\n        model = Registro",
+        "peekOfCode": "class PagoForm(BootstrapModelForm):\n    \"\"\"Form para el modelo Pago.\"\"\"\n    class Meta:\n        \"\"\"\"Meta class para PagoForm.\"\"\"\n        model = Pago\n        fields = ['alquiler', 'fecha', 'monto', 'metodo', 'comprobante']\n        widgets = {\n            'fecha': forms.DateInput(attrs={'type': 'date'}),\n        }\nclass RegistroForm(BootstrapModelForm):",
         "detail": "cabanas_apps.forms",
         "documentation": {}
     },
@@ -3363,7 +3457,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.forms",
         "description": "cabanas_apps.forms",
-        "peekOfCode": "class RegistroForm(BootstrapModelForm):\n    class Meta:\n        model = Registro\n        fields = ['modulo', 'descripcion', 'responsable']",
+        "peekOfCode": "class RegistroForm(BootstrapModelForm):\n    \"\"\"Form para el modelo Registro.\"\"\"\n    class Meta:\n        \"\"\"\"Meta class para RegistroForm.\"\"\"\n        model = Registro\n        fields = ['modulo', 'descripcion', 'responsable']",
         "detail": "cabanas_apps.forms",
         "documentation": {}
     },
@@ -6027,7 +6121,7 @@
         "kind": 2,
         "importPath": "manage",
         "description": "manage",
-        "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cabanas.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Did you activate the virtual environment?\"\n        ) from exc\n    execute_from_command_line(sys.argv)",
+        "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cabanas.settings')\n    try:\n        execute_from_command_line(sys.argv)\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Did you activate the virtual environment?\"\n        ) from exc\nif __name__ == '__main__':",
         "detail": "manage",
         "documentation": {}
     },
@@ -6072,7 +6166,7 @@
         "kind": 5,
         "importPath": "settings",
         "description": "settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    # Apps propias\n     'cabanas_api',\n    'cabanas_apps.reservas',",
+        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    # Apps propias\n    'cabanas_api',\n    'cabanas_apps.reservas',",
         "detail": "settings",
         "documentation": {}
     },
@@ -6126,7 +6220,7 @@
         "kind": 5,
         "importPath": "settings",
         "description": "settings",
-        "peekOfCode": "WSGI_APPLICATION = 'cabanas.wsgi.application'\n# Base de datos (SQLite por defecto)\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': BASE_DIR / 'db.sqlite3',\n    }\n}\n# Validación de contraseñas\nAUTH_PASSWORD_VALIDATORS = [",
+        "peekOfCode": "WSGI_APPLICATION = 'cabanas.wsgi.application'\n# Base de datos (SQLite por defecto)\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': BASE_DIR / 'db.sqlite3',\n        'USER': os.getenv('DB_USER', 'carolina'),\n        'PASSWORD': os.getenv('DB_PASSWORD', 'superseguro'),\n        'HOST': os.getenv('DB_HOST', 'localhost'),\n        'PORT': os.getenv('DB_PORT', '5432'),",
         "detail": "settings",
         "documentation": {}
     },
@@ -6135,7 +6229,7 @@
         "kind": 5,
         "importPath": "settings",
         "description": "settings",
-        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': BASE_DIR / 'db.sqlite3',\n    }\n}\n# Validación de contraseñas\nAUTH_PASSWORD_VALIDATORS = [\n    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},\n    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},",
+        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': BASE_DIR / 'db.sqlite3',\n        'USER': os.getenv('DB_USER', 'carolina'),\n        'PASSWORD': os.getenv('DB_PASSWORD', 'superseguro'),\n        'HOST': os.getenv('DB_HOST', 'localhost'),\n        'PORT': os.getenv('DB_PORT', '5432'),\n    }\n           }",
         "detail": "settings",
         "documentation": {}
     },

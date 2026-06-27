@@ -2,10 +2,8 @@
 """
 from django.urls import path
 
-from cabanas_apps.models import Pago
 from . import views
-from .views import alquileres
-from .views import Pagos
+
 
 
 

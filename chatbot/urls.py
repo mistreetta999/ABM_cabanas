@@ -1,3 +1,5 @@
+"""Este archivo contiene las rutas URL para la aplicación de chatbot.
+"""
 from django.urls import path
 
 from . import views
