@@ -153,6 +153,14 @@
         "documentation": {}
     },
     {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
         "label": "admin",
         "importPath": "django.contrib",
         "description": "django.contrib",
@@ -346,6 +354,14 @@
     },
     {
         "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "reverse",
         "importPath": "django.urls",
         "description": "django.urls",
         "isExtraImport": true,
@@ -1057,6 +1073,22 @@
         "documentation": {}
     },
     {
+        "label": "Cliente",
+        "importPath": "cabanas_apps.clientes.models",
+        "description": "cabanas_apps.clientes.models",
+        "isExtraImport": true,
+        "detail": "cabanas_apps.clientes.models",
+        "documentation": {}
+    },
+    {
+        "label": "Cliente",
+        "importPath": "cabanas_apps.clientes.models",
+        "description": "cabanas_apps.clientes.models",
+        "isExtraImport": true,
+        "detail": "cabanas_apps.clientes.models",
+        "documentation": {}
+    },
+    {
         "label": "render",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
@@ -1198,6 +1230,30 @@
         "description": "cabanas_apps.cabanas",
         "isExtraImport": true,
         "detail": "cabanas_apps.cabanas",
+        "documentation": {}
+    },
+    {
+        "label": "RegexValidator",
+        "importPath": "django.core.validators",
+        "description": "django.core.validators",
+        "isExtraImport": true,
+        "detail": "django.core.validators",
+        "documentation": {}
+    },
+    {
+        "label": "MinValueValidator",
+        "importPath": "django.core.validators",
+        "description": "django.core.validators",
+        "isExtraImport": true,
+        "detail": "django.core.validators",
+        "documentation": {}
+    },
+    {
+        "label": "MaxValueValidator",
+        "importPath": "django.core.validators",
+        "description": "django.core.validators",
+        "isExtraImport": true,
+        "detail": "django.core.validators",
         "documentation": {}
     },
     {
@@ -2255,22 +2311,6 @@
         "documentation": {}
     },
     {
-        "label": "MinValueValidator",
-        "importPath": "django.core.validators",
-        "description": "django.core.validators",
-        "isExtraImport": true,
-        "detail": "django.core.validators",
-        "documentation": {}
-    },
-    {
-        "label": "MaxValueValidator",
-        "importPath": "django.core.validators",
-        "description": "django.core.validators",
-        "isExtraImport": true,
-        "detail": "django.core.validators",
-        "documentation": {}
-    },
-    {
         "label": "Chatbot",
         "importPath": "chatbot .chatbot",
         "description": "chatbot .chatbot",
@@ -3037,6 +3077,42 @@
         "description": "cabanas_apps.clientes.apps",
         "peekOfCode": "class ClientesConfig(AppConfig):\n    name = 'clientes'",
         "detail": "cabanas_apps.clientes.apps",
+        "documentation": {}
+    },
+    {
+        "label": "Cliente",
+        "kind": 6,
+        "importPath": "cabanas_apps.clientes.models",
+        "description": "cabanas_apps.clientes.models",
+        "peekOfCode": "class Cliente(models.Model):\n    \"\"\" Modelo que representa un cliente \"\"\"\n    id = models.AutoField(primary_key=True)  # clave primaria automática\n    dni = models.CharField(\n        max_length=20,\n        unique=True,          # obligatorio y único, pero no clave primaria\n        validators=[RegexValidator(r'^\\d{1,20}$', 'El DNI debe contener solo números (máx. 20).')]\n    )\n    nombre = models.CharField(max_length=100)\n    apellido = models.CharField(max_length=100)",
+        "detail": "cabanas_apps.clientes.models",
+        "documentation": {}
+    },
+    {
+        "label": "ClienteModelTest",
+        "kind": 6,
+        "importPath": "cabanas_apps.clientes.tests",
+        "description": "cabanas_apps.clientes.tests",
+        "peekOfCode": "class ClienteModelTest(TestCase):\n    \"\"\" Test para el modelo Cliente \"\"\"\n    def setUp(self):\n        self.cliente = Cliente.objects.create(\n            nombre=\"Juan\",\n            apellido=\"Pérez\",\n            dni=\"12345678\",\n            email=\"juan@example.com\",\n            telefono=\"3511234567\"\n        )",
+        "detail": "cabanas_apps.clientes.tests",
+        "documentation": {}
+    },
+    {
+        "label": "ClienteViewsTest",
+        "kind": 6,
+        "importPath": "cabanas_apps.clientes.tests",
+        "description": "cabanas_apps.clientes.tests",
+        "peekOfCode": "class ClienteViewsTest(TestCase):\n    def setUp(self):\n        self.cliente = Cliente.objects.create(\n            nombre=\"Ana\",\n            apellido=\"García\",\n            dni=\"23456789\",\n            email=\"ana@example.com\",\n            telefono=\"3519876543\"\n        )\n    def test_cliente_list_view(self):",
+        "detail": "cabanas_apps.clientes.tests",
+        "documentation": {}
+    },
+    {
+        "label": "directories",
+        "kind": 5,
+        "importPath": "cabanas_apps.clientes.tests",
+        "description": "cabanas_apps.clientes.tests",
+        "peekOfCode": "directories = Path(\".\").parents\nclass ClienteModelTest(TestCase):\n    \"\"\" Test para el modelo Cliente \"\"\"\n    def setUp(self):\n        self.cliente = Cliente.objects.create(\n            nombre=\"Juan\",\n            apellido=\"Pérez\",\n            dni=\"12345678\",\n            email=\"juan@example.com\",\n            telefono=\"3511234567\"",
+        "detail": "cabanas_apps.clientes.tests",
         "documentation": {}
     },
     {

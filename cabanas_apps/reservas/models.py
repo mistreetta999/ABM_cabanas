@@ -2,6 +2,7 @@
 from django.db import models
 from .models import Cliente 
 from .models import Cabana
+from cabanas_apps.clientes.models import Cliente
 
 class Reserva(models.Model):
     """Modelo que representa una reserva de cabaña."""
