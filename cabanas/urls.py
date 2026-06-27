@@ -7,10 +7,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # App principal API
-    path('', include('cabana_api.urls')),  
+    path('', include('cabanas_api.urls')),  # corregido: siempre cabanas_api
 
     # Apps internas
-    path('reservas/', include('cabana_apps.reservas.urls')),
-    path('clientes/', include('cabana_apps.clientes.urls')),
-    path('registros/', include('cabana_apps.registros.urls')),
+    path('reservas/', include('cabanas_apps.reservas.urls')),
+    path('clientes/', include('cabanas_apps.clientes.urls')),
+    path('registros/', include('cabanas_apps.registros.urls')),
 ]

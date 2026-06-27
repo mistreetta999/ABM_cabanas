@@ -153,14 +153,6 @@
         "documentation": {}
     },
     {
-        "label": "Path",
-        "importPath": "pathlib",
-        "description": "pathlib",
-        "isExtraImport": true,
-        "detail": "pathlib",
-        "documentation": {}
-    },
-    {
         "label": "admin",
         "importPath": "django.contrib",
         "description": "django.contrib",
@@ -386,6 +378,14 @@
     },
     {
         "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "reverse_lazy",
         "importPath": "django.urls",
         "description": "django.urls",
         "isExtraImport": true,
@@ -1057,14 +1057,6 @@
         "documentation": {}
     },
     {
-        "label": "Cliente",
-        "importPath": "cabanas_apps.clientes.models",
-        "description": "cabanas_apps.clientes.models",
-        "isExtraImport": true,
-        "detail": "cabanas_apps.clientes.models",
-        "documentation": {}
-    },
-    {
         "label": "render",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
@@ -1193,6 +1185,22 @@
         "documentation": {}
     },
     {
+        "label": "views",
+        "importPath": "cabanas_apps.cabanas",
+        "description": "cabanas_apps.cabanas",
+        "isExtraImport": true,
+        "detail": "cabanas_apps.cabanas",
+        "documentation": {}
+    },
+    {
+        "label": "Cabanas",
+        "importPath": "cabanas_apps.cabanas",
+        "description": "cabanas_apps.cabanas",
+        "isExtraImport": true,
+        "detail": "cabanas_apps.cabanas",
+        "documentation": {}
+    },
+    {
         "label": "ListView",
         "importPath": "django.views.generic",
         "description": "django.views.generic",
@@ -1233,15 +1241,7 @@
         "documentation": {}
     },
     {
-        "label": "CreateView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "DeleteView",
+        "label": "TemplateView",
         "importPath": "django.views.generic",
         "description": "django.views.generic",
         "isExtraImport": true,
@@ -1257,7 +1257,7 @@
         "documentation": {}
     },
     {
-        "label": "TemplateView",
+        "label": "CreateView",
         "importPath": "django.views.generic",
         "description": "django.views.generic",
         "isExtraImport": true,
@@ -1266,6 +1266,14 @@
     },
     {
         "label": "UpdateView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "DeleteView",
         "importPath": "django.views.generic",
         "description": "django.views.generic",
         "isExtraImport": true,
@@ -1329,6 +1337,14 @@
         "documentation": {}
     },
     {
+        "label": "Pago",
+        "importPath": "cabanas_apps.models",
+        "description": "cabanas_apps.models",
+        "isExtraImport": true,
+        "detail": "cabanas_apps.models",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "cabanas_apps.models",
         "description": "cabanas_apps.models",
@@ -1342,14 +1358,6 @@
         "description": "cabanas_apps.models",
         "isExtraImport": true,
         "detail": "cabanas_apps.models",
-        "documentation": {}
-    },
-    {
-        "label": "Cabana",
-        "importPath": "cabanas_apps.cabanas_app.models",
-        "description": "cabanas_apps.cabanas_app.models",
-        "isExtraImport": true,
-        "detail": "cabanas_apps.cabanas_app.models",
         "documentation": {}
     },
     {
@@ -2263,14 +2271,6 @@
         "documentation": {}
     },
     {
-        "label": "Cabanas",
-        "importPath": "cabanas_apps.cabanas",
-        "description": "cabanas_apps.cabanas",
-        "isExtraImport": true,
-        "detail": "cabanas_apps.cabanas",
-        "documentation": {}
-    },
-    {
         "label": "Chatbot",
         "importPath": "chatbot .chatbot",
         "description": "chatbot .chatbot",
@@ -2648,7 +2648,7 @@
         "kind": 5,
         "importPath": "cabanas.urls",
         "description": "cabanas.urls",
-        "peekOfCode": "urlpatterns = [\n    # Panel de administración\n    path('admin/', admin.site.urls),\n    # App principal API\n    path('', include('cabana_api.urls')),  \n    # Apps internas\n    path('reservas/', include('cabana_apps.reservas.urls')),\n    path('clientes/', include('cabana_apps.clientes.urls')),\n    path('registros/', include('cabana_apps.registros.urls')),\n]",
+        "peekOfCode": "urlpatterns = [\n    # Panel de administración\n    path('admin/', admin.site.urls),\n    # App principal API\n    path('', include('cabanas_api.urls')),  # corregido: siempre cabanas_api\n    # Apps internas\n    path('reservas/', include('cabanas_apps.reservas.urls')),\n    path('clientes/', include('cabanas_apps.clientes.urls')),\n    path('registros/', include('cabanas_apps.registros.urls')),\n]",
         "detail": "cabanas.urls",
         "documentation": {}
     },
@@ -2673,19 +2673,19 @@
     {
         "label": "Cabana",
         "kind": 6,
-        "importPath": "cabanas_api.models.cabana_models",
-        "description": "cabanas_api.models.cabana_models",
-        "peekOfCode": "class Cabana(models.Model):\n    nombre = models.CharField(max_length=100)\n    capacidad = models.IntegerField()\n    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)\n    precio_por_cabana = models.DecimalField(max_digits=10, decimal_places=2)\n    def __str__(self):\n        return self.nombre",
-        "detail": "cabanas_api.models.cabana_models",
+        "importPath": "cabanas_api.models.cabana",
+        "description": "cabanas_api.models.cabana",
+        "peekOfCode": "class Cabana(models.Model):\n    \"\"\"Modelo que representa una cabaña en la aplicación.\n    \"\"\"\n    nombre = models.CharField(max_length=100)\n    capacidad = models.IntegerField()\n    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)\n    precio_por_cabana = models.DecimalField(max_digits=10, decimal_places=2)\n    def __str__(self) -> str:\n        return str(self.nombre)",
+        "detail": "cabanas_api.models.cabana",
         "documentation": {}
     },
     {
         "label": "Cliente",
         "kind": 6,
-        "importPath": "cabanas_api.models.clientes_models",
-        "description": "cabanas_api.models.clientes_models",
+        "importPath": "cabanas_api.models.clientes",
+        "description": "cabanas_api.models.clientes",
         "peekOfCode": "class Cliente(models.Model):\n    nombre = models.CharField(max_length=100)\n    email = models.EmailField(unique=True)\n    telefono = models.CharField(max_length=20)\n    def __str__(self):\n        return self.nombre",
-        "detail": "cabanas_api.models.clientes_models",
+        "detail": "cabanas_api.models.clientes",
         "documentation": {}
     },
     {
@@ -2783,7 +2783,7 @@
         "kind": 5,
         "importPath": "cabanas_api.urls",
         "description": "cabanas_api.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', views.index, name='index'),\n    path('clientes/', views.clientes, name='clientes'),\n    path('reservas/', views.reservas, name='reservas'),\n    path('alquileres/', views.alquileres, name='alquileres'),\n    path('registros/', views.registros, name='registros'),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('', views.index, name='index'),\n    path('clientes/', views.clientes, name='clientes'),\n    path('reservas/', views.reservas, name='reservas'),\n    path('alquileres/', views.alquileres, name='alquileres'),\n    path('registros/', views.registros, name='registros'),\n    path('', views.index, name='index')\n]",
         "detail": "cabanas_api.urls",
         "documentation": {}
     },
@@ -2932,11 +2932,11 @@
         "documentation": {}
     },
     {
-        "label": "app_name",
+        "label": "APP_NAME",
         "kind": 5,
         "importPath": "cabanas_apps.cabanas.urls",
         "description": "cabanas_apps.cabanas.urls",
-        "peekOfCode": "app_name = \"cabanas\"\nurlpatterns = [\n    path(\"\", views.index, name=\"index\"),\n    path(\"lista/\", views.lista_cabanas, name=\"lista_cabanas\"),\n    path('',include('cabanas_api.urls')),\n]",
+        "peekOfCode": "APP_NAME = \"cabanas\"\nurlpatterns = [\n    path(\"\", views.index, name=\"index\"),\n    path(\"lista/\", views.lista_cabanas, name=\"lista_cabanas\"),\n    path('',include('cabanas_api.urls')),\n]",
         "detail": "cabanas_apps.cabanas.urls",
         "documentation": {}
     },
@@ -3359,7 +3359,7 @@
         "kind": 5,
         "importPath": "cabanas_apps.urls",
         "description": "cabanas_apps.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', views.InicioView.as_view(), name='inicio'),\n    path('cabanas/', views.PanelView.as_view(), name='panel_abm'),\n    path('panel-django/', views.PanelView.as_view(), name='panel_django'),\n    path('abm/', views.PanelView.as_view(), name='panel_abm_directo'),\n    path('abm/clientes/', views.ClienteListView.as_view(), name='cliente_list'),\n    path('abm/clientes/nuevo/', views.ClienteCreateView.as_view(), name='cliente_create'),\n    path('abm/clientes/<int:pk>/editar/', views.ClienteUpdateView.as_view(), name='cliente_update'),\n    path('abm/clientes/<int:pk>/borrar/', views.ClienteDeleteView.as_view(), name='cliente_delete'),\n    path('abm/cabanas/', views.CabanaListView.as_view(), name='cabana_list'),",
+        "peekOfCode": "urlpatterns = [\n    path('', views.InicioView.as_view(), name='inicio'),\n    path('cabanas/', views.PanelView.as_view(), name='panel_cabanas_api'),\n    path('panel-django/', views.PanelView.as_view(), name='panel_django'),\n    path('cabanas_api/', views.PanelView.as_view(), name='panel_cabanas_api_directo'),\n    path('cabanas_api/clientes/', views.ClienteListView.as_view(), name='cliente_list'),\n    path('cabanas_api/clientes/nuevo/', views.ClienteCreateView.as_view(), name='cliente_create'),\n    path('cabanas_api/clientes/<int:pk>/editar/', views.ClienteUpdateView.as_view(), name='cliente_update'),\n    path('cabanas_api/clientes/<int:pk>/borrar/', views.ClienteDeleteView.as_view(), name='cliente_delete'),\n    path('cabanas_api/cabanas/', views.CabanaListView.as_view(), name='cabana_list'),",
         "detail": "cabanas_apps.urls",
         "documentation": {}
     },
@@ -3368,7 +3368,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class InicioView(TemplateView):\n    template_name = 'pagina_principal.html'\nclass PanelView(TemplateView):\n    template_name = 'cabana_apps/panel_django.html'\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        context['clientes_count'] = Cliente.objects.count()\n        context['reservas_count'] = Reserva.objects.count()\n        context['alquileres_count'] = Alquiler.objects.count()\n        context['pagos_count'] = Pago.objects.count()",
+        "peekOfCode": "class InicioView(TemplateView):\n    template_name = \"inicio.html\"\n# Panel genérico\nclass PanelView(TemplateView):\n    template_name = \"panel.html\"\n# Clientes\nclass ClienteListView(ListView):\n    model = Cliente\n    template_name = \"clientes/list.html\"\nclass ClienteCreateView(CreateView):",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3377,7 +3377,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class PanelView(TemplateView):\n    template_name = 'cabana_apps/panel_django.html'\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        context['clientes_count'] = Cliente.objects.count()\n        context['reservas_count'] = Reserva.objects.count()\n        context['alquileres_count'] = Alquiler.objects.count()\n        context['pagos_count'] = Pago.objects.count()\n        context['registros_count'] = Registro.objects.count()\n        return context",
+        "peekOfCode": "class PanelView(TemplateView):\n    template_name = \"panel.html\"\n# Clientes\nclass ClienteListView(ListView):\n    model = Cliente\n    template_name = \"clientes/list.html\"\nclass ClienteCreateView(CreateView):\n    model = Cliente\n    fields = [\"nombre\", \"email\", \"telefono\"]\n    template_name = \"clientes/form.html\"",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3386,7 +3386,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class ClienteListView(ListView):\n    model = Cliente\n    template_name = 'cabana_apps/list.html'\n    context_object_name = 'objetos'\n    extra_context = {'titulo': 'Clientes', 'crear_url': 'cliente_create', 'editar_url': 'cliente_update', 'borrar_url': 'cliente_delete'}\nclass ClienteCreateView(CreateView):\n    model = Cliente\n    form_class = ClienteForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Nuevo cliente'}",
+        "peekOfCode": "class ClienteListView(ListView):\n    model = Cliente\n    template_name = \"clientes/list.html\"\nclass ClienteCreateView(CreateView):\n    model = Cliente\n    fields = [\"nombre\", \"email\", \"telefono\"]\n    template_name = \"clientes/form.html\"\n    success_url = reverse_lazy(\"cliente_list\")\nclass ClienteUpdateView(UpdateView):\n    model = Cliente",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3395,7 +3395,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class ClienteCreateView(CreateView):\n    model = Cliente\n    form_class = ClienteForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Nuevo cliente'}\nclass ClienteUpdateView(UpdateView):\n    model = Cliente\n    form_class = ClienteForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Editar cliente'}",
+        "peekOfCode": "class ClienteCreateView(CreateView):\n    model = Cliente\n    fields = [\"nombre\", \"email\", \"telefono\"]\n    template_name = \"clientes/form.html\"\n    success_url = reverse_lazy(\"cliente_list\")\nclass ClienteUpdateView(UpdateView):\n    model = Cliente\n    fields = [\"nombre\", \"email\", \"telefono\"]\n    template_name = \"clientes/form.html\"\n    success_url = reverse_lazy(\"cliente_list\")",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3404,7 +3404,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class ClienteUpdateView(UpdateView):\n    model = Cliente\n    form_class = ClienteForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Editar cliente'}\nclass ClienteDeleteView(DeleteView):\n    model = Cliente\n    template_name = 'cabana_apps/confirm_delete.html'\n    success_url = '/abm/clientes/'\nclass CabanaListView(ListView):",
+        "peekOfCode": "class ClienteUpdateView(UpdateView):\n    model = Cliente\n    fields = [\"nombre\", \"email\", \"telefono\"]\n    template_name = \"clientes/form.html\"\n    success_url = reverse_lazy(\"cliente_list\")\nclass ClienteDeleteView(DeleteView):\n    model = Cliente\n    template_name = \"clientes/confirm_delete.html\"\n    success_url = reverse_lazy(\"cliente_list\")\n# Cabañas",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3413,7 +3413,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class ClienteDeleteView(DeleteView):\n    model = Cliente\n    template_name = 'cabana_apps/confirm_delete.html'\n    success_url = '/abm/clientes/'\nclass CabanaListView(ListView):\n    model = Cabana\n    template_name = 'cabana_apps/list.html'\n    context_object_name = 'objetos'\n    extra_context = {'titulo': 'Cabanas', 'crear_url': 'cabana_create', 'editar_url': 'cabana_update', 'borrar_url': 'cabana_delete'}\nclass CabanaCreateView(CreateView):",
+        "peekOfCode": "class ClienteDeleteView(DeleteView):\n    model = Cliente\n    template_name = \"clientes/confirm_delete.html\"\n    success_url = reverse_lazy(\"cliente_list\")\n# Cabañas\nclass CabanaListView(ListView):\n    model = Cabana\n    template_name = \"cabanas/list.html\"\nclass CabanaCreateView(CreateView):\n    model = Cabana",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3422,7 +3422,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class CabanaListView(ListView):\n    model = Cabana\n    template_name = 'cabana_apps/list.html'\n    context_object_name = 'objetos'\n    extra_context = {'titulo': 'Cabanas', 'crear_url': 'cabana_create', 'editar_url': 'cabana_update', 'borrar_url': 'cabana_delete'}\nclass CabanaCreateView(CreateView):\n    model = Cabana\n    form_class = CabanaForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Nueva cabana'}",
+        "peekOfCode": "class CabanaListView(ListView):\n    model = Cabana\n    template_name = \"cabanas/list.html\"\nclass CabanaCreateView(CreateView):\n    model = Cabana\n    fields = [\"nombre\", \"capacidad\", \"precio_por_noche\", \"precio_por_cabana\"]\n    template_name = \"cabanas/form.html\"\n    success_url = reverse_lazy(\"cabana_list\")\nclass CabanaUpdateView(UpdateView):\n    model = Cabana",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3431,7 +3431,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class CabanaCreateView(CreateView):\n    model = Cabana\n    form_class = CabanaForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Nueva cabana'}\nclass CabanaUpdateView(UpdateView):\n    model = Cabana\n    form_class = CabanaForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Editar cabana'}",
+        "peekOfCode": "class CabanaCreateView(CreateView):\n    model = Cabana\n    fields = [\"nombre\", \"capacidad\", \"precio_por_noche\", \"precio_por_cabana\"]\n    template_name = \"cabanas/form.html\"\n    success_url = reverse_lazy(\"cabana_list\")\nclass CabanaUpdateView(UpdateView):\n    model = Cabana\n    fields = [\"nombre\", \"capacidad\", \"precio_por_noche\", \"precio_por_cabana\"]\n    template_name = \"cabanas/form.html\"\n    success_url = reverse_lazy(\"cabana_list\")",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3440,7 +3440,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class CabanaUpdateView(UpdateView):\n    model = Cabana\n    form_class = CabanaForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Editar cabana'}\nclass CabanaDeleteView(DeleteView):\n    model = Cabana\n    template_name = 'cabana_apps/confirm_delete.html'\n    success_url = '/abm/cabanas/'\nclass ReservaListView(ListView):",
+        "peekOfCode": "class CabanaUpdateView(UpdateView):\n    model = Cabana\n    fields = [\"nombre\", \"capacidad\", \"precio_por_noche\", \"precio_por_cabana\"]\n    template_name = \"cabanas/form.html\"\n    success_url = reverse_lazy(\"cabana_list\")\nclass CabanaDeleteView(DeleteView):\n    model = Cabana\n    template_name = \"cabanas/confirm_delete.html\"\n    success_url = reverse_lazy(\"cabana_list\")\n# Reservas",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3449,7 +3449,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class CabanaDeleteView(DeleteView):\n    model = Cabana\n    template_name = 'cabana_apps/confirm_delete.html'\n    success_url = '/abm/cabanas/'\nclass ReservaListView(ListView):\n    model = Reserva\n    template_name = 'cabana_apps/list.html'\n    context_object_name = 'objetos'\n    extra_context = {'titulo': 'Reservas', 'crear_url': 'reserva_create', 'editar_url': 'reserva_update', 'borrar_url': 'reserva_delete'}\nclass ReservaCreateView(CreateView):",
+        "peekOfCode": "class CabanaDeleteView(DeleteView):\n    model = Cabana\n    template_name = \"cabanas/confirm_delete.html\"\n    success_url = reverse_lazy(\"cabana_list\")\n# Reservas\nclass ReservaListView(ListView):\n    model = Reserva\n    template_name = \"reservas/list.html\"\nclass ReservaCreateView(CreateView):\n    model = Reserva",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3458,7 +3458,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class ReservaListView(ListView):\n    model = Reserva\n    template_name = 'cabana_apps/list.html'\n    context_object_name = 'objetos'\n    extra_context = {'titulo': 'Reservas', 'crear_url': 'reserva_create', 'editar_url': 'reserva_update', 'borrar_url': 'reserva_delete'}\nclass ReservaCreateView(CreateView):\n    model = Reserva\n    form_class = ReservaForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Nueva reserva'}",
+        "peekOfCode": "class ReservaListView(ListView):\n    model = Reserva\n    template_name = \"reservas/list.html\"\nclass ReservaCreateView(CreateView):\n    model = Reserva\n    fields = [\"cabana\", \"cliente\", \"fecha_inicio\", \"fecha_fin\", \"estado\"]\n    template_name = \"reservas/form.html\"\n    success_url = reverse_lazy(\"reserva_list\")\nclass ReservaUpdateView(UpdateView):\n    model = Reserva",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3467,7 +3467,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class ReservaCreateView(CreateView):\n    model = Reserva\n    form_class = ReservaForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Nueva reserva'}\nclass ReservaUpdateView(UpdateView):\n    model = Reserva\n    form_class = ReservaForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Editar reserva'}",
+        "peekOfCode": "class ReservaCreateView(CreateView):\n    model = Reserva\n    fields = [\"cabana\", \"cliente\", \"fecha_inicio\", \"fecha_fin\", \"estado\"]\n    template_name = \"reservas/form.html\"\n    success_url = reverse_lazy(\"reserva_list\")\nclass ReservaUpdateView(UpdateView):\n    model = Reserva\n    fields = [\"cabana\", \"cliente\", \"fecha_inicio\", \"fecha_fin\", \"estado\"]\n    template_name = \"reservas/form.html\"\n    success_url = reverse_lazy(\"reserva_list\")",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3476,7 +3476,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class ReservaUpdateView(UpdateView):\n    model = Reserva\n    form_class = ReservaForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Editar reserva'}\nclass ReservaDeleteView(DeleteView):\n    model = Reserva\n    template_name = 'cabana_apps/confirm_delete.html'\n    success_url = '/abm/reservas/'\nclass AlquilerListView(ListView):",
+        "peekOfCode": "class ReservaUpdateView(UpdateView):\n    model = Reserva\n    fields = [\"cabana\", \"cliente\", \"fecha_inicio\", \"fecha_fin\", \"estado\"]\n    template_name = \"reservas/form.html\"\n    success_url = reverse_lazy(\"reserva_list\")\nclass ReservaDeleteView(DeleteView):\n    model = Reserva\n    template_name = \"reservas/confirm_delete.html\"\n    success_url = reverse_lazy(\"reserva_list\")\n# Alquileres",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3485,7 +3485,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class ReservaDeleteView(DeleteView):\n    model = Reserva\n    template_name = 'cabana_apps/confirm_delete.html'\n    success_url = '/abm/reservas/'\nclass AlquilerListView(ListView):\n    model = Alquiler\n    template_name = 'cabana_apps/list.html'\n    context_object_name = 'objetos'\n    extra_context = {'titulo': 'Alquileres', 'crear_url': 'alquiler_create', 'editar_url': 'alquiler_update', 'borrar_url': 'alquiler_delete'}\nclass AlquilerCreateView(CreateView):",
+        "peekOfCode": "class ReservaDeleteView(DeleteView):\n    model = Reserva\n    template_name = \"reservas/confirm_delete.html\"\n    success_url = reverse_lazy(\"reserva_list\")\n# Alquileres\nclass AlquilerListView(ListView):\n    model = Alquiler\n    template_name = \"alquileres/list.html\"\nclass AlquilerCreateView(CreateView):\n    model = Alquiler",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3494,7 +3494,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class AlquilerListView(ListView):\n    model = Alquiler\n    template_name = 'cabana_apps/list.html'\n    context_object_name = 'objetos'\n    extra_context = {'titulo': 'Alquileres', 'crear_url': 'alquiler_create', 'editar_url': 'alquiler_update', 'borrar_url': 'alquiler_delete'}\nclass AlquilerCreateView(CreateView):\n    model = Alquiler\n    form_class = AlquilerForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Nuevo alquiler'}",
+        "peekOfCode": "class AlquilerListView(ListView):\n    model = Alquiler\n    template_name = \"alquileres/list.html\"\nclass AlquilerCreateView(CreateView):\n    model = Alquiler\n    fields = [\"cabana\", \"cliente\", \"fecha_inicio\", \"fecha_fin\", \"precio_total\", \"pagado\"]\n    template_name = \"alquileres/form.html\"\n    success_url = reverse_lazy(\"alquiler_list\")\nclass AlquilerUpdateView(UpdateView):\n    model = Alquiler",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3503,7 +3503,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class AlquilerCreateView(CreateView):\n    model = Alquiler\n    form_class = AlquilerForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Nuevo alquiler'}\nclass AlquilerUpdateView(UpdateView):\n    model = Alquiler\n    form_class = AlquilerForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Editar alquiler'}",
+        "peekOfCode": "class AlquilerCreateView(CreateView):\n    model = Alquiler\n    fields = [\"cabana\", \"cliente\", \"fecha_inicio\", \"fecha_fin\", \"precio_total\", \"pagado\"]\n    template_name = \"alquileres/form.html\"\n    success_url = reverse_lazy(\"alquiler_list\")\nclass AlquilerUpdateView(UpdateView):\n    model = Alquiler\n    fields = [\"cabana\", \"cliente\", \"fecha_inicio\", \"fecha_fin\", \"precio_total\", \"pagado\"]\n    template_name = \"alquileres/form.html\"\n    success_url = reverse_lazy(\"alquiler_list\")",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3512,7 +3512,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class AlquilerUpdateView(UpdateView):\n    model = Alquiler\n    form_class = AlquilerForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Editar alquiler'}\nclass AlquilerDeleteView(DeleteView):\n    model = Alquiler\n    template_name = 'cabana_apps/confirm_delete.html'\n    success_url = '/abm/alquileres/'\nclass PagoListView(ListView):",
+        "peekOfCode": "class AlquilerUpdateView(UpdateView):\n    model = Alquiler\n    fields = [\"cabana\", \"cliente\", \"fecha_inicio\", \"fecha_fin\", \"precio_total\", \"pagado\"]\n    template_name = \"alquileres/form.html\"\n    success_url = reverse_lazy(\"alquiler_list\")\nclass AlquilerDeleteView(DeleteView):\n    model = Alquiler\n    template_name = \"alquileres/confirm_delete.html\"\n    success_url = reverse_lazy(\"alquiler_list\")\n# Registros",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3521,43 +3521,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class AlquilerDeleteView(DeleteView):\n    model = Alquiler\n    template_name = 'cabana_apps/confirm_delete.html'\n    success_url = '/abm/alquileres/'\nclass PagoListView(ListView):\n    model = Pago\n    template_name = 'cabana_apps/list.html'\n    context_object_name = 'objetos'\n    extra_context = {'titulo': 'Pagos', 'crear_url': 'pago_create', 'editar_url': 'pago_update', 'borrar_url': 'pago_delete'}\nclass PagoCreateView(CreateView):",
-        "detail": "cabanas_apps.views",
-        "documentation": {}
-    },
-    {
-        "label": "PagoListView",
-        "kind": 6,
-        "importPath": "cabanas_apps.views",
-        "description": "cabanas_apps.views",
-        "peekOfCode": "class PagoListView(ListView):\n    model = Pago\n    template_name = 'cabana_apps/list.html'\n    context_object_name = 'objetos'\n    extra_context = {'titulo': 'Pagos', 'crear_url': 'pago_create', 'editar_url': 'pago_update', 'borrar_url': 'pago_delete'}\nclass PagoCreateView(CreateView):\n    model = Pago\n    form_class = PagoForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Nuevo pago'}",
-        "detail": "cabanas_apps.views",
-        "documentation": {}
-    },
-    {
-        "label": "PagoCreateView",
-        "kind": 6,
-        "importPath": "cabanas_apps.views",
-        "description": "cabanas_apps.views",
-        "peekOfCode": "class PagoCreateView(CreateView):\n    model = Pago\n    form_class = PagoForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Nuevo pago'}\nclass PagoUpdateView(UpdateView):\n    model = Pago\n    form_class = PagoForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Editar pago'}",
-        "detail": "cabanas_apps.views",
-        "documentation": {}
-    },
-    {
-        "label": "PagoUpdateView",
-        "kind": 6,
-        "importPath": "cabanas_apps.views",
-        "description": "cabanas_apps.views",
-        "peekOfCode": "class PagoUpdateView(UpdateView):\n    model = Pago\n    form_class = PagoForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Editar pago'}\nclass PagoDeleteView(DeleteView):\n    model = Pago\n    template_name = 'cabana_apps/confirm_delete.html'\n    success_url = '/abm/pagos/'\nclass RegistroListView(ListView):",
-        "detail": "cabanas_apps.views",
-        "documentation": {}
-    },
-    {
-        "label": "PagoDeleteView",
-        "kind": 6,
-        "importPath": "cabanas_apps.views",
-        "description": "cabanas_apps.views",
-        "peekOfCode": "class PagoDeleteView(DeleteView):\n    model = Pago\n    template_name = 'cabana_apps/confirm_delete.html'\n    success_url = '/abm/pagos/'\nclass RegistroListView(ListView):\n    model = Registro\n    template_name = 'cabana_apps/list.html'\n    context_object_name = 'objetos'\n    extra_context = {'titulo': 'Registros', 'crear_url': 'registro_create', 'editar_url': 'registro_update', 'borrar_url': 'registro_delete'}\nclass RegistroCreateView(CreateView):",
+        "peekOfCode": "class AlquilerDeleteView(DeleteView):\n    model = Alquiler\n    template_name = \"alquileres/confirm_delete.html\"\n    success_url = reverse_lazy(\"alquiler_list\")\n# Registros\nclass RegistroListView(ListView):\n    model = Registro\n    template_name = \"registros/list.html\"\nclass RegistroCreateView(CreateView):\n    model = Registro",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3566,7 +3530,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class RegistroListView(ListView):\n    model = Registro\n    template_name = 'cabana_apps/list.html'\n    context_object_name = 'objetos'\n    extra_context = {'titulo': 'Registros', 'crear_url': 'registro_create', 'editar_url': 'registro_update', 'borrar_url': 'registro_delete'}\nclass RegistroCreateView(CreateView):\n    model = Registro\n    form_class = RegistroForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Nuevo registro'}",
+        "peekOfCode": "class RegistroListView(ListView):\n    model = Registro\n    template_name = \"registros/list.html\"\nclass RegistroCreateView(CreateView):\n    model = Registro\n    fields = [\"reserva\", \"cliente\", \"detalle\"]\n    template_name = \"registros/form.html\"\n    success_url = reverse_lazy(\"registro_list\")\nclass RegistroUpdateView(UpdateView):\n    model = Registro",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3575,7 +3539,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class RegistroCreateView(CreateView):\n    model = Registro\n    form_class = RegistroForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Nuevo registro'}\nclass RegistroUpdateView(UpdateView):\n    model = Registro\n    form_class = RegistroForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Editar registro'}",
+        "peekOfCode": "class RegistroCreateView(CreateView):\n    model = Registro\n    fields = [\"reserva\", \"cliente\", \"detalle\"]\n    template_name = \"registros/form.html\"\n    success_url = reverse_lazy(\"registro_list\")\nclass RegistroUpdateView(UpdateView):\n    model = Registro\n    fields = [\"reserva\", \"cliente\", \"detalle\"]\n    template_name = \"registros/form.html\"\n    success_url = reverse_lazy(\"registro_list\")",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3584,7 +3548,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class RegistroUpdateView(UpdateView):\n    model = Registro\n    form_class = RegistroForm\n    template_name = 'cabana_apps/form.html'\n    extra_context = {'titulo': 'Editar registro'}\nclass RegistroDeleteView(DeleteView):\n    model = Registro\n    template_name = 'cabana_apps/confirm_delete.html'\n    success_url = '/abm/registros/'",
+        "peekOfCode": "class RegistroUpdateView(UpdateView):\n    model = Registro\n    fields = [\"reserva\", \"cliente\", \"detalle\"]\n    template_name = \"registros/form.html\"\n    success_url = reverse_lazy(\"registro_list\")\nclass RegistroDeleteView(DeleteView):\n    model = Registro\n    template_name = \"registros/confirm_delete.html\"\n    success_url = reverse_lazy(\"registro_list\")",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -3593,7 +3557,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class RegistroDeleteView(DeleteView):\n    model = Registro\n    template_name = 'cabana_apps/confirm_delete.html'\n    success_url = '/abm/registros/'",
+        "peekOfCode": "class RegistroDeleteView(DeleteView):\n    model = Registro\n    template_name = \"registros/confirm_delete.html\"\n    success_url = reverse_lazy(\"registro_list\")",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },

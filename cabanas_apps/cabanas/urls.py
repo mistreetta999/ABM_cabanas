@@ -1,7 +1,10 @@
+""" Este archivo contiene las urls de la app cabanas."""
 from django.urls import path
-from . import views
 from django.urls import include
-app_name = "cabanas"
+
+from cabanas_apps.cabanas import views
+from . import views
+APP_NAME = "cabanas"
 
 urlpatterns = [
     path("", views.index, name="index"),

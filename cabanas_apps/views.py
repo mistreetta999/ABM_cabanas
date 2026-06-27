@@ -1,183 +1,125 @@
-from django.views.generic import CreateView, DeleteView, ListView, TemplateView, UpdateView
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from .models.cabana import Cabana
+from .models.clientes import Cliente
+from .models.reservas import Reserva
+from .models.alquileres import Alquiler
+from .models.registros import Registro
 
-from .forms import AlquilerForm, CabanaForm, ClienteForm, PagoForm, RegistroForm, ReservaForm
-from .models import Alquiler, Cabana, Cliente, Pago, Registro, Reserva
-
-
+# Vista de inicio
 class InicioView(TemplateView):
-    template_name = 'pagina_principal.html'
+    template_name = "inicio.html"
 
-
+# Panel genérico
 class PanelView(TemplateView):
-    template_name = 'cabana_apps/panel_django.html'
+    template_name = "panel.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['clientes_count'] = Cliente.objects.count()
-        context['reservas_count'] = Reserva.objects.count()
-        context['alquileres_count'] = Alquiler.objects.count()
-        context['pagos_count'] = Pago.objects.count()
-        context['registros_count'] = Registro.objects.count()
-        return context
-
-
+# Clientes
 class ClienteListView(ListView):
     model = Cliente
-    template_name = 'cabana_apps/list.html'
-    context_object_name = 'objetos'
-    extra_context = {'titulo': 'Clientes', 'crear_url': 'cliente_create', 'editar_url': 'cliente_update', 'borrar_url': 'cliente_delete'}
-
+    template_name = "clientes/list.html"
 
 class ClienteCreateView(CreateView):
     model = Cliente
-    form_class = ClienteForm
-    template_name = 'cabana_apps/form.html'
-    extra_context = {'titulo': 'Nuevo cliente'}
-
+    fields = ["nombre", "email", "telefono"]
+    template_name = "clientes/form.html"
+    success_url = reverse_lazy("cliente_list")
 
 class ClienteUpdateView(UpdateView):
     model = Cliente
-    form_class = ClienteForm
-    template_name = 'cabana_apps/form.html'
-    extra_context = {'titulo': 'Editar cliente'}
-
+    fields = ["nombre", "email", "telefono"]
+    template_name = "clientes/form.html"
+    success_url = reverse_lazy("cliente_list")
 
 class ClienteDeleteView(DeleteView):
     model = Cliente
-    template_name = 'cabana_apps/confirm_delete.html'
-    success_url = '/abm/clientes/'
+    template_name = "clientes/confirm_delete.html"
+    success_url = reverse_lazy("cliente_list")
 
-
+# Cabañas
 class CabanaListView(ListView):
     model = Cabana
-    template_name = 'cabana_apps/list.html'
-    context_object_name = 'objetos'
-    extra_context = {'titulo': 'Cabanas', 'crear_url': 'cabana_create', 'editar_url': 'cabana_update', 'borrar_url': 'cabana_delete'}
-
+    template_name = "cabanas/list.html"
 
 class CabanaCreateView(CreateView):
     model = Cabana
-    form_class = CabanaForm
-    template_name = 'cabana_apps/form.html'
-    extra_context = {'titulo': 'Nueva cabana'}
-
+    fields = ["nombre", "capacidad", "precio_por_noche", "precio_por_cabana"]
+    template_name = "cabanas/form.html"
+    success_url = reverse_lazy("cabana_list")
 
 class CabanaUpdateView(UpdateView):
     model = Cabana
-    form_class = CabanaForm
-    template_name = 'cabana_apps/form.html'
-    extra_context = {'titulo': 'Editar cabana'}
-
+    fields = ["nombre", "capacidad", "precio_por_noche", "precio_por_cabana"]
+    template_name = "cabanas/form.html"
+    success_url = reverse_lazy("cabana_list")
 
 class CabanaDeleteView(DeleteView):
     model = Cabana
-    template_name = 'cabana_apps/confirm_delete.html'
-    success_url = '/abm/cabanas/'
+    template_name = "cabanas/confirm_delete.html"
+    success_url = reverse_lazy("cabana_list")
 
-
+# Reservas
 class ReservaListView(ListView):
     model = Reserva
-    template_name = 'cabana_apps/list.html'
-    context_object_name = 'objetos'
-    extra_context = {'titulo': 'Reservas', 'crear_url': 'reserva_create', 'editar_url': 'reserva_update', 'borrar_url': 'reserva_delete'}
-
+    template_name = "reservas/list.html"
 
 class ReservaCreateView(CreateView):
     model = Reserva
-    form_class = ReservaForm
-    template_name = 'cabana_apps/form.html'
-    extra_context = {'titulo': 'Nueva reserva'}
-
+    fields = ["cabana", "cliente", "fecha_inicio", "fecha_fin", "estado"]
+    template_name = "reservas/form.html"
+    success_url = reverse_lazy("reserva_list")
 
 class ReservaUpdateView(UpdateView):
     model = Reserva
-    form_class = ReservaForm
-    template_name = 'cabana_apps/form.html'
-    extra_context = {'titulo': 'Editar reserva'}
-
+    fields = ["cabana", "cliente", "fecha_inicio", "fecha_fin", "estado"]
+    template_name = "reservas/form.html"
+    success_url = reverse_lazy("reserva_list")
 
 class ReservaDeleteView(DeleteView):
     model = Reserva
-    template_name = 'cabana_apps/confirm_delete.html'
-    success_url = '/abm/reservas/'
+    template_name = "reservas/confirm_delete.html"
+    success_url = reverse_lazy("reserva_list")
 
-
+# Alquileres
 class AlquilerListView(ListView):
     model = Alquiler
-    template_name = 'cabana_apps/list.html'
-    context_object_name = 'objetos'
-    extra_context = {'titulo': 'Alquileres', 'crear_url': 'alquiler_create', 'editar_url': 'alquiler_update', 'borrar_url': 'alquiler_delete'}
-
+    template_name = "alquileres/list.html"
 
 class AlquilerCreateView(CreateView):
     model = Alquiler
-    form_class = AlquilerForm
-    template_name = 'cabana_apps/form.html'
-    extra_context = {'titulo': 'Nuevo alquiler'}
-
+    fields = ["cabana", "cliente", "fecha_inicio", "fecha_fin", "precio_total", "pagado"]
+    template_name = "alquileres/form.html"
+    success_url = reverse_lazy("alquiler_list")
 
 class AlquilerUpdateView(UpdateView):
     model = Alquiler
-    form_class = AlquilerForm
-    template_name = 'cabana_apps/form.html'
-    extra_context = {'titulo': 'Editar alquiler'}
-
+    fields = ["cabana", "cliente", "fecha_inicio", "fecha_fin", "precio_total", "pagado"]
+    template_name = "alquileres/form.html"
+    success_url = reverse_lazy("alquiler_list")
 
 class AlquilerDeleteView(DeleteView):
     model = Alquiler
-    template_name = 'cabana_apps/confirm_delete.html'
-    success_url = '/abm/alquileres/'
+    template_name = "alquileres/confirm_delete.html"
+    success_url = reverse_lazy("alquiler_list")
 
-
-class PagoListView(ListView):
-    model = Pago
-    template_name = 'cabana_apps/list.html'
-    context_object_name = 'objetos'
-    extra_context = {'titulo': 'Pagos', 'crear_url': 'pago_create', 'editar_url': 'pago_update', 'borrar_url': 'pago_delete'}
-
-
-class PagoCreateView(CreateView):
-    model = Pago
-    form_class = PagoForm
-    template_name = 'cabana_apps/form.html'
-    extra_context = {'titulo': 'Nuevo pago'}
-
-
-class PagoUpdateView(UpdateView):
-    model = Pago
-    form_class = PagoForm
-    template_name = 'cabana_apps/form.html'
-    extra_context = {'titulo': 'Editar pago'}
-
-
-class PagoDeleteView(DeleteView):
-    model = Pago
-    template_name = 'cabana_apps/confirm_delete.html'
-    success_url = '/abm/pagos/'
-
-
+# Registros
 class RegistroListView(ListView):
     model = Registro
-    template_name = 'cabana_apps/list.html'
-    context_object_name = 'objetos'
-    extra_context = {'titulo': 'Registros', 'crear_url': 'registro_create', 'editar_url': 'registro_update', 'borrar_url': 'registro_delete'}
-
+    template_name = "registros/list.html"
 
 class RegistroCreateView(CreateView):
     model = Registro
-    form_class = RegistroForm
-    template_name = 'cabana_apps/form.html'
-    extra_context = {'titulo': 'Nuevo registro'}
-
+    fields = ["reserva", "cliente", "detalle"]
+    template_name = "registros/form.html"
+    success_url = reverse_lazy("registro_list")
 
 class RegistroUpdateView(UpdateView):
     model = Registro
-    form_class = RegistroForm
-    template_name = 'cabana_apps/form.html'
-    extra_context = {'titulo': 'Editar registro'}
-
+    fields = ["reserva", "cliente", "detalle"]
+    template_name = "registros/form.html"
+    success_url = reverse_lazy("registro_list")
 
 class RegistroDeleteView(DeleteView):
     model = Registro
-    template_name = 'cabana_apps/confirm_delete.html'
-    success_url = '/abm/registros/'
+    template_name = "registros/confirm_delete.html"
+    success_url = reverse_lazy("registro_list")

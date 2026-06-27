@@ -1,8 +1,7 @@
-""" models.py - Definición del modelo Reserva. """
-from pathlib import Path
+""" este archivo es models de reserva. """
 from django.db import models
-from cabanas_apps.clientes.models import Cliente
-from cabanas_apps.cabanas_app.models import Cabana
+from .models import Cliente 
+from .models import Cabana
 
 class Reserva(models.Model):
     """Modelo que representa una reserva de cabaña."""

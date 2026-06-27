@@ -1,6 +1,6 @@
 from django.db import models
 from .reservas import Reserva
-from .clientes_models import Cliente
+from .clientes import Cliente
 
 class Registro(models.Model):
     reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE)

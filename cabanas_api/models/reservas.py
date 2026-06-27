@@ -1,6 +1,6 @@
 from django.db import models
-from .cabana_models import Cabana
-from .clientes_models import Cliente
+from .cabana import Cabana
+from .clientes import Cliente
 
 class Reserva(models.Model):
     ESTADOS = [
