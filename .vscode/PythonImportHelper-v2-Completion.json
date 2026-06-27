@@ -1057,14 +1057,6 @@
         "documentation": {}
     },
     {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
         "label": "Views",
         "importPath": "views",
         "description": "views",
@@ -1649,14 +1641,6 @@
         "documentation": {}
     },
     {
-        "label": "autodiscover_modules",
-        "importPath": "django.utils.module_loading",
-        "description": "django.utils.module_loading",
-        "isExtraImport": true,
-        "detail": "django.utils.module_loading",
-        "documentation": {}
-    },
-    {
         "label": "Cabana",
         "importPath": "cabanas_apps.cabanas.models",
         "description": "cabanas_apps.cabanas.models",
@@ -1670,14 +1654,6 @@
         "description": "cabanas_apps.reservas.models",
         "isExtraImport": true,
         "detail": "cabanas_apps.reservas.models",
-        "documentation": {}
-    },
-    {
-        "label": "Cliente",
-        "importPath": "cabanas_apps.clientes",
-        "description": "cabanas_apps.clientes",
-        "isExtraImport": true,
-        "detail": "cabanas_apps.clientes",
         "documentation": {}
     },
     {
@@ -3382,7 +3358,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.alquileres.apps",
         "description": "cabanas_apps.alquileres.apps",
-        "peekOfCode": "class ReservasAlquileresAppsConfig(AppConfig):\n    \"\"\" class ReservasAlquileresAppsConfig representa la configuración de la aplicación de reservas y alquileres.\"\"\"\"\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.reservas_alquileres_apps'\nclass AlquileresAppsConfig(AppConfig):\n    \"\"\" class AlquileresAppsConfig representa la configuración de la aplicación de alquileres.\"\"\"\"\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.alquileres_apps'\nclass RegistrosAppsConfig(AppConfig):\n    \"\"\" class RegistrosAppsConfig representa la configuración de la aplicación de registros.\"\"\"\"",
+        "peekOfCode": "class ReservasAlquileresAppsConfig(AppConfig):\n    \"\"\" class ReservasAlquileresAppsConfig representa la configuración \"\"\"\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.reservas_alquileres_apps'\nclass AlquileresAppsConfig(AppConfig):\n    \"\"\" class AlquileresAppsConfig representa la configuración de la aplicación de alquileres.\"\"\"\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.alquileres_apps'\nclass RegistrosAppsConfig(AppConfig):\n    \"\"\" class RegistrosAppsConfig representa la configuración de la aplicación de registros.\"\"\"",
         "detail": "cabanas_apps.alquileres.apps",
         "documentation": {}
     },
@@ -3391,7 +3367,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.alquileres.apps",
         "description": "cabanas_apps.alquileres.apps",
-        "peekOfCode": "class AlquileresAppsConfig(AppConfig):\n    \"\"\" class AlquileresAppsConfig representa la configuración de la aplicación de alquileres.\"\"\"\"\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.alquileres_apps'\nclass RegistrosAppsConfig(AppConfig):\n    \"\"\" class RegistrosAppsConfig representa la configuración de la aplicación de registros.\"\"\"\"\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.registros_apps'",
+        "peekOfCode": "class AlquileresAppsConfig(AppConfig):\n    \"\"\" class AlquileresAppsConfig representa la configuración de la aplicación de alquileres.\"\"\"\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.alquileres_apps'\nclass RegistrosAppsConfig(AppConfig):\n    \"\"\" class RegistrosAppsConfig representa la configuración de la aplicación de registros.\"\"\"\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.registros_apps'",
         "detail": "cabanas_apps.alquileres.apps",
         "documentation": {}
     },
@@ -3400,7 +3376,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.alquileres.apps",
         "description": "cabanas_apps.alquileres.apps",
-        "peekOfCode": "class RegistrosAppsConfig(AppConfig):\n    \"\"\" class RegistrosAppsConfig representa la configuración de la aplicación de registros.\"\"\"\"\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.registros_apps'",
+        "peekOfCode": "class RegistrosAppsConfig(AppConfig):\n    \"\"\" class RegistrosAppsConfig representa la configuración de la aplicación de registros.\"\"\"\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.registros_apps'",
         "detail": "cabanas_apps.alquileres.apps",
         "documentation": {}
     },
@@ -3409,7 +3385,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.alquileres.models",
         "description": "cabanas_apps.alquileres.models",
-        "peekOfCode": "class Alquiler(models.Model):\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self.id = models.AutoField(primary_key=True)\n        self.cabanas = models.ForeignKey(Cabana, on_delete=models.CASCADE)\n        self.cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)\n        self.reserva = models.OneToOneField(Reserva, on_delete=models.CASCADE)\n        self.monto_total = models.DecimalField(max_digits=10, decimal_places=2)\n        self.fecha_pago = models.DateField(null=True, blank=True)\n    def Alquiler(self, cabanas, cliente, reserva, monto_total, fecha_pago)->Any:",
+        "peekOfCode": "class Alquiler(models.Model):\n    \"\"\"class Alquiler models\"\"\"\n    id = models.AutoField(primary_key=True)\n    cabanas = models.ForeignKey(Cabana, on_delete=models.CASCADE)\n    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)\n    reserva = models.OneToOneField(Reserva, on_delete=models.CASCADE)\n    monto_total = models.DecimalField(max_digits=10, decimal_places=2)\n    fecha_pago = models.DateField(null=True, blank=True)\n    def __str__(self):\n        return f\"Alquiler {self.id} - {self.reserva}\"",
         "detail": "cabanas_apps.alquileres.models",
         "documentation": {}
     },
@@ -3535,7 +3511,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.cabanas.models",
         "description": "cabanas_apps.cabanas.models",
-        "peekOfCode": "class Cabana(models.Model):\n\"\"\"clase cabana\"\"\n    id=models.AutoField(primary_key=True) \n    nombre = models.CharField(max_length=100)\n    capacidad = models.IntegerField()\n    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)\n    disponible = models.BooleanField(default=True)\n    def __str__(self):\n        return self.nombre",
+        "peekOfCode": "class Cabana(models.Model):\n    \"\"\"clase cabana\"\"\"\n    id=models.AutoField(primary_key=True) \n    nombre = models.CharField(max_length=100)\n    capacidad = models.IntegerField()\n    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)\n    disponible = models.BooleanField(default=True)\n    class Meta:\n        \"\"\"Meta informacion para Cabana model\"\"\"\n        verbose_name = \"Cabana\"",
         "detail": "cabanas_apps.cabanas.models",
         "documentation": {}
     },
