@@ -1,4 +1,4 @@
-cabana_apps/registros/
+cabanas_apps/registros/
 │-- __init__.py
 │-- admin.py
 │-- apps.py

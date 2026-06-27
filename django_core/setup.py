@@ -1,6 +1,6 @@
 """
 setup.py
-Script de inicialización del entorno Django para el Sistema de Gestión de Cabañas.
+Script de inicialización del entorno Django para el Sistema de Gestión de Cabanas.
 """
 
 import os

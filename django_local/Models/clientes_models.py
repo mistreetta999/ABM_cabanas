@@ -1,6 +1,6 @@
 """
 cliente_models.py
-Modelos para la gestión de clientes en el sistema de cabañas.
+Modelos para la gestión de clientes en el sistema de Cabanas.
 Incluye definiciones de Cliente y posibles extensiones.
 Cumple con estándares Pylint y buenas prácticas de Django.
 """

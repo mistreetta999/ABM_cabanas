@@ -1,6 +1,6 @@
 """
 reservas_models.py
-Modelos para la gestión de reservas en el sistema de cabañas.
+Modelos para la gestión de reservas en el sistema de Cabanas.
 Incluye definiciones de Reserva y posibles extensiones.
 Cumple con estándares Pylint y buenas prácticas de Django.
 """
@@ -15,7 +15,7 @@ from models.pagos_models import Cabana
 
 class Alquileres(models.Model):
     """
-     Alquileres de un cliente en una cabaña.
+     Alquileres de un cliente en una Cabana.
     """
     cliente = models.ForeignKey(
         Cliente,
@@ -27,7 +27,7 @@ class Alquileres(models.Model):
         Cabana,
         on_delete=models.CASCADE,
         related_name="reservas",
-        help_text="Cabaña reservada."
+        help_text="Cabana reservada."
     )
     fecha_inicio = models.DateField(
         help_text="Fecha de inicio de la reserva."

@@ -22,9 +22,9 @@ class Management:
     def setup_environment(self):
         """
         Configura el PYTHONPATH y la variable de entorno de Django.
-        Esto permite que el sistema encuentre las apps en 'cabana_apps'.
+        Esto permite que el sistema encuentre las apps en 'cabanas_apps'.
         """
-        # Añadir la raíz al sistema para que cabanas_project y cabana_apps sean visibles
+        # Añadir la raíz al sistema para que cabanas_project y cabanas_apps sean visibles
         if self.project_root not in sys.path:
             sys.path.append(self.project_root)
         

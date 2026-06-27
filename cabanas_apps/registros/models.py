@@ -6,7 +6,7 @@ from cabanas_apps.models import Cabana, Cliente
 
 
 class ActividadCabanas(models.Model):
-    """ esta class representa una actividad realizada en una cabaña por un cliente."""
+    """ esta class representa una actividad realizada en una Cabana por un cliente."""
     id = models.AutoField(primary_key=True)
     cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)

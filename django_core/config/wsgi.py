@@ -1,5 +1,5 @@
 """
-Configuración WSGI para el proyecto Cabañas.
+Configuración WSGI para el proyecto Cabanas.
 
 Expone el invocable WSGI como una variable de nivel de módulo llamada ``application``.
 

@@ -25,7 +25,7 @@ function validarFechas(fechaInicio, fechaFin) {
 // Mostrar resumen del alquiler
 function mostrarResumen(cabana, cliente, fechaInicio, fechaFin, precioTotal) {
     console.log(`Alquiler confirmado:
-    Cabaña: ${cabana}
+    Cabana: ${cabana}
     Cliente: ${cliente}
     Desde: ${fechaInicio}
     Hasta: ${fechaFin}

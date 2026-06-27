@@ -9,7 +9,7 @@ cabanas/
 |   |-- urls.py
 |   |-- wsgi.py
 |   `-- asgi.py
-|-- cabana_apps/
+|-- cabanas_apps/
 |   |-- models.py
 |   |-- forms.py
 |   |-- views.py
@@ -20,18 +20,18 @@ cabanas/
 `-- Template/
     |-- pagina_principal.html
     |-- base.html
-    |-- cabana_apps/
+    |-- cabanas_apps/
     `-- chatbot/
 ```
-*** Update File: cabana_apps/views.py
+
+\*\*\* Update File: cabanas_apps/views.py
 @@
- class InicioView(TemplateView):
-     template_name = 'pagina_principal.html'
- 
- 
- class PanelView(TemplateView):
-     template_name = 'cabana_apps/panel.html'
- 
+class InicioView(TemplateView):
+template_name = 'pagina_principal.html'
+
+class PanelView(TemplateView):
+template_name = 'cabanas_apps/panel.html'
+
      def get_context_data(self, **kwargs):
          context = super().get_context_data(**kwargs)
          context['clientes_count'] = Cliente.objects.count()

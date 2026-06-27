@@ -185,11 +185,11 @@
         "documentation": {}
     },
     {
-        "label": "Path",
-        "importPath": "pathlib",
-        "description": "pathlib",
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
         "isExtraImport": true,
-        "detail": "pathlib",
+        "detail": "django.contrib",
         "documentation": {}
     },
     {
@@ -689,6 +689,14 @@
         "documentation": {}
     },
     {
+        "label": "get_object_or_404",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
         "label": "render",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
@@ -798,6 +806,270 @@
         "description": "django.shortcuts",
         "isExtraImport": true,
         "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "View",
+        "importPath": "django.views",
+        "description": "django.views",
+        "isExtraImport": true,
+        "detail": "django.views",
+        "documentation": {}
+    },
+    {
+        "label": "View",
+        "importPath": "django.views",
+        "description": "django.views",
+        "isExtraImport": true,
+        "detail": "django.views",
+        "documentation": {}
+    },
+    {
+        "label": "TemplateView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "ListView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "CreateView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "UpdateView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "ListView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "DetailView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "CreateView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "UpdateView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "DeleteView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "ListView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "DetailView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "CreateView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "UpdateView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "DeleteView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "ListView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "DetailView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "TemplateView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "ListView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "CreateView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "UpdateView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "DeleteView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "ListView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "DetailView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "ListView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "DetailView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "Views",
+        "importPath": "views",
+        "description": "views",
+        "isExtraImport": true,
+        "detail": "views",
         "documentation": {}
     },
     {
@@ -1337,11 +1609,51 @@
         "documentation": {}
     },
     {
-        "label": "View",
-        "importPath": "django.views",
-        "description": "django.views",
+        "label": "gettext_lazy",
+        "importPath": "django.utils.translation",
+        "description": "django.utils.translation",
         "isExtraImport": true,
-        "detail": "django.views",
+        "detail": "django.utils.translation",
+        "documentation": {}
+    },
+    {
+        "label": "gettext_lazy",
+        "importPath": "django.utils.translation",
+        "description": "django.utils.translation",
+        "isExtraImport": true,
+        "detail": "django.utils.translation",
+        "documentation": {}
+    },
+    {
+        "label": "gettext_lazy",
+        "importPath": "django.utils.translation",
+        "description": "django.utils.translation",
+        "isExtraImport": true,
+        "detail": "django.utils.translation",
+        "documentation": {}
+    },
+    {
+        "label": "gettext_lazy",
+        "importPath": "django.utils.translation",
+        "description": "django.utils.translation",
+        "isExtraImport": true,
+        "detail": "django.utils.translation",
+        "documentation": {}
+    },
+    {
+        "label": "gettext_lazy",
+        "importPath": "django.utils.translation",
+        "description": "django.utils.translation",
+        "isExtraImport": true,
+        "detail": "django.utils.translation",
+        "documentation": {}
+    },
+    {
+        "label": "autodiscover_modules",
+        "importPath": "django.utils.module_loading",
+        "description": "django.utils.module_loading",
+        "isExtraImport": true,
+        "detail": "django.utils.module_loading",
         "documentation": {}
     },
     {
@@ -1366,158 +1678,6 @@
         "description": "cabanas_apps.clientes",
         "isExtraImport": true,
         "detail": "cabanas_apps.clientes",
-        "documentation": {}
-    },
-    {
-        "label": "ListView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "CreateView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "UpdateView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "ListView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "DetailView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "CreateView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "UpdateView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "DeleteView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "ListView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "DetailView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "TemplateView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "ListView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "CreateView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "UpdateView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "DeleteView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "ListView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "DetailView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "ListView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "DetailView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
         "documentation": {}
     },
     {
@@ -1786,30 +1946,6 @@
         "documentation": {}
     },
     {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
         "label": "static",
         "importPath": "django.conf.urls.static",
         "description": "django.conf.urls.static",
@@ -1847,30 +1983,6 @@
         "description": "django.core.exceptions",
         "isExtraImport": true,
         "detail": "django.core.exceptions",
-        "documentation": {}
-    },
-    {
-        "label": "gettext_lazy",
-        "importPath": "django.utils.translation",
-        "description": "django.utils.translation",
-        "isExtraImport": true,
-        "detail": "django.utils.translation",
-        "documentation": {}
-    },
-    {
-        "label": "gettext_lazy",
-        "importPath": "django.utils.translation",
-        "description": "django.utils.translation",
-        "isExtraImport": true,
-        "detail": "django.utils.translation",
-        "documentation": {}
-    },
-    {
-        "label": "gettext_lazy",
-        "importPath": "django.utils.translation",
-        "description": "django.utils.translation",
-        "isExtraImport": true,
-        "detail": "django.utils.translation",
         "documentation": {}
     },
     {
@@ -2933,11 +3045,47 @@
         "documentation": {}
     },
     {
-        "label": "inicio",
-        "kind": 2,
+        "label": "CabanaView",
+        "kind": 6,
         "importPath": "cabanas.views",
         "description": "cabanas.views",
-        "peekOfCode": "def inicio(request: HttpRequest) -> HttpResponse:\n    \"\"\"\n    Vista principal del proyecto Cabañas.\n    \"\"\"\n    return HttpResponse(\"Bienvenida al sistema de gestión de cabañas.\")\ndef dashboard(request: HttpRequest) -> HttpResponse:\n    \"\"\"\n    Vista de dashboard general.\n    \"\"\"\n    context = {",
+        "peekOfCode": "class CabanaView(View):\n    \"\"\"Vista de Cabanas.\"\"\"\n    def get(self, request: HttpRequest) -> HttpResponse:\n        \"\"\"Vista de Cabanas.\"\"\"\n        return HttpResponse(\"Vista de Cabanas.\")\nclass ClienteView(View):\n    \"\"\"Vista de Clientes.\"\"\"\n    def get(self, request: HttpRequest) -> HttpResponse:\n        \"\"\"Vista de Clientes.\"\"\"\n        return HttpResponse(\"Vista de Clientes.\")",
+        "detail": "cabanas.views",
+        "documentation": {}
+    },
+    {
+        "label": "ClienteView",
+        "kind": 6,
+        "importPath": "cabanas.views",
+        "description": "cabanas.views",
+        "peekOfCode": "class ClienteView(View):\n    \"\"\"Vista de Clientes.\"\"\"\n    def get(self, request: HttpRequest) -> HttpResponse:\n        \"\"\"Vista de Clientes.\"\"\"\n        return HttpResponse(\"Vista de Clientes.\")\nclass ReservaView(View):\n    \"\"\"Vista de Reservas.\"\"\"\n    def get(self, request: HttpRequest) -> HttpResponse:\n        \"\"\"Vista de Reservas.\"\"\"\n        return HttpResponse(\"Vista de Reservas.\")",
+        "detail": "cabanas.views",
+        "documentation": {}
+    },
+    {
+        "label": "ReservaView",
+        "kind": 6,
+        "importPath": "cabanas.views",
+        "description": "cabanas.views",
+        "peekOfCode": "class ReservaView(View):\n    \"\"\"Vista de Reservas.\"\"\"\n    def get(self, request: HttpRequest) -> HttpResponse:\n        \"\"\"Vista de Reservas.\"\"\"\n        return HttpResponse(\"Vista de Reservas.\")\nclass InicioView(View):\n    \"\"\"Vista de Inicio.\"\"\"\n    def get(self, request: HttpRequest) -> HttpResponse:\n        return HttpResponse(\"Bienvenida al sistema de gestión de Cabanas.\")\nclass Views(View):",
+        "detail": "cabanas.views",
+        "documentation": {}
+    },
+    {
+        "label": "InicioView",
+        "kind": 6,
+        "importPath": "cabanas.views",
+        "description": "cabanas.views",
+        "peekOfCode": "class InicioView(View):\n    \"\"\"Vista de Inicio.\"\"\"\n    def get(self, request: HttpRequest) -> HttpResponse:\n        return HttpResponse(\"Bienvenida al sistema de gestión de Cabanas.\")\nclass Views(View):\n    \"\"\"Vista general del sistema.\"\"\"    \n    def get(self, request: HttpRequest) -> HttpResponse:\n        return HttpResponse(\"Vista general del sistema.\")\ndef dashboard(request: HttpRequest) -> HttpResponse:\n    \"\"\"",
+        "detail": "cabanas.views",
+        "documentation": {}
+    },
+    {
+        "label": "Views",
+        "kind": 6,
+        "importPath": "cabanas.views",
+        "description": "cabanas.views",
+        "peekOfCode": "class Views(View):\n    \"\"\"Vista general del sistema.\"\"\"    \n    def get(self, request: HttpRequest) -> HttpResponse:\n        return HttpResponse(\"Vista general del sistema.\")\ndef dashboard(request: HttpRequest) -> HttpResponse:\n    \"\"\"\n    Vista de dashboard general.\n    \"\"\"\n    context = {\n        \"titulo\": \"Panel de Control\",",
         "detail": "cabanas.views",
         "documentation": {}
     },
@@ -2955,7 +3103,7 @@
         "kind": 2,
         "importPath": "cabanas.views",
         "description": "cabanas.views",
-        "peekOfCode": "def acerca_de(request: HttpRequest) -> HttpResponse:\n    \"\"\"\n    Vista de información sobre el proyecto.\n    \"\"\"\n    return HttpResponse(\"Proyecto de Gestión de Cabañas con Django.\")",
+        "peekOfCode": "def acerca_de(request: HttpRequest) -> HttpResponse:\n    \"\"\"\n    Vista de información sobre el proyecto.\n    \"\"\"\n    return HttpResponse(\"Proyecto de Gestión de Cabanas con Django.\")",
         "detail": "cabanas.views",
         "documentation": {}
     },
@@ -2982,7 +3130,7 @@
         "kind": 6,
         "importPath": "cabanas_api.models.cabana",
         "description": "cabanas_api.models.cabana",
-        "peekOfCode": "class Cabana(models.Model):\n    \"\"\"Modelo que representa una cabaña en la aplicación.\n    \"\"\"\n    nombre = models.CharField(max_length=100)\n    capacidad = models.IntegerField()\n    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)\n    precio_por_cabana = models.DecimalField(max_digits=10, decimal_places=2)\n    def __str__(self) -> str:\n        return str(self.nombre)",
+        "peekOfCode": "class Cabana(models.Model):\n    \"\"\"Modelo que representa una Cabana en la aplicación.\n    \"\"\"\n    id=models.AutoField(primary_key=True)\n    nombre = models.CharField(max_length=100)\n    capacidad = models.IntegerField()\n    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)\n    precio_por_cabana = models.DecimalField(max_digits=10, decimal_places=2)\n    def __str__(self) -> str:\n        return str(self.nombre)",
         "detail": "cabanas_api.models.cabana",
         "documentation": {}
     },
@@ -3234,7 +3382,25 @@
         "kind": 6,
         "importPath": "cabanas_apps.alquileres.apps",
         "description": "cabanas_apps.alquileres.apps",
-        "peekOfCode": "class ReservasAlquileresAppsConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabana_apps.reservas_alquileres_apps'",
+        "peekOfCode": "class ReservasAlquileresAppsConfig(AppConfig):\n    \"\"\" class ReservasAlquileresAppsConfig representa la configuración de la aplicación de reservas y alquileres.\"\"\"\"\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.reservas_alquileres_apps'\nclass AlquileresAppsConfig(AppConfig):\n    \"\"\" class AlquileresAppsConfig representa la configuración de la aplicación de alquileres.\"\"\"\"\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.alquileres_apps'\nclass RegistrosAppsConfig(AppConfig):\n    \"\"\" class RegistrosAppsConfig representa la configuración de la aplicación de registros.\"\"\"\"",
+        "detail": "cabanas_apps.alquileres.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AlquileresAppsConfig",
+        "kind": 6,
+        "importPath": "cabanas_apps.alquileres.apps",
+        "description": "cabanas_apps.alquileres.apps",
+        "peekOfCode": "class AlquileresAppsConfig(AppConfig):\n    \"\"\" class AlquileresAppsConfig representa la configuración de la aplicación de alquileres.\"\"\"\"\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.alquileres_apps'\nclass RegistrosAppsConfig(AppConfig):\n    \"\"\" class RegistrosAppsConfig representa la configuración de la aplicación de registros.\"\"\"\"\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.registros_apps'",
+        "detail": "cabanas_apps.alquileres.apps",
+        "documentation": {}
+    },
+    {
+        "label": "RegistrosAppsConfig",
+        "kind": 6,
+        "importPath": "cabanas_apps.alquileres.apps",
+        "description": "cabanas_apps.alquileres.apps",
+        "peekOfCode": "class RegistrosAppsConfig(AppConfig):\n    \"\"\" class RegistrosAppsConfig representa la configuración de la aplicación de registros.\"\"\"\"\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.registros_apps'",
         "detail": "cabanas_apps.alquileres.apps",
         "documentation": {}
     },
@@ -3369,7 +3535,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.cabanas.models",
         "description": "cabanas_apps.cabanas.models",
-        "peekOfCode": "class Cabana(models.Model):\n    nombre = models.CharField(max_length=100)\n    capacidad = models.IntegerField()\n    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)\n    disponible = models.BooleanField(default=True)\n    def __str__(self):\n        return self.nombre",
+        "peekOfCode": "class Cabana(models.Model):\n\"\"\"clase cabana\"\"\n    id=models.AutoField(primary_key=True) \n    nombre = models.CharField(max_length=100)\n    capacidad = models.IntegerField()\n    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)\n    disponible = models.BooleanField(default=True)\n    def __str__(self):\n        return self.nombre",
         "detail": "cabanas_apps.cabanas.models",
         "documentation": {}
     },
@@ -3401,11 +3567,56 @@
         "documentation": {}
     },
     {
+        "label": "CabanaListView",
+        "kind": 6,
+        "importPath": "cabanas_apps.cabanas.views",
+        "description": "cabanas_apps.cabanas.views",
+        "peekOfCode": "class CabanaListView(ListView):\n    model = Cabana\n    template_name = \"cabanas/lista.html\"\n    context_object_name = \"cabanas\"\n# Vista basada en clase para detalle\nclass CabanaDetailView(DetailView):\n    model = Cabana\n    template_name = \"cabanas/detalle.html\"\n    context_object_name = \"cabana\"\n# Vista basada en clase para crear",
+        "detail": "cabanas_apps.cabanas.views",
+        "documentation": {}
+    },
+    {
+        "label": "CabanaDetailView",
+        "kind": 6,
+        "importPath": "cabanas_apps.cabanas.views",
+        "description": "cabanas_apps.cabanas.views",
+        "peekOfCode": "class CabanaDetailView(DetailView):\n    model = Cabana\n    template_name = \"cabanas/detalle.html\"\n    context_object_name = \"cabana\"\n# Vista basada en clase para crear\nclass CabanaCreateView(CreateView):\n    model = Cabana\n    template_name = \"cabanas/crear.html\"\n    fields = [\"nombre\", \"descripcion\", \"precio_base\", \"capacidad\"]\n# Vista basada en clase para actualizar",
+        "detail": "cabanas_apps.cabanas.views",
+        "documentation": {}
+    },
+    {
+        "label": "CabanaCreateView",
+        "kind": 6,
+        "importPath": "cabanas_apps.cabanas.views",
+        "description": "cabanas_apps.cabanas.views",
+        "peekOfCode": "class CabanaCreateView(CreateView):\n    model = Cabana\n    template_name = \"cabanas/crear.html\"\n    fields = [\"nombre\", \"descripcion\", \"precio_base\", \"capacidad\"]\n# Vista basada en clase para actualizar\nclass CabanaUpdateView(UpdateView):\n    model = Cabana\n    template_name = \"cabanas/actualizar.html\"\n    fields = [\"nombre\", \"descripcion\", \"precio_base\", \"capacidad\"]\n# Vista basada en clase para eliminar",
+        "detail": "cabanas_apps.cabanas.views",
+        "documentation": {}
+    },
+    {
+        "label": "CabanaUpdateView",
+        "kind": 6,
+        "importPath": "cabanas_apps.cabanas.views",
+        "description": "cabanas_apps.cabanas.views",
+        "peekOfCode": "class CabanaUpdateView(UpdateView):\n    model = Cabana\n    template_name = \"cabanas/actualizar.html\"\n    fields = [\"nombre\", \"descripcion\", \"precio_base\", \"capacidad\"]\n# Vista basada en clase para eliminar\nclass CabanaDeleteView(DeleteView):\n    model = Cabana\n    template_name = \"cabanas/eliminar.html\"\n    success_url = \"/cabanas/\"",
+        "detail": "cabanas_apps.cabanas.views",
+        "documentation": {}
+    },
+    {
+        "label": "CabanaDeleteView",
+        "kind": 6,
+        "importPath": "cabanas_apps.cabanas.views",
+        "description": "cabanas_apps.cabanas.views",
+        "peekOfCode": "class CabanaDeleteView(DeleteView):\n    model = Cabana\n    template_name = \"cabanas/eliminar.html\"\n    success_url = \"/cabanas/\"",
+        "detail": "cabanas_apps.cabanas.views",
+        "documentation": {}
+    },
+    {
         "label": "index",
         "kind": 2,
         "importPath": "cabanas_apps.cabanas.views",
         "description": "cabanas_apps.cabanas.views",
-        "peekOfCode": "def index(request):\n    return HttpResponse(\"Vista inicial de Cabañas\")\ndef lista_cabanas(request):\n    cabanas = Cabana.objects.all()\n    return render(request, \"cabanas/lista.html\", {\"cabanas\": cabanas})",
+        "peekOfCode": "def index(request) -> HttpResponse:\n    return HttpResponse(\"Vista inicial de Cabanas\")\n# Vista de lista usando función\ndef lista_cabanas(request):\n    cabanas = Cabana.objects.all()\n    return render(request, \"cabanas/lista.html\", {\"cabanas\": cabanas})\n# Vista basada en clase para listar\nclass CabanaListView(ListView):\n    model = Cabana\n    template_name = \"cabanas/lista.html\"",
         "detail": "cabanas_apps.cabanas.views",
         "documentation": {}
     },
@@ -3414,7 +3625,7 @@
         "kind": 2,
         "importPath": "cabanas_apps.cabanas.views",
         "description": "cabanas_apps.cabanas.views",
-        "peekOfCode": "def lista_cabanas(request):\n    cabanas = Cabana.objects.all()\n    return render(request, \"cabanas/lista.html\", {\"cabanas\": cabanas})",
+        "peekOfCode": "def lista_cabanas(request):\n    cabanas = Cabana.objects.all()\n    return render(request, \"cabanas/lista.html\", {\"cabanas\": cabanas})\n# Vista basada en clase para listar\nclass CabanaListView(ListView):\n    model = Cabana\n    template_name = \"cabanas/lista.html\"\n    context_object_name = \"cabanas\"\n# Vista basada en clase para detalle\nclass CabanaDetailView(DetailView):",
         "detail": "cabanas_apps.cabanas.views",
         "documentation": {}
     },
@@ -3432,7 +3643,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.cabanas_app.apps",
         "description": "cabanas_apps.cabanas_app.apps",
-        "peekOfCode": "class ClientesConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabana_apps.cabanas_app.clientes'",
+        "peekOfCode": "class ClientesConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.cabanas_app.clientes'",
         "detail": "cabanas_apps.cabanas_app.apps",
         "documentation": {}
     },
@@ -3594,7 +3805,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.pagos.apps",
         "description": "cabanas_apps.pagos.apps",
-        "peekOfCode": "class PagosConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabana_apps.pagos'",
+        "peekOfCode": "class PagosConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.pagos'",
         "detail": "cabanas_apps.pagos.apps",
         "documentation": {}
     },
@@ -3702,7 +3913,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.registros.models",
         "description": "cabanas_apps.registros.models",
-        "peekOfCode": "class ActividadCabanas(models.Model):\n    \"\"\" esta class representa una actividad realizada en una cabaña por un cliente.\"\"\"\n    id = models.AutoField(primary_key=True)\n    cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE)\n    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)\n    descripcion = models.TextField()\n    fecha = models.DateTimeField(auto_now_add=True)\n    def __str__(self):\n        return f\"{self.cabana} - {str(self.descripcion)[:30]}\"",
+        "peekOfCode": "class ActividadCabanas(models.Model):\n    \"\"\" esta class representa una actividad realizada en una Cabana por un cliente.\"\"\"\n    id = models.AutoField(primary_key=True)\n    cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE)\n    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)\n    descripcion = models.TextField()\n    fecha = models.DateTimeField(auto_now_add=True)\n    def __str__(self):\n        return f\"{self.cabana} - {str(self.descripcion)[:30]}\"",
         "detail": "cabanas_apps.registros.models",
         "documentation": {}
     },
@@ -3756,7 +3967,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.reservas.apps",
         "description": "cabanas_apps.reservas.apps",
-        "peekOfCode": "class ReservasConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabana_apps.reservas'",
+        "peekOfCode": "class ReservasConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.reservas'",
         "detail": "cabanas_apps.reservas.apps",
         "documentation": {}
     },
@@ -3765,7 +3976,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.reservas.models",
         "description": "cabanas_apps.reservas.models",
-        "peekOfCode": "class Reserva(models.Model):\n    \"\"\"Modelo que representa una reserva de cabaña.\"\"\"\n    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)\n    cabana = models.ForeignKey('cabanas.Cabana', on_delete=models.CASCADE)\n    fecha_inicio = models.DateTimeField()\n    fecha_fin = models.DateTimeField()\n    estado = models.CharField(max_length=20, default=\"pendiente\")\n    objects = models.Manager()\n    @staticmethod\n    def get_reservas_by_cliente(cliente_id):",
+        "peekOfCode": "class Reserva(models.Model):\n    \"\"\"Modelo que representa una reserva de Cabana.\"\"\"\n    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)\n    cabana = models.ForeignKey('cabanas.Cabana', on_delete=models.CASCADE)\n    fecha_inicio = models.DateTimeField()\n    fecha_fin = models.DateTimeField()\n    estado = models.CharField(max_length=20, default=\"pendiente\")\n    objects = models.Manager()\n    @staticmethod\n    def get_reservas_by_cliente(cliente_id):",
         "detail": "cabanas_apps.reservas.models",
         "documentation": {}
     },
@@ -3810,7 +4021,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.apps",
         "description": "cabanas_apps.apps",
-        "peekOfCode": "class CabanaAppsConfig(AppConfig):\n    \"\"\"App configuracion para cabanas_apps.\"\"\"\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabana_apps'",
+        "peekOfCode": "class CabanaAppsConfig(AppConfig):\n    \"\"\"App configuracion para cabanas_apps.\"\"\"\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps'",
         "detail": "cabanas_apps.apps",
         "documentation": {}
     },
@@ -3941,15 +4152,6 @@
         "documentation": {}
     },
     {
-        "label": "directories",
-        "kind": 5,
-        "importPath": "cabanas_apps.urls",
-        "description": "cabanas_apps.urls",
-        "peekOfCode": "directories = Path(\".\").parents\nfrom .views import ClienteListView\nfrom .views import   ClienteCreateView        \nfrom .views import   ClienteUpdateView\nfrom .views import   ClienteDeleteView\nfrom .views import CabanaListView\nfrom .views import CabanaCreateView\nfrom .views import CabanaUpdateView\nfrom .views import CabanaDeleteView\nfrom .views import ReservaListView",
-        "detail": "cabanas_apps.urls",
-        "documentation": {}
-    },
-    {
         "label": "urlpatterns",
         "kind": 5,
         "importPath": "cabanas_apps.urls",
@@ -3999,7 +4201,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class ClienteUpdateView(UpdateView):\n    model = Cliente\n    fields = [\"nombre\", \"email\", \"telefono\"]\n    template_name = \"clientes/form.html\"\n    success_url = reverse_lazy(\"cliente_list\")\nclass ClienteDeleteView(DeleteView):\n    model = Cliente\n    template_name = \"clientes/confirm_delete.html\"\n    success_url = reverse_lazy(\"cliente_list\")\n# Cabañas",
+        "peekOfCode": "class ClienteUpdateView(UpdateView):\n    model = Cliente\n    fields = [\"nombre\", \"email\", \"telefono\"]\n    template_name = \"clientes/form.html\"\n    success_url = reverse_lazy(\"cliente_list\")\nclass ClienteDeleteView(DeleteView):\n    model = Cliente\n    template_name = \"clientes/confirm_delete.html\"\n    success_url = reverse_lazy(\"cliente_list\")\n# Cabanas",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -4008,7 +4210,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.views",
         "description": "cabanas_apps.views",
-        "peekOfCode": "class ClienteDeleteView(DeleteView):\n    model = Cliente\n    template_name = \"clientes/confirm_delete.html\"\n    success_url = reverse_lazy(\"cliente_list\")\n# Cabañas\nclass CabanaListView(ListView):\n    model = Cabana\n    template_name = \"cabanas/list.html\"\nclass CabanaCreateView(CreateView):\n    model = Cabana",
+        "peekOfCode": "class ClienteDeleteView(DeleteView):\n    model = Cliente\n    template_name = \"clientes/confirm_delete.html\"\n    success_url = reverse_lazy(\"cliente_list\")\n# Cabanas\nclass CabanaListView(ListView):\n    model = Cabana\n    template_name = \"cabanas/list.html\"\nclass CabanaCreateView(CreateView):\n    model = Cabana",
         "detail": "cabanas_apps.views",
         "documentation": {}
     },
@@ -4206,7 +4408,7 @@
         "kind": 5,
         "importPath": "cabanas_project.settings",
         "description": "cabanas_project.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    \"django_core\",\n    \"django_local\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"cabana_apps\",",
+        "peekOfCode": "INSTALLED_APPS = [\n    \"django_core\",\n    \"django_local\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"cabanas_apps\",",
         "detail": "cabanas_project.settings",
         "documentation": {}
     },
@@ -4404,7 +4606,7 @@
         "kind": 5,
         "importPath": "cabanas_project.urls",
         "description": "cabanas_project.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"robots.txt\", robots_txt),\n    path(\"sitemap.xml\", sitemap_xml),\n    path(\"\", include(\"cabana_apps.urls\")),\n    path(\"chatbot/\", include(\"chatbot.urls\")),\n    path(\"admin/\", admin.site.urls),\n]\nif settings.DEBUG:\n    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)",
+        "peekOfCode": "urlpatterns = [\n    path(\"robots.txt\", robots_txt),\n    path(\"sitemap.xml\", sitemap_xml),\n    path(\"\", include(\"cabanas_apps.urls\")),\n    path(\"chatbot/\", include(\"chatbot.urls\")),\n    path(\"admin/\", admin.site.urls),\n]\nif settings.DEBUG:\n    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)",
         "detail": "cabanas_project.urls",
         "documentation": {}
     },
@@ -4449,7 +4651,7 @@
         "kind": 6,
         "importPath": "chatbot.models",
         "description": "chatbot.models",
-        "peekOfCode": "class Chatbot(models.Model):\n    \"\"\"\n    Representa el chatbot dentro de la aplicación.\n    \"\"\"\n    nombre = models.CharField(max_length=100, default=\"Chatbot Cabañas\")\n    descripcion = models.TextField(blank=True, null=True)\n    def __str__(self:models.Model) -> str:\n        return self.chatbot.nombre\nclass ChatbotHandler(models.Model):\n    \"\"\"",
+        "peekOfCode": "class Chatbot(models.Model):\n    \"\"\"\n    Representa el chatbot dentro de la aplicación.\n    \"\"\"\n    nombre = models.CharField(max_length=100, default=\"Chatbot Cabanas\")\n    descripcion = models.TextField(blank=True, null=True)\n    def __str__(self:models.Model) -> str:\n        return self.chatbot.nombre\nclass ChatbotHandler(models.Model):\n    \"\"\"",
         "detail": "chatbot.models",
         "documentation": {}
     },
@@ -4512,7 +4714,7 @@
         "kind": 6,
         "importPath": "DATABASE.Database",
         "description": "DATABASE.Database",
-        "peekOfCode": "class Cliente(models.Model):\n    \"\"\"\n    Modelo para representar a un cliente en el sistema de gestión de cabañas.\n    \"\"\"\n    id = models.AutoField(primary_key=True)\n    nombre = models.CharField(max_length=100)\n    apellido = models.CharField(max_length=100)\n    direccion = models.CharField(max_length=200, blank=True, null=True)\n    telefono = models.CharField(max_length=20, blank=True, null=True)\n    registros = models.ManyToManyField('Registro', related_name='cabanas')",
+        "peekOfCode": "class Cliente(models.Model):\n    \"\"\"\n    Modelo para representar a un cliente en el sistema de gestión de Cabanas.\n    \"\"\"\n    id = models.AutoField(primary_key=True)\n    nombre = models.CharField(max_length=100)\n    apellido = models.CharField(max_length=100)\n    direccion = models.CharField(max_length=200, blank=True, null=True)\n    telefono = models.CharField(max_length=20, blank=True, null=True)\n    registros = models.ManyToManyField('Registro', related_name='cabanas')",
         "detail": "DATABASE.Database",
         "documentation": {}
     },
@@ -4521,7 +4723,7 @@
         "kind": 6,
         "importPath": "DATABASE.Database",
         "description": "DATABASE.Database",
-        "peekOfCode": "class Reserva(models.Model):\n    \"\"\"\n    Modelo para representar una reserva de cabaña.\n    \"\"\"\n    id = models.AutoField(primary_key=True)\n    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='reservas')\n    fecha_inicio = models.DateField()\n    fecha_fin = models.DateField()\n    estado = models.CharField(max_length=20, choices=[\n        ('pendiente', 'Pendiente'),",
+        "peekOfCode": "class Reserva(models.Model):\n    \"\"\"\n    Modelo para representar una reserva de Cabana.\n    \"\"\"\n    id = models.AutoField(primary_key=True)\n    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='reservas')\n    fecha_inicio = models.DateField()\n    fecha_fin = models.DateField()\n    estado = models.CharField(max_length=20, choices=[\n        ('pendiente', 'Pendiente'),",
         "detail": "DATABASE.Database",
         "documentation": {}
     },
@@ -4530,7 +4732,7 @@
         "kind": 6,
         "importPath": "DATABASE.Database",
         "description": "DATABASE.Database",
-        "peekOfCode": "class Alquiler(models.Model):\n    \"\"\"Modelo para representar un alquiler de cabaña.\"\"\"\n    id = models.AutoField(primary_key=True)\n    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='alquileres')\n    fecha_inicio = models.DateField()\n    fecha_fin = models.DateField()\n    def __str__(self):\n        return f\"Alquiler {self.id} - Cliente: {self.cliente.nombre} {self.cliente.apellido}\"",
+        "peekOfCode": "class Alquiler(models.Model):\n    \"\"\"Modelo para representar un alquiler de Cabana.\"\"\"\n    id = models.AutoField(primary_key=True)\n    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='alquileres')\n    fecha_inicio = models.DateField()\n    fecha_fin = models.DateField()\n    def __str__(self):\n        return f\"Alquiler {self.id} - Cliente: {self.cliente.nombre} {self.cliente.apellido}\"",
         "detail": "DATABASE.Database",
         "documentation": {}
     },
@@ -4584,7 +4786,7 @@
         "kind": 6,
         "importPath": "DATABASE.db",
         "description": "DATABASE.db",
-        "peekOfCode": "class ActividadCabana(models.Model):\n    \"\"\"\n    Registro de todas las actividades relacionadas con las cabañas:\n    reservas, pagos, alquileres, facturas, etc.\n    \"\"\"\n    tipo = models.CharField(max_length=50)  # Ej: Reserva, Pago, Factura\n    descripcion = models.TextField(blank=True, null=True)\n    fecha = models.DateTimeField(default=timezone.now)\n    usuario = models.CharField(max_length=100, blank=True, null=True)\n    referencia_id = models.PositiveIntegerField(blank=True, null=True)  # ID de la entidad relacionada",
+        "peekOfCode": "class ActividadCabana(models.Model):\n    \"\"\"\n    Registro de todas las actividades relacionadas con las Cabanas:\n    reservas, pagos, alquileres, facturas, etc.\n    \"\"\"\n    tipo = models.CharField(max_length=50)  # Ej: Reserva, Pago, Factura\n    descripcion = models.TextField(blank=True, null=True)\n    fecha = models.DateTimeField(default=timezone.now)\n    usuario = models.CharField(max_length=100, blank=True, null=True)\n    referencia_id = models.PositiveIntegerField(blank=True, null=True)  # ID de la entidad relacionada",
         "detail": "DATABASE.db",
         "documentation": {}
     },
@@ -4971,7 +5173,7 @@
         "kind": 5,
         "importPath": "django_core.config.settings",
         "description": "django_core.config.settings",
-        "peekOfCode": "ALLOWED_HOSTS = []\n# Apps instaladas\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'cabana_apps.clientes',",
+        "peekOfCode": "ALLOWED_HOSTS = []\n# Apps instaladas\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'cabanas_apps.clientes',",
         "detail": "django_core.config.settings",
         "documentation": {}
     },
@@ -4980,7 +5182,7 @@
         "kind": 5,
         "importPath": "django_core.config.settings",
         "description": "django_core.config.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'cabana_apps.clientes',\n    'cabana_apps.reservas',\n    'cabana_apps.registros',",
+        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'cabanas_apps.clientes',\n    'cabanas_apps.reservas',\n    'cabanas_apps.registros',",
         "detail": "django_core.config.settings",
         "documentation": {}
     },
@@ -5781,7 +5983,7 @@
         "kind": 5,
         "importPath": "django_core.django_db",
         "description": "django_core.django_db",
-        "peekOfCode": "db = Database()\ncursor = db.cursor()\ncursor.execute(\"SELECT COUNT(*) FROM django_core_cabana;\")\nresult = cursor.fetchone()\nprint(\"Cantidad de cabañas:\", result[0])",
+        "peekOfCode": "db = Database()\ncursor = db.cursor()\ncursor.execute(\"SELECT COUNT(*) FROM django_core_cabana;\")\nresult = cursor.fetchone()\nprint(\"Cantidad de Cabanas:\", result[0])",
         "detail": "django_core.django_db",
         "documentation": {}
     },
@@ -5790,7 +5992,7 @@
         "kind": 5,
         "importPath": "django_core.django_db",
         "description": "django_core.django_db",
-        "peekOfCode": "cursor = db.cursor()\ncursor.execute(\"SELECT COUNT(*) FROM django_core_cabana;\")\nresult = cursor.fetchone()\nprint(\"Cantidad de cabañas:\", result[0])",
+        "peekOfCode": "cursor = db.cursor()\ncursor.execute(\"SELECT COUNT(*) FROM django_core_cabana;\")\nresult = cursor.fetchone()\nprint(\"Cantidad de Cabanas:\", result[0])",
         "detail": "django_core.django_db",
         "documentation": {}
     },
@@ -5799,7 +6001,7 @@
         "kind": 5,
         "importPath": "django_core.django_db",
         "description": "django_core.django_db",
-        "peekOfCode": "result = cursor.fetchone()\nprint(\"Cantidad de cabañas:\", result[0])",
+        "peekOfCode": "result = cursor.fetchone()\nprint(\"Cantidad de Cabanas:\", result[0])",
         "detail": "django_core.django_db",
         "documentation": {}
     },
@@ -5808,7 +6010,7 @@
         "kind": 2,
         "importPath": "django_core.JsonResponse",
         "description": "django_core.JsonResponse",
-        "peekOfCode": "def cabana_list_json(request):\n    data = {\n        \"cabanas\": [\n            {\"nombre\": \"Cabaña Verde\", \"capacidad\": 4, \"precio_base\": 1200},\n            {\"nombre\": \"Cabaña Azul\", \"capacidad\": 6, \"precio_base\": 1800},\n        ]\n    }\n    return JsonResponse(data)",
+        "peekOfCode": "def cabana_list_json(request):\n    data = {\n        \"cabanas\": [\n            {\"nombre\": \"Cabana Verde\", \"capacidad\": 4, \"precio_base\": 1200},\n            {\"nombre\": \"Cabana Azul\", \"capacidad\": 6, \"precio_base\": 1800},\n        ]\n    }\n    return JsonResponse(data)",
         "detail": "django_core.JsonResponse",
         "documentation": {}
     },
@@ -5817,7 +6019,7 @@
         "kind": 2,
         "importPath": "django_core.list",
         "description": "django_core.list",
-        "peekOfCode": "def cabana_list(request):\n    # Consultamos todas las cabañas\n    cabanas = Cabana.objects.all()\n    # Renderizamos la plantilla list.html con el contexto\n    return render(request, \"cabanas/list.html\", {\"cabanas\": cabanas})",
+        "peekOfCode": "def cabana_list(request):\n    # Consultamos todas las Cabanas\n    cabanas = Cabana.objects.all()\n    # Renderizamos la plantilla list.html con el contexto\n    return render(request, \"cabanas/list.html\", {\"cabanas\": cabanas})",
         "detail": "django_core.list",
         "documentation": {}
     },
@@ -5835,7 +6037,7 @@
         "kind": 6,
         "importPath": "django_core.managment",
         "description": "django_core.managment",
-        "peekOfCode": "class Apps:\n    \"\"\"Configuración de aplicaciones para el proyecto Cabañas.\"\"\"\n    def __init__(self):\n        self.apps: Dict[str, Any] = {}\n        self.debug: bool = False\n        self.installed_apps: list = []\n        self.middleware: list = []\n        self.databases: Dict[str, Any] = {}\n        self.templates: Dict[str, Any] = {}\n        self.static_files: Dict[str,Any] = {}",
+        "peekOfCode": "class Apps:\n    \"\"\"Configuración de aplicaciones para el proyecto Cabanas.\"\"\"\n    def __init__(self):\n        self.apps: Dict[str, Any] = {}\n        self.debug: bool = False\n        self.installed_apps: list = []\n        self.middleware: list = []\n        self.databases: Dict[str, Any] = {}\n        self.templates: Dict[str, Any] = {}\n        self.static_files: Dict[str,Any] = {}",
         "detail": "django_core.managment",
         "documentation": {}
     },
@@ -5844,7 +6046,7 @@
         "kind": 6,
         "importPath": "django_core.managment",
         "description": "django_core.managment",
-        "peekOfCode": "class Managment:\n    \"\"\"\n    Clase principal para inicializar y ejecutar comandos Django\n    en el proyecto de gestión de cabañas.\n    \"\"\"\n    def __init__(self, settings_module: str = \"cabanas_project.settings\"):\n        \"\"\"\n        Inicializa la configuración del proyecto.\n        Args:\n            settings_module (str): Ruta al módulo de configuración de Django.",
+        "peekOfCode": "class Managment:\n    \"\"\"\n    Clase principal para inicializar y ejecutar comandos Django\n    en el proyecto de gestión de Cabanas.\n    \"\"\"\n    def __init__(self, settings_module: str = \"cabanas_project.settings\"):\n        \"\"\"\n        Inicializa la configuración del proyecto.\n        Args:\n            settings_module (str): Ruta al módulo de configuración de Django.",
         "detail": "django_core.managment",
         "documentation": {}
     },
@@ -5853,7 +6055,7 @@
         "kind": 6,
         "importPath": "django_core.models",
         "description": "django_core.models",
-        "peekOfCode": "class Chatbot(models.Model):\n    \"\"\" esta clase es del chatbot\"\"\"\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self.nombre = \"Chatbot Cabañas\"\n        self.descripcion = \"Este es un chatbot para la gestión de cabañas.\"\n        self.reponses = ChatbotResponse(chatbot=self)\n    id = models.AutoField(primary_key=True)\n    nombre = models.CharField(max_length=100, default=\"Chatbot Cabañas\")\n    descripcion = models.TextField(blank=True, null=True)",
+        "peekOfCode": "class Chatbot(models.Model):\n    \"\"\" esta clase es del chatbot\"\"\"\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self.nombre = \"Chatbot Cabanas\"\n        self.descripcion = \"Este es un chatbot para la gestión de Cabanas.\"\n        self.reponses = ChatbotResponse(chatbot=self)\n    id = models.AutoField(primary_key=True)\n    nombre = models.CharField(max_length=100, default=\"Chatbot Cabanas\")\n    descripcion = models.TextField(blank=True, null=True)",
         "detail": "django_core.models",
         "documentation": {}
     },
@@ -5862,7 +6064,7 @@
         "kind": 6,
         "importPath": "django_core.models",
         "description": "django_core.models",
-        "peekOfCode": "class Cabanas(models.Model):\n    \"\"\" esta clase es de la cabaña\"\"\"\n    id = models.AutoField(primary_key=True)\n    nombre = models.CharField(max_length=100, unique=True)\n    capacidad = models.PositiveIntegerField()\n    descripcion = models.TextField(blank=True, null=True)\n    precio_base = models.DecimalField(max_digits=10, decimal_places=2)\n    disponible = models.BooleanField(default=True)\n    chatbot = models.ForeignKey(Chatbot, on_delete=models.SET_NULL, null=True, related_name=\"cabanas\")\n    def __str__(self) -> str:",
+        "peekOfCode": "class Cabanas(models.Model):\n    \"\"\" esta clase es de la Cabana\"\"\"\n    id = models.AutoField(primary_key=True)\n    nombre = models.CharField(max_length=100, unique=True)\n    capacidad = models.PositiveIntegerField()\n    descripcion = models.TextField(blank=True, null=True)\n    precio_base = models.DecimalField(max_digits=10, decimal_places=2)\n    disponible = models.BooleanField(default=True)\n    chatbot = models.ForeignKey(Chatbot, on_delete=models.SET_NULL, null=True, related_name=\"cabanas\")\n    def __str__(self) -> str:",
         "detail": "django_core.models",
         "documentation": {}
     },
@@ -5880,7 +6082,7 @@
         "kind": 6,
         "importPath": "django_core.models",
         "description": "django_core.models",
-        "peekOfCode": "class Alquileres(models.Model):\n    \"\"\" Clase que representa un alquiler de cabaña. \"\"\"\n    id = models.AutoField(primary_key=True)\n    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name=\"alquileres\")\n    cabana = models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name=\"alquileres\")\n    cantidad_clientes = models.PositiveIntegerField(\n        validators=[\n            MinValueValidator(1, message=\"La cantidad de clientes debe ser al menos 1.\"),\n            MaxValueValidator(20, message=\"La cantidad de clientes no puede exceder 20.\"),\n        ]",
+        "peekOfCode": "class Alquileres(models.Model):\n    \"\"\" Clase que representa un alquiler de Cabana. \"\"\"\n    id = models.AutoField(primary_key=True)\n    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name=\"alquileres\")\n    cabana = models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name=\"alquileres\")\n    cantidad_clientes = models.PositiveIntegerField(\n        validators=[\n            MinValueValidator(1, message=\"La cantidad de clientes debe ser al menos 1.\"),\n            MaxValueValidator(20, message=\"La cantidad de clientes no puede exceder 20.\"),\n        ]",
         "detail": "django_core.models",
         "documentation": {}
     },
@@ -5925,16 +6127,16 @@
         "kind": 5,
         "importPath": "django_core.models",
         "description": "django_core.models",
-        "peekOfCode": "directories = Path(\".\").parents\nclass Chatbot(models.Model):\n    \"\"\" esta clase es del chatbot\"\"\"\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self.nombre = \"Chatbot Cabañas\"\n        self.descripcion = \"Este es un chatbot para la gestión de cabañas.\"\n        self.reponses = ChatbotResponse(chatbot=self)\n    id = models.AutoField(primary_key=True)\n    nombre = models.CharField(max_length=100, default=\"Chatbot Cabañas\")",
+        "peekOfCode": "directories = Path(\".\").parents\nclass Chatbot(models.Model):\n    \"\"\" esta clase es del chatbot\"\"\"\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self.nombre = \"Chatbot Cabanas\"\n        self.descripcion = \"Este es un chatbot para la gestión de Cabanas.\"\n        self.reponses = ChatbotResponse(chatbot=self)\n    id = models.AutoField(primary_key=True)\n    nombre = models.CharField(max_length=100, default=\"Chatbot Cabanas\")",
         "detail": "django_core.models",
         "documentation": {}
     },
     {
-        "label": "CabañaAdmin",
+        "label": "CabanaAdmin",
         "kind": 6,
         "importPath": "django_core.panel",
         "description": "django_core.panel",
-        "peekOfCode": "class CabañaAdmin(admin.ModelAdmin):\n    list_display = ('nombre', 'capacidad', 'precio_por_noche', 'disponible')\nclass ClienteAdmin(admin.ModelAdmin):\n    list_display = ('dni', 'nombre', 'apellido', 'telefono', 'email')\nclass ReservaAdmin(admin.ModelAdmin):\n    list_display = ('cliente', 'cabaña', 'fecha_ingreso', 'fecha_salida', 'estado')\nclass ServicioAdmin(admin.ModelAdmin):\n    list_display = ('nombre', 'descripcion', 'precio')\nclass PagoAdmin(admin.ModelAdmin):\n    list_display = ('reserva', 'monto', 'fecha_pago', 'metodo')",
+        "peekOfCode": "class CabanaAdmin(admin.ModelAdmin):\n    list_display = ('nombre', 'capacidad', 'precio_por_noche', 'disponible')\nclass ClienteAdmin(admin.ModelAdmin):\n    list_display = ('dni', 'nombre', 'apellido', 'telefono', 'email')\nclass ReservaAdmin(admin.ModelAdmin):\n    list_display = ('cliente', 'Cabana', 'fecha_ingreso', 'fecha_salida', 'estado')\nclass ServicioAdmin(admin.ModelAdmin):\n    list_display = ('nombre', 'descripcion', 'precio')\nclass PagoAdmin(admin.ModelAdmin):\n    list_display = ('reserva', 'monto', 'fecha_pago', 'metodo')",
         "detail": "django_core.panel",
         "documentation": {}
     },
@@ -5943,7 +6145,7 @@
         "kind": 6,
         "importPath": "django_core.panel",
         "description": "django_core.panel",
-        "peekOfCode": "class ClienteAdmin(admin.ModelAdmin):\n    list_display = ('dni', 'nombre', 'apellido', 'telefono', 'email')\nclass ReservaAdmin(admin.ModelAdmin):\n    list_display = ('cliente', 'cabaña', 'fecha_ingreso', 'fecha_salida', 'estado')\nclass ServicioAdmin(admin.ModelAdmin):\n    list_display = ('nombre', 'descripcion', 'precio')\nclass PagoAdmin(admin.ModelAdmin):\n    list_display = ('reserva', 'monto', 'fecha_pago', 'metodo')",
+        "peekOfCode": "class ClienteAdmin(admin.ModelAdmin):\n    list_display = ('dni', 'nombre', 'apellido', 'telefono', 'email')\nclass ReservaAdmin(admin.ModelAdmin):\n    list_display = ('cliente', 'Cabana', 'fecha_ingreso', 'fecha_salida', 'estado')\nclass ServicioAdmin(admin.ModelAdmin):\n    list_display = ('nombre', 'descripcion', 'precio')\nclass PagoAdmin(admin.ModelAdmin):\n    list_display = ('reserva', 'monto', 'fecha_pago', 'metodo')\nclass AlquileresAdmin(admin.ModelAdmin):\n    list_display = ('cliente', 'Cabana', 'fecha_ingreso', 'fecha_salida', 'estado')",
         "detail": "django_core.panel",
         "documentation": {}
     },
@@ -5952,7 +6154,7 @@
         "kind": 6,
         "importPath": "django_core.panel",
         "description": "django_core.panel",
-        "peekOfCode": "class ReservaAdmin(admin.ModelAdmin):\n    list_display = ('cliente', 'cabaña', 'fecha_ingreso', 'fecha_salida', 'estado')\nclass ServicioAdmin(admin.ModelAdmin):\n    list_display = ('nombre', 'descripcion', 'precio')\nclass PagoAdmin(admin.ModelAdmin):\n    list_display = ('reserva', 'monto', 'fecha_pago', 'metodo')",
+        "peekOfCode": "class ReservaAdmin(admin.ModelAdmin):\n    list_display = ('cliente', 'Cabana', 'fecha_ingreso', 'fecha_salida', 'estado')\nclass ServicioAdmin(admin.ModelAdmin):\n    list_display = ('nombre', 'descripcion', 'precio')\nclass PagoAdmin(admin.ModelAdmin):\n    list_display = ('reserva', 'monto', 'fecha_pago', 'metodo')\nclass AlquileresAdmin(admin.ModelAdmin):\n    list_display = ('cliente', 'Cabana', 'fecha_ingreso', 'fecha_salida', 'estado')",
         "detail": "django_core.panel",
         "documentation": {}
     },
@@ -5961,7 +6163,7 @@
         "kind": 6,
         "importPath": "django_core.panel",
         "description": "django_core.panel",
-        "peekOfCode": "class ServicioAdmin(admin.ModelAdmin):\n    list_display = ('nombre', 'descripcion', 'precio')\nclass PagoAdmin(admin.ModelAdmin):\n    list_display = ('reserva', 'monto', 'fecha_pago', 'metodo')",
+        "peekOfCode": "class ServicioAdmin(admin.ModelAdmin):\n    list_display = ('nombre', 'descripcion', 'precio')\nclass PagoAdmin(admin.ModelAdmin):\n    list_display = ('reserva', 'monto', 'fecha_pago', 'metodo')\nclass AlquileresAdmin(admin.ModelAdmin):\n    list_display = ('cliente', 'Cabana', 'fecha_ingreso', 'fecha_salida', 'estado')",
         "detail": "django_core.panel",
         "documentation": {}
     },
@@ -5970,7 +6172,16 @@
         "kind": 6,
         "importPath": "django_core.panel",
         "description": "django_core.panel",
-        "peekOfCode": "class PagoAdmin(admin.ModelAdmin):\n    list_display = ('reserva', 'monto', 'fecha_pago', 'metodo')",
+        "peekOfCode": "class PagoAdmin(admin.ModelAdmin):\n    list_display = ('reserva', 'monto', 'fecha_pago', 'metodo')\nclass AlquileresAdmin(admin.ModelAdmin):\n    list_display = ('cliente', 'Cabana', 'fecha_ingreso', 'fecha_salida', 'estado')",
+        "detail": "django_core.panel",
+        "documentation": {}
+    },
+    {
+        "label": "AlquileresAdmin",
+        "kind": 6,
+        "importPath": "django_core.panel",
+        "description": "django_core.panel",
+        "peekOfCode": "class AlquileresAdmin(admin.ModelAdmin):\n    list_display = ('cliente', 'Cabana', 'fecha_ingreso', 'fecha_salida', 'estado')",
         "detail": "django_core.panel",
         "documentation": {}
     },
@@ -5979,7 +6190,7 @@
         "kind": 6,
         "importPath": "django_core.settings",
         "description": "django_core.settings",
-        "peekOfCode": "class SettingsCabana:\n    \"\"\"\n    Configuración principal del proyecto de gestión de cabañas.\n    \"\"\"\n    # Seguridad\n    SECRET_KEY = os.getenv(\"SECRET_KEY\", \"clave-secreta-desarrollo\")\n    DEBUG = os.getenv(\"DEBUG\", \"True\") == \"True\"\n    ALLOWED_HOSTS = os.getenv(\"ALLOWED_HOSTS\", \"localhost,127.0.0.1\").split(\",\")\n    # Aplicaciones instaladas\n    INSTALLED_APPS = [",
+        "peekOfCode": "class SettingsCabana:\n    \"\"\"\n    Configuración principal del proyecto de gestión de Cabanas.\n    \"\"\"\n    # Seguridad\n    SECRET_KEY = os.getenv(\"SECRET_KEY\", \"clave-secreta-desarrollo\")\n    DEBUG = os.getenv(\"DEBUG\", \"True\") == \"True\"\n    ALLOWED_HOSTS = os.getenv(\"ALLOWED_HOSTS\", \"localhost,127.0.0.1\").split(\",\")\n    # Aplicaciones instaladas\n    INSTALLED_APPS = [",
         "detail": "django_core.settings",
         "documentation": {}
     },
@@ -5988,7 +6199,7 @@
         "kind": 5,
         "importPath": "django_core.settings",
         "description": "django_core.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\nclass SettingsCabana:\n    \"\"\"\n    Configuración principal del proyecto de gestión de cabañas.\n    \"\"\"\n    # Seguridad\n    SECRET_KEY = os.getenv(\"SECRET_KEY\", \"clave-secreta-desarrollo\")\n    DEBUG = os.getenv(\"DEBUG\", \"True\") == \"True\"\n    ALLOWED_HOSTS = os.getenv(\"ALLOWED_HOSTS\", \"localhost,127.0.0.1\").split(\",\")\n    # Aplicaciones instaladas",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\nclass SettingsCabana:\n    \"\"\"\n    Configuración principal del proyecto de gestión de Cabanas.\n    \"\"\"\n    # Seguridad\n    SECRET_KEY = os.getenv(\"SECRET_KEY\", \"clave-secreta-desarrollo\")\n    DEBUG = os.getenv(\"DEBUG\", \"True\") == \"True\"\n    ALLOWED_HOSTS = os.getenv(\"ALLOWED_HOSTS\", \"localhost,127.0.0.1\").split(\",\")\n    # Aplicaciones instaladas",
         "detail": "django_core.settings",
         "documentation": {}
     },
@@ -6024,7 +6235,7 @@
         "kind": 2,
         "importPath": "django_core.shortcuts",
         "description": "django_core.shortcuts",
-        "peekOfCode": "def render_with_cabanas(request, template_name, extra_context=None):\n    \"\"\"\n    Atajo para renderizar cualquier template con todas las cabañas cargadas.\n    \"\"\"\n    cabanas = Cabanas.objects.all()\n    context = {'cabanas': cabanas}\n    if extra_context:\n        context.update(extra_context)\n    return render(request, template_name, context)\ndef get_cabana_or_404(pk):",
+        "peekOfCode": "def render_with_cabanas(request, template_name, extra_context=None):\n    \"\"\"\n    Atajo para renderizar cualquier template con todas las Cabanas cargadas.\n    \"\"\"\n    cabanas = Cabanas.objects.all()\n    context = {'cabanas': cabanas}\n    if extra_context:\n        context.update(extra_context)\n    return render(request, template_name, context)\ndef get_cabana_or_404(pk):",
         "detail": "django_core.shortcuts",
         "documentation": {}
     },
@@ -6033,7 +6244,7 @@
         "kind": 2,
         "importPath": "django_core.shortcuts",
         "description": "django_core.shortcuts",
-        "peekOfCode": "def get_cabana_or_404(pk):\n    \"\"\"\n    Atajo para obtener una cabaña por su ID o lanzar 404 si no existe.\n    \"\"\"\n    return get_object_or_404(Cabanas, pk=pk)",
+        "peekOfCode": "def get_cabana_or_404(pk):\n    \"\"\"\n    Atajo para obtener una Cabana por su ID o lanzar 404 si no existe.\n    \"\"\"\n    return get_object_or_404(Cabanas, pk=pk)",
         "detail": "django_core.shortcuts",
         "documentation": {}
     },
@@ -6141,7 +6352,7 @@
         "kind": 6,
         "importPath": "django_local.Models.alquileres_models",
         "description": "django_local.Models.alquileres_models",
-        "peekOfCode": "class Alquileres(models.Model):\n    \"\"\"\n     Alquileres de un cliente en una cabaña.\n    \"\"\"\n    cliente = models.ForeignKey(\n        Cliente,\n        on_delete=models.CASCADE,\n        related_name=\"reservas\",\n        help_text=\"Cliente que realiza la reserva.\"\n    )",
+        "peekOfCode": "class Alquileres(models.Model):\n    \"\"\"\n     Alquileres de un cliente en una Cabana.\n    \"\"\"\n    cliente = models.ForeignKey(\n        Cliente,\n        on_delete=models.CASCADE,\n        related_name=\"reservas\",\n        help_text=\"Cliente que realiza la reserva.\"\n    )",
         "detail": "django_local.Models.alquileres_models",
         "documentation": {}
     },
@@ -6150,7 +6361,7 @@
         "kind": 6,
         "importPath": "django_local.Models.cabanas_models",
         "description": "django_local.Models.cabanas_models",
-        "peekOfCode": "class Cabana(models.Model):\n    \"\"\"\n    Representa una cabaña disponible en el complejo.\n    \"\"\"\n    nombre = models.CharField(\n        max_length=100,\n        unique=True,\n        help_text=\"Nombre identificador de la cabaña.\"\n    )\n    capacidad = models.PositiveIntegerField(",
+        "peekOfCode": "class Cabana(models.Model):\n    \"\"\"\n    Representa una Cabana disponible en el complejo.\n    \"\"\"\n    nombre = models.CharField(\n        max_length=100,\n        unique=True,\n        help_text=\"Nombre identificador de la Cabana.\"\n    )\n    capacidad = models.PositiveIntegerField(",
         "detail": "django_local.Models.cabanas_models",
         "documentation": {}
     },
@@ -6159,7 +6370,7 @@
         "kind": 6,
         "importPath": "django_local.Models.cabanas_models",
         "description": "django_local.Models.cabanas_models",
-        "peekOfCode": "class Cliente(models.Model):\n    \"\"\"\n    Representa un cliente que realiza reservas.\n    \"\"\"\n    nombre = models.CharField(max_length=100, help_text=\"Nombre completo del cliente.\")\n    email = models.EmailField(unique=True, help_text=\"Correo electrónico del cliente.\")\n    telefono = models.CharField(max_length=20, blank=True, help_text=\"Teléfono de contacto.\")\n    class Meta:\n        verbose_name = \"Cliente\"\n        verbose_name_plural = \"Clientes\"",
+        "peekOfCode": "class Cliente(models.Model):\n    \"\"\"\n    Representa un cliente que realiza reservas.\n    \"\"\"\n    nombre = models.CharField(max_length=100, help_text=\"Nombre completo del cliente.\")\n    email = models.EmailField(unique=True, help_text=\"Correo electrónico del cliente.\")\n    telefono = models.CharField(max_length=20, blank=True, help_text=\"Teléfono de contacto.\")\n    class Meta:\n        \"\"\"\n        Meta información para el modelo Cliente.",
         "detail": "django_local.Models.cabanas_models",
         "documentation": {}
     },
@@ -6168,7 +6379,7 @@
         "kind": 6,
         "importPath": "django_local.Models.cabanas_models",
         "description": "django_local.Models.cabanas_models",
-        "peekOfCode": "class Reserva(models.Model):\n    \"\"\"\n    Representa una reserva realizada por un cliente en una cabaña.\n    \"\"\"\n    cliente = models.ForeignKey(\n        Cliente,\n        on_delete=models.CASCADE,\n        related_name=\"reservas\",\n        help_text=\"Cliente que realiza la reserva.\"\n    )",
+        "peekOfCode": "class Reserva(models.Model):\n    \"\"\"\n    Representa una reserva realizada por un cliente en una Cabana.\n    \"\"\"\n    cliente = models.ForeignKey(\n        Cliente,\n        on_delete=models.CASCADE,\n        related_name=\"reservas\",\n        help_text=\"Cliente que realiza la reserva.\"\n    )",
         "detail": "django_local.Models.cabanas_models",
         "documentation": {}
     },
@@ -6186,7 +6397,7 @@
         "kind": 6,
         "importPath": "django_local.Models.models",
         "description": "django_local.Models.models",
-        "peekOfCode": "class Cabana(models.Model):\n    \"\"\"Modelo oficial de Django para la gestión de Cabañas.\n    \"\"\"\n    nombre = models.CharField(max_length=100)\n    descripcion = models.TextField()\n    precio_noche = models.DecimalField(max_digits=10, decimal_places=2)\n    capacidad = models.IntegerField()\n    disponible = models.BooleanField(default=True)\n    imagen = models.ImageField(upload_to='cabanas/', null=True, blank=True)\n    class Meta:",
+        "peekOfCode": "class Cabana(models.Model):\n    \"\"\"Modelo oficial de Django para la gestión de Cabanas.\n    \"\"\"\n    nombre = models.CharField(max_length=100)\n    descripcion = models.TextField()\n    precio_noche = models.DecimalField(max_digits=10, decimal_places=2)\n    capacidad = models.IntegerField()\n    disponible = models.BooleanField(default=True)\n    imagen = models.ImageField(upload_to='cabanas/', null=True, blank=True)\n    class Meta:",
         "detail": "django_local.Models.models",
         "documentation": {}
     },
@@ -6213,7 +6424,7 @@
         "kind": 6,
         "importPath": "django_local.Models.models",
         "description": "django_local.Models.models",
-        "peekOfCode": "class Alquileres(models.Model):\n    \"\"\"Alquileres de un cliente en una cabaña.\"\"\"\n    cliente = models.ForeignKey(\n        Cliente,\n        on_delete=models.CASCADE,\n        related_name=\"reservas\",\n        help_text=\"Cliente que realiza la reserva.\"\n    )\n    cabana = models.ForeignKey(\n        Cabana,",
+        "peekOfCode": "class Alquileres(models.Model):\n    \"\"\"Alquileres de un cliente en una Cabana.\"\"\"\n    cliente = models.ForeignKey(\n        Cliente,\n        on_delete=models.CASCADE,\n        related_name=\"reservas\",\n        help_text=\"Cliente que realiza la reserva.\"\n    )\n    cabana = models.ForeignKey(\n        Cabana,",
         "detail": "django_local.Models.models",
         "documentation": {}
     },
@@ -6240,7 +6451,7 @@
         "kind": 6,
         "importPath": "django_local.Models.pagos_model",
         "description": "django_local.Models.pagos_model",
-        "peekOfCode": "class Reserva(models.Model):\n    \"\"\"\n    Representa una reserva realizada por un cliente en una cabaña.\n    \"\"\"\n    cliente = models.ForeignKey(\n        Cliente,\n        on_delete=models.CASCADE,\n        related_name=\"reservas\",\n        help_text=\"Cliente que realiza la reserva.\"\n    )",
+        "peekOfCode": "class Reserva(models.Model):\n    \"\"\"\n    Representa una reserva realizada por un cliente en una Cabana.\n    \"\"\"\n    cliente = models.ForeignKey(\n        Cliente,\n        on_delete=models.CASCADE,\n        related_name=\"reservas\",\n        help_text=\"Cliente que realiza la reserva.\"\n    )",
         "detail": "django_local.Models.pagos_model",
         "documentation": {}
     },
@@ -6249,7 +6460,7 @@
         "kind": 6,
         "importPath": "django_local.Models.reservas_model",
         "description": "django_local.Models.reservas_model",
-        "peekOfCode": "class Reserva(models.Model):\n    \"\"\"\n    Representa una reserva realizada por un cliente en una cabaña.\n    \"\"\"\n    cliente = models.ForeignKey(\n        Cliente,\n        on_delete=models.CASCADE,\n        related_name=\"reservas\",\n        help_text=\"Cliente que realiza la reserva.\"\n    )",
+        "peekOfCode": "class Reserva(models.Model):\n    \"\"\"\n    Representa una reserva realizada por un cliente en una Cabana.\n    \"\"\"\n    cliente = models.ForeignKey(\n        Cliente,\n        on_delete=models.CASCADE,\n        related_name=\"reservas\",\n        help_text=\"Cliente que realiza la reserva.\"\n    )",
         "detail": "django_local.Models.reservas_model",
         "documentation": {}
     },
@@ -6267,7 +6478,7 @@
         "kind": 6,
         "importPath": "django_local.django_admin",
         "description": "django_local.django_admin",
-        "peekOfCode": "class CabanasApp:\n    \"\"\"Clase principal para inicializar y ejecutar comandos Django.\"\"\"\n    def __init__(self, settings_module=\"cabanas_project.settings\"):\n        self.settings_module = settings_module\n        self.project_name = \"Sistema de Gestión de Cabañas\"\n        os.environ.setdefault(\"DJANGO_SETTINGS_MODULE\", self.settings_module)\n    def ejecutar(self):\n        \"\"\"Ejecuta comandos de Django usando django-admin.\"\"\"\n        try:\n            comando = [\"django-admin\"] + sys.argv[1:] + [f\"--settings={self.settings_module}\"]",
+        "peekOfCode": "class CabanasApp:\n    \"\"\"Clase principal para inicializar y ejecutar comandos Django.\"\"\"\n    def __init__(self, settings_module=\"cabanas_project.settings\"):\n        self.settings_module = settings_module\n        self.project_name = \"Sistema de Gestión de Cabanas\"\n        os.environ.setdefault(\"DJANGO_SETTINGS_MODULE\", self.settings_module)\n    def ejecutar(self):\n        \"\"\"Ejecuta comandos de Django usando django-admin.\"\"\"\n        try:\n            comando = [\"django-admin\"] + sys.argv[1:] + [f\"--settings={self.settings_module}\"]",
         "detail": "django_local.django_admin",
         "documentation": {}
     },
@@ -6330,7 +6541,7 @@
         "kind": 6,
         "importPath": "registros.apps",
         "description": "registros.apps",
-        "peekOfCode": "class RegistrosConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabana_apps.registros'\n# cabanas_app/reservas/apps.py\nclass ReservasConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_app.reservas' # <--- DEBE COINCIDIR CON SETTINGS\n# cabanas_app/usuarios/apps.py\nclass UsuariosConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'",
+        "peekOfCode": "class RegistrosConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps.registros'\n# cabanas_app/reservas/apps.py\nclass ReservasConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_app.reservas' # <--- DEBE COINCIDIR CON SETTINGS\n# cabanas_app/usuarios/apps.py\nclass UsuariosConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'",
         "detail": "registros.apps",
         "documentation": {}
     },
@@ -6357,7 +6568,7 @@
         "kind": 6,
         "importPath": "registros.models",
         "description": "registros.models",
-        "peekOfCode": "class Cabana(models.Model):\n    \"\"\"\n    Modelo que representa a cada una de las cabañas del complejo.\n    \"\"\"\n    nombre = models.CharField(max_length=100, verbose_name=\"Nombre de la Cabaña\")\n    capacidad_clientes = models.PositiveIntegerField(default=2)\n    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)\n    descripcion = models.TextField(blank=True, null=True)\n    esta_activa = models.BooleanField(default=True, verbose_name=\"Disponible para alquilar\")\n    class Meta:",
+        "peekOfCode": "class Cabana(models.Model):\n    \"\"\"\n    Modelo que representa a cada una de las Cabanas del complejo.\n    \"\"\"\n    nombre = models.CharField(max_length=100, verbose_name=\"Nombre de la Cabana\")\n    capacidad_clientes = models.PositiveIntegerField(default=2)\n    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)\n    descripcion = models.TextField(blank=True, null=True)\n    esta_activa = models.BooleanField(default=True, verbose_name=\"Disponible para alquilar\")\n    class Meta:",
         "detail": "registros.models",
         "documentation": {}
     },
@@ -6366,7 +6577,7 @@
         "kind": 6,
         "importPath": "registros.models",
         "description": "registros.models",
-        "peekOfCode": "class RegistroDiario(models.Model):\n    \"\"\"\n    Modelo para el control diario de las cabañas (novedades, limpieza, mantenimiento).\n    \"\"\"\n    cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE, related_name=\"registros_diarios\")\n    cabana_gestion = models.ForeignKey(\n        \"cabana_apps.Cabana\",\n        on_delete=models.SET_NULL,\n        blank=True,\n        null=True,",
+        "peekOfCode": "class RegistroDiario(models.Model):\n    \"\"\"\n    Modelo para el control diario de las Cabanas (novedades, limpieza, mantenimiento).\n    \"\"\"\n    cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE, related_name=\"registros_diarios\")\n    cabana_gestion = models.ForeignKey(\n        \"cabanas_apps.Cabana\",\n        on_delete=models.SET_NULL,\n        blank=True,\n        null=True,",
         "detail": "registros.models",
         "documentation": {}
     },
@@ -6672,7 +6883,7 @@
         "kind": 5,
         "importPath": "settings",
         "description": "settings",
-        "peekOfCode": "REST_FRAMEWORK = {\n    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',\n}\nSPECTACULAR_SETTINGS = {\n    'TITLE': 'Gestión de Cabañas API',\n    'DESCRIPTION': 'Documentación de la API para reservas, clientes y cabañas',\n    'VERSION': '1.0.0',\n}\n# Middleware\nMIDDLEWARE = [",
+        "peekOfCode": "REST_FRAMEWORK = {\n    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',\n}\nSPECTACULAR_SETTINGS = {\n    'TITLE': 'Gestión de Cabanas API',\n    'DESCRIPTION': 'Documentación de la API para reservas, clientes y Cabanas',\n    'VERSION': '1.0.0',\n}\n# Middleware\nMIDDLEWARE = [",
         "detail": "settings",
         "documentation": {}
     },
@@ -6681,7 +6892,7 @@
         "kind": 5,
         "importPath": "settings",
         "description": "settings",
-        "peekOfCode": "SPECTACULAR_SETTINGS = {\n    'TITLE': 'Gestión de Cabañas API',\n    'DESCRIPTION': 'Documentación de la API para reservas, clientes y cabañas',\n    'VERSION': '1.0.0',\n}\n# Middleware\nMIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',",
+        "peekOfCode": "SPECTACULAR_SETTINGS = {\n    'TITLE': 'Gestión de Cabanas API',\n    'DESCRIPTION': 'Documentación de la API para reservas, clientes y Cabanas',\n    'VERSION': '1.0.0',\n}\n# Middleware\nMIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',",
         "detail": "settings",
         "documentation": {}
     },
@@ -6888,7 +7099,7 @@
         "kind": 5,
         "importPath": "verificar_estructuras",
         "description": "verificar_estructuras",
-        "peekOfCode": "BASE_DIR = os.path.dirname(os.path.abspath(__file__))\n# Lista de carpetas críticas que deben existir\ncarpetas = [\n    \"cabanas_project\",\n    \"cabana_apps\",\n    \"cabana_apps/migrations\",\n    \"chatbot\",\n    \"chatbot/migrations\",\n    \"templates\",\n    \"templates/cabanas\",",
+        "peekOfCode": "BASE_DIR = os.path.dirname(os.path.abspath(__file__))\n# Lista de carpetas críticas que deben existir\ncarpetas = [\n    \"cabanas_project\",\n    \"cabanas_apps\",\n    \"cabanas_apps/migrations\",\n    \"chatbot\",\n    \"chatbot/migrations\",\n    \"templates\",\n    \"templates/cabanas\",",
         "detail": "verificar_estructuras",
         "documentation": {}
     },
@@ -6897,7 +7108,7 @@
         "kind": 5,
         "importPath": "verificar_estructuras",
         "description": "verificar_estructuras",
-        "peekOfCode": "carpetas = [\n    \"cabanas_project\",\n    \"cabana_apps\",\n    \"cabana_apps/migrations\",\n    \"chatbot\",\n    \"chatbot/migrations\",\n    \"templates\",\n    \"templates/cabanas\",\n    \"templates/reservas\",\n    \"templates/chatbot\",",
+        "peekOfCode": "carpetas = [\n    \"cabanas_project\",\n    \"cabanas_apps\",\n    \"cabanas_apps/migrations\",\n    \"chatbot\",\n    \"chatbot/migrations\",\n    \"templates\",\n    \"templates/cabanas\",\n    \"templates/reservas\",\n    \"templates/chatbot\",",
         "detail": "verificar_estructuras",
         "documentation": {}
     }

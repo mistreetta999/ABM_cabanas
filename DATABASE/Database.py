@@ -66,7 +66,7 @@ def get_database_settings():
     
 class Cliente(models.Model):
     """
-    Modelo para representar a un cliente en el sistema de gestión de cabañas.
+    Modelo para representar a un cliente en el sistema de gestión de Cabanas.
     """
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100)
@@ -90,7 +90,7 @@ class Cliente(models.Model):
         verbose_name_plural = 'clientes'
 class Reserva(models.Model):
     """
-    Modelo para representar una reserva de cabaña.
+    Modelo para representar una reserva de Cabana.
     """
     id = models.AutoField(primary_key=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='reservas')
@@ -105,7 +105,7 @@ class Reserva(models.Model):
         return f"Reserva {self.id} - Cliente: {self.cliente.nombre} {self.cliente.apellido} - Estado: {self.estado}"    
     
 class Alquiler(models.Model):
-    """Modelo para representar un alquiler de cabaña."""
+    """Modelo para representar un alquiler de Cabana."""
     id = models.AutoField(primary_key=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='alquileres')
     fecha_inicio = models.DateField()

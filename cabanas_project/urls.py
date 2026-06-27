@@ -44,7 +44,7 @@ def sitemap_xml(request):
 urlpatterns = [
     path("robots.txt", robots_txt),
     path("sitemap.xml", sitemap_xml),
-    path("", include("cabana_apps.urls")),
+    path("", include("cabanas_apps.urls")),
     path("chatbot/", include("chatbot.urls")),
     path("admin/", admin.site.urls),
 ]

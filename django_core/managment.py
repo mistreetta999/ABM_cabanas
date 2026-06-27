@@ -1,5 +1,5 @@
 """
-Este módulo configura las aplicaciones Django para el proyecto de gestión de cabañas.
+Este módulo configura las aplicaciones Django para el proyecto de gestión de Cabanas.
 Las clases definidas aquí permiten configurar y gestionar las aplicaciones del proyecto.
 """
 from typing import Any, Dict #importacion de tipos
@@ -14,7 +14,7 @@ from django.core.exceptions import ImproperlyConfigured
 
 
 class Apps:
-    """Configuración de aplicaciones para el proyecto Cabañas."""
+    """Configuración de aplicaciones para el proyecto Cabanas."""
     def __init__(self):
         self.apps: Dict[str, Any] = {}
         self.debug: bool = False
@@ -32,7 +32,7 @@ class Apps:
 class Managment:
     """
     Clase principal para inicializar y ejecutar comandos Django
-    en el proyecto de gestión de cabañas.
+    en el proyecto de gestión de Cabanas.
     """
 
     def __init__(self, settings_module: str = "cabanas_project.settings"):
@@ -44,7 +44,7 @@ class Managment:
         """
         self.settings_module = settings_module
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", self.settings_module)
-        self.project_name = "Sistema de Gestión de Cabañas"
+        self.project_name = "Sistema de Gestión de Cabanas"
 
     def inicializar_django(self):
         """
@@ -76,6 +76,6 @@ class Managment:
 
 if __name__ == "__main__":
 
-    print("Configuración de aplicaciones para el proyecto Cabañas.")
-    print("Este módulo configura las aplicaciones Django para el proyecto de gestión de cabañas.")
+    print("Configuración de aplicaciones para el proyecto Cabanas.")
+    print("Este módulo configura las aplicaciones Django para el proyecto de gestión de Cabanas.")
     print("Las clases definidas aquí permiten configurar y gestionar las aplicaciones del proyecto.")

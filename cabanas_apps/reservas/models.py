@@ -4,7 +4,7 @@ from cabanas_apps.clientes.models import Cliente
 
 
 class Reserva(models.Model):
-    """Modelo que representa una reserva de cabaña."""
+    """Modelo que representa una reserva de Cabana."""
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     cabana = models.ForeignKey('cabanas.Cabana', on_delete=models.CASCADE)
     fecha_inicio = models.DateTimeField()
@@ -20,7 +20,7 @@ class Reserva(models.Model):
 
     @staticmethod
     def get_reservas_by_cabana(cabana_id):
-        """Obtiene todas las reservas de una cabaña específica."""
+        """Obtiene todas las reservas de una Cabana específica."""
         return Reserva.objects.filter(cabana_id=cabana_id)
 
     @staticmethod

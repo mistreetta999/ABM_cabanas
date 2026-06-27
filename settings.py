@@ -41,8 +41,8 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Gestión de Cabañas API',
-    'DESCRIPTION': 'Documentación de la API para reservas, clientes y cabañas',
+    'TITLE': 'Gestión de Cabanas API',
+    'DESCRIPTION': 'Documentación de la API para reservas, clientes y Cabanas',
     'VERSION': '1.0.0',
 }
 

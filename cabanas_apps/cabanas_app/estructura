@@ -1,4 +1,4 @@
-cabana_apps/cabanas_app/clientes/
+cabanas_apps/cabanas_app/clientes/
 │-- __init__.py
 │-- admin.py
 │-- apps.py

@@ -1,12 +1,9 @@
 """Este archivo contiene las urls de la app cabanas.
 """
-from pathlib import Path
 from django.urls import path
-directories = Path(".").parents
 from .views import ClienteListView
-from .views import   ClienteCreateView        
-from .views import   ClienteUpdateView
-from .views import   ClienteDeleteView
+from .views import ClienteUpdateView
+from .views import ClienteDeleteView
 from .views import CabanaListView
 from .views import CabanaCreateView
 from .views import CabanaUpdateView
@@ -22,7 +19,10 @@ from .views import AlquilerDeleteView
 from .views import RegistroListView
 from .views import RegistroCreateView     
 from .views import RegistroUpdateView
-from .views import RegistroDeleteView   
+from .views import RegistroDeleteView  
+from .views import ClienteCreateView
+
+ 
 urlpatterns = [
     path('cabanas_api/clientes/', ClienteListView.as_view(), name='cliente_list'),
     path('cabanas_api/clientes/nuevo/', ClienteCreateView.as_view(), name='cliente_create'),

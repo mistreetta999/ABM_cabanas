@@ -1,7 +1,7 @@
 """
 cabanas_models.py
-Modelos principales para la gestión de cabañas en el sistema.
-Incluye definiciones de Cabaña, Cliente y Reserva.
+Modelos principales para la gestión de Cabanas en el sistema.
+Incluye definiciones de Cabana, Cliente y Reserva.
 Cumple con estándares Pylint y buenas prácticas de Django.
 """
 
@@ -10,19 +10,19 @@ from django.db import models
 
 class Cabana(models.Model):
     """
-    Representa una cabaña disponible en el complejo.
+    Representa una Cabana disponible en el complejo.
     """
     nombre = models.CharField(
         max_length=100,
         unique=True,
-        help_text="Nombre identificador de la cabaña."
+        help_text="Nombre identificador de la Cabana."
     )
     capacidad = models.PositiveIntegerField(
-        help_text="Número máximo de huéspedes que admite la cabaña."
+        help_text="Número máximo de huéspedes que admite la Cabana."
     )
     descripcion = models.TextField(
         blank=True,
-        help_text="Descripción breve de la cabaña."
+        help_text="Descripción breve de la Cabana."
     )
     precio_noche = models.DecimalField(
         max_digits=8,
@@ -31,12 +31,12 @@ class Cabana(models.Model):
     )
     disponible = models.BooleanField(
         default=True,
-        help_text="Indica si la cabaña está disponible para reservas."
+        help_text="Indica si la Cabana está disponible para reservas."
     )
 
     class Meta:
-        verbose_name = "Cabaña"
-        verbose_name_plural = "Cabañas"
+        verbose_name = "Cabana"
+        verbose_name_plural = "Cabanas"
         ordering = ["nombre"]
 
     def __str__(self):
@@ -52,17 +52,21 @@ class Cliente(models.Model):
     telefono = models.CharField(max_length=20, blank=True, help_text="Teléfono de contacto.")
 
     class Meta:
+        """
+        Meta información para el modelo Cliente.
+        """
         verbose_name = "Cliente"
         verbose_name_plural = "Clientes"
         ordering = ["nombre"]
 
     def __str__(self):
+        """Devuelve una representación legible del cliente."""
         return self.nombre
 
 
 class Reserva(models.Model):
     """
-    Representa una reserva realizada por un cliente en una cabaña.
+    Representa una reserva realizada por un cliente en una Cabana.
     """
     cliente = models.ForeignKey(
         Cliente,
@@ -74,7 +78,7 @@ class Reserva(models.Model):
         Cabana,
         on_delete=models.CASCADE,
         related_name="reservas",
-        help_text="Cabaña reservada."
+        help_text="Cabana reservada."
     )
     fecha_inicio = models.DateField(help_text="Fecha de inicio de la reserva.")
     fecha_fin = models.DateField(help_text="Fecha de fin de la reserva.")

@@ -14,12 +14,12 @@ class Chatbot(models.Model):
     """ esta clase es del chatbot"""
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.nombre = "Chatbot Cabañas"
-        self.descripcion = "Este es un chatbot para la gestión de cabañas."
+        self.nombre = "Chatbot Cabanas"
+        self.descripcion = "Este es un chatbot para la gestión de Cabanas."
         self.reponses = ChatbotResponse(chatbot=self)
             
     id = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=100, default="Chatbot Cabañas")
+    nombre = models.CharField(max_length=100, default="Chatbot Cabanas")
     descripcion = models.TextField(blank=True, null=True)
 
     def __str__(self) -> str:
@@ -33,7 +33,7 @@ class Chatbot(models.Model):
 
 
 class Cabanas(models.Model):
-    """ esta clase es de la cabaña"""
+    """ esta clase es de la Cabana"""
     
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100, unique=True)
@@ -74,7 +74,7 @@ class Cliente(models.Model):
 
 
 class Alquileres(models.Model):
-    """ Clase que representa un alquiler de cabaña. """
+    """ Clase que representa un alquiler de Cabana. """
     id = models.AutoField(primary_key=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="alquileres")
     cabana = models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="alquileres")
@@ -107,7 +107,7 @@ class Alquileres(models.Model):
         ).exclude(id=self.id)
 
         if reservas_solapadas.exists():
-            raise ValidationError(_("La cabaña ya está reservada para las fechas seleccionadas."))
+            raise ValidationError(_("La Cabana ya está reservada para las fechas seleccionadas."))
 
     def __str__(self) -> str:
         return f"Reserva {self.id}"
@@ -134,7 +134,7 @@ class Reserva(models.Model):
             raise ValidationError(_("La fecha de fin debe ser posterior a la fecha de inicio."))
 
         if self.cantidad_clientes > self.cabana.capacidad:  # type: ignore
-            raise ValidationError(_("La cantidad de clientes excede la capacidad de la cabaña."))
+            raise ValidationError(_("La cantidad de clientes excede la capacidad de la Cabana."))
 
         reservas_solapadas = Reserva.objects.filter(  # type: ignore
             cabana=self.cabana,
@@ -143,7 +143,7 @@ class Reserva(models.Model):
         ).exclude(id=self.id)
 
         if reservas_solapadas.exists():
-            raise ValidationError(_("La cabaña ya está reservada para las fechas seleccionadas."))
+            raise ValidationError(_("La Cabana ya está reservada para las fechas seleccionadas."))
 
     def __str__(self) -> str:
         return f"Reserva {self.id}"

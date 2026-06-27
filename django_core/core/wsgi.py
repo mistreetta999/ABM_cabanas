@@ -1,5 +1,5 @@
 """
-WSGI config para el núcleo del proyecto de gestión de cabañas.
+WSGI config para el núcleo del proyecto de gestión de Cabanas.
 
 Este archivo expone la aplicación WSGI como un objeto llamado `application`.
 Se utiliza para desplegar el proyecto en servidores compatibles con WSGI.

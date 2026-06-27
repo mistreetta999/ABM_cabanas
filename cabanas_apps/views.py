@@ -36,7 +36,7 @@ class ClienteDeleteView(DeleteView):
     template_name = "clientes/confirm_delete.html"
     success_url = reverse_lazy("cliente_list")
 
-# Cabañas
+# Cabanas
 class CabanaListView(ListView):
     model = Cabana
     template_name = "cabanas/list.html"

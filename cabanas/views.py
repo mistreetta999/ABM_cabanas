@@ -1,13 +1,36 @@
-"""vistas del proyecto Cabañas."""
+"""vistas del proyecto Cabanas."""
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render
-
-def inicio(request: HttpRequest) -> HttpResponse:
-    """
-    Vista principal del proyecto Cabañas.
-    """
-    return HttpResponse("Bienvenida al sistema de gestión de cabañas.")
-
+from django.views import View
+from django.views.generic import TemplateView
+from django.conf import settings
+from  views import Views
+from .cabanaa import Cabana, Cliente, Reserva
+class CabanaView(View):
+    """Vista de Cabanas."""
+    def get(self, request: HttpRequest) -> HttpResponse:
+        """Vista de Cabanas."""
+        return HttpResponse("Vista de Cabanas.")
+    
+class ClienteView(View):
+    """Vista de Clientes."""
+    def get(self, request: HttpRequest) -> HttpResponse:
+        """Vista de Clientes."""
+        return HttpResponse("Vista de Clientes.")
+class ReservaView(View):
+    """Vista de Reservas."""
+    def get(self, request: HttpRequest) -> HttpResponse:
+        """Vista de Reservas."""
+        return HttpResponse("Vista de Reservas.")
+           
+class InicioView(View):
+    """Vista de Inicio."""
+    def get(self, request: HttpRequest) -> HttpResponse:
+        return HttpResponse("Bienvenida al sistema de gestión de Cabanas.")
+class Views(View):
+    """Vista general del sistema."""    
+    def get(self, request: HttpRequest) -> HttpResponse:
+        return HttpResponse("Vista general del sistema.")
 def dashboard(request: HttpRequest) -> HttpResponse:
     """
     Vista de dashboard general.
@@ -22,4 +45,4 @@ def acerca_de(request: HttpRequest) -> HttpResponse:
     """
     Vista de información sobre el proyecto.
     """
-    return HttpResponse("Proyecto de Gestión de Cabañas con Django.")
+    return HttpResponse("Proyecto de Gestión de Cabanas con Django.")

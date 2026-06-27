@@ -14,7 +14,7 @@ cabanas/
 │   │-- wsgi.py
 │   └-- asgi.py
 │
-│-- cabana_apps/               # Apps internas
+│-- cabanas_apps/               # Apps internas
 │   │-- clientes/              # App clientes
 │   │   │-- __init__.py
 │   │   │-- apps.py

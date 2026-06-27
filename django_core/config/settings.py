@@ -1,5 +1,5 @@
 """
-Configuración principal de Django para el proyecto Cabañas.
+Configuración principal de Django para el proyecto Cabanas.
 
 Generado por 'django-admin startproject' usando Django 5.0.6.
 """ 
@@ -21,14 +21,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cabana_apps.clientes',
-    'cabana_apps.reservas',
-    'cabana_apps.registros',
+    'cabanas_apps.clientes',
+    'cabanas_apps.reservas',
+    'cabanas_apps.registros',
     'cabanas',  # app principal
     'chatbot',  # app de chatbot
-    'cabana_apps.clientes',
-    'cabana_apps.reservas',
-    'cabana_apps.registros',
+    'cabanas_apps.clientes',
+    'cabanas_apps.reservas',
+    'cabanas_apps.registros',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -1,4 +1,4 @@
-cabana_apps/reservas_alquileres_apps/
+cabanas_apps/reservas_alquileres_apps/
 │-- __init__.py
 │-- admin.py
 │-- apps.py

@@ -1,20 +1,20 @@
 cabanas/
-|-- manage.py                 # Entrada estandar de Django
-|-- main.py                   # Entrada alternativa orientada a objetos
-|-- levantar_programa.bat     # Arranque local en Windows
-|-- render.yaml               # Configuracion para Render
+|-- manage.py # Entrada estandar de Django
+|-- main.py # Entrada alternativa orientada a objetos
+|-- levantar_programa.bat # Arranque local en Windows
+|-- render.yaml # Configuracion para Render
 |-- requirements.txt
 |-- README.md
 |-- db.sqlite3
 |
-|-- cabanas_project/          # Django: configuracion principal
-|   |-- __init__.py
-|   |-- settings.py
-|   |-- urls.py
-|   |-- wsgi.py
-|   `-- asgi.py
+|-- cabanas_project/ # Django: configuracion principal
+| |-- **init**.py
+| |-- settings.py
+| |-- urls.py
+| |-- wsgi.py
+| `-- asgi.py
 |
-|-- cabana_apps/              # Django: app de cabanas, clientes y reservas
+|-- cabanas_apps/              # Django: app de cabanas, clientes y reservas
 |   |-- __init__.py
 |   |-- apps.py
 |   |-- forms.py
@@ -23,11 +23,11 @@ cabanas/
 |   |-- views.py
 |   `-- migrations/
 |
-|-- chatbot/                  # Django: app del chatbot
-|   |-- __init__.py
-|   |-- apps.py
-|   |-- urls.py
-|   `-- views.py
+|-- chatbot/ # Django: app del chatbot
+| |-- **init**.py
+| |-- apps.py
+| |-- urls.py
+| `-- views.py
 |
 |-- django_core/              # Material Django restaurado
 |-- django_local/             # Material Django local restaurado
@@ -35,10 +35,10 @@ cabanas/
 |
 |-- Template/                 # HTML separado de Django
 |   |-- pagina_principal.html
-|   |-- cabana_apps/
+|   |-- cabanas_apps/
 |   |   |-- panel_django.html  # Panel Django: usa vistas, urls y datos del backend
-|   |   `-- panel_html.html    # Panel HTML: presentacion local separada
-|   `-- chatbot/
+|   |   `-- panel_html.html # Panel HTML: presentacion local separada
+| `-- chatbot/
 |
 |-- static/                   # CSS e imagenes servidas por Django
-`-- image/                    # Imagenes originales del proyecto
+`-- image/ # Imagenes originales del proyecto

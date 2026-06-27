@@ -2,7 +2,7 @@ from django.apps import AppConfig
 
 class RegistrosConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'cabana_apps.registros'
+    name = 'cabanas_apps.registros'
 # cabanas_app/reservas/apps.py
 class ReservasConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'

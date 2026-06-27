@@ -8,7 +8,7 @@ class CabanasApp:
 
     def __init__(self, settings_module="cabanas_project.settings"):
         self.settings_module = settings_module
-        self.project_name = "Sistema de Gestión de Cabañas"
+        self.project_name = "Sistema de Gestión de Cabanas"
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", self.settings_module)
 
     def ejecutar(self):

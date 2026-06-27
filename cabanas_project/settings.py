@@ -17,7 +17,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "cabana_apps",
+    "cabanas_apps",
     "chatbot",
     "cabanas_api",
     "cabanas_proyect",

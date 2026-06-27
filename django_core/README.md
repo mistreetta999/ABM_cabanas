@@ -5,7 +5,7 @@ estructura que se estaba armando.
 
 La configuracion activa esta en `cabanas_project/` y las apps Django activas son:
 
-- `cabana_apps`
+- `cabanas_apps`
 - `chatbot`
 
 Los templates HTML estan en `Template/`.

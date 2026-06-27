@@ -16,6 +16,6 @@ urlpatterns = [
     path("reservas/", include("cabanas_apps.reservas_alquileres_apps.urls")),
     path("registros/", include("cabanas_apps.registros.urls")),
 
-    # App principal de cabañas
+    # App principal de Cabanas
     path("cabanas/", include("cabanas.urls")),
 ]

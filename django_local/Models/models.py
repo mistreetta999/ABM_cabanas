@@ -7,7 +7,7 @@ from DATABASES import Alquileres
 
 
 class Cabana(models.Model):
-    """Modelo oficial de Django para la gestión de Cabañas.
+    """Modelo oficial de Django para la gestión de Cabanas.
     """
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
@@ -23,7 +23,7 @@ class Cabana(models.Model):
         ordering = ["fecha_inicio"]
 
     def obtener_todas_las_cabanas(self:Cabana) -> BaseManager:
-        """Devuelve todas las cabañas disponibles."""
+        """Devuelve todas las Cabanas disponibles."""
         return Cabana.filter(disponible=True)
 
 class Cliente(models.Model):
@@ -72,7 +72,7 @@ class Reserva(models.Model):
 
 
 class Alquileres(models.Model):
-    """Alquileres de un cliente en una cabaña."""
+    """Alquileres de un cliente en una Cabana."""
     cliente = models.ForeignKey(
         Cliente,
         on_delete=models.CASCADE,
@@ -83,7 +83,7 @@ class Alquileres(models.Model):
         Cabana,
         on_delete=models.CASCADE,
         related_name="reservas",
-        help_text="Cabaña reservada."
+        help_text="Cabana reservada."
     )
     fecha_inicio = models.DateField(
         help_text="Fecha de inicio de la reserva."

@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 class SettingsCabana:
     """
-    Configuración principal del proyecto de gestión de cabañas.
+    Configuración principal del proyecto de gestión de Cabanas.
     """
 
     # Seguridad
@@ -32,7 +32,7 @@ class SettingsCabana:
         "django.contrib.messages",
         "django.contrib.staticfiles",
         # módulo chatbot
-        "cabanas_project.cabanas",  # módulo cabañas
+        "cabanas_project.cabanas",  # módulo Cabanas
          # apps
          "rest_framework",
         "django_filters",
@@ -43,10 +43,10 @@ class SettingsCabana:
         
         
         "cabanas",
-        "cabana_apps.reservas",
+        "cabanas_apps.reservas",
         "cabana_project.reservas",
-        "cabana_apps.clientes",
-        "cabana_apps.registros",
+        "cabanas_apps.clientes",
+        "cabanas_apps.registros",
         "DATABASE",
         "Template",
          "django.contrib.messages",

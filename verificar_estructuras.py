@@ -88,8 +88,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # Lista de carpetas críticas que deben existir
 carpetas = [
     "cabanas_project",
-    "cabana_apps",
-    "cabana_apps/migrations",
+    "cabanas_apps",
+    "cabanas_apps/migrations",
     "chatbot",
     "chatbot/migrations",
     "templates",

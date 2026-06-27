@@ -42,7 +42,7 @@ class Chatbot(models.Model):
     """
     Representa el chatbot dentro de la aplicación.
     """
-    nombre = models.CharField(max_length=100, default="Chatbot Cabañas")
+    nombre = models.CharField(max_length=100, default="Chatbot Cabanas")
     descripcion = models.TextField(blank=True, null=True)
 
     def __str__(self:models.Model) -> str:

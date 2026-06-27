@@ -1,5 +1,5 @@
 """
-Módulo de configuración de base de datos para el proyecto de gestión de cabañas.
+Módulo de configuración de base de datos para el proyecto de gestión de Cabanas.
 Permite alternar entre SQLite3 (desarrollo) y PostgreSQL (producción).
 """
 
@@ -116,4 +116,4 @@ db = Database()
 cursor = db.cursor()
 cursor.execute("SELECT COUNT(*) FROM django_core_cabana;")
 result = cursor.fetchone()
-print("Cantidad de cabañas:", result[0])
+print("Cantidad de Cabanas:", result[0])

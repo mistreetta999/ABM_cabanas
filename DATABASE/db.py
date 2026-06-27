@@ -25,7 +25,7 @@ class DatabaseRouter:
 # Modelo genérico para registrar actividades
 class ActividadCabana(models.Model):
     """
-    Registro de todas las actividades relacionadas con las cabañas:
+    Registro de todas las actividades relacionadas con las Cabanas:
     reservas, pagos, alquileres, facturas, etc.
     """
     tipo = models.CharField(max_length=50)  # Ej: Reserva, Pago, Factura
@@ -36,8 +36,8 @@ class ActividadCabana(models.Model):
     origen = models.CharField(max_length=20, default="sqlite")  # sqlite o postgresql
 
     class Meta:
-        verbose_name = "Actividad de Cabaña"
-        verbose_name_plural = "Actividades de Cabañas"
+        verbose_name = "Actividad de Cabana"
+        verbose_name_plural = "Actividades de Cabanas"
         ordering = ["-fecha"]
 
     def __str__(self):

@@ -2,17 +2,17 @@ from django.db import models
 
 class Cabana(models.Model):
     """
-    Modelo que representa a cada una de las cabañas del complejo.
+    Modelo que representa a cada una de las Cabanas del complejo.
     """
-    nombre = models.CharField(max_length=100, verbose_name="Nombre de la Cabaña")
+    nombre = models.CharField(max_length=100, verbose_name="Nombre de la Cabana")
     capacidad_clientes = models.PositiveIntegerField(default=2)
     precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)
     descripcion = models.TextField(blank=True, null=True)
     esta_activa = models.BooleanField(default=True, verbose_name="Disponible para alquilar")
 
     class Meta:
-        verbose_name = "Cabaña"
-        verbose_name_plural = "Cabañas"
+        verbose_name = "Cabana"
+        verbose_name_plural = "Cabanas"
 
     def __str__(self):
         return f"{self.nombre} (Capacidad: {self.capacidad_clientes})"
@@ -20,11 +20,11 @@ class Cabana(models.Model):
 
 class RegistroDiario(models.Model):
     """
-    Modelo para el control diario de las cabañas (novedades, limpieza, mantenimiento).
+    Modelo para el control diario de las Cabanas (novedades, limpieza, mantenimiento).
     """
     cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE, related_name="registros_diarios")
     cabana_gestion = models.ForeignKey(
-        "cabana_apps.Cabana",
+        "cabanas_apps.Cabana",
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
@@ -40,7 +40,7 @@ class RegistroDiario(models.Model):
         verbose_name="Cabana reservas",
     )
     reserva_gestion = models.ForeignKey(
-        "cabana_apps.Reserva",
+        "cabanas_apps.Reserva",
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
