@@ -4,23 +4,35 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Sum
-from django.views.generic import ListView
-from cabanas_apps.models import Chatbot
-from cabanas_apps.cabanas import Cabanas
-from chatbot .chatbot import Chatbot
+from pathlib import Path
 
+from chatbot.models import ChatbotResponse
+
+directories = Path(".").parents
 
 class Chatbot(models.Model):
     """ esta clase es del chatbot"""
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.nombre = "Chatbot Cabañas"
+        self.descripcion = "Este es un chatbot para la gestión de cabañas."
+        self.reponses = ChatbotResponse(chatbot=self)
+            
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100, default="Chatbot Cabañas")
     descripcion = models.TextField(blank=True, null=True)
 
-    def __str__(self:Chatbot) -> str:
-        return self.nombre
+    def __str__(self) -> str:
+        """ Representación en cadena del modelo Chatbot """
+        return str(self.nombre)
+
+    class Meta:
+        """ Metadatos del modelo Chatbot """
+        verbose_name = "Chatbot"
+        verbose_name_plural = "Chatbots"
 
 
-class Cabana(models.Model):
+class Cabanas(models.Model):
     """ esta clase es de la cabaña"""
     
     id = models.AutoField(primary_key=True)
@@ -33,9 +45,16 @@ class Cabana(models.Model):
 
     def __str__(self) -> str:
         return f"{self.nombre} - Capacidad: {self.capacidad} - Precio: ${self.precio_base}"
+    class Meta:
+        """ Metadatos del modelo Cabanas """
+        verbose_name = "Cabana"
+        verbose_name_minuscula = "cabana"
+        verbose_name_minuscula_plural   = "cabanas"
+        verbose_name_plural = "Cabanas"
 
 
 class Cliente(models.Model):
+    """ esta clase es del cliente"""
     id = models.AutoField(primary_key=True)
     DNI = models.CharField(max_length=100)
     nombre = models.CharField(max_length=100)
@@ -46,6 +65,52 @@ class Cliente(models.Model):
 
     def __str__(self) -> str:
         return f"{self.nombre} {self.apellido}"
+    class Meta:
+        """ Metadatos del modelo Cliente """
+        verbose_name = "Cliente"
+        verbose_name_minuscula = "cliente"
+        verbose_name_minuscula_plural = "clientes"
+        verbose_name_plural = "Clientes"
+
+
+class Alquileres(models.Model):
+    """ Clase que representa un alquiler de cabaña. """
+    id = models.AutoField(primary_key=True)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="alquileres")
+    cabana = models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="alquileres")
+    cantidad_clientes = models.PositiveIntegerField(
+        validators=[
+            MinValueValidator(1, message="La cantidad de clientes debe ser al menos 1."),
+            MaxValueValidator(20, message="La cantidad de clientes no puede exceder 20."),
+        ]
+    )
+    capacidad_cabanas = models.PositiveIntegerField()
+    fecha_inicio = models.DateField()
+    fecha_fin = models.DateField()
+    precio_total = models.DecimalField(max_digits=10, decimal_places=2)
+    chatbot = models.ForeignKey(Chatbot, on_delete=models.SET_NULL, null=True, related_name="reservas")
+
+    def clean(self) -> None:
+        super().clean()
+        if self.fecha_fin and self.fecha_inicio and self.fecha_fin <= self.fecha_inicio:
+            raise ValidationError(_("La fecha de fin debe ser posterior a la fecha de inicio."))
+
+        if self.cantidad_clientes > self.cabana.capacidad:  # type: ignore
+            raise ValidationError(_("La cantidad de clientes excede la capacidad de la cabana."))
+  
+
+
+        reservas_solapadas = Alquileres.objects.filter(  # type: ignore
+            cabana=self.cabana,
+            fecha_inicio__lte=self.fecha_fin,
+            fecha_fin__gte=self.fecha_inicio,
+        ).exclude(id=self.id)
+
+        if reservas_solapadas.exists():
+            raise ValidationError(_("La cabaña ya está reservada para las fechas seleccionadas."))
+
+    def __str__(self) -> str:
+        return f"Reserva {self.id}"
 
 
 class Reserva(models.Model):

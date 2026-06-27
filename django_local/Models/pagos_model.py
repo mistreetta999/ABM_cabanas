@@ -6,8 +6,8 @@ Cumple con estándares Pylint y buenas prácticas de Django.
 """
 
 from django.db import models
-from .cliente_models import Cliente
 from .cabanas_models import Cabana
+from .cabanas_models import Cliente
 
 
 class Reserva(models.Model):
@@ -56,6 +56,7 @@ class Reserva(models.Model):
     )
 
     class Meta:
+        """ Metadatos para el modelo Reserva."""
         verbose_name = "Reserva"
         verbose_name_plural = "Reservas"
         ordering = ["-fecha_inicio"]
@@ -65,4 +66,5 @@ class Reserva(models.Model):
             f"Reserva de {self.cliente} en {self.cabana} "
             f"del {self.fecha_inicio} al {self.fecha_fin} "
             f"({self.estado})"
-        )
+        )   
+           

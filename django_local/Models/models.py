@@ -1,9 +1,14 @@
 """estos son los modelos para los admin no se pueden borrar"""
 from django.db import models
-from typing import Any,list
-from django.db_models import BaseManager
-# Definición del modelo de datos
+from django.db.models.manager import BaseManager
+import sqlite3
+from DATABASES import Reservas
+from DATABASES import Alquileres
+
+
 class Cabana(models.Model):
+    """Modelo oficial de Django para la gestión de Cabañas.
+    """
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
     precio_noche = models.DecimalField(max_digits=10, decimal_places=2)
@@ -11,20 +16,18 @@ class Cabana(models.Model):
     disponible = models.BooleanField(default=True)
     imagen = models.ImageField(upload_to='cabanas/', null=True, blank=True)
 
-   
     class Meta:
+        """Meta información para el modelo Cabana."""
         verbose_name = "Cabana"
         verbose_name_plural = "Cabanas"
         ordering = ["fecha_inicio"]
 
-
-        def obtener_todas_las_cabanas() -> BaseManager[Cabana]:
-            return Cabana.objects.all()
+    def obtener_todas_las_cabanas(self:Cabana) -> BaseManager:
+        """Devuelve todas las cabañas disponibles."""
+        return Cabana.filter(disponible=True)
 
 class Cliente(models.Model):
-    """
-    Modelo oficial de Django para la gestión de Clientes.
-    """
+    """Modelo oficial de Django para la gestión de Clientes."""
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
     dni = models.CharField(max_length=20, unique=True, verbose_name="DNI")
@@ -69,9 +72,7 @@ class Reserva(models.Model):
 
 
 class Alquileres(models.Model):
-    """
-     Alquileres de un cliente en una cabaña.
-    """
+    """Alquileres de un cliente en una cabaña."""
     cliente = models.ForeignKey(
         Cliente,
         on_delete=models.CASCADE,
@@ -125,12 +126,11 @@ class Alquileres(models.Model):
             f"({self.estado})"
         )
 class Registros :
-    def __init__(self)->Any:
-        self.registros.reservas() 
-        self.registros.alquileres()
-        self.chatbot.consultas()
-        self.registros.clientes()
-        self.registros.cabanas()
+    def __init__(self) -> Any:
+        self.reservas = Reservas()
+        self.alquileres = Alquileres()
+        self.clientes = Cliente()
+        self.cabanas = Cabana()
         
         
 class CLASSNAMEViewSet(viewsets.ModelViewSet):
