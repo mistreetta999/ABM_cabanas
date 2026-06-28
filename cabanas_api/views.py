@@ -2,6 +2,15 @@
 """
 from django.http import HttpResponse
 from django.views import View
+from django.shortcuts import render
+from django.shortcuts import render
+
+def gestion(request):
+    return render(request, "gestion.html")
+
+
+def pagina_principal(request):
+    return render(request, "pagina_principal.html")
 
 class InicioView(View):
     """View for the inicio page."""

@@ -197,10 +197,24 @@
             <h1 class="display-4 fw-bold">Espindola Cabanas</h1>
             <p class="lead mb-0">Tu refugio de paz y naturaleza en Mina Clavero, Cordoba</p>
         </div>
+   
+        
+        <nav>
+            <ul>
+                <li><a href="{% url 'dashboard' %}">Panel de Control</a></li>
+                <li><a href="{% url 'clientes' %}">Clientes</a></li>
+                <li><a href="{% url 'reservas' %}">Reservas</a></li>
+                <li><a href="{% url 'pagos' %}">Pagos</a></li>
+                <li><a href="{% url 'cabanas' %}">Cabañas</a></li>
+            </ul>
+        </nav>
+   
+   
+   
     </header>
 
     <main class="container flex-grow-1 my-5">
-
+        <p>Selecciona una opción del menú para comenzar.</p>
         <section class="galeria-fotos mb-5">
             <div class="foto-card shadow-sm">
                 <img src="{% static 'images/foto_principal.jpg.jpeg' %}" alt="Vista principal de las cabanas" class="galeria-img foto-principal">

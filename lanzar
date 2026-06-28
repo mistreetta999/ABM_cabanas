@@ -1,0 +1,2 @@
+python manage.py runserver
+uvicorn django_core.asgi:application --reload

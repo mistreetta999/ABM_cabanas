@@ -1,16 +1,34 @@
+""" views chatbot"""
 import json
 
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from cabanas_apps.models import Chatbot
+from django.views import View
+from django.http import HttpResponse,HttpRequest
+from django.shortcuts import render
 
+def index(request):
+    return render(request, "chatbot/index.html")
 
-def chatbot_page(request):
+class Chatbotviews:
+    """ views chatbot"""
+    def index(request: HttpRequest)->HttpResponse:
+        """ index chatbot"""
+        return render(request, 'chatbot/index.html')
+class Views:
+    def index(request: HttpRequest) -> HttpResponse:
+        return render(request, 'chatbot/index.html')    
+
+def chatbot_page(request: HttpRequest) -> HttpResponse:
+    """Renderiza la página del chatbot."""
     return render(request, 'chatbot/chatbot.html')
 
 
-@csrf_exempt
-def chatbot_api(request):
+@csrf_exempt    
+def chatbot_api(request: HttpRequest) -> JsonResponse:
+   """ Maneja las solicitudes POST al endpoint del chatbot y devuelve respuestas basadas en el mensaje recibido."""
     if request.method != 'POST':
         return JsonResponse({'reply': 'Envia una consulta para recibir informacion.'})
 

@@ -1,8 +1,10 @@
 """"este archivo contiene las urls de la app registros"""
 from django.contrib import admin
 from django.urls import include, path
+from cabanas_api.views import pagina_principal
 
 urlpatterns = [
+    
     # Panel de administración
     path("admin/", admin.site.urls),
 
@@ -18,4 +20,6 @@ urlpatterns = [
 
     # App principal de Cabanas
     path("cabanas/", include("cabanas.urls")),
+    path("pagina_principal/", pagina_principal, name="pagina_principal"),
+
 ]

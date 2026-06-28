@@ -2,13 +2,23 @@
 
 import os
 from django.http import HttpResponse
-
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.shortcuts import render
 from typing import TypeVar, Any
+from django.shortcuts import render
+from cabanas_api.views import pagina_principal
+
+from django.shortcuts import render
+
+def pagina_principal(request):
+    """
+    Vista principal del sistema de gestión de cabañas.
+    """
+    return render(request, "pagina_principal.html")
 
 class views:
+    """ class views"""
     def __init__(self):
         self.views = CabanaListView.as_view()
         self.views = CabanaDetailView.as_view()
@@ -16,11 +26,11 @@ class views:
         self.views = CabanaUpdateView.as_view()
         self.views = CabanaDeleteView.as_view()
     class Meta:
+        """ class meta nombres"""
         db_table = ''
         managed = True
         verbose_name = 'lista'
         verbose_name_plural = 'listas'
-        
         
 class lista:
     """Clase que contiene las vistas de la lista de cabañas.""" 
@@ -80,3 +90,5 @@ def start_cabanas(request):
     """Vista simple para mostrar página de inicio de cabañas."""
     cabanas = Cabana.objects.all()
     return render(request, "cabanas/inicio.html", {"cabanas": cabanas})
+def pagina_principal(request):
+    return render(request, "pagina_principal.html")

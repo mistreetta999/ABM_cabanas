@@ -10,7 +10,7 @@ if exist ".venv\Scripts\python.exe" (
 )
 
 start "Django Cabanas" /min "%PYTHON%" manage.py runserver 127.0.0.1:8000
-timeout /t 3 /nobreak >nul
+timeout /t 3 /nobreak > true
 start "" "http://127.0.0.1:8000/panel-django/"
 start "" "%~dp0html_local\presentacion_cabanas.html"
 

@@ -2,7 +2,9 @@
 import os
 
 from pathlib import Path
+from dotenv import load_dotenv
 
+load_dotenv()
 # Base directory del proyecto
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -64,7 +66,9 @@ ROOT_URLCONF = 'cabanas.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # carpeta global de templates
+        'DIRS': [
+            BASE_DIR / "Template"   # <-- tu carpeta actual
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,6 +80,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'cabanas.wsgi.application'
 
@@ -116,3 +121,18 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Configuración por defecto
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+DEBUG = os.getenv("DEBUG") == "True"
+
+DATABASES = {
+    'default': {
+        'ENGINE': os.getenv("DB_ENGINE"),
+        'NAME': os.getenv("DB_NAME"),
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.getenv("DB_PASSWORD"),
+        'HOST': os.getenv("DB_HOST"),
+        'PORT': os.getenv("DB_PORT"),
+    }
+}

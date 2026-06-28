@@ -4,8 +4,16 @@ from django.shortcuts import render
 from django.views import View
 from django.views.generic import TemplateView
 from django.conf import settings
-from  views import Views
-from .cabanaa import Cabana, Cliente, Reserva
+from django. views import Views
+from django.cabanas import Cabana, Cliente, Reserva
+from django.shortcuts import render
+
+def pagina_principal(request):
+    """
+    Vista principal del sistema de gestión de cabañas.
+    """
+    return render(request, "pagina_principal.html")
+
 class CabanaView(View):
     """Vista de Cabanas."""
     def get(self, request: HttpRequest) -> HttpResponse:
