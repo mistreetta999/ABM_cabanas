@@ -1,6 +1,8 @@
 """Este archivo contiene las urls de la app cabanas.
 """
 from django.urls import path
+from django.urls import path, include
+from django.contrib import admin
 from .views import (
     AlquilerCreateView,
     AlquilerDeleteView,
@@ -26,6 +28,9 @@ from .views import (
 
  
 urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("apps/", include("cabanas_apps.urls")),
+    path("api/", include("cabanas_api.urls")),
     path('cabanas_api/clientes/', ClienteListView.as_view(), name='cliente_list'),
     path('cabanas_api/clientes/nuevo/', ClienteCreateView.as_view(), name='cliente_create'),
     path('cabanas_api/clientes/<int:pk>/editar/', ClienteUpdateView.as_view(), name='cliente_update'),

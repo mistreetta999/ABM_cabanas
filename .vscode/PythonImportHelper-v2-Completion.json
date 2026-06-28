@@ -57,11 +57,11 @@
         "documentation": {}
     },
     {
-        "label": "Path",
-        "importPath": "pathlib",
-        "description": "pathlib",
+        "label": "get_asgi_application",
+        "importPath": "django.core.asgi",
+        "description": "django.core.asgi",
         "isExtraImport": true,
-        "detail": "pathlib",
+        "detail": "django.core.asgi",
         "documentation": {}
     },
     {
@@ -190,6 +190,22 @@
         "description": "pathlib",
         "isExtraImport": true,
         "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
         "documentation": {}
     },
     {
@@ -482,6 +498,22 @@
     },
     {
         "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
         "importPath": "django.urls",
         "description": "django.urls",
         "isExtraImport": true,
@@ -1225,6 +1257,14 @@
         "documentation": {}
     },
     {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
         "label": "Views",
         "importPath": "views",
         "description": "views",
@@ -1281,7 +1321,24 @@
         "documentation": {}
     },
     {
-        "label": "models",
+        "label": "get_wsgi_application",
+        "importPath": "django.core.wsgi",
+        "description": "django.core.wsgi",
+        "isExtraImport": true,
+        "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "django.db.models.deletion",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.db.models.deletion",
+        "description": "django.db.models.deletion",
+        "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -1353,7 +1410,7 @@
         "documentation": {}
     },
     {
-        "label": "models",
+        "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -1370,6 +1427,102 @@
     },
     {
         "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -1506,6 +1659,22 @@
     },
     {
         "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "connections",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_DB_ALIAS",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -1854,6 +2023,15 @@
         "description": "cabanas_apps.cabanas",
         "isExtraImport": true,
         "detail": "cabanas_apps.cabanas",
+        "documentation": {}
+    },
+    {
+        "label": "django.core.validators",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.core.validators",
+        "description": "django.core.validators",
+        "detail": "django.core.validators",
         "documentation": {}
     },
     {
@@ -2686,14 +2864,6 @@
         "documentation": {}
     },
     {
-        "label": "BaseCommand",
-        "importPath": "django.core.management.base",
-        "description": "django.core.management.base",
-        "isExtraImport": true,
-        "detail": "django.core.management.base",
-        "documentation": {}
-    },
-    {
         "label": "NonExistentTimeError",
         "importPath": "pytz",
         "description": "pytz",
@@ -3333,6 +3503,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "cabanas_api.migrations.0001_initial",
+        "description": "cabanas_api.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Cabana',\n            fields=[\n                ('id', models.AutoField(primary_key=True, serialize=False)),\n                ('nombre', models.CharField(max_length=100)),",
+        "detail": "cabanas_api.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
         "label": "Alquiler",
         "kind": 6,
         "importPath": "cabanas_api.models.alquileres",
@@ -3454,7 +3633,7 @@
         "kind": 6,
         "importPath": "cabanas_api.models",
         "description": "cabanas_api.models",
-        "peekOfCode": "class Cabana(models.Model):\n    id = models.AutoField(primary_key=True)\n    nombre = models.CharField(max_length=100)\n    capacidad = models.IntegerField()\n    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)\n    disponible = models.BooleanField(default=True)\n    def __str__(self):\n        return self.nombre",
+        "peekOfCode": "class Cabana(models.Model):\n    \"\"\"Model representing a cabin.\"\"\"\n    id = models.AutoField(primary_key=True)\n    nombre = models.CharField(max_length=100)\n    capacidad = models.IntegerField()\n    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)\n    disponible = models.BooleanField(default=True)\n    def __str__(self:Cabana) -> str:\n        return self.nombre",
         "detail": "cabanas_api.models",
         "documentation": {}
     },
@@ -3576,6 +3755,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "cabanas_apps.alquileres.migrations.0001_initial",
+        "description": "cabanas_apps.alquileres.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('cabanas', '0001_initial'),\n        ('clientes', '0001_initial'),\n        ('reservas', '0001_initial'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Alquiler',",
+        "detail": "cabanas_apps.alquileres.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
         "label": "AlquileresConfig",
         "kind": 6,
         "importPath": "cabanas_apps.alquileres.apps",
@@ -3690,6 +3878,15 @@
         "description": "cabanas_apps.alquileres.views",
         "peekOfCode": "def alquileres_list(request):\n    \"\"\" Vista para listar los alquileres \"\"\"\n    return AlquilerListView.as_view()(request)\nclass ReservaListView(ListView):\n    \"\"\" Vista para listar las reservas \"\"\"\n    model = Reserva\n    template_name = \"reservas_alquileres/reservas_list.html\"\n    context_object_name = \"reservas\"\nclass AlquilerListView(ListView):\n    \"\"\" Vista para listar los alquileres \"\"\"",
         "detail": "cabanas_apps.alquileres.views",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "cabanas_apps.cabanas.migrations.0001_initial",
+        "description": "cabanas_apps.cabanas.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Cabana',\n            fields=[\n                ('id', models.AutoField(primary_key=True, serialize=False)),\n                ('nombre', models.CharField(max_length=100)),",
+        "detail": "cabanas_apps.cabanas.migrations.0001_initial",
         "documentation": {}
     },
     {
@@ -3873,6 +4070,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "cabanas_apps.clientes.migrations.0001_initial",
+        "description": "cabanas_apps.clientes.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Cliente',\n            fields=[\n                ('id', models.AutoField(primary_key=True, serialize=False)),\n                ('dni', models.CharField(max_length=20, unique=True, validators=[django.core.validators.RegexValidator('^\\\\d{1,20}$', 'El DNI debe contener solo números (máx. 20).')])),",
+        "detail": "cabanas_apps.clientes.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
         "label": "ClientesConfig",
         "kind": 6,
         "importPath": "cabanas_apps.clientes.apps",
@@ -3994,7 +4200,7 @@
         "kind": 6,
         "importPath": "cabanas_apps.pagos.admin",
         "description": "cabanas_apps.pagos.admin",
-        "peekOfCode": "class PagoAdmin(admin.ModelAdmin):\n    \"\"\"Class pagos admin\"\"\"\n    list_display = (\"id\", \"fecha_pago\", \"monto\")",
+        "peekOfCode": "class PagoAdmin(admin.ModelAdmin): \n    \"\"\"Class pagos admin\"\"\"\n    list_display = (\"id\", \"fecha_pago\", \"monto\")\n    print(\"Vista de Pagos\")",
         "detail": "cabanas_apps.pagos.admin",
         "documentation": {}
     },
@@ -4089,6 +4295,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "cabanas_apps.registros.migrations.0001_initial",
+        "description": "cabanas_apps.registros.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('cabanas', '0001_initial'),\n        ('clientes', '0001_initial'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='ActividadCabanas',\n            fields=[",
+        "detail": "cabanas_apps.registros.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
         "label": "ActividadCabanasAdmin",
         "kind": 6,
         "importPath": "cabanas_apps.registros.admin",
@@ -4149,6 +4364,15 @@
         "description": "cabanas_apps.registros.views",
         "peekOfCode": "class ActividadCabanasListView(ListView):\n    \"\"\"Vista para listar las actividades de las cabañas.\"\"\"\n    model = ActividadCabanas\n    template_name = \"registros/lista.html\"\n    context_object_name = \"actividades\"\n    paginate_by = 10\n    def get_queryset(self):\n        \"\"\"Obtiene actividades ordenadas por fecha descendente.\"\"\"\n        return super().get_queryset().order_by(\"-fecha\")\n    def get(self, request, *args, **kwargs):",
         "detail": "cabanas_apps.registros.views",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "cabanas_apps.reservas.migrations.0001_initial",
+        "description": "cabanas_apps.reservas.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('cabanas', '0001_initial'),\n        ('clientes', '0001_initial'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Reserva',\n            fields=[",
+        "detail": "cabanas_apps.reservas.migrations.0001_initial",
         "documentation": {}
     },
     {
@@ -4221,6 +4445,15 @@
         "description": "cabanas_apps.apps",
         "peekOfCode": "class CabanaAppsConfig(AppConfig):\n    \"\"\"App configuracion para cabanas_apps.\"\"\"\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'cabanas_apps'",
         "detail": "cabanas_apps.apps",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "cabanas_apps.asgi",
+        "description": "cabanas_apps.asgi",
+        "peekOfCode": "application = get_asgi_application()",
+        "detail": "cabanas_apps.asgi",
         "documentation": {}
     },
     {
@@ -4354,7 +4587,7 @@
         "kind": 5,
         "importPath": "cabanas_apps.urls",
         "description": "cabanas_apps.urls",
-        "peekOfCode": "urlpatterns = [\n    path('cabanas_api/clientes/', ClienteListView.as_view(), name='cliente_list'),\n    path('cabanas_api/clientes/nuevo/', ClienteCreateView.as_view(), name='cliente_create'),\n    path('cabanas_api/clientes/<int:pk>/editar/', ClienteUpdateView.as_view(), name='cliente_update'),\n    path('cabanas_api/clientes/<int:pk>/borrar/', ClienteDeleteView.as_view(), name='cliente_delete'),\n    path('cabanas_api/cabanas/', CabanaListView.as_view(), name='cabana_list'),\n    path('cabanas_api/cabanas/nueva/', CabanaCreateView.as_view(), name='cabana_create'),\n    path('cabanas_api/cabanas/<int:pk>/editar/', CabanaUpdateView.as_view(), name='cabana_update'),\n    path('cabanas_api/cabanas/<int:pk>/borrar/', CabanaDeleteView.as_view(), name='cabana_delete'),\n    path('cabanas_api/reservas/', ReservaListView.as_view(), name='reserva_list'),",
+        "peekOfCode": "urlpatterns = [\n    path(\"admin/\", admin.site.urls),\n    path(\"apps/\", include(\"cabanas_apps.urls\")),\n    path(\"api/\", include(\"cabanas_api.urls\")),\n    path('cabanas_api/clientes/', ClienteListView.as_view(), name='cliente_list'),\n    path('cabanas_api/clientes/nuevo/', ClienteCreateView.as_view(), name='cliente_create'),\n    path('cabanas_api/clientes/<int:pk>/editar/', ClienteUpdateView.as_view(), name='cliente_update'),\n    path('cabanas_api/clientes/<int:pk>/borrar/', ClienteDeleteView.as_view(), name='cliente_delete'),\n    path('cabanas_api/cabanas/', CabanaListView.as_view(), name='cabana_list'),\n    path('cabanas_api/cabanas/nueva/', CabanaCreateView.as_view(), name='cabana_create'),",
         "detail": "cabanas_apps.urls",
         "documentation": {}
     },
@@ -4554,6 +4787,15 @@
         "description": "cabanas_apps.views",
         "peekOfCode": "class RegistroDeleteView(DeleteView):\n    \"\"\" Vista para eliminar un registro existente \"\"\"\n    model = Registro\n    template_name = \"registros/confirm_delete.html\"\n    success_url = reverse_lazy(\"registro_list\")",
         "detail": "cabanas_apps.views",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "cabanas_apps.wsgi",
+        "description": "cabanas_apps.wsgi",
+        "peekOfCode": "application = get_wsgi_application()",
+        "detail": "cabanas_apps.wsgi",
         "documentation": {}
     },
     {
@@ -6744,11 +6986,11 @@
         "documentation": {}
     },
     {
-        "label": "Command",
-        "kind": 6,
+        "label": "init_database",
+        "kind": 2,
         "importPath": "django_core.__init_db",
         "description": "django_core.__init_db",
-        "peekOfCode": "class Command(BaseCommand):\n    help = \"Inicializa la base de datos con migraciones.\"\n    def handle(self, *args, **kwargs):\n        self.stdout.write(self.style.SUCCESS(\"Aplicando migraciones...\"))\n        call_command(\"migrate\")\n        self.stdout.write(self.style.SUCCESS(\"Base de datos lista.\"))",
+        "peekOfCode": "def init_database():\n    \"\"\"\n    Ejecuta las migraciones iniciales para preparar la base de datos.\n    \"\"\"\n    # Usar la conexión por defecto\n    connection = connections[DEFAULT_DB_ALIAS]\n    try:\n        # Verificar conexión\n        connection.ensure_connection()\n        print(\"✅ Conexión a la base de datos establecida.\")",
         "detail": "django_core.__init_db",
         "documentation": {}
     },

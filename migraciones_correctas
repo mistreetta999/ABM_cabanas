@@ -1,0 +1,94 @@
+(.venv) PS C:\Users\carol\OneDrive\Desktop\cabanas> 
+
+
+
+
+
+
+
+
+
+
+                                                    python manage.py makemigrations
+Vista de Pagos
+Vista de Pagos
+Vista de Registros
+Migrations for 'cabanas':
+  cabanas_apps\cabanas\migrations\0001_initial.py
+    + Create model Cabana
+Migrations for 'cabanas_api':
+  cabanas_api\migrations\0001_initial.py
+    + Create model Cabana
+    + Create model Cliente
+    + Create model Alquiler
+    + Create model Reserva
+    + Create model Registro
+Migrations for 'clientes':
+  cabanas_apps\clientes\migrations\0001_initial.py
+    + Create model Cliente
+Migrations for 'registros':
+  cabanas_apps\registros\migrations\0001_initial.py
+    + Create model ActividadCabanas
+Migrations for 'reservas':
+  cabanas_apps\reservas\migrations\0001_initial.py
+    + Create model Reserva
+Migrations for 'alquileres':
+  cabanas_apps\alquileres\migrations\0001_initial.py
+    + Create model Alquiler
+(.venv) PS C:\Users\carol\OneDrive\Desktop\cabanas> python manage.py migrate
+Vista de Pagos
+Vista de Pagos
+Vista de Registros
+Operations to perform:
+  Apply all migrations: admin, alquileres, auth, cabanas, cabanas_api, clientes, contenttypes, registros, reservas, sessions
+Running migrations:
+  Applying clientes.0001_initial... OK
+  Applying cabanas.0001_initial... OK
+  Applying reservas.0001_initial... OK
+  Applying alquileres.0001_initial... OK
+  Applying cabanas_api.0001_initial... OK
+  Applying registros.0001_initial... OK
+(.venv) PS C:\Users\carol\OneDrive\Desktop\cabanas> python manage.py showmigrations
+Vista de Pagos
+Vista de Pagos
+Vista de Registros
+admin
+ [X] 0001_initial
+ [X] 0002_logentry_remove_auto_add
+ [X] 0003_logentry_add_action_flag_choices
+alquileres
+ [X] 0001_initial
+auth
+ [X] 0001_initial
+ [X] 0002_alter_permission_name_max_length
+ [X] 0003_alter_user_email_max_length
+ [X] 0004_alter_user_username_opts
+ [X] 0005_alter_user_last_login_null
+ [X] 0006_require_contenttypes_0002
+ [X] 0007_alter_validators_add_error_messages
+ [X] 0008_alter_user_username_max_length
+ [X] 0009_alter_user_last_name_max_length
+ [X] 0010_alter_group_name_max_length
+ [X] 0011_update_proxy_permissions
+ [X] 0012_alter_user_first_name_max_length
+cabanas
+ [X] 0001_initial
+cabanas_api
+ [X] 0001_initial
+clientes
+ [X] 0001_initial
+contenttypes
+ [X] 0001_initial
+ [X] 0002_remove_content_type_name
+registros
+ [X] 0001_initial
+reservas
+ [X] 0001_initial
+sessions
+ [X] 0001_initial
+(.venv) PS C:\Users\carol\OneDrive\Desktop\cabanas> 
+Nombre de usuario (leave blank to use 'carol'): carolina
+Dirección de email: carolinamistretta999@gmail.com
+Password:
+Password (again): 
+python manage.py changepassword Carolina
