@@ -1,22 +1,24 @@
-from django.contrib import admin
-from .models import Alquileres, Cabana, Cliente, Pago, Reserva
-from django.utils.translation import gettext_lazy as _
-from c
+""" panel admin"""
+from django.shortcuts import render
 
 
-class CabanaAdmin(admin.ModelAdmin):
 
-    list_display = ('nombre', 'capacidad', 'precio_por_noche', 'disponible')
 
-class ClienteAdmin(admin.ModelAdmin):
-    list_display = ('dni', 'nombre', 'apellido', 'telefono', 'email')
-class ReservaAdmin(admin.ModelAdmin):
-    list_display = ('cliente', 'Cabana', 'fecha_ingreso', 'fecha_salida', 'estado')
 
-class ServicioAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'descripcion', 'precio')
+def render_panel(request, template_name: str, context: dict = None):
+    """
+    Función genérica para renderizar paneles dentro del proyecto.
+    - request: objeto HttpRequest
+    - template_name: ruta del template (ej: 'cabanas/panel.html')
+    - context: diccionario opcional con datos para la plantilla
+    """
+    if context is None:
+        context = {}
+    return render(request, template_name, context)
 
-class PagoAdmin(admin.ModelAdmin):
-    list_display = ('reserva', 'monto', 'fecha_pago', 'metodo')
-class AlquileresAdmin(admin.ModelAdmin):
-    list_display = ('cliente', 'Cabana', 'fecha_ingreso', 'fecha_salida', 'estado')
+
+# Ejemplo de uso en una vista:
+# from django_core.panel import render_panel
+#
+# def panel_cabanas(request):
+#     return render_panel(request, "cabanas/panel.html", {"titulo": "Panel de Cabañas"})

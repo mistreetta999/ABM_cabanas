@@ -12,8 +12,10 @@ import os
 from django.core.wsgi import get_wsgi_application
 
 # Establece el módulo de configuración por defecto para la herramienta 'django-admin'.
-# Se asume que el archivo de configuración está en cabana_app/settings.py
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cabana_app.settings')
+# Se asume que el archivo de configuración está en cabanas_api
+p/settings.py
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cabanas_api
+p.settings')
 
 application = get_wsgi_application()
 

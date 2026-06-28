@@ -3,29 +3,28 @@
 from django.urls import path
 from django.urls import path, include
 from django.contrib import admin
-from .views import (
-    AlquilerCreateView,
-    AlquilerDeleteView,
-    AlquilerListView,
-    AlquilerUpdateView,
-    CabanaCreateView,
-    CabanaDeleteView,
-    CabanaListView,
-    CabanaUpdateView,
-    ClienteCreateView,
-    ClienteDeleteView,
-    ClienteListView,
-    ClienteUpdateView,
-    RegistroCreateView,
-    RegistroDeleteView,
-    RegistroListView,
-    RegistroUpdateView,
-    ReservaCreateView,
-    ReservaDeleteView,
-    ReservaListView,
-    ReservaUpdateView,
-)
+from .views import AlquilerCreateView
+from .views import AlquilerDeleteView
+from .views import AlquilerListView
+from .views import AlquilerUpdateView
+from .views import CabanaCreateView
+from .views import CabanaDeleteView
+from .views import CabanaListView
+from .views import CabanaUpdateView
+from .views import ClienteCreateView
+from .views import ClienteDeleteView
+from .views import ClienteListView
+from .views import ClienteUpdateView
+from .views import RegistroCreateView
+from .views import RegistroDeleteView
+from .views import RegistroListView
+from .views import RegistroUpdateView
+from .views import ReservaCreateView
+from .views import  ReservaDeleteView
+from .views import ReservaListView
+from .views import  ReservaUpdateView
 
+APP_NAME = "cabanas"
  
 urlpatterns = [
     path("admin/", admin.site.urls),

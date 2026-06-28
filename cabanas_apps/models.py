@@ -1,37 +1,11 @@
+"""archivo principal models"""
 from django.db import models
-
-
-class Chatbot(models.Model):
-    nombre = models.CharField(max_length=100, default="Chatbot Cabanas")
-    descripcion = models.TextField(blank=True, null=True)
-
-    def __str__(self):
-        return str(self.nombre)
-
-
-class Cliente(models.Model):
-    nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=100)
-    dni = models.CharField(max_length=30, unique=True)
-    telefono = models.CharField(max_length=30, blank=True)
-    email = models.EmailField(blank=True)
-
-    def __str__(self):
-        return f"{self.nombre} {self.apellido}".strip()
-
-
-class Cabana(models.Model):
-    nombre = models.CharField(max_length=100, unique=True)
-    capacidad = models.PositiveIntegerField(default=1)
-    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    disponible = models.BooleanField(default=True)
-
-    def __str__(self):
-        return str(self.nombre)
-
+from django.contrib.auth.models import User
+from django.utils import timezone
+from .import Cabana
 
 class Reserva(models.Model):
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="reservas")
+    cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE, related_name="reservas")
     cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE, related_name="reservas")
     fecha_ingreso = models.DateField()
     fecha_salida = models.DateField()

@@ -1,4 +1,5 @@
-cabana_api/
+cabanas_aps
+/
 │-- __init__.py
 │-- apps.py
 │-- urls.py

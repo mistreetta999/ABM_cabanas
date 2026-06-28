@@ -3,6 +3,34 @@ from django.conf import settings
 from django.db import  models
 from typing import Any
 from django.utils import timezone
+# database/db.py
+
+from django.conf import settings
+from django.db import connections, DEFAULT_DB_ALIAS
+
+class Database:
+    """
+    Clase para manejar la conexión a la BD de forma genérica.
+    Permite usar tanto SQLite como PostgreSQL según settings.py.
+    """
+
+    def __init__(self, alias=DEFAULT_DB_ALIAS):
+        self.alias = alias
+        self.connection = connections[self.alias]
+
+    def get_cursor(self):
+        return self.connection.cursor()
+
+    def execute(self, query, params=None):
+        with self.get_cursor() as cursor:
+            cursor.execute(query, params or [])
+            return cursor.fetchall()
+
+    def commit(self):
+        self.connection.commit()
+
+    def close(self):
+        self.connection.close()
 
 # Clase para manejar múltiples motores de base de datos
 class DatabaseRouter:

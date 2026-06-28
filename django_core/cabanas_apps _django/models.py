@@ -1,4 +1,16 @@
+""""models  archivo principal"""
 from django.db import models
+
+class Cliente(models.Model):
+    nombre = models.CharField(max_length=100)
+    apellido = models.CharField(max_length=100)
+
+    class Meta:
+        app_label = "clientes"   # nombre exacto de la app en INSTALLED_APPS
+
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}".strip()
+
 
 
 class Chatbot(models.Model):
@@ -8,16 +20,6 @@ class Chatbot(models.Model):
     def __str__(self):
         return str(self.nombre)
 
-
-class Cliente(models.Model):
-    nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=100)
-    dni = models.CharField(max_length=30, unique=True)
-    telefono = models.CharField(max_length=30, blank=True)
-    email = models.EmailField(blank=True)
-
-    def __str__(self):
-        return f"{self.nombre} {self.apellido}".strip()
 
 
 class Cabana(models.Model):

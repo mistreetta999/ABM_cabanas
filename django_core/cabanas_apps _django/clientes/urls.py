@@ -1,16 +1,14 @@
 """URL configuration para la app clientes."""
 from django.urls import path
+from .views import ClienteCreateView
+from .views import ClienteDeleteView
+from .views import ClienteDetailView
+from .views import ClienteListView
+from .views import ClienteUpdateView
+from .views import clientes_home
 
-from .views import (
-    ClienteCreateView,
-    ClienteDeleteView,
-    ClienteDetailView,
-    ClienteListView,
-    ClienteUpdateView,
-    clientes_home,
-)
 
-app_name = "clientes"
+APP_CLIENTES= "clientes"
 
 urlpatterns = [
     path("", clientes_home, name="home"),

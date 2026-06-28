@@ -2,11 +2,10 @@
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render
 from django.views import View
-from django.views.generic import TemplateView
-from django.conf import settings
-from django. views import Views
-from django.cabanas import Cabana, Cliente, Reserva
-from django.shortcuts import render
+
+def gestion(request):
+    return HttpResponse("Panel de gestión de cabañas activo")
+
 
 def pagina_principal(request):
     """

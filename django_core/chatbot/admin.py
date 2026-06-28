@@ -1,5 +1,5 @@
 from django.contrib import admin
-from chatbot.models import Chatbot
+from cabanas_apps.chatbot_app.chatbot.models import Chatbot
 
 @admin.register(Chatbot)
 class ChatbotAdmin(admin.ModelAdmin):

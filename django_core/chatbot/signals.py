@@ -1,7 +1,7 @@
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 
-from chatbot.models import Chatbot
+from cabanas_apps.chatbot_app.chatbot.models import Chatbot
 
 
 @receiver(post_save, sender=Chatbot)

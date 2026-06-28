@@ -1,4 +1,5 @@
-# cabana_app/models/usuario.py
+# cabanas_api
+p/models/usuario.py
 from django.db import models
 
 class Usuario(models.Model):

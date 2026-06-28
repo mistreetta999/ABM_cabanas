@@ -1,2 +1,15 @@
 python manage.py runserver
 uvicorn django_core.asgi:application --reload
+limpieza
+Get-ChildItem -Recurse -Include *.pyc | Remove-Item
+Get-ChildItem -Recurse -Include __pycache__ | Remove-Item -Recurse -Force
+python manage.py runserver 127.0.0.1:8080
+python manage.py makemigrations
+python manage.py migrate
+python manage.py makemigrations chatbot_app
+python manage.py migrate
+borrar 
+# Eliminar todas las carpetas __pycache__ y archivos .pyc
+Get-ChildItem -Path . -Include "__pycache__", "*.pyc" -Recurse -Force | Remove-Item -Recurse -Force
+
+Write-Host "Cache de Python eliminado correctamente."

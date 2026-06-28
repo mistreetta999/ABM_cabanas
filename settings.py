@@ -24,13 +24,13 @@ INSTALLED_APPS = [
 
     # Apps propias
     'cabanas_api',
+    "cabanas_apps.chatbot_app",
     'cabanas_apps.reservas',
     'cabanas_apps.cabanas',
     'cabanas_apps.alquileres',
     'cabanas_apps.clientes',
     'cabanas_apps.pagos',
     'cabanas_apps.registros',
-    'chatbot',
 
     # Django REST Framework y drf-spectacular (si usas API)
     'rest_framework',

@@ -4,9 +4,12 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Sum
-from pathlib import Path
+from django.db.models import BooleanField
 
-from chatbot.models import ChatbotResponse
+from cabanas_apps.chatbot_app.chatbot.models import ChatbotResponse
+
+from cabanas_api.views import clientes
+from pathlib import Path
 
 directories = Path(".").parents
 
@@ -84,18 +87,28 @@ class Alquileres(models.Model):
             MaxValueValidator(20, message="La cantidad de clientes no puede exceder 20."),
         ]
     )
-    capacidad_cabanas = models.PositiveIntegerField()
+    cantidad_clientes = int(input("Ingrese la cantidad de clientes: "))
+    capacidad_cabanas = int(input("Ingrese la capacidad de la cabana:2,3,4.5 "))
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
     precio_total = models.DecimalField(max_digits=10, decimal_places=2)
     chatbot = models.ForeignKey(Chatbot, on_delete=models.SET_NULL, null=True, related_name="reservas")
-
+    Cabanas=models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="alquileres")
+    estado = booleanField(default=False, choices=[(True, "Aceptada"), (False, "Pendiente")])
+    def acepar_reserva(self):
+        """ Método para aceptar la reserva. """
+        self.estado = "aceptada"
+        self.save()
+        if self.cantidad_clientes == self.capacidad_cabanas:
+            print("La reserva ha sido aceptada.")
+    
     def clean(self) -> None:
         super().clean()
         if self.fecha_fin and self.fecha_inicio and self.fecha_fin <= self.fecha_inicio:
             raise ValidationError(_("La fecha de fin debe ser posterior a la fecha de inicio."))
 
-        if self.cantidad_clientes > self.cabana.capacidad:  # type: ignore
+        if self.cantidad_clientes > self.cabana.capacidad_cabanas:  # type: ignore
+            
             raise ValidationError(_("La cantidad de clientes excede la capacidad de la cabana."))
   
 
