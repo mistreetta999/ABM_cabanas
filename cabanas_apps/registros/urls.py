@@ -6,5 +6,5 @@ from . import views
 app_name = "registros"  # pylint: disable=invalid-name
 
 urlpatterns = [
-    path("actividades/", views.lista_actividades, name="lista_actividades"),
+    path("actividades/", views.ActividadCabanasListView.as_view(), name="lista_actividades"),
 ]

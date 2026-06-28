@@ -1,26 +1,28 @@
 """Este archivo contiene las urls de la app cabanas.
 """
 from django.urls import path
-from .views import ClienteListView
-from .views import ClienteUpdateView
-from .views import ClienteDeleteView
-from .views import CabanaListView
-from .views import CabanaCreateView
-from .views import CabanaUpdateView
-from .views import CabanaDeleteView
-from .views import ReservaListView
-from .views import ReservaCreateView
-from .views import ReservaUpdateView
-from .views import ReservaDeleteView
-from .views import AlquilerListView
-from .views import AlquilerCreateView
-from .views import AlquilerUpdateView
-from .views import AlquilerDeleteView
-from .views import RegistroListView
-from .views import RegistroCreateView     
-from .views import RegistroUpdateView
-from .views import RegistroDeleteView  
-from .views import ClienteCreateView
+from .views import (
+    AlquilerCreateView,
+    AlquilerDeleteView,
+    AlquilerListView,
+    AlquilerUpdateView,
+    CabanaCreateView,
+    CabanaDeleteView,
+    CabanaListView,
+    CabanaUpdateView,
+    ClienteCreateView,
+    ClienteDeleteView,
+    ClienteListView,
+    ClienteUpdateView,
+    RegistroCreateView,
+    RegistroDeleteView,
+    RegistroListView,
+    RegistroUpdateView,
+    ReservaCreateView,
+    ReservaDeleteView,
+    ReservaListView,
+    ReservaUpdateView,
+)
 
  
 urlpatterns = [
@@ -43,5 +45,5 @@ urlpatterns = [
     path('cabanas_api/registros/', RegistroListView.as_view(), name='registro_list'),
     path('cabanas_api/registros/nuevo/', RegistroCreateView.as_view(), name='registro_create'),
     path('cabanas_api/registros/<int:pk>/editar/', RegistroUpdateView.as_view(), name='registro_update'),
-    path('cabanas_api/registros/<int:pk>/borrar/',RegistroDeleteView.as_view(), name='registro_delete'),
+    path('cabanas_api/registros/<int:pk>/borrar/', RegistroDeleteView.as_view(), name='registro_delete'),
 ]

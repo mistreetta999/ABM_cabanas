@@ -3,7 +3,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
-from django_core.models import Alquileres
 from .models import Reserva, Alquiler
 
 def reservas_list(request):
@@ -13,8 +12,7 @@ def reservas_list(request):
 
 def alquileres_list(request):
     """ Vista para listar los alquileres """
-    alquileres = Alquileres()
-    return render(request, "reservas_alquileres/alquileres_list.html", {"alquileres": alquileres})
+    return AlquilerListView.as_view()(request)
 
 class ReservaListView(ListView):
     """ Vista para listar las reservas """

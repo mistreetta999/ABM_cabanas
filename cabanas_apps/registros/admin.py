@@ -1,7 +1,9 @@
+""" archivo admin"""
 from django.contrib import admin
-from .models import ActividadCabana
+from .models import ActividadCabanas
 
-@admin.register(ActividadCabana)
-class ActividadCabanaAdmin(admin.ModelAdmin):
+@admin.register(ActividadCabanas)
+class ActividadCabanasAdmin(admin.ModelAdmin):
+    """Class actividades cabanas admin"""
     list_display = ("cabana", "cliente", "descripcion", "fecha")
     search_fields = ("cabana__nombre", "cliente__nombre")

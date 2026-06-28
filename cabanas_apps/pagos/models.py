@@ -5,7 +5,7 @@ from django.db import models
 class Pago(models.Model):
     """ Modelo para representar un pago realizado por un cliente """
     reservas = models.ForeignKey('reservas.Reserva', on_delete=models.CASCADE)
-    alquileres = models.ForeignKey('alquileres.Alquileres', on_delete=models.CASCADE)
+    alquileres = models.ForeignKey('alquileres.Alquiler', on_delete=models.CASCADE)
     monto = models.DecimalField(max_digits=10, decimal_places=2)
     fecha_pago = models.DateField()
 

@@ -1,5 +1,5 @@
+""" archivo admin"""
 from django.contrib import admin
-from .models import Reserva, Alquiler
+from .models import Alquiler
 
-admin.site.register(Reserva)
 admin.site.register(Alquiler)

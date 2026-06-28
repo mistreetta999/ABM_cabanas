@@ -1,11 +1,13 @@
+""" Archivo de configuración de URLs del proyecto Cabañas."""
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from django.urls import include, path
 
 
-def robots_txt(request):
+def robots_txt(request:HttpRequest)->HttpResponse:
+    """ Genera el archivo robots.txt dinámicamente. """
     sitemap_url = request.build_absolute_uri("/sitemap.xml")
     content = f"""User-agent: *
 Disallow:
@@ -15,7 +17,8 @@ Sitemap: {sitemap_url}
     return HttpResponse(content, content_type="text/plain")
 
 
-def sitemap_xml(request):
+def sitemap_xml(request:HttpRequest)->HttpResponse:
+    """ Genera el archivo sitemap.xml dinámicamente. """
     base_url = request.build_absolute_uri("/").rstrip("/")
     urls = [
         ("", "weekly", "1.0"),

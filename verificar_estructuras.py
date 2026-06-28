@@ -1,7 +1,7 @@
 """ para verificar la estructura de un proyecto Django """
 import os
-from typing import Any
-# Carpeta raíz del proyecto
+
+import sys
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Archivos y carpetas obligatorios
@@ -61,6 +61,7 @@ estructura:list = [
 ]
 
 def verificar()->None:
+    """ define verificacion"""
     print("🔍 Verificando estructura del proyecto Django...\n")
     faltantes = []
     for item in estructura:

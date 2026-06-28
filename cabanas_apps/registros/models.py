@@ -2,7 +2,8 @@
 
 from django.db import models
 
-from cabanas_apps.models import Cabana, Cliente
+from cabanas_apps.cabanas.models import Cabana
+from cabanas_apps.clientes.models import Cliente
 
 
 class ActividadCabanas(models.Model):
