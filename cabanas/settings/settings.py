@@ -24,6 +24,7 @@ INSTALLED_APPS = [
 
     # Apps propias
     'cabanas_api',
+    'cabanas_apps.gestion_cabanas',
     "cabanas_apps.chatbot_app",
     'cabanas_apps.reservas',
     'cabanas_apps.cabanas',

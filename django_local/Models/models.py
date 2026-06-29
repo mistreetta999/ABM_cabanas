@@ -1,143 +1,107 @@
-"""estos son los modelos para los admin no se pueden borrar"""
+"""archivo principal models"""
 from django.db import models
-from django.db.models.manager import BaseManager
-import sqlite3
-from DATABASES import Reservas
-from DATABASES import Alquileres
-
-
+from django.contrib.auth.models import User
+from django.utils import timezone
+from django.db import models
+from django.core.validators import RegexValidator
 class Cabana(models.Model):
-    """Modelo oficial de Django para la gestión de Cabanas.
-    """
-    nombre = models.CharField(max_length=100)
-    descripcion = models.TextField()
-    precio_noche = models.DecimalField(max_digits=10, decimal_places=2)
+    """ Modelo que representa una cabaña """
+    id = models.AutoField(primary_key=True)  # clave primaria automática
+    nombre = models.CharField(max_length=100, unique=True)
+    descripcion = models.TextField(blank=True, null=True)
     capacidad = models.IntegerField()
-    disponible = models.BooleanField(default=True)
-    imagen = models.ImageField(upload_to='cabanas/', null=True, blank=True)
+    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
-        """Meta información para el modelo Cabana."""
-        verbose_name = "Cabana"
-        verbose_name_plural = "Cabanas"
-        ordering = ["fecha_inicio"]
-
-    def obtener_todas_las_cabanas(self:Cabana) -> BaseManager:
-        """Devuelve todas las Cabanas disponibles."""
-        return Cabana.filter(disponible=True)
-
+        db_table = "cabanas"
+        verbose_name = "Cabaña"
+        verbose_name_plural = "Cabañas"
 class Cliente(models.Model):
-    """Modelo oficial de Django para la gestión de Clientes."""
+    """ Modelo que representa un cliente """
+    id = models.AutoField(primary_key=True)  # clave primaria automática
+    dni = models.CharField(
+        max_length=20,
+        unique=True,          # obligatorio y único, pero no clave primaria
+        validators=[RegexValidator(r'^\d{1,20}$', 'El DNI debe contener solo números (máx. 20).')]
+    )
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
-    dni = models.CharField(max_length=20, unique=True, verbose_name="DNI")
-    direccion = models.TextField(blank=True, null=True, verbose_name="Dirección")
+    direccion = models.CharField(max_length=200, blank=True, null=True)
     telefono = models.CharField(max_length=20, blank=True, null=True)
+    email = models.EmailField(unique=True)
 
     class Meta:
+        db_table = "clientes"
         verbose_name = "Cliente"
         verbose_name_plural = "Clientes"
-        ordering = ["apellido", "nombre"]
-
     def __str__(self):
-        return f"{self.nombre} {self.apellido}"
-    def get_full_name(self):
-        """Devuelve el nombre completo del cliente.
-        """
-        return f"{self.nombre} {self.apellido}"
+        return f"{self.nombre} {self.apellido} - DNI: {self.dni}"
 
-    def get_short_name(self):
-        """Devuelve el nombre corto del cliente (solo el nombre)."""
-        return self.nombre
-    def get_contact_info(self):
-        """Devuelve la información de contacto del cliente."""
-        return f"Teléfono: {self.telefono}, Dirección: {self.direccion}"
 
+class Chatbot(models.Model):
+    """"Modelo para representar un chatbot."""
+    nombre = models.CharField(max_length=100, default="Chatbot Cabanas")
+    descripcion = models.TextField(blank=True, null=True)
+    class Meta:
+         """ class Meta para definir el nombre del modelo en singular y plural. """
+         app_label = "chatbot_app"
+         verbose_name = "Chatbot"
+         verbose_name_plural = "Chatbots"
+    def __str__(self):
+        return str(self.nombre)
 
 class Reserva(models.Model):
-    cliente = models.ForeignKey("clientes.Cliente", on_delete=models.CASCADE, related_name="reservas")
-    cabana = models.ForeignKey("cabanas.Cabana", on_delete=models.CASCADE, related_name="reservas")
-    fecha_inicio = models.DateField()
-    fecha_fin = models.DateField()
-
+    cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE, related_name="reservas")
+    cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE, related_name="reservas")
+    fecha_ingreso = models.DateField()
+    fecha_salida = models.DateField()
+    estado = models.CharField(max_length=30, default="pendiente")
+    observaciones = models.TextField(blank=True)
     class Meta:
         verbose_name = "Reserva"
         verbose_name_plural = "Reservas"
-        ordering = ["fecha_inicio"]
 
     def __str__(self):
-        return f"Reserva de {self.cliente} para {self.cabana} del {self.fecha_inicio} al {self.fecha_fin}"
+        return f"Reserva {self.pk}"
 
 
+class Alquiler(models.Model):
+    reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE, related_name="alquileres")
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="alquileres")
+    cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE, related_name="alquileres")
+    fecha_inicio = models.DateField()
+    fecha_fin = models.DateField()
+    monto_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    estado = models.CharField(max_length=30, default="activo")
+    class Meta:
+        verbose_name = "Alquiler"
+        verbose_name_plural = "Alquileres"
 
-
-class Alquileres(models.Model):
-    """Alquileres de un cliente en una Cabana."""
-    cliente = models.ForeignKey(
-        Cliente,
-        on_delete=models.CASCADE,
-        related_name="reservas",
-        help_text="Cliente que realiza la reserva."
-    )
-    cabana = models.ForeignKey(
-        Cabana,
-        on_delete=models.CASCADE,
-        related_name="reservas",
-        help_text="Cabana reservada."
-    )
-    fecha_inicio = models.DateField(
-        help_text="Fecha de inicio de la reserva."
-    )
-    fecha_fin = models.DateField(
-        help_text="Fecha de fin de la reserva."
-    )
-    cantidad_clientes = models.PositiveIntegerField(
-        help_text="Número de clientes incluidas en la reserva."
-    )
-    estado = models.CharField(
-        max_length=20,
-        choices=[
-            ("pendiente", "Pendiente"),
-            ("confirmada", "Confirmada"),
-            ("cancelada", "Cancelada"),
-            ("finalizada", "Finalizada"),
-        ],
-        default="pendiente",
-        help_text="Estado actual de la reserva."
-    )
-    creada_en = models.DateTimeField(
-        auto_now_add=True,
-        help_text="Fecha de creación de la reserva."
-    )
-    actualizada_en = models.DateTimeField(
-        auto_now=True,
-        help_text="Última fecha de actualización de la reserva."
-    )
-
-    
-    def Meta(self) ->list[str]:
-        verbose_name = "Reserva"
-        verbose_name_plural = "Reservas"
-        ordering = ["-fecha_inicio"]
     def __str__(self):
-        return (
-            f"Reserva de {self.cliente} en {self.cabana} "
-            f"del {self.fecha_inicio} al {self.fecha_fin} "
-            f"({self.estado})"
-        )
-class Registros :
-    def __init__(self) -> Any:
-        self.reservas = Reservas()
-        self.alquileres = Alquileres()
-        self.clientes = Cliente()
-        self.cabanas = Cabana()
-        
-        
-class CLASSNAMEViewSet(viewsets.ModelViewSet):
-            queryset = CLASSNAME.objects.all()
-            serializer_class = CLASSNAMESerializer
-            permission_classes = []
-        
-        
-        
-    
+        return f"Alquiler {self.pk}"
+
+
+class Pago(models.Model):
+    alquiler = models.ForeignKey(Alquiler, on_delete=models.CASCADE, related_name="pagos")
+    fecha = models.DateField()
+    monto = models.DecimalField(max_digits=10, decimal_places=2)
+    metodo = models.CharField(max_length=30)
+    comprobante = models.CharField(max_length=200, blank=True)
+    class Meta:
+        verbose_name = "Pago"
+        verbose_name_plural = "Pagos"
+    def __str__(self):
+        return f"Pago {self.pk}"
+
+
+class Registro(models.Model):
+    modulo = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    responsable = models.CharField(max_length=100)
+    creado_en = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        verbose_name = "Registro"
+        verbose_name_plural = "Registros"
+
+    def __str__(self):
+        return f"{self.modulo}: {self.responsable}"
