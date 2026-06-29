@@ -8,4 +8,4 @@ class ChatbotAppConfig(AppConfig):
     class Meta:
         """ Metadata for the chatbot_apps application. """
         verbose_name = "chatbot_apps"
-      app_label = "chatbot_app"
+        app_label = "chatbot_app"

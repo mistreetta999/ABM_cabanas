@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from django.db.models import Sum
 from django.db.models import BooleanField
 
-from cabanas_apps.chatbot_app.chatbot.models import ChatbotResponse
+from cabanas_apps.chatbot_app.models import ChatbotResponse
 
 from cabanas_api.views import clientes
 from pathlib import Path

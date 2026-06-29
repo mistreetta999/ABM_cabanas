@@ -1,7 +1,8 @@
+""" Señales para la aplicación de chatbot."""
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 
-from cabanas_apps.chatbot_app.chatbot.models import Chatbot
+from cabanas_apps.chatbot_app.models import Chatbot
 
 
 @receiver(post_save, sender=Chatbot)

@@ -2,10 +2,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from .models import Cliente
-from cabanas_apps.clientes.models import Cliente
-from pathlib import Path
 
-directories = Path(".").parents
 class ClienteModelTest(TestCase):
     """ Test para el modelo Cliente """
     def setUp(self):

@@ -1,12 +1,19 @@
+""" archivo de configuración principal de Django """
 import os
-from pathlib import Path
 
+from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
+# Base directory del proyecto
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-cambia-esta-clave'
+# Seguridad
+SECRET_KEY = 'django-insecure-tu-clave-secreta-aqui'
 DEBUG = True
 ALLOWED_HOSTS = []
 
+# Aplicaciones instaladas
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -14,9 +21,34 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Apps propias
     'cabanas_api',
+    "cabanas_apps.chatbot_app",
+    'cabanas_apps.reservas',
+    'cabanas_apps.cabanas',
+    'cabanas_apps.alquileres',
+    'cabanas_apps.clientes',
+    'cabanas_apps.pagos',
+    'cabanas_apps.registros',
+
+    # Django REST Framework y drf-spectacular (si usas API)
+    'rest_framework',
+    'drf_spectacular',
 ]
 
+# Configuración de DRF + drf-spectacular
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Gestión de Cabanas API',
+    'DESCRIPTION': 'Documentación de la API para reservas, clientes y Cabanas',
+    'VERSION': '1.0.0',
+}
+
+# Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -27,12 +59,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# URLs principales
 ROOT_URLCONF = 'cabanas.urls'
 
+# Templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],
+        'DIRS': [BASE_DIR / "Template"],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -45,24 +80,65 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+# Base de datos (SQLite por defecto)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME', 'api_db'),
+        'USER': os.getenv('DB_USER', 'carolina'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'superseguro'),
+        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'PORT': os.getenv('DB_PORT', '5432'),
+    }
+}
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / "db.sqlite3",
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
+
+# Validación de contraseñas
+AUTH_PASSWORD_VALIDATORS = [
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+]
+
+# Internacionalización
 LANGUAGE_CODE = 'es-ar'
 TIME_ZONE = 'America/Argentina/Cordoba'
 USE_I18N = True
 USE_TZ = True
 
+# Archivos estáticos
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
+# Archivos multimedia
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = BASE_DIR / 'media'
 
+# Configuración por defecto
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+DEBUG = os.getenv("DEBUG") == "True"
+
+DATABASES = {
+    'default': {
+        'ENGINE': os.getenv("DB_ENGINE"),
+        'NAME': os.getenv("DB_NAME"),
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.getenv("DB_PASSWORD"),
+        'HOST': os.getenv("DB_HOST"),
+        'PORT': os.getenv("DB_PORT"),
+    }
+}

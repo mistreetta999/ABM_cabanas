@@ -23,5 +23,5 @@ python manage.py makemigrations
 python manage.py migrate
 
 # Levanta el servidor Django en puerto 8000
-Start-Process "http://127.0.0.1:8000/pagina_principal/"
+Start-Process "http://127.0.0.1:8000/Gestion_Cabanas/"
 python manage.py runserver 127.0.0.1:8000

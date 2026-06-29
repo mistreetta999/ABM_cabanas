@@ -24,13 +24,13 @@ INSTALLED_APPS = [
 
     # Apps propias
     'cabanas_api',
+    "cabanas_apps.chatbot_app",
     'cabanas_apps.reservas',
     'cabanas_apps.cabanas',
     'cabanas_apps.alquileres',
     'cabanas_apps.clientes',
     'cabanas_apps.pagos',
     'cabanas_apps.registros',
-    'chatbot',
 
     # Django REST Framework y drf-spectacular (si usas API)
     'rest_framework',
@@ -66,9 +66,8 @@ ROOT_URLCONF = 'cabanas.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            BASE_DIR / "Template"   # <-- tu carpeta actual
-        ],
+        'DIRS': [BASE_DIR / "Template"],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,14 +86,21 @@ WSGI_APPLICATION = 'cabanas.wsgi.application'
 # Base de datos (SQLite por defecto)
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME', 'api_db'),
         'USER': os.getenv('DB_USER', 'carolina'),
         'PASSWORD': os.getenv('DB_PASSWORD', 'superseguro'),
         'HOST': os.getenv('DB_HOST', 'localhost'),
         'PORT': os.getenv('DB_PORT', '5432'),
     }
-           }
+}
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Validación de contraseñas

@@ -4,7 +4,18 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.db import models
 from django.core.validators import RegexValidator
+class Cabana(models.Model):
+    """ Modelo que representa una cabaña """
+    id = models.AutoField(primary_key=True)  # clave primaria automática
+    nombre = models.CharField(max_length=100, unique=True)
+    descripcion = models.TextField(blank=True, null=True)
+    capacidad = models.IntegerField()
+    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)
 
+    class Meta:
+        db_table = "cabanas"
+        verbose_name = "Cabaña"
+        verbose_name_plural = "Cabañas"
 class Cliente(models.Model):
     """ Modelo que representa un cliente """
     id = models.AutoField(primary_key=True)  # clave primaria automática
