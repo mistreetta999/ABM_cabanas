@@ -1,12 +1,17 @@
 """Views para la aplicación de Cabanas."""
-from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Cabana
+from django.shortcuts import render
 
 # Vista inicial
 def index(request) -> HttpResponse:
     return HttpResponse("Vista inicial de Cabanas")
+
+
+def pagina_principal(request):
+    return render(request, "pagina_principal.html")
+
 
 # Vista de lista usando función
 def lista_cabanas(request):

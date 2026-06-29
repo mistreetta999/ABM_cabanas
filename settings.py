@@ -66,9 +66,8 @@ ROOT_URLCONF = 'cabanas.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            BASE_DIR / "Template"   # <-- tu carpeta actual
-        ],
+        'DIRS': [BASE_DIR / "Template"],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

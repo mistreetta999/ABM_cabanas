@@ -13,6 +13,7 @@ from .views import (
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+        path("pagina_principal/", views.pagina_principal, name="pagina_principal"),
     path("apps/", include("cabanas_apps.urls")),
     path("api/", include("cabanas_api.urls")),
 

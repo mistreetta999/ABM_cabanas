@@ -1,3 +1,5 @@
+""" Admin configuration for the chatbot_apps application. """
+
 from django.contrib import admin
 from cabanas_apps.chatbot_app.chatbot.models import Chatbot
 

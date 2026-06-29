@@ -2,11 +2,10 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime, timedelta
-from django_core.models import Reserva
-from django_core.models import Alquiler
-
+from .models import Reserva
 import json
 import sqlite3
+reservas = []
 class chatbot:
     def __init__(self):
         self.mensajes = []
@@ -28,7 +27,7 @@ class chatbot:
             SELECT * FROM reservas
             WHERE fecha_inicio <= ? AND fecha_fin >= ?
         """, (fecha_fin, fecha_inicio))
-        reservas = cursor.fetchall()
+        reservas:list = cursor.fetchall()
         cursor.close()
         return reservas  
 @csrf_exempt
@@ -37,7 +36,7 @@ def chatbot_api(request):
         data = json.loads(request.body)
         user_message = data.get("message", "").lower()
         reply = "No entendí tu consulta, ¿puedes repetirla?"
-
+        reservas = []
         hoy = datetime.today().date()
 
         # Día
