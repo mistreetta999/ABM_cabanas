@@ -2,8 +2,25 @@
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from django.contrib import admin
+from django.urls import path, include
+from django.contrib.sitemaps.views import sitemap
+from cabanas_apps.gestion_cabanas.sitemaps import (
+    StaticViewSitemap, CabanaSitemap, AlquilerSitemap, PagoSitemap
+)
+
+sitemaps = {
+    "static": StaticViewSitemap,
+    "cabanas": CabanaSitemap,
+    "alquileres": AlquilerSitemap,
+    "pagos": PagoSitemap,
+}
 
 urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", include("cabanas_apps.gestion_cabanas.urls")),
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap"),
+
     path('', include('cabanas_api.urls')),
     path("pagina_principal/", views.pagina_principal, name="pagina_principal"),
     path("apps/", include("cabanas_apps.urls")),

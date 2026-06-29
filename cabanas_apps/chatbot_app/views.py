@@ -4,8 +4,11 @@ from django.http import JsonResponse, HttpResponse, HttpRequest
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from .chatbot import ChatBot
+from django.shortcuts import render
 
 bot = ChatBot()
+
+
 
 class chatbot_home:
     """ views chatbot"""
@@ -84,3 +87,11 @@ class ChatbotPanel:
             response = bot.respond(user_message)
             return render(request, "chatbot/panel.html", {"response": response})
         return render(request, "chatbot/panel.html", {"response": bot.welcome_message})
+
+def chatbot_panel(request):
+    """Renderiza el panel del chatbot."""
+    return render(request, "chatbot/panel_chatbot.html")
+
+def chatbot_view(request):
+    """Renderiza la interfaz principal del chatbot."""
+    return render(request, "chatbot/chatbot.html")

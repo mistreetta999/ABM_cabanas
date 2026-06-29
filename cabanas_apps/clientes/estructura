@@ -1,9 +1,9 @@
 cabanas_apps/
-   └── pagos/
+   └── clientes/
        ├── __init__.py
        ├── models.py
        ├── views.py
-       ├── pagos.py   ← aquí lo creás
+       ├── clientes.py   ← aquí lo creás
        └── templates/
            └── pagina_principal/
                ├── lista.html

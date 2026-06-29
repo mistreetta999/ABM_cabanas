@@ -7,9 +7,8 @@ from . import views   # el punto indica "desde esta carpeta"
 APP_NAME = "chatbot"
 
 
-urlpatterns = [
-    path("", views.chatbot_panel, name="chatbot_panel"),
-    path('', views.chatbot_page, name='chatbot_page'),
-path("chatbot/", include("chatbot_app.urls")),
 
+urlpatterns = [
+    path("chatbot/panel/", views.chatbot_panel, name="chatbot_panel"),
+    path("chatbot/", views.chatbot_view, name="chatbot"),
 ]

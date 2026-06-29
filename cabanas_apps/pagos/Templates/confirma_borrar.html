@@ -1,0 +1,14 @@
+{% extends 'cabanas_app/base.html' %}
+
+{% block title %}Confirmar Borrado{% endblock %}
+
+{% block content %}
+<div class="alert alert-danger">
+    <h4>¿Seguro que desea borrar a {{ persona.nombre }} {{ persona.apellido }}?</h4>
+</div>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Sí, borrar</button>
+    <a href="{% url 'lista_personas' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

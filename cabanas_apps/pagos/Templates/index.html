@@ -1,0 +1,11 @@
+{% extends 'cabanas_app/base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h2 class="text-verde-medio">Bienvenido al Sistema de Gestión de Cabanas</h2>
+    <p class="lead">Gestione huéspedes y reservas fácilmente.</p>
+    <a href="{% url 'lista_personas' %}" class="btn btn-verde">Ver Huéspedes</a>
+</div>
+{% endblock %}

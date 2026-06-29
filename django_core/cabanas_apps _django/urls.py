@@ -1,6 +1,5 @@
 """Este archivo contiene las urls de la app cabanas.
 """
-from django.urls import path
 from django.urls import path, include
 from django.contrib import admin
 from .views import AlquilerCreateView
