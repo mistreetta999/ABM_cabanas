@@ -14,3 +14,8 @@ Get-ChildItem -Path . -Include "__pycache__", "*.pyc" -Recurse -Force | Remove-I
 
 Write-Host "Cache de Python eliminado correctamente."
 python manage.py runserver 127.0.0.1:8000
+limpieza
+python manage.py clean_pyc
+Get-ChildItem -Recurse -Include *.pyc,__pycache__ | Remove-Item -Recurse -Force
+python manage.py migrate --database=default   # PostgreSQL
+python manage.py migrate --database=sqlite    # SQLite

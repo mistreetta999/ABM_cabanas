@@ -1,20 +1,22 @@
-""" archivo de configuración principal de Django """
+"""Archivo de configuración principal de Django"""
 import os
-
 from pathlib import Path
 from dotenv import load_dotenv
 
+# Cargar variables de entorno desde .env
 load_dotenv()
+
 # Base directory del proyecto
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Seguridad
-SECRET_KEY = 'django-insecure-tu-clave-secreta-aqui'
-DEBUG = True
+SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-dev-key")
+DEBUG = os.getenv("DEBUG", "True") == "True"
 ALLOWED_HOSTS = []
 
 # Aplicaciones instaladas
 INSTALLED_APPS = [
+    # Django apps por defecto
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -23,9 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Apps propias
-    'cabanas_api',
     'cabanas_apps.gestion_cabanas',
-    "cabanas_apps.chatbot_app",
+    'cabanas_apps.chatbot_app',
     'cabanas_apps.reservas',
     'cabanas_apps.cabanas',
     'cabanas_apps.alquileres',
@@ -33,9 +34,12 @@ INSTALLED_APPS = [
     'cabanas_apps.pagos',
     'cabanas_apps.registros',
 
-    # Django REST Framework y drf-spectacular (si usas API)
+    # Django REST Framework y drf-spectacular
     'rest_framework',
     'drf_spectacular',
+
+    # 🔑 Extensiones útiles
+    'django_extensions',
 ]
 
 # Configuración de DRF + drf-spectacular
@@ -44,8 +48,8 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Gestión de Cabanas API',
-    'DESCRIPTION': 'Documentación de la API para reservas, clientes y Cabanas',
+    'TITLE': 'Gestión de Cabañas API',
+    'DESCRIPTION': 'Documentación de la API para reservas, clientes y cabañas',
     'VERSION': '1.0.0',
 }
 
@@ -67,8 +71,7 @@ ROOT_URLCONF = 'cabanas.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "Template"],
-
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,28 +84,24 @@ TEMPLATES = [
     },
 ]
 
-
+# WSGI
 WSGI_APPLICATION = 'cabanas.wsgi.application'
 
-# Base de datos (SQLite por defecto)
+# Bases de datos
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'api_db'),
-        'USER': os.getenv('DB_USER', 'carolina'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'superseguro'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '5432'),
-    }
-}
-
-DATABASES = {
-    'default': {
+    'default': {   # PostgreSQL
+        'ENGINE': os.getenv("DB_ENGINE", "django.db.backends.postgresql"),
+        'NAME': os.getenv("DB_NAME", "api_db"),
+        'USER': os.getenv("DB_USER", "carolina"),
+        'PASSWORD': os.getenv("DB_PASSWORD", "superseguro"),
+        'HOST': os.getenv("DB_HOST", "localhost"),
+        'PORT': os.getenv("DB_PORT", "5432"),
+    },
+    'sqlite': {    # SQLite
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Validación de contraseñas
 AUTH_PASSWORD_VALIDATORS = [
@@ -128,18 +127,3 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Configuración por defecto
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-SECRET_KEY = os.getenv("SECRET_KEY")
-DEBUG = os.getenv("DEBUG") == "True"
-
-DATABASES = {
-    'default': {
-        'ENGINE': os.getenv("DB_ENGINE"),
-        'NAME': os.getenv("DB_NAME"),
-        'USER': os.getenv("DB_USER"),
-        'PASSWORD': os.getenv("DB_PASSWORD"),
-        'HOST': os.getenv("DB_HOST"),
-        'PORT': os.getenv("DB_PORT"),
-    }
-}

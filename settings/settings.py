@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     # Django REST Framework y drf-spectacular
     'rest_framework',
     'drf_spectacular',
+
+    # 🔑 Extensiones útiles
+    'django_extensions',
 ]
 
 # Configuración de DRF + drf-spectacular
@@ -68,7 +71,7 @@ ROOT_URLCONF = 'cabanas.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],  # carpeta correcta
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,15 +87,19 @@ TEMPLATES = [
 # WSGI
 WSGI_APPLICATION = 'cabanas.wsgi.application'
 
-# Base de datos (PostgreSQL)
+# Bases de datos
 DATABASES = {
-    'default': {
+    'default': {   # PostgreSQL
         'ENGINE': os.getenv("DB_ENGINE", "django.db.backends.postgresql"),
         'NAME': os.getenv("DB_NAME", "api_db"),
         'USER': os.getenv("DB_USER", "carolina"),
         'PASSWORD': os.getenv("DB_PASSWORD", "superseguro"),
         'HOST': os.getenv("DB_HOST", "localhost"),
         'PORT': os.getenv("DB_PORT", "5432"),
+    },
+    'sqlite': {    # SQLite
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
