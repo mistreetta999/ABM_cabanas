@@ -6,7 +6,7 @@ class Cliente(models.Model):
     apellido = models.CharField(max_length=100)
 
     class Meta:
-        app_label = "clientes"   # nombre exacto de la app en INSTALLED_APPS
+        app_label = "clientes" 
 
     def __str__(self):
         return f"{self.nombre} {self.apellido}".strip()
@@ -16,6 +16,9 @@ class Cliente(models.Model):
 class Chatbot(models.Model):
     nombre = models.CharField(max_length=100, default="Chatbot Cabanas")
     descripcion = models.TextField(blank=True, null=True)
+
+    class Meta:
+        app_label = "chatbot_app"
 
     def __str__(self):
         return str(self.nombre)
@@ -27,6 +30,8 @@ class Cabana(models.Model):
     capacidad = models.PositiveIntegerField(default=1)
     precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     disponible = models.BooleanField(default=True)
+    class Meta:
+        app_label = "cabana_app"
 
     def __str__(self):
         return str(self.nombre)
@@ -39,7 +44,11 @@ class Reserva(models.Model):
     fecha_salida = models.DateField()
     estado = models.CharField(max_length=30, default="pendiente")
     observaciones = models.TextField(blank=True)
+    class Meta:
+        verbose_name = "Reserva"
+        verbose_name_plural = "Reservas"
 
+    
     def __str__(self):
         return f"Reserva {self.pk}"
 
@@ -53,6 +62,11 @@ class Alquiler(models.Model):
     monto_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     estado = models.CharField(max_length=30, default="activo")
 
+    
+    class Meta:
+        verbose_name = "Alquiler"
+        verbose_name_plural = "Alquileres"
+
     def __str__(self):
         return f"Alquiler {self.pk}"
 
@@ -64,6 +78,10 @@ class Pago(models.Model):
     metodo = models.CharField(max_length=30)
     comprobante = models.CharField(max_length=200, blank=True)
 
+    class Meta:
+        verbose_name = "Pago"
+        verbose_name_plural = "Pagos"
+
     def __str__(self):
         return f"Pago {self.pk}"
 
@@ -73,6 +91,10 @@ class Registro(models.Model):
     descripcion = models.TextField()
     responsable = models.CharField(max_length=100)
     creado_en = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Registro"
+        verbose_name_plural = "Registros"
 
     def __str__(self):
         return f"{self.modulo}: {self.responsable}"

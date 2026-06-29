@@ -14,5 +14,11 @@ class ActividadCabanas(models.Model):
     descripcion = models.TextField()
     fecha = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        """ Metadatos del modelo ActividadCabanas."""
+        verbose_name = "Actividad de Cabaña"
+        verbose_name_plural = "Actividades de Cabañas"
+        ordering = ["-fecha"]
+
     def __str__(self):
         return f"{self.cabana} - {str(self.descripcion)[:30]}"

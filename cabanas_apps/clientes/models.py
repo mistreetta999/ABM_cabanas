@@ -16,5 +16,9 @@ class Cliente(models.Model):
     telefono = models.CharField(max_length=20, blank=True, null=True)
     email = models.EmailField(unique=True)
 
+    class Meta:
+        db_table = "clientes"
+        verbose_name = "Cliente"
+        verbose_name_plural = "Clientes"
     def __str__(self):
         return f"{self.nombre} {self.apellido} - DNI: {self.dni}"

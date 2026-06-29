@@ -6,6 +6,5 @@ class ChatbotAppConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "cabanas_apps.chatbot_app"
     class Meta:
-        """ Metadatos de la aplicación chatbot_app. """
-        verbose_name = "chatbot_app"
-   
+        """ Metadatos de la aplicación chatbot_app. """  
+        verbose_name = "chatbot_app" 

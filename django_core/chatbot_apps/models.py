@@ -22,6 +22,11 @@ class Chatbot(models.Model):
     nombre = models.CharField(max_length=100, default="Chatbot Cabanas")
     descripcion = models.TextField(blank=True, null=True)
 
+    class Meta:
+        """ Metadatos del modelo Chatbot."""
+        verbose_name = "Chatbot"
+        verbose_name_plural = "Chatbots"
+
     def __str__(self):
         return self.__class__.__name__
 
@@ -29,6 +34,8 @@ class Chatbot(models.Model):
 class ChatbotHandler(models.Model):
     chatbot = models.ForeignKey(Chatbot, on_delete=models.CASCADE, related_name="handlers")
     message = models.ForeignKey(Message, on_delete=models.CASCADE, related_name="handlers")
-
+     
+     
+        
     def __str__(self):
         return self.__class__.__name__
