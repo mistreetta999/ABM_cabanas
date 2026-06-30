@@ -1,16 +1,96 @@
 """views cabanas_api"""
-from django.http import HttpResponse
-APP_NAME = "cabanas_api"
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.utils import timezone
+import json
+
+from registros.models import Reserva, Alquiler, Pago, Factura, ActividadCabana
 
 
-def index(request):
-    return HttpResponse("Bienvenidos, Django está funcionando en cabanas_api!")
+# Vista de inicio simple
+def home(request):
+    return JsonResponse({"mensaje": "API de Cabañas funcionando"})
 
-def gestion(request):
-    return HttpResponse("Panel de gestión activo")
 
-def pagos(request):
-    return HttpResponse("Vista de Pagos")
+# --- RESERVAS ---
+@csrf_exempt
+def crear_reserva(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        reserva = Reserva.objects.create(
+            cliente=data.get("cliente"),
+            fecha_inicio=data.get("fecha_inicio"),
+            fecha_fin=data.get("fecha_fin"),
+            cabana=data.get("cabana"),
+            estado="pendiente"
+        )
+        ActividadCabana.objects.create(
+            tipo="Reserva",
+            descripcion=f"Reserva creada para {reserva.cliente}",
+            fecha=timezone.now(),
+            usuario=reserva.cliente,
+            referencia_id=reserva.id
+        )
+        return JsonResponse({"id": reserva.id, "mensaje": "Reserva creada"})
 
-def clientes(request):
-    return HttpResponse("Vista de Clientes")
+
+# --- ALQUILERES ---
+@csrf_exempt
+def crear_alquiler(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        alquiler = Alquiler.objects.create(
+            cliente=data.get("cliente"),
+            cabana=data.get("cabana"),
+            fecha=data.get("fecha"),
+            monto=data.get("monto")
+        )
+        ActividadCabana.objects.create(
+            tipo="Alquiler",
+            descripcion=f"Alquiler registrado para {alquiler.cliente}",
+            fecha=timezone.now(),
+            usuario=alquiler.cliente,
+            referencia_id=alquiler.id
+        )
+        return JsonResponse({"id": alquiler.id, "mensaje": "Alquiler registrado"})
+
+
+# --- PAGOS ---
+@csrf_exempt
+def registrar_pago(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        pago = Pago.objects.create(
+            cliente=data.get("cliente"),
+            monto=data.get("monto"),
+            metodo=data.get("metodo", "efectivo")
+        )
+        ActividadCabana.objects.create(
+            tipo="Pago",
+            descripcion=f"Pago registrado de {pago.cliente}",
+            fecha=timezone.now(),
+            usuario=pago.cliente,
+            referencia_id=pago.id
+        )
+        return JsonResponse({"id": pago.id, "mensaje": "Pago registrado"})
+
+
+# --- FACTURAS ---
+@csrf_exempt
+def generar_factura(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        factura = Factura.objects.create(
+            numero=data.get("numero"),
+            cliente=data.get("cliente"),
+            monto_total=data.get("monto_total"),
+            detalle=data.get("detalle", "")
+        )
+        ActividadCabana.objects.create(
+            tipo="Factura",
+            descripcion=f"Factura generada para {factura.cliente}",
+            fecha=timezone.now(),
+            usuario=factura.cliente,
+            referencia_id=factura.id
+        )
+        return JsonResponse({"id": factura.id, "mensaje": "Factura generada"})

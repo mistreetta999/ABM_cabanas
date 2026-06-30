@@ -1,88 +1,49 @@
-# base_datos/db.py
-from django.conf import settings
-from django.db import  models
-from typing import Any
+""" archivo de base de datos para registrar actividades de cabañas """
+from django.db import models
 from django.utils import timezone
-# database/db.py
-
 from django.conf import settings
-from django.db import connections, DEFAULT_DB_ALIAS
+from .cabanas import Cabanas
+from .clientes import Clientes
 
-class Database:
-    """
-    Clase para manejar la conexión a la BD de forma genérica.
-    Permite usar tanto SQLite como PostgreSQL según settings.py.
-    """
-
-    def __init__(self, alias=DEFAULT_DB_ALIAS):
-        self.alias = alias
-        self.connection = connections[self.alias]
-
-    def get_cursor(self):
-        return self.connection.cursor()
-
-    def execute(self, query, params=None):
-        with self.get_cursor() as cursor:
-            cursor.execute(query, params or [])
-            return cursor.fetchall()
-
-    def commit(self):
-        self.connection.commit()
-
-    def close(self):
-        self.connection.close()
-
-# Clase para manejar múltiples motores de base de datos
-class DatabaseRouter:
-    """
-    Permite elegir entre PostgreSQL y SQLite según el entorno.
-    """
-    def db_for_read(self, model, **hints):
-        return 'default'
-
-    def db_for_write(self, model, **hints):
-        return 'default'
-
-    def allow_relation(self, obj1, obj2, **hints):
-        return True
-
-    def allow_migrate(self, db, app_label, model_name=None, **hints):
-        return True
-
-
-# Modelo genérico para registrar actividades
 class ActividadCabana(models.Model):
-    """
-    Registro de todas las actividades relacionadas con las Cabanas:
-    reservas, pagos, alquileres, facturas, etc.
-    """
+    """ Modelo para registrar actividades relacionadas con cabañas pagos  """
     tipo = models.CharField(max_length=50)  # Ej: Reserva, Pago, Factura
     descripcion = models.TextField(blank=True, null=True)
     fecha = models.DateTimeField(default=timezone.now)
     usuario = models.CharField(max_length=100, blank=True, null=True)
-    referencia_id = models.PositiveIntegerField(blank=True, null=True)  # ID de la entidad relacionada
-    origen = models.CharField(max_length=20, default="sqlite")  # sqlite o postgresql
+    referencia_id = models.PositiveIntegerField(blank=True, null=True)
+    origen = models.CharField(max_length=20, default="sqlite")
+    reservas = models.ManyToManyField(Cabanas, blank=True)
+    alquileres = models.ManyToManyField(Cabanas, blank=True)
+    facturas = models.ManyToManyField(Cabanas, blank=True)
+    pagos = models.ManyToManyField(Cabanas, blank=True)
+    clientes = models.ManyToManyField(Cabanas, blank=True)
 
     class Meta:
-        verbose_name = "Actividad de Cabana"
-        verbose_name_plural = "Actividades de Cabanas"
+        
+        """ Meta options for the ActividadCabana model. """
+        verbose_name = "Actividad de Cabaña"
+        verbose_name_plural = "Actividades de Cabañas"
         ordering = ["-fecha"]
 
     def __str__(self):
         return f"[{self.tipo}] {self.descripcion} ({self.fecha})"
 
+    @staticmethod
+    def registrar_actividad(
+        tipo: str,
+        descripcion: str,
+        referencia_id: int | None = None
+    ):
+        """ Función para registrar una actividad de cabaña en la base de datos. """
+        engine = settings.DATABASES['default']['ENGINE']
+        origen = "postgresql" if "postgresql" in engine else "sqlite"
 
-# Función auxiliar para registrar actividades
-def registrar_actividad(tipo: str, descripcion: str, usuario: str = None, referencia_id: int = None):
-    """
-    Inserta un registro en la tabla ActividadCabana.
-    """
-    actividad = ActividadCabana(
-        tipo=tipo,
-        descripcion=descripcion,
-        usuario=usuario,
-        referencia_id=referencia_id,
-        origen=settings.DATABASES['default']['ENGINE']
-    )
-    actividad.save()
-    return actividad
+        actividad = ActividadCabana(
+            tipo=tipo,
+            descripcion=descripcion,
+            referencia_id=referencia_id,
+            origen=origen
+        )
+        actividad.save()
+        return actividad

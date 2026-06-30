@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     # Apps propias
     'cabanas_apps.gestion_cabanas',
     'cabanas_apps.chatbot_app',
+    'cabanas_apps.registros',
     'cabanas_apps.reservas',
     'cabanas_apps.cabanas',
     'cabanas_apps.alquileres',
@@ -40,7 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_spectacular',
 
-    # 🔑 Extensiones útiles
+    #  Extensiones útiles
     'django_extensions',
 ]
 
@@ -90,20 +91,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'cabanas.wsgi.application'
 
 # Bases de datos
+
+    
 DATABASES = {
-    'default': {   # PostgreSQL
-        'ENGINE': os.getenv("DB_ENGINE", "django.db.backends.postgresql"),
-        'NAME': os.getenv("DB_NAME", "api_db"),
-        'USER': os.getenv("DB_USER", "carolina"),
-        'PASSWORD': os.getenv("DB_PASSWORD", "superseguro"),
-        'HOST': os.getenv("DB_HOST", "localhost"),
-        'PORT': os.getenv("DB_PORT", "5432"),
-    },
-    'sqlite': {    # SQLite
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 # Validación de contraseñas
 AUTH_PASSWORD_VALIDATORS = [

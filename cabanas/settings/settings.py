@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     # Apps propias
     'cabanas_apps.gestion_cabanas',
     'cabanas_apps.chatbot_app',
+    'cabanas_apps.registros',
     'cabanas_apps.reservas',
     'cabanas_apps.cabanas',
     'cabanas_apps.alquileres',
@@ -104,7 +105,7 @@ TIME_ZONE = 'America/Argentina/Cordoba'
 USE_I18N = True
 USE_TZ = True
 
-# 📁 ARCHIVOS ESTÁTICOS Y MEDIA: RUTAS RELATIVAS
+#  ARCHIVOS ESTÁTICOS Y MEDIA: RUTAS RELATIVAS
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / "static"]

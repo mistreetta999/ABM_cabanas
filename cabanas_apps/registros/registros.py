@@ -1,7 +1,14 @@
-# registros.py
+""" archivo de registros de actividad   """
 from django.db import models
+class Registos:
+    """ class registros"""
+    def __init__(self, usuario, accion, detalle=None):
+        self.usuario = usuario
+        self.accion = accion
+        self.detalle = detalle
 
 class RegistroActividad(models.Model):
+    """ class registro de actividad"""
     usuario = models.CharField(max_length=100)
     accion = models.CharField(max_length=200)
     fecha = models.DateTimeField(auto_now_add=True)

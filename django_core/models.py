@@ -4,14 +4,28 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Sum
-from django.db.models import BooleanField
-
 from cabanas_apps.chatbot_app.models import ChatbotResponse
-
-from cabanas_api.views import clientes
 from pathlib import Path
 
 directories = Path(".").parents
+
+
+class Publisher:
+    
+    """ esta clase es del publisher"""
+    
+    def __init__(self, name):
+        self.name = name
+    
+    def publish(self, message):
+        """ este metodo es para publicar"""
+        print(f"{self.name} published: {message}")
+
+    class Meta:
+        """ Metadatos del modelo Publisher """
+        verbose_name = "Publisher"
+        verbose_name_plural = "Publishers"
+
 
 class Chatbot(models.Model):
     """ esta clase es del chatbot"""
@@ -24,6 +38,10 @@ class Chatbot(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100, default="Chatbot Cabanas")
     descripcion = models.TextField(blank=True, null=True)
+    class Meta:
+        """ Metadatos del modelo Chatbot """
+        verbose_name = "Chatbot"
+        verbose_name_plural = "Chatbots"    
 
     def __str__(self) -> str:
         """ Representación en cadena del modelo Chatbot """
@@ -45,16 +63,16 @@ class Cabanas(models.Model):
     precio_base = models.DecimalField(max_digits=10, decimal_places=2)
     disponible = models.BooleanField(default=True)
     chatbot = models.ForeignKey(Chatbot, on_delete=models.SET_NULL, null=True, related_name="cabanas")
-
-    def __str__(self) -> str:
-        return f"{self.nombre} - Capacidad: {self.capacidad} - Precio: ${self.precio_base}"
     class Meta:
+
         """ Metadatos del modelo Cabanas """
         verbose_name = "Cabana"
         verbose_name_minuscula = "cabana"
         verbose_name_minuscula_plural   = "cabanas"
         verbose_name_plural = "Cabanas"
 
+    def __str__(self) -> str:
+        return f"{self.nombre} - Capacidad: {self.capacidad} - Precio: ${self.precio_base}"
 
 class Cliente(models.Model):
     """ esta clase es del cliente"""
@@ -94,7 +112,7 @@ class Alquileres(models.Model):
     precio_total = models.DecimalField(max_digits=10, decimal_places=2)
     chatbot = models.ForeignKey(Chatbot, on_delete=models.SET_NULL, null=True, related_name="reservas")
     Cabanas=models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="alquileres")
-    estado = booleanField(default=False, choices=[(True, "Aceptada"), (False, "Pendiente")])
+    estado = models.BooleanField(default=False, choices=[(True, "Aceptada"), (False, "Pendiente")])
     def acepar_reserva(self):
         """ Método para aceptar la reserva. """
         self.estado = "aceptada"
@@ -121,7 +139,12 @@ class Alquileres(models.Model):
 
         if reservas_solapadas.exists():
             raise ValidationError(_("La Cabana ya está reservada para las fechas seleccionadas."))
-
+    class Meta:
+        """ Metadatos del modelo Alquileres """
+        verbose_name = "Alquiler"
+        verbose_name_minuscula = "alquiler"
+        verbose_name_minuscula_plural = "alquileres"
+        verbose_name_plural = "Alquileres"
     def __str__(self) -> str:
         return f"Reserva {self.id}"
 
@@ -129,7 +152,7 @@ class Alquileres(models.Model):
 class Reserva(models.Model):
     id = models.AutoField(primary_key=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="reservas")
-    cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE, related_name="reservas")
+    cabana = models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="reservas")
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
     cantidad_clientes = models.PositiveIntegerField(
@@ -157,17 +180,30 @@ class Reserva(models.Model):
 
         if reservas_solapadas.exists():
             raise ValidationError(_("La Cabana ya está reservada para las fechas seleccionadas."))
-
+    class Meta:
+        """ Metadatos del modelo Reserva """
+        verbose_name = "Reserva"
+        verbose_name_minuscula = "reserva"
+        verbose_name_minuscula_plural = "reservas"
+        verbose_name_plural = "Reservas"
+   
     def __str__(self) -> str:
         return f"Reserva {self.id}"
 
 
 class RegistroDiario(models.Model):
     id = models.AutoField(primary_key=True)
-    cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE, related_name="registros")
+    cabana = models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="registros")
     fecha = models.DateField()
     observaciones = models.TextField(blank=True, null=True)
     chatbot = models.ForeignKey(Chatbot, on_delete=models.SET_NULL, null=True, related_name="registros")
+
+    class Meta:
+        """ Metadatos del modelo RegistroDiario """
+        verbose_name = "Registro Diario"
+        verbose_name_minuscula = "registro_diario"
+        verbose_name_minuscula_plural = "registros_diarios"
+        verbose_name_plural = "Registros Diarios"
 
     def __str__(self) -> str:
         return f"Registro {self.id} - {self.fecha}"
@@ -180,6 +216,13 @@ class Factura(models.Model):
     monto_total = models.DecimalField(max_digits=10, decimal_places=2)
     pagada = models.BooleanField(default=False)
     chatbot = models.ForeignKey(Chatbot, on_delete=models.SET_NULL, null=True, related_name="facturas")
+
+    class Meta:
+        """ Metadatos del modelo Factura """
+        verbose_name = "Factura"
+        verbose_name_minuscula = "factura"
+        verbose_name_minuscula_plural = "facturas"
+        verbose_name_plural = "Facturas"
 
     def __str__(self) -> str:
         return f"Factura {self.id}"
@@ -199,6 +242,13 @@ class Pago(models.Model):
         ],
     )
     chatbot = models.ForeignKey(Chatbot, on_delete=models.SET_NULL, null=True, related_name="pagos")
+    class Meta:
+        """ Metadatos del modelo Pago """
+        verbose_name = "Pago"
+        verbose_name_minuscula = "pago"
+        verbose_name_minuscula_plural = "pagos"
+        verbose_name_plural = "Pagos"
+  
 
     def __str__(self) -> str:
         return f"Pago {self.id}"

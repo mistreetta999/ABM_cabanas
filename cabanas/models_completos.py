@@ -2,8 +2,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db import models
-
 from django.core.validators import RegexValidator
+class Publisher:
+    """ esta clase es del publisher"""
+    def __init__(self, name):
+        self.name = name
+
+    def publish(self, message):
+        """ este metodo es para publicar"""
+        print(f"{self.name} published: {message}")
 class Cabana(models.Model):
     """ Modelo que representa una cabaña """
     id = models.AutoField(primary_key=True)  # clave primaria automática
@@ -17,7 +24,8 @@ class Cabana(models.Model):
         verbose_name = "Cabaña"
         verbose_name_plural = "Cabañas"
     def __str__(self):
-        return self.nombre
+        return (f"{self.nombre} - Capacidad: {self.capacidad} - Precio por noche: {self.precio_por_noche}")
+    
 class Cliente(models.Model):
     """ Modelo que representa un cliente """
     id = models.AutoField(primary_key=True)  # clave primaria automática

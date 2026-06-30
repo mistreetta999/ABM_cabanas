@@ -1,8 +1,11 @@
+""" archivo de modelo para pagos """
 from django.db import models
-from cabanas_apps.clientes.models import Cliente
-from cabanas_apps.alquileres.models import Alquiler
+from cabanas_api.models.clientes import Cliente
+from cabanas_api.models.alquileres import Alquiler
+from . import models
 
 class Pago(models.Model):
+    """ Modelo para representar un pago realizado por un cliente en la aplicación Django. """
     METODO_CHOICES = [
         ('efectivo', 'Efectivo'),
         ('tarjeta', 'Tarjeta'),
