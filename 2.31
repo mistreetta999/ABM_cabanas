@@ -1,5 +1,0 @@
-Requirement already satisfied: requests in C:\Users\carol\AppData\Local\Programs\Python\Python314\Lib\site-packages (2.34.0)
-Requirement already satisfied: charset_normalizer<4,>=2 in C:\Users\carol\AppData\Local\Programs\Python\Python314\Lib\site-packages (from requests) (3.4.7)
-Requirement already satisfied: idna<4,>=2.5 in C:\Users\carol\AppData\Local\Programs\Python\Python314\Lib\site-packages (from requests) (3.13)
-Requirement already satisfied: urllib3<3,>=1.26 in C:\Users\carol\AppData\Local\Programs\Python\Python314\Lib\site-packages (from requests) (2.6.3)
-Requirement already satisfied: certifi>=2023.5.7 in C:\Users\carol\AppData\Local\Programs\Python\Python314\Lib\site-packages (from requests) (2026.4.22)

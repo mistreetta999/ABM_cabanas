@@ -4,22 +4,73 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path
+from django.contrib import admin
+from django.shortcuts import render
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import StaticViewSitemap, CabanaSitemap, AlquilerSitemap, PagoSitemap
 
 from cabanas_apps.gestion_cabanas.sitemaps import (AlquilerSitemap,
                                                    CabanaSitemap, PagoSitemap,
                                                    StaticViewSitemap)
 
+from django.contrib import admin
+from django.urls import path
 from . import views
 
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("panel/", views.panel_django, name="panel_django"),
+
+    # Clientes
+    path("clientes/", views.cliente_list, name="cliente_list"),
+    path("clientes/nuevo/", views.cliente_create, name="cliente_create"),
+
+    # Reservas
+    path("reservas/", views.reserva_list, name="reserva_list"),
+    path("reservas/nueva/", views.reserva_create, name="reserva_create"),
+
+    # Alquileres
+    path("alquileres/", views.alquiler_list, name="alquiler_list"),
+    path("alquileres/nuevo/", views.alquiler_create, name="alquiler_create"),
+
+    # Pagos
+    path("pagos/", views.pago_list, name="pago_list"),
+    path("pagos/nuevo/", views.pago_create, name="pago_create"),
+
+    # Registros
+    path("registros/", views.registro_list, name="registro_list"),
+    path("registros/nuevo/", views.registro_create, name="registro_create"),
+]
+
+
+
+
+from . import views
+def panel_django(request):
+    return render(request, "panel_django.html")
+def dashboard(request):
+    return render(request, "dashboard.html")
+def pagina_principal(request):
+    return render(request, "pagina_principal.html")
+def gestion(request):
+    return render(request, "gestion.html")
+def clientes(request):
+    return render(request, "clientes.html")
+def sitemap(request):
+    return render(request, "sitemap.xml", content_type="application/xml")
 sitemaps = {
     "static": StaticViewSitemap,
     "cabanas": CabanaSitemap,
     "alquileres": AlquilerSitemap,
     "pagos": PagoSitemap,
+    
 }
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("panel/", panel_django, name="panel_django"),
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap"),
     path("", include("cabanas_apps.gestion_cabanas.urls")),
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps},
          name="django.contrib.sitemaps.views.sitemap"),
