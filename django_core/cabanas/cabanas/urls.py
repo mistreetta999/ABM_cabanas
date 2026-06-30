@@ -13,8 +13,16 @@ urlpatterns = [
     path('nueva/', views.CabanaCreateView.as_view(), name='cabanas_create'),
 
     # Editar cabaña existente
-    path('<int:pk>/editar/', views.CabanaUpdateView.as_view(), name='cabanas_update'),
+    path(
+        '<int:pk>/editar/',
+        views.CabanaUpdateView.as_view(),
+        name='cabanas_update'
+    ),
 
     # Eliminar cabaña
-    path('<int:pk>/eliminar/', views.CabanaDeleteView.as_view(), name='cabanas_delete'),
+    path(
+        '<int:pk>/eliminar/',
+        views.CabanaDeleteView.as_view(),
+        name='cabanas_delete'
+    ),
 ]

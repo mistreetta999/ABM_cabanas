@@ -3,6 +3,7 @@ Este archivo contiene las urls de la app cabanas.
 """
 from django.urls import path, include
 from django.contrib import admin
+from . import views
 from .views import (
     AlquilerCreateView, AlquilerDeleteView, AlquilerListView, AlquilerUpdateView,
     CabanaCreateView, CabanaDeleteView, CabanaListView, CabanaUpdateView,

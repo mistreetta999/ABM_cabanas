@@ -1,3 +1,4 @@
+""" Configuración de la aplicación Registros."""
 from django.apps import AppConfig
 
 class RegistrosConfig(AppConfig):

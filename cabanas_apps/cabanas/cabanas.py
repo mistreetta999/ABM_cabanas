@@ -1,3 +1,4 @@
+""" módulo de vistas para la aplicación de gestión de Cabanas."""
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Cabana
 

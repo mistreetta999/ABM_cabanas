@@ -10,10 +10,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Seguridad
 SECRET_KEY = 'django-insecure-reemplaza-esto-con-tu-clave'
-DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = False
 
-# Apps instaladas
+ALLOWED_HOSTS: list[str] = ['127.0.0.1', 'localhost']
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -26,17 +26,6 @@ INSTALLED_APPS = [
     'cabanas_apps.registros',
     'cabanas',  # app principal
     'chatbot',  # app de chatbot
-    'cabanas_apps.clientes',
-    'cabanas_apps.reservas',
-    'cabanas_apps.registros',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.django_db',
-    
 ]
 
 # Middlewares
@@ -72,6 +61,7 @@ WSGI_APPLICATION = 'cabanas_project.wsgi.application'
 ASGI_APPLICATION = 'cabanas_project.asgi.application'
 
 # Base de datos local (SQLite)
+# Base de datos (SQLite)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -81,10 +71,30 @@ DATABASES = {
 
 # Configuración de usuarios y autenticación
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+    {
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'UserAttributeSimilarityValidator'
+        )
+    },
+    {
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'MinimumLengthValidator'
+        )
+    },
+    {
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'CommonPasswordValidator'
+        )
+    },
+    {
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'NumericPasswordValidator'
+        )
+    },
 ]
 
 # Idioma y zona horaria
@@ -104,9 +114,10 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / "db.sqlite3",
-    }
-}
+# 📁 ARCHIVOS ESTÁTICOS Y MEDIA: RUTAS RELATIVAS
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

@@ -60,8 +60,11 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 # Configuración de seguridad básica
 SECRET_KEY = 'cambia-esta-clave-por-una-segura'
-DEBUG = True
-ALLOWED_HOSTS = []
+ DEBUG = False
+
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
 # settings.py
 
 

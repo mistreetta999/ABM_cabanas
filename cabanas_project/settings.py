@@ -4,8 +4,10 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "django-insecure-reemplaza-esto-con-tu-clave"
-DEBUG = True
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "testserver", ".onrender.com"]
+DEBUG = False
+
+ALLOWED_HOSTS: list[str] = ['127.0.0.1', 'localhost']
+
 
 INSTALLED_APPS = [
     "django_core",
@@ -24,7 +26,6 @@ INSTALLED_APPS = [
     "DATABASE",
     "Template",
     "registros",
-    
     
 ]
 
@@ -66,10 +67,30 @@ DATABASES = {
 }
 
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+    {
+        "NAME": (
+            "django.contrib.auth.password_validation"
+            ".UserAttributeSimilarityValidator"
+        )
+    },
+    {
+        "NAME": (
+            "django.contrib.auth.password_validation"
+            ".MinimumLengthValidator"
+        )
+    },
+    {
+        "NAME": (
+            "django.contrib.auth.password_validation"
+            ".CommonPasswordValidator"
+        )
+    },
+    {
+        "NAME": (
+            "django.contrib.auth.password_validation"
+            ".NumericPasswordValidator"
+        )
+    },
 ]
 
 LANGUAGE_CODE = "es-ar"

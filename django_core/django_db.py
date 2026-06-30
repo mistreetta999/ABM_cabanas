@@ -5,12 +5,13 @@ Permite alternar entre SQLite3 (desarrollo) y PostgreSQL (producción).
 
 import os
 from pathlib import Path
-DATABASE_ROUTERS = ['cabanas_project.db.DatabaseRouter']
-# django_core/db.py
 from django_core.conf.setting  import settings
 from django_core.models import Models, Chatbot, CharField, Cabana ,Cliente, Reserva, RegistroDiario, Factura, Pago, clean, save, __str__, __init__, __repr__, __eq__, __ne__, __hash__  
 
 from django.db import connections, DEFAULT_DB_ALIAS
+
+DATABASE_ROUTERS = ['cabanas_project.db.DatabaseRouter']
+# django_core/db.py
 
 class Database:
     """

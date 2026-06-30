@@ -3,19 +3,20 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Cargar variables de entorno
+# Cargar variables de entorno desde .env
 load_dotenv()
 
-# RUTA BASE DEL PROYECTO: AUTOMÁTICA, NO DEPENDE DE ONEDRIVE
+# Base directory del proyecto
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Seguridad
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-dev-key")
-DEBUG = os.getenv("DEBUG", "True") == "True"
 DEBUG = False
 
-ALLOWED_HOSTS: list[str] = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
+
+# Aplicaciones instaladas
 INSTALLED_APPS = [
     # Django apps por defecto
     'django.contrib.admin',
@@ -35,14 +36,26 @@ INSTALLED_APPS = [
     'cabanas_apps.pagos',
     'cabanas_apps.registros',
 
-    # Django REST Framework
+    # Django REST Framework y drf-spectacular
     'rest_framework',
     'drf_spectacular',
 
-    # Extensiones
+    # 🔑 Extensiones útiles
     'django_extensions',
 ]
 
+# Configuración de DRF + drf-spectacular
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Gestión de Cabañas API',
+    'DESCRIPTION': 'Documentación de la API para reservas, clientes y cabañas',
+    'VERSION': '1.0.0',
+}
+
+# Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -53,12 +66,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'gestion_cabanas.urls'
+# URLs principales
+ROOT_URLCONF = 'cabanas.urls'
 
+# Templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],  # Ruta relativa
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,66 +86,46 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'gestion_cabanas.wsgi.application'
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
 
-# 📂 BASE DE DATOS: RUTA RELATIVA, NO FIJA A ONEDRIVE
+# Bases de datos
 DATABASES = {
-    'default': {
+    'default': {   # PostgreSQL
+        'ENGINE': os.getenv("DB_ENGINE", "django.db.backends.postgresql"),
+        'NAME': os.getenv("DB_NAME", "api_db"),
+        'USER': os.getenv("DB_USER", "carolina"),
+        'PASSWORD': os.getenv("DB_PASSWORD", "superseguro"),
+        'HOST': os.getenv("DB_HOST", "localhost"),
+        'PORT': os.getenv("DB_PORT", "5432"),
+    },
+    'sqlite': {    # SQLite
         'ENGINE': 'django.db.backends.sqlite3',
-        # Se crea automáticamente en la carpeta del proyecto
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
+# Validación de contraseñas
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': (
-            'django.contrib.auth.password_validation.'
-            'UserAttributeSimilarityValidator'
-        )
-    },
-    {
-        'NAME': (
-            'django.contrib.auth.password_validation.'
-            'MinimumLengthValidator'
-        )
-    },
-    {
-        'NAME': (
-            'django.contrib.auth.password_validation.'
-            'CommonPasswordValidator'
-        )
-    },
-    {
-        'NAME': (
-            'django.contrib.auth.password_validation.'
-            'NumericPasswordValidator'
-        )
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
+# Internacionalización
 LANGUAGE_CODE = 'es-ar'
 TIME_ZONE = 'America/Argentina/Cordoba'
 USE_I18N = True
 USE_TZ = True
 
-# 📁 ARCHIVOS ESTÁTICOS Y MEDIA: RUTAS RELATIVAS
+# Archivos estáticos
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
+# Archivos multimedia
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# Configuración por defecto
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Configuración DRF
-REST_FRAMEWORK = {
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
-}
-
-SPECTACULAR_SETTINGS = {
-    'TITLE': 'Gestión de Cabañas API',
-    'DESCRIPTION': 'Documentación de la API para reservas y gestión',
-    'VERSION': '1.0.0',
-}

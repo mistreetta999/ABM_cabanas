@@ -1,8 +1,8 @@
 @echo off
 set "PROJECT_DIR=C:\Users\carol\OneDrive\Desktop\proyecto_gestion_cabanas"
 set "PYTHON_EXE=%PROJECT_DIR%\.venv\Scripts\python.exe"
-set "PAGINA=http://127.0.0.1:8000/pagina_principal/"
-set "GESTION=http://127.0.0.1:8000/gestion/"
+set "PAGINA=http://127.0.0.1:8000/pagina_principal.html/"
+set "GESTION_DJANGO=http://127.0.0.1:8000/gestion/"
 
 rem Liberar puerto 8000 si está ocupado
 for /f "tokens=5" %%a in ('netstat -ano ^| findstr :8000') do (
@@ -17,4 +17,4 @@ timeout /t 3 >nul
 
 rem Abrir páginas en el navegador
 start "" "%PAGINA%"
-start "" "%GESTION%"
+start "" "%GESTION_DJANGO%"

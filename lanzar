@@ -19,3 +19,44 @@ python manage.py clean_pyc
 Get-ChildItem -Recurse -Include *.pyc,__pycache__ | Remove-Item -Recurse -Force
 python manage.py migrate --database=default   # PostgreSQL
 python manage.py migrate --database=sqlite    # SQLite
+# Borrar archivos .pyc
+Get-ChildItem -Path . -Filter *.pyc -Recurse | Remove-Item -Force
+
+# Borrar carpetas __pycache__
+Get-ChildItem -Path . -Name __pycache__ -Recurse -Directory | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
+# Definir rutas explícitas
+$env:PYTHONPATH = "C:\Users\carol\OneDrive\Desktop\cabanas"
+$env:DJANGO_SETTINGS_MODULE = "gestion_cabanas.settings"
+
+# Verificar Django
+python -c "import django; print('✅ Django versión:', django.__version__)"
+
+# Prueba definitiva
+python manage.py check
+# Copiar todo el proyecto a una ruta normal, sin sincronización
+xcopy "C:\Users\carol\OneDrive\Desktop\cabanas" "C:\cabanas" /E /I /H /K /Y
+
+# Ir a la nueva ubicación
+cd C:\cabanas
+
+# Activar el entorno
+.\venv\Scripts\Activate.ps1
+# Ruta raíz correcta
+$env:PYTHONPATH = "C:\cabanas"
+$env:DJANGO_SETTINGS_MODULE = "gestion_cabanas.settings"
+python -c "import gestion_cabanas; print('✅ Módulo encontrado')"
+python manage.py check
+pip install django-extensions ipython jupyter
+python manage.py shell_plus --notebook
+# Crear archivo vacío __init__.py dentro de gestion_cabanas
+New-Item -Path gestion_cabanas\__init__.py -ItemType File -Force
+# Copiar todo el proyecto a una ruta normal, sin sincronización
+xcopy "C:\Users\carol\OneDrive\Desktop\cabanas" "C:\cabanas" /E /I /H /K /Y
+
+# Ir a la nueva ubicación
+cd C:\cabanas
+
+# Activar el entorno virtual
+.\venv\Scripts\Activate.ps1
+pip install django-extensions ipython jupyter
+python manage.py shell_plus --notebook

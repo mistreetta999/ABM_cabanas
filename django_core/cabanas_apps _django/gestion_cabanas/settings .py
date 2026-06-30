@@ -1,3 +1,4 @@
+"""settings para el proyecto Cabañas."""
 from pathlib import Path
 import os
 
@@ -6,8 +7,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Seguridad
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "clave-super-secreta")
-DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = False
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
 
 # Aplicaciones instaladas
 INSTALLED_APPS = [

@@ -1,4 +1,4 @@
-# django_core/db.py
+"""Módulo de utilidad para la gestión de la base de datos."""
 
 from django.conf import settings
 from django.db import connections, DEFAULT_DB_ALIAS

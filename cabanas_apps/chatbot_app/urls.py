@@ -4,9 +4,7 @@ from django.urls import path
 from . import views   # el punto indica "desde esta carpeta"
 
 
-APP_NAME = "chatbot"
-
-
+app_name = ["chatbot"]
 
 urlpatterns = [
     path("chatbot/panel/", views.chatbot_panel, name="chatbot_panel"),
