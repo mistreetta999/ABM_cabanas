@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'cabanas_apps.alquileres',
     'cabanas_apps.clientes',
     'cabanas_apps.pagos',
-    'cabanas_apps.registros',
 
     # Django REST Framework y drf-spectacular
     'rest_framework',

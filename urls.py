@@ -1,116 +1,42 @@
-from . import viewsSTATIC_URL = "/static/"
-from django_core import viewsSTATIC_URL = "/static/"
-from django.urls import path, includeSTATIC_URL = "/static/"
-from django.contrib import adminSTATIC_URL = "/static/"
-""" archivo urls cabanas"""STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+from django.contrib import admin
+from django.urls import path, include
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+urlpatterns = [
+    # Administración Django
+    path("admin/", admin.site.urls),
 
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
+    # Punto de entrada de gestión
+    path("gestion/", include("cabanas_apps.gestion_cabanas.urls")),
 
-STATICFILES_DIRS = [BASE_DIR / "static"]
+    # Interfaz principal
+    path("interfaz/", include("cabanas_apps.interfaz_gestion_cabanas.urls")),
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+    # Apps del sistema de cabañas
+    path("cabanas/", include("cabanas_apps.cabanas.urls")),
+    path("reservas/", include("cabanas_apps.reservas.urls")),
+    path("alquileres/", include("cabanas_apps.alquileres.urls")),
+    path("pagos/", include("cabanas_apps.pagos.urls")),
+    path("registros/", include("cabanas_apps.registros.urls")),
+    path("chatbot/", include("cabanas_apps.chatbot_app.urls")),
+    path("template/", include("cabanas_apps.template_app.urls")),
+    path("interfaz_gestion_cabanas/", include("cabanas_apps.interfaz_gestion_cabanas.urls")),
+    path("gestion_cabanas/", include("cabanas_apps.gestion_cabanas.urls")),
+    path("clientes/", include("cabanas_apps.clientes.urls")),
+    path("pagina_principal/", include("cabanas_apps.pagina_principal.urls")),
+    path("formulario/", include("cabanas_apps.formulario.urls"))
+    
+]
 
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
 
-STATICFILES_DIRS = [BASE_DIR / "static"]
+urlpatterns = [
+    # Administración Django
+    path("admin/", admin.site.urls),
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+    # Punto de entrada de gestión
+    path("gestion/", include("cabanas_apps.gestion_cabanas.urls")),
 
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
+    # Interfaz principal
+    path("interfaz/", include("cabanas_apps.interfaz_gestion_cabanas.urls")),
 
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-urlpatterns = [STATIC_URL = "/static/"
-               STATICFILES_DIRS= [BASE_DIR / "static"]
-
-               MEDIA_URL= "/media/"
-               MEDIA_ROOT= BASE_DIR / "media"
-
-               # WSGI
-               WSGI_APPLICATION= 'cabanas.wsgi.application'
-
-               path("admin/", admin.site.urls), STATIC_URL = "/static/"
-               STATICFILES_DIRS = [BASE_DIR / "static"]
-
-               MEDIA_URL = "/media/"
-               MEDIA_ROOT = BASE_DIR / "media"
-
-               # WSGI
-               WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-               path("pagina_principal/", views.pagina_principal, name="pagina_principal"), STATIC_URL = "/static/"
-               STATICFILES_DIRS = [BASE_DIR / "static"]
-
-               MEDIA_URL = "/media/"
-               MEDIA_ROOT = BASE_DIR / "media"
-
-               # WSGI
-               WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-               path("gestion/", views.gestion, name="gestion"), STATIC_URL = "/static/"
-               STATICFILES_DIRS = [BASE_DIR / "static"]
-
-               MEDIA_URL = "/media/"
-               MEDIA_ROOT = BASE_DIR / "media"
-
-               # WSGI
-               WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-               path("chatbot/", include("chatbot.urls", namespace="chatbot")), STATIC_URL = "/static/"
-               STATICFILES_DIRS = [BASE_DIR / "static"]
-
-               MEDIA_URL = "/media/"
-               MEDIA_ROOT = BASE_DIR / "media"
-
-               # WSGI
-               WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-               ]STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
+ 
+]

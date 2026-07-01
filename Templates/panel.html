@@ -1,0 +1,32 @@
+{% extends "bas.html" %}
+{% block content %}
+<h2>Gestión de Cabañas</h2>
+
+<h3>Cabañas</h3>
+<ul>
+{% for cabana in cabanas %}
+    <li>{{ cabana.nombre }} - Capacidad: {{ cabana.capacidad }}</li>
+{% endfor %}
+</ul>
+
+<h3>Reservas</h3>
+<ul>
+{% for reserva in reservas %}
+    <li>Reserva {{ reserva.pk }} - Cliente: {{ reserva.cliente.nombre }}</li>
+{% endfor %}
+</ul>
+
+<h3>Alquileres</h3>
+<ul>
+{% for alquiler in alquileres %}
+    <li>Alquiler {{ alquiler.pk }} - Estado: {{ alquiler.estado }}</li>
+{% endfor %}
+</ul>
+
+<h3>Pagos</h3>
+<ul>
+{% for pago in pagos %}
+    <li>Pago {{ pago.pk }} - Monto: {{ pago.monto }}</li>
+{% endfor %}
+</ul>
+{% endblock %}

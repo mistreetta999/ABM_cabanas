@@ -17,7 +17,7 @@ class Cliente(models.Model):
     email = models.EmailField(unique=True)
 
     class Meta:
-        db_table = "clientes"
+        """ class meta para el nombre"""
         verbose_name = "Cliente"
         verbose_name_plural = "Clientes"
     def __str__(self):

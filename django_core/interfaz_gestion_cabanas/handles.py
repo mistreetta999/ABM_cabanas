@@ -1,5 +1,5 @@
 
-""""handles.py: Módulo que contiene las funciones de manejo de vistas para la interfaz de gestión de cabañas.   """
+""""handles Módulo que contiene las funciones de manejo de vistas para la interfaz de gestión de cabañas.   """
 from django.shortcuts import render
 
 def pagina_principal_html(request):
