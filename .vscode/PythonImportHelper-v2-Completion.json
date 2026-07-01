@@ -4498,7 +4498,7 @@
         "kind": 5,
         "importPath": "cabanas.settings",
         "description": "cabanas.settings",
-        "peekOfCode": " DEBUG = False
+        "peekOfCode": " DEBUG = True
 
 \nALLOWED_HOSTS = []\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    # Apps propias",
         "detail": "cabanas.settings",
@@ -6104,7 +6104,7 @@
         "kind": 5,
         "importPath": "cabanas_project.settings",
         "description": "cabanas_project.settings",
-        "peekOfCode": " DEBUG = False
+        "peekOfCode": " DEBUG = True
 
 \nALLOWED_HOSTS = [\"127.0.0.1\", \"localhost\", \"testserver\", \".onrender.com\"]\nINSTALLED_APPS = [\n    \"django_core\",\n    \"django_local\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",",
         "detail": "cabanas_project.settings",
@@ -8266,7 +8266,7 @@
         "kind": 5,
         "importPath": "django_core.config.settings",
         "description": "django_core.config.settings",
-        "peekOfCode": " DEBUG = False
+        "peekOfCode": " DEBUG = True
 
 \nALLOWED_HOSTS = []\n# Apps instaladas\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
         "detail": "django_core.config.settings",
@@ -8956,7 +8956,7 @@ ps:lista_cabanas\")\n    return render(\n        request,\n        \"confirma_bo
         "kind": 5,
         "importPath": "django_core.config",
         "description": "django_core.config",
-        "peekOfCode": " DEBUG = False
+        "peekOfCode": " DEBUG = True
 
 \nALLOWED_HOSTS = []\n# settings.py\n# Instanciamos la configuración\nsettings = Settings()\n# Ruta base del proyecto\nBASE_DIR = Path(__file__).resolve().parent.parent\n# Seguridad\nSECRET_KEY = settings.SECRET_KEY\nDEBUG = settings.DEBUG",
         "detail": "django_core.config",
@@ -9402,7 +9402,7 @@ p',\n    'clientes',",
         "kind": 5,
         "importPath": "django_core.settings",
         "description": "django_core.settings",
-        "peekOfCode": " DEBUG = False
+        "peekOfCode": " DEBUG = True
 
 \nALLOWED_HOSTS = []\n# Aplicaciones instaladas\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
         "detail": "django_core.settings",
@@ -10054,7 +10054,7 @@ p',\n    'clientes',",
         "kind": 5,
         "importPath": "settings.settings",
         "description": "settings.settings",
-        "peekOfCode": " DEBUG = False
+        "peekOfCode": " DEBUG = True
 
 \nALLOWED_HOSTS = []\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'cabanas_api',",
         "detail": "settings.settings",
@@ -10274,7 +10274,7 @@ p',\n    'clientes',",
         "kind": 5,
         "importPath": "settings",
         "description": "settings",
-        "peekOfCode": " DEBUG = False
+        "peekOfCode": " DEBUG = True
 
 \nALLOWED_HOSTS = []\n# Aplicaciones instaladas\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
         "detail": "settings",

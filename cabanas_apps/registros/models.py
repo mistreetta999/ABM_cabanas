@@ -1,7 +1,9 @@
+""" registros/models"""
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.utils import timezone
 class Registro(models.Model):
+    """ Modelo para registrar acciones en el sistema de gestión de cabañas."""
     ACCIONES = [
         ('RESERVA', 'Reserva creada'),
         ('PAGO', 'Pago registrado'),
@@ -17,7 +19,7 @@ class Registro(models.Model):
     monto = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.get_accion_display()} - {self.fecha.strftime('%d/%m/%Y %H:%M')}"
+        return f"{self.accion} - {self.fecha.strftime('%d/%m/%Y %H:%M') if self.fecha else 'N/A'}"
 
     class Meta:
         verbose_name = "Registro"

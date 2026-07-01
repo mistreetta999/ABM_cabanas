@@ -6,13 +6,13 @@ from dotenv import load_dotenv
 # Cargar variables de entorno
 load_dotenv()
 
-#  RUTA BASE DEL PROYECTO: AUTOMÁTICA, NO DEPENDE DE ONEDRIVE
-BASE_DIR = Path(__file__).resolve().parent.parent
+#  RUTA BASE DEL PROYECTO
+#  Este archivo está en cabanas/settings/settings.py, por eso subimos 3 niveles.
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Seguridad
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-dev-key")
 DEBUG = os.getenv("DEBUG", "True") == "True"
-DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
@@ -25,24 +25,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Apps propias
-    'cabanas_apps.gestion_cabanas',
-    'cabanas_apps.chatbot_app',
-    'cabanas_apps.registros',
-    'cabanas_apps.reservas',
-    'cabanas_apps.cabanas',
-    'cabanas_apps.alquileres',
-    'cabanas_apps.clientes',
-    'cabanas_apps.pagos',
-    'cabanas_apps.registros',
+    # Apps propias (desactivadas temporalmente para levantar página principal sin errores)
 
-    # Django REST Framework
+    'cabanas_apps.interfaz_gestion_cabanas',
+    'cabanas_apps.clientes',
+    'cabanas_apps.cabanas',  
+    'cabanas_apps.reservas',
+    'cabanas_apps.alquileres',
+    'cabanas_apps.registros',
+    # Apps de terceros
     'rest_framework',
     'drf_spectacular',
-
-    # Extensiones
-    'django_extensions',
-]
+       
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,12 +48,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'gestion_cabanas.urls'
+ROOT_URLCONF = 'cabanas.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],  # Ruta relativa
+        'DIRS': [BASE_DIR / "templates", BASE_DIR / "Templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,7 +66,12 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'gestion_cabanas.wsgi.application'
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+WSGI_APPLICATION = 'cabanas.wsgi.application'
 
 #  BASE DE DATOS: RUTA RELATIVA, NO FIJA A ONEDRIVE
 DATABASES = {

@@ -1,115 +1,92 @@
-""" handles para busascar las aplicaciones de django """
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Cliente, Reserva, Alquiler, Pago, Registro
-from .forms import ClienteForm, ReservaForm, AlquilerForm, PagoForm, RegistroForm
+"""Handles (manejadores) principales de Django y Chatbot."""
+
+import json
+from django.http import JsonResponse, HttpRequest
+from django.shortcuts import render
+from django.template import loader
+from django.template.exceptions import TemplateDoesNotExist
+from django.views.decorators.csrf import csrf_exempt
 
 
-# Panel principal
-def panel_django(request):
-    """ Muestra el panel principal de la aplicación Django. """
-    return render(request, "panel_django.html")
-
-# --- CLIENTES ---
-
-
-def cliente_list(request):
-    """ Muestra la lista de clientes registrados en la aplicación Django. """
-    clientes = Cliente.objects.all()
-    return render(request, "clientes/list.html", {"clientes": clientes})
+def _render_with_fallback(request: HttpRequest, template_names: list[str]):
+    """Renderiza la primera plantilla disponible y usa pagina_principal como respaldo."""
+    for template_name in template_names:
+        try:
+            loader.get_template(template_name)
+            return render(request, template_name)
+        except TemplateDoesNotExist:
+            continue
+    return render(request, "pagina_principal.html")
 
 
-def cliente_create(request):
-    """ Permite crear un nuevo cliente en la aplicación Django. """
-    form = ClienteForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect("cliente_list")
-    return render(request, "clientes/form.html", {"form": form})
+def pagina_principal(request: HttpRequest):
+    """Render de la página principal aprobada."""
+    return render(request, "pagina_principal.html")
 
 
-def cliente_edit(request, pk):
-    """ Permite editar un cliente existente en la aplicación Django. """
-    cliente = get_object_or_404(Cliente, pk=pk)
-    form = ClienteForm(request.POST or None, instance=cliente)
-    if form.is_valid():
-        form.save()
-        return redirect("cliente_list")
-    return render(request, "clientes/form.html", {"form": form})
+def gestion_cabanas(request: HttpRequest):
+    """Handle directo para el acceso didáctico principal."""
+    return render(request, "pagina_principal.html")
 
 
-def cliente_delete(request, pk):
-    """ Permite borrar un cliente existente en la aplicación Django. """
-    _ = request
-    cliente = get_object_or_404(Cliente, pk=pk)
-    cliente.delete()
-    return redirect("cliente_list")
-
-# --- RESERVAS ---
+def panel_django(request: HttpRequest):
+    """Panel principal de gestión Django."""
+    return _render_with_fallback(request, ["cabanas_apps/panel_django.html", "pagina_principal.html"])
 
 
-def reserva_list(request):
-    """ Muestra la lista de reservas registradas en la aplicación Django. """
-    reservas = Reserva.objects.all()
-    return render(request, "reservas/list.html", {"reservas": reservas})
+def dashboard(request: HttpRequest):
+    return _render_with_fallback(request, ["cabanas_apps/panel_django.html", "pagina_principal.html"])
 
 
-def reserva_create(request):
-    """ Permite crear una nueva reserva en la aplicación Django. """
-    form = ReservaForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect("reserva_list")
-    return render(request, "reservas/form.html", {"form": form})
-
-# (similar para editar y borrar reservas)
-
-# --- ALQUILERES ---
+def clientes(request: HttpRequest):
+    return _render_with_fallback(request, ["clientes.html", "lista.html", "pagina_principal.html"])
 
 
-def alquiler_list(request):
-    """ Muestra la lista de alquileres registrados en la aplicación Django. """
-    alquileres = Alquiler.objects.all()
-    return render(request, "alquileres/list.html", {"alquileres": alquileres})
+def reservas(request: HttpRequest):
+    return _render_with_fallback(request, ["reservas.html", "pagina_principal.html"])
 
 
-def alquiler_create(request):
-    """ Permite crear un nuevo alquiler en la aplicación Django. """
-    form = AlquilerForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect("alquiler_list")
-    return render(request, "alquileres/form.html", {"form": form})
-
-# --- PAGOS ---
+def pagos(request: HttpRequest):
+    return _render_with_fallback(request, ["pagos.html", "consultas.html", "pagina_principal.html"])
 
 
-def pago_list(request):
-    """ Muestra la lista de pagos registrados en la aplicación Django. """
-    pagos = Pago.objects.all()
-    return render(request, "pagos/list.html", {"pagos": pagos})
+def cabanas(request: HttpRequest):
+    return _render_with_fallback(request, ["cabanas.html", "pagina_principal.html"])
 
 
-def pago_create(request):
-    """ Permite crear un nuevo pago en la aplicación Django. """
-    form = PagoForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect("pago_list")
-    return render(request, "pagos/form.html", {"form": form})
-
-# --- REGISTROS ---
+def alquileres(request: HttpRequest):
+    return _render_with_fallback(request, ["alquileres.html", "lista.html", "pagina_principal.html"])
 
 
-def registro_list(request):
-    """ Muestra la lista de registros registrados en la aplicación Django. """
-    registros = Registro.objects.all()
-    return render(request, "registros/list.html", {"registros": registros})
+def registros(request: HttpRequest):
+    return _render_with_fallback(request, ["registros.html", "consultas.html", "pagina_principal.html"])
 
 
-def registro_create(request):
-    """ Permite crear un nuevo registro en la aplicación Django. """
-    form = RegistroForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect("registro_list")
-    return render(request, "registros/form.html", {"form": form})
+def chatbot_home(request: HttpRequest):
+    """Interfaz HTML del chatbot (embebida por iframe)."""
+    return render(request, "chatbot/chatbot.html")
+
+
+@csrf_exempt
+def chatbot_api(request: HttpRequest):
+    """API simple del chatbot para consultas básicas."""
+    if request.method != "POST":
+        return JsonResponse({"reply": "Enviá una consulta para recibir información."})
+
+    try:
+        data = json.loads(request.body or "{}")
+    except json.JSONDecodeError:
+        data = {}
+
+    message = str(data.get("message", "")).lower()
+
+    if "precio" in message or "tarifa" in message:
+        reply = "Las tarifas dependen de fecha y cantidad de huéspedes. Escribinos al WhatsApp 3544562397."
+    elif "ubicacion" in message or "donde" in message or "dirección" in message:
+        reply = "Estamos en Mina Clavero, Córdoba, cerca del centro y balnearios principales."
+    elif "reserva" in message or "disponibilidad" in message:
+        reply = "Para reservas y disponibilidad, compartinos fecha, cantidad de personas y teléfono."
+    else:
+        reply = "Gracias por tu consulta. Puedo ayudarte con ubicación, tarifas y reservas."
+
+    return JsonResponse({"reply": reply})

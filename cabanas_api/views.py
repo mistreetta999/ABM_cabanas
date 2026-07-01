@@ -94,3 +94,19 @@ def generar_factura(request):
             referencia_id=factura.id
         )
         return JsonResponse({"id": factura.id, "mensaje": "Factura generada"})
+def obtener_actividades(request):
+    actividades = ActividadCabana.objects.all().order_by('-fecha')
+    actividades_list = [
+        {
+            "tipo": actividad.tipo,
+            "descripcion": actividad.descripcion,
+            "fecha": actividad.fecha,
+            "usuario": actividad.usuario,
+            "referencia_id": actividad.referencia_id
+        }
+        for actividad in actividades
+    ]
+    return JsonResponse({"actividades": actividades_list})
+def pagina_principal(request):
+    """Vista para la página principal."""
+    return JsonResponse({"mensaje": "Bienvenido a la página principal de Cabañas"})

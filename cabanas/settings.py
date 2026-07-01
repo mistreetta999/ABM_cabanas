@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Apps propias
+    'cabanas_apps.interfaz_gestion_cabanas', 
     'cabanas_apps.gestion_cabanas',
     'cabanas_apps.chatbot_app',
     'cabanas_apps.reservas',
@@ -40,7 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_spectacular',
 
-    # 🔑 Extensiones útiles
+    #  Extensiones útiles
     'django_extensions',
 ]
 
@@ -85,6 +86,12 @@ TEMPLATES = [
         },
     },
 ]
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # WSGI
 WSGI_APPLICATION = 'cabanas.wsgi.application'

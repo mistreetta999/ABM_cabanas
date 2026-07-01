@@ -5,6 +5,17 @@ from django.contrib import admin
 from django.http import HttpResponse, HttpRequest
 from django.urls import include, path
 
+from django.contrib import admin
+from django.urls import path
+from django.shortcuts import render
+
+def pagina_principal(request):
+    return render(request, "pagina_principal.html")
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", pagina_principal, name="pagina_principal"),
+]
 
 def robots_txt(request: HttpRequest) -> HttpResponse:
     """Genera el archivo robots.txt dinámicamente."""

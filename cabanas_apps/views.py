@@ -1,150 +1,1440 @@
-""" Vistas de la aplicación Cabañas."""
-from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-from .models import Cliente, Cabana, Reserva, Alquiler, Registro
-from django.shortcuts import render
+from django.shortcuts import renderSTATIC_URL = "/static/"
+from .models import Cliente, Cabana, Reserva, Alquiler, RegistroSTATIC_URL = "/static/"
+from django.urls import reverse_lazySTATIC_URL = "/static/"
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteViewSTATIC_URL = "/static/"
+""" Vistas de la aplicación Cabañas."""STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
-def pagina_principal(request):
-    return render(request, "pagina_principal.html")
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
 
 
-# Vista de inicio
+def pagina_principal(request): STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+return render(request, "pagina_principal.html")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+# Vista de inicioSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+
 class InicioView(TemplateView):
-    """ Vista para la página de inicio """
-    template_name = "inicio.html"
+    STATIC_URL = "/static/"
 
-# Panel genérico
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para la página de inicio """STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "inicio.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+# Panel genéricoSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+
 class PanelView(TemplateView):
-    """ Vista para el panel genérico """
-    template_name = "panel.html"
+    STATIC_URL = "/static/"
 
-# Clientes
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para el panel genérico """STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "panel.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+# ClientesSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+
 class ClienteListView(ListView):
-    """ Vista para listar los clientes """
-    model = Cliente
-    template_name = "clientes/list.html"
+    STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para listar los clientes """STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = ClienteSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "clientes/list.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
 
 class ClienteCreateView(CreateView):
-    """ Vista para crear un nuevo cliente """   
-    model = Cliente
-    fields = ["nombre", "email", "telefono"]
-    template_name = "clientes/form.html"
-    success_url = reverse_lazy("cliente_list")
+    STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para crear un nuevo cliente """   STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = ClienteSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+fields = ["nombre", "email", "telefono"]STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "clientes/form.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+success_url = reverse_lazy("cliente_list")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
 
 class ClienteUpdateView(UpdateView):
-    """ Vista para actualizar un cliente existente """  
-    model = Cliente
-    fields = ["nombre", "email", "telefono"]
-    template_name = "clientes/form.html"
-    success_url = reverse_lazy("cliente_list")
+    STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para actualizar un cliente existente """  STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = ClienteSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+fields = ["nombre", "email", "telefono"]STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "clientes/form.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+success_url = reverse_lazy("cliente_list")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
 
 class ClienteDeleteView(DeleteView):
-    """ Vista para eliminar un cliente existente """  
-    model = Cliente
-    template_name = "clientes/confirm_delete.html"  
-    success_url = reverse_lazy("cliente_list")
+    STATIC_URL = "/static/"
 
-# Cabanas
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para eliminar un cliente existente """  STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = ClienteSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "clientes/confirm_delete.html"  STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+success_url = reverse_lazy("cliente_list")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+# CabanasSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+
 class CabanaListView(ListView):
-    """ Vista para listar las cabañas """
-    model = Cabana
-    template_name = "cabanas/list.html"
+    STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para listar las cabañas """STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = CabanaSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "cabanas/list.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
 
 class CabanaCreateView(CreateView):
-    """ Vista para crear una nueva cabaña """
-    model = Cabana
-    fields = ["nombre", "capacidad", "precio_por_noche", "precio_por_cabana"]
-    template_name = "cabanas/form.html"
-    success_url = reverse_lazy("cabana_list")
+    STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para crear una nueva cabaña """STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = CabanaSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+fields = ["nombre", "capacidad", "precio_por_noche", "precio_por_cabana"]STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "cabanas/form.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+success_url = reverse_lazy("cabana_list")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
 
 class CabanaUpdateView(UpdateView):
-    """ Vista para actualizar una cabaña existente """
-    model = Cabana
-    fields = ["nombre", "capacidad", "precio_por_noche", "precio_por_cabana"]
-    template_name = "cabanas/form.html"
-    success_url = reverse_lazy("cabana_list")
+    STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para actualizar una cabaña existente """STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = CabanaSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+fields = ["nombre", "capacidad", "precio_por_noche", "precio_por_cabana"]STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "cabanas/form.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+success_url = reverse_lazy("cabana_list")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
 
 class CabanaDeleteView(DeleteView):
-    """ Vista para eliminar una cabaña existente """
-    model = Cabana
-    template_name = "cabanas/confirm_delete.html"
-    success_url = reverse_lazy("cabana_list")
+    STATIC_URL = "/static/"
 
-# Reservas
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para eliminar una cabaña existente """STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = CabanaSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "cabanas/confirm_delete.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+success_url = reverse_lazy("cabana_list")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+# ReservasSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+
 class ReservaListView(ListView):
-    """ Vista para listar las reservas """
-    model = Reserva
-    template_name = "reservas/list.html"
+    STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para listar las reservas """STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = ReservaSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "reservas/list.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
 
 class ReservaCreateView(CreateView):
-    
-    
-    model = Reserva
-    fields = ["cabana", "cliente", "fecha_inicio", "fecha_fin", "estado"]
-    template_name = "reservas/form.html"
-    success_url = reverse_lazy("reserva_list")
+    STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = ReservaSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+fields = ["cabana", "cliente", "fecha_inicio", "fecha_fin", "estado"]STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "reservas/form.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+success_url = reverse_lazy("reserva_list")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
 
 class ReservaUpdateView(UpdateView):
-    """ Vista para actualizar una reserva existente """
-    model = Reserva
-    fields = ["cabana", "cliente", "fecha_inicio", "fecha_fin", "estado"]
-    template_name = "reservas/form.html"
-    success_url = reverse_lazy("reserva_list")
+    STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para actualizar una reserva existente """STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = ReservaSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+fields = ["cabana", "cliente", "fecha_inicio", "fecha_fin", "estado"]STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "reservas/form.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+success_url = reverse_lazy("reserva_list")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
 
 class ReservaDeleteView(DeleteView):
-    model = Reserva
-    template_name = "reservas/confirm_delete.html"
-    success_url = reverse_lazy("reserva_list")
+    STATIC_URL = "/static/"
 
-# Alquileres
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = ReservaSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "reservas/confirm_delete.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+success_url = reverse_lazy("reserva_list")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+# AlquileresSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+
 class AlquilerListView(ListView):
-    """ Vista para listar los alquileres """
-    model = Alquiler
-    template_name = "alquileres/list.html"
+    STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para listar los alquileres """STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = AlquilerSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "alquileres/list.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
 
 class AlquilerCreateView(CreateView):
-    """ Vista para crear un nuevo alquiler """
-    model = Alquiler
-    fields = ["cabana", "cliente", "fecha_inicio", "fecha_fin", "precio_total", "pagado"]
-    template_name = "alquileres/form.html"
-    success_url = reverse_lazy("alquiler_list")
+    STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para crear un nuevo alquiler """STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = AlquilerSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+fields = ["cabana", "cliente", "fecha_inicio", "fecha_fin", "precio_total", "pagado"]STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "alquileres/form.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+success_url = reverse_lazy("alquiler_list")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
 
 class AlquilerUpdateView(UpdateView):
-    """ Vista para actualizar un alquiler existente """
-    model = Alquiler
-    fields = ["cabana", "cliente", "fecha_inicio", "fecha_fin", "precio_total", "pagado"]
-    template_name = "alquileres/form.html"
-    success_url = reverse_lazy("alquiler_list")
+    STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para actualizar un alquiler existente """STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = AlquilerSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+fields = ["cabana", "cliente", "fecha_inicio", "fecha_fin", "precio_total", "pagado"]STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "alquileres/form.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+success_url = reverse_lazy("alquiler_list")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
 
 class AlquilerDeleteView(DeleteView):
-    """ Vista para eliminar un alquiler existente """
-    model = Alquiler
-    template_name = "alquileres/confirm_delete.html"
-    success_url = reverse_lazy("alquiler_list")
+    STATIC_URL = "/static/"
 
-# Registros
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para eliminar un alquiler existente """STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = AlquilerSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "alquileres/confirm_delete.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+success_url = reverse_lazy("alquiler_list")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+# RegistrosSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+
 class RegistroListView(ListView):
-    """ Vista para listar los registros """
-    model = Registro
-    template_name = "registros/list.html"
+    STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para listar los registros """STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = RegistroSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "registros/list.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
 
 class RegistroCreateView(CreateView):
-    """ Vista para crear un nuevo registro """
-    model = Registro
-    fields = ["reserva", "cliente", "detalle"]
-    template_name = "registros/form.html"
-    success_url = reverse_lazy("registro_list")
+    STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para crear un nuevo registro """STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = RegistroSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+fields = ["reserva", "cliente", "detalle"]STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "registros/form.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+success_url = reverse_lazy("registro_list")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
 
 
 class RegistroUpdateView(UpdateView):
-    """ Vista para actualizar un registro existente """
-    model = Registro
-    fields = ["reserva", "cliente", "detalle"]
-    template_name = "registros/form.html"
-    success_url = reverse_lazy("registro_list")
+    STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para actualizar un registro existente """STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = RegistroSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+fields = ["reserva", "cliente", "detalle"]STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "registros/form.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+success_url = reverse_lazy("registro_list")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
 
 class RegistroDeleteView(DeleteView):
-    """ Vista para eliminar un registro existente """
-    model = Registro
-    template_name = "registros/confirm_delete.html"
-    success_url = reverse_lazy("registro_list")
+    STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" Vista para eliminar un registro existente """STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+model = RegistroSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+template_name = "registros/confirm_delete.html"STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+success_url = reverse_lazy("registro_list")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'

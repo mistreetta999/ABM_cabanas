@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Espindola Cabanas</title>
-    <link href="{% static 'css/local_bootstrap.css' %}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <style>
         /* Paleta de colores - Tonalidades de Verde */
@@ -166,30 +166,60 @@
             width: 100%;
         }
 
+        .galeria-secundaria {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
         @media (max-width: 768px) {
+            .container {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+
+            .display-4 {
+                font-size: 1.9rem;
+            }
+
+            .lead {
+                font-size: 1rem;
+            }
+
             .galeria-fotos {
                 grid-template-columns: 1fr;
+            }
+
+            .galeria-secundaria {
+                grid-template-columns: 1fr 1fr;
             }
 
             .foto-principal,
             .foto-secundaria {
                 height: 260px;
             }
+
+            .chatbot-iframe iframe {
+                height: 340px;
+            }
+
+            .chat-widget {
+                right: 10px;
+                left: 10px;
+                width: auto;
+                bottom: 10px;
+            }
+
+            .card-footer {
+                flex-direction: column;
+            }
+
+            .card-footer .btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
-<body>
-    {% block content %}
-    <!-- Aquí se cargan las vistas específicas -->
-    {% endblock %}
-
-    <!-- Scripts globales -->
-    <script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/clientes.js' %}"></script>
-    <script src="{% static 'js/reservas.js' %}"></script>
-    <script src="{% static 'js/pagos.js' %}"></script>
-    <script src="{% static 'js/alquileres.js' %}"></script>
-</body>
 <body>
 
     <header class="bg-verde-oscuro text-white text-center py-5 shadow">
@@ -197,39 +227,15 @@
             <h1 class="display-4 fw-bold">Espindola Cabanas</h1>
             <p class="lead mb-0">Tu refugio de paz y naturaleza en Mina Clavero, Cordoba</p>
         </div>
-   
-        
-        <nav>
-            <ul>
-                <li><a href="{% url 'dashboard' %}">Panel de Control</a></li>
-                <li><a href="{% url 'clientes' %}">Clientes</a></li>
-                <li><a href="{% url 'reservas' %}">Reservas</a></li>
-                <li><a href="{% url 'pagos' %}">Pagos</a></li>
-                <li><a href="{% url 'cabanas' %}">Cabañas</a></li>
-            </ul>
-        </nav>
-   
-   
-   
     </header>
 
     <main class="container flex-grow-1 my-5">
-        <p>Selecciona una opción del menú para comenzar.</p>
+
         <section class="galeria-fotos mb-5">
             <div class="foto-card shadow-sm">
                 <img src="{% static 'images/foto_principal.jpg.jpeg' %}" alt="Vista principal de las cabanas" class="galeria-img foto-principal">
                 <span class="foto-texto">Cabanas rodeadas de naturaleza</span>
             </div>
-            <!-- Sección del Chatbot en pagina_principal.html -->
-            <div class="chatbot-container" style="margin-top:20px;">
-                <h2>Chatbot</h2>
-                <iframe src="{% url 'chatbot:chatbot_home' %}" 
-                        width="100%" 
-                        height="400" 
-                        style="border:1px solid #ccc; border-radius:8px;">
-                </iframe>
-            </div>
-            
 
             <div class="d-grid gap-3">
                 <div class="foto-card shadow-sm">
@@ -248,11 +254,11 @@
             <div class="col-lg-10">
                 <div class="ubicacion-card shadow-sm p-4">
                     <h2 class="h4 text-verde-medio fw-bold mb-2">Ubicacion</h2>
-                    <p class="mb-3">Nos encontramos en Mina Clavero, Cordoba. La ubicacion queda visible para uso local sin conexion a internet.</p>
+                    <p class="mb-3">Nos encontramos en Mina Clavero, Cordoba. Abri la ubicacion en Google Maps para ver como llegar.</p>
                     <p class="fw-semibold mb-3">WhatsApp: 3544562397</p>
                     <div class="d-flex gap-3 flex-wrap">
-                        <span class="btn btn-verde px-4">Mina Clavero, Cordoba</span>
-                        <span class="btn btn-outline-success px-4">WhatsApp: 3544562397</span>
+                        <a href="https://maps.app.goo.gl/6R7NcDZgAeQNPnuG6" class="btn btn-verde px-4" target="_blank" rel="noopener noreferrer">Ver ubicacion en Google Maps</a>
+                        <a href="https://wa.me/5493544562397" class="btn btn-outline-success px-4" target="_blank" rel="noopener noreferrer">Enviar WhatsApp</a>
                     </div>
                 </div>
             </div>
@@ -262,6 +268,26 @@
             <div class="col-lg-10">
                 <div class="chatbot-iframe shadow-sm">
                     <iframe src="/chatbot/" width="100%" height="500" title="Chatbot de consultas"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section class="row justify-content-center mb-5" id="fotos">
+            <div class="col-lg-10">
+                <h2 class="h4 text-verde-medio fw-bold mb-3">Mas fotos de nuestras cabanas</h2>
+                <div class="galeria-secundaria">
+                    <div class="foto-card shadow-sm">
+                        <img src="{% static 'images/cabana_foto1.jpg' %}" alt="Cabana foto 1" class="galeria-img">
+                    </div>
+                    <div class="foto-card shadow-sm">
+                        <img src="{% static 'images/cabana_foto2.jpg' %}" alt="Cabana foto 2" class="galeria-img">
+                    </div>
+                    <div class="foto-card shadow-sm">
+                        <img src="{% static 'images/cabana_foto3.jpg' %}" alt="Cabana foto 3" class="galeria-img">
+                    </div>
+                    <div class="foto-card shadow-sm">
+                        <img src="{% static 'images/cabana_foto4.jpg' %}" alt="Cabana foto 4" class="galeria-img">
+                    </div>
                 </div>
             </div>
         </section>
@@ -333,7 +359,7 @@ Reservas mediante sena unicamente.
 
 Ninos cuentan como huespedes.
 
-No se reciben mascotas.
+No se aceptan mascotas.
 
 Por consultas y reservas comunicarse:
 
@@ -397,5 +423,6 @@ Esperamos verte pronto!!!</div>
             }
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

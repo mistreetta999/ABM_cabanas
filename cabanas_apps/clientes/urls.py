@@ -34,6 +34,9 @@ urlpatterns = [
         name="borrar_cliente",
     ),
     path("", clientes_home, name="home"),
+    path("clientes/", ClienteListView.as_view(), name="lista_clientes"),
+    path("clientes/nuevo/", ClienteCreateView.as_view(), name="crear_cliente"),
+    path("insterfaz_gestion_cabanas/clientes/<int:pk>/", ClienteDetailView.as_view(), name="detalle_cliente"),
     path("lista/", ClienteListView.as_view(), name="lista"),
     path("nuevo/", ClienteCreateView.as_view(), name="crear"),
     path("<int:pk>/", ClienteDetailView.as_view(), name="detalle"),
@@ -43,4 +46,5 @@ urlpatterns = [
         ClienteDeleteView.as_view(),
         name="eliminar",
     ),
+
 ]

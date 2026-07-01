@@ -60,3 +60,8 @@ cd C:\cabanas
 .\venv\Scripts\Activate.ps1
 pip install django-extensions ipython jupyter
 python manage.py shell_plus --notebook
+python manage.py startapp gestion
+python manage.py startapp reservas
+python manage.py startapp usuarios
+pip install pyinstaller
+pyinstaller --onefile --windowed app.py

@@ -1,117 +1,1078 @@
-""" para verificar la estructura de un proyecto Django """
-import os
+import sysSTATIC_URL = "/static/"
+import osSTATIC_URL = "/static/"
+""" para verificar la estructura de un proyecto Django """STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
-import sys
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
-# Archivos y carpetas obligatorios
-estructura = [
-    "cabanas/__init__.py",
-    "cabanas/settings.py",
-    "cabanas/urls.py",
-    "cabanas/wsgi.py",
-    "cabanas/asgi.py",
-    "manage.py",
-    "cabanas_api/__init__.py",
-    "cabanas_api/apps.py",
-    "cabanas_api/models.py",
-    "cabanas_api/views.py",
-    "cabanas_api/admin.py",
-    "cabanas_api/tests.py",
-    "cabanas_api/migrations/__init__.py",
-]
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
 
-def verificar()->None:
-    print("🔍 Verificando estructura del proyecto Django...\n")
-    faltantes = []
-    for item in estructura:
-        ruta = os.path.join(BASE_DIR, item)
-        if os.path.exists(ruta):
-            print(f"✅ Existe: {item}")
-        else:
-            print(f"❌ Falta: {item}")
-            faltantes.append(item)
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
-    if not faltantes:
-        print("\n🎉 Todo está en orden, tu proyecto tiene la estructura completa.")
-    else:
-        print("\n⚠️ Archivos/carpetas faltantes:")
-        for f in faltantes:
-            print(f"   - {f}")
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+# Archivos y carpetas obligatoriosSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+estructura = [STATIC_URL = "/static/"
+              STATICFILES_DIRS= [BASE_DIR / "static"]
+
+              MEDIA_URL= "/media/"
+              MEDIA_ROOT= BASE_DIR / "media"
+
+              # WSGI
+              WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+              "cabanas/__init__.py", STATIC_URL = "/static/"
+              STATICFILES_DIRS= [BASE_DIR / "static"]
+
+              MEDIA_URL= "/media/"
+              MEDIA_ROOT= BASE_DIR / "media"
+
+              # WSGI
+              WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+              "cabanas/settings.py", STATIC_URL = "/static/"
+              STATICFILES_DIRS= [BASE_DIR / "static"]
+
+              MEDIA_URL= "/media/"
+              MEDIA_ROOT= BASE_DIR / "media"
+
+              # WSGI
+              WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+              "cabanas/urls.py", STATIC_URL = "/static/"
+              STATICFILES_DIRS= [BASE_DIR / "static"]
+
+              MEDIA_URL= "/media/"
+              MEDIA_ROOT= BASE_DIR / "media"
+
+              # WSGI
+              WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+              "cabanas/wsgi.py", STATIC_URL = "/static/"
+              STATICFILES_DIRS= [BASE_DIR / "static"]
+
+              MEDIA_URL= "/media/"
+              MEDIA_ROOT= BASE_DIR / "media"
+
+              # WSGI
+              WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+              "cabanas/asgi.py", STATIC_URL = "/static/"
+              STATICFILES_DIRS= [BASE_DIR / "static"]
+
+              MEDIA_URL= "/media/"
+              MEDIA_ROOT= BASE_DIR / "media"
+
+              # WSGI
+              WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+              "manage.py", STATIC_URL = "/static/"
+              STATICFILES_DIRS= [BASE_DIR / "static"]
+
+              MEDIA_URL= "/media/"
+              MEDIA_ROOT= BASE_DIR / "media"
+
+              # WSGI
+              WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+              "cabanas_api/__init__.py", STATIC_URL = "/static/"
+              STATICFILES_DIRS= [BASE_DIR / "static"]
+
+              MEDIA_URL= "/media/"
+              MEDIA_ROOT= BASE_DIR / "media"
+
+              # WSGI
+              WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+              "cabanas_api/apps.py", STATIC_URL = "/static/"
+              STATICFILES_DIRS= [BASE_DIR / "static"]
+
+              MEDIA_URL= "/media/"
+              MEDIA_ROOT= BASE_DIR / "media"
+
+              # WSGI
+              WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+              "cabanas_api/models.py", STATIC_URL = "/static/"
+              STATICFILES_DIRS= [BASE_DIR / "static"]
+
+              MEDIA_URL= "/media/"
+              MEDIA_ROOT= BASE_DIR / "media"
+
+              # WSGI
+              WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+              "cabanas_api/views.py", STATIC_URL = "/static/"
+              STATICFILES_DIRS= [BASE_DIR / "static"]
+
+              MEDIA_URL= "/media/"
+              MEDIA_ROOT= BASE_DIR / "media"
+
+              # WSGI
+              WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+              "cabanas_api/admin.py", STATIC_URL = "/static/"
+              STATICFILES_DIRS= [BASE_DIR / "static"]
+
+              MEDIA_URL= "/media/"
+              MEDIA_ROOT= BASE_DIR / "media"
+
+              # WSGI
+              WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+              "cabanas_api/tests.py", STATIC_URL = "/static/"
+              STATICFILES_DIRS= [BASE_DIR / "static"]
+
+              MEDIA_URL= "/media/"
+              MEDIA_ROOT= BASE_DIR / "media"
+
+              # WSGI
+              WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+              "cabanas_api/migrations/__init__.py", STATIC_URL = "/static/"
+              STATICFILES_DIRS= [BASE_DIR / "static"]
+
+              MEDIA_URL= "/media/"
+              MEDIA_ROOT= BASE_DIR / "media"
+
+              # WSGI
+              WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+              ]STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+
+def verificar() -> None: STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+print("🔍 Verificando estructura del proyecto Django...\n")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+faltantes = []STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+for item in estructura:
+    STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+ruta = os.path.join(BASE_DIR, item)STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+if os.path.exists(ruta):
+    STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+print(f"✅ Existe: {item}")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+else:
+    STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+print(f"❌ Falta: {item}")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+faltantes.append(item)STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+if not faltantes:
+    STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+print("\n🎉 Todo está en orden, tu proyecto tiene la estructura completa.")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+else:
+    STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+print("\n⚠️ Archivos/carpetas faltantes:")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+for f in faltantes:
+    STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+print(f"   - {f}")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
 
 if __name__ == "__main__":
-    verificar()
+    STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
-estructura:list = [
-    "cabanas/__init__.py",
-    "cabanas/settings.py",
-    "cabanas/urls.py",
-    "cabanas/wsgi.py",
-    "cabanas/asgi.py",
-    "manage.py",
-    "cabanas_api/__init__.py",
-    "cabanas_api/apps.py",
-    "cabanas_api/models.py",
-    "cabanas_api/views.py",
-    "cabanas_api/admin.py",
-    "cabanas_api/tests.py",
-    "cabanas_api/migrations/__init__.py",
-]
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
 
-def verificar()->None:
-    """ define verificacion"""
-    print("🔍 Verificando estructura del proyecto Django...\n")
-    faltantes = []
-    for item in estructura:
-        ruta = os.path.join(BASE_DIR, item)
-        if os.path.exists(ruta):
-            print(f"✅ Existe: {item}")
-        else:
-            print(f"❌ Falta: {item}")
-            faltantes.append(item)
+verificar()STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
-    if not faltantes:
-        print("\n🎉 Todo está en orden, tu proyecto tiene la estructura completa.")
-    else:
-        print("\n⚠️ Archivos/carpetas faltantes:")
-        for f in faltantes:
-            print(f"   - {f}")
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+estructura: list = [STATIC_URL= "/static/"
+                    STATICFILES_DIRS = [BASE_DIR / "static"]
+
+                    MEDIA_URL = "/media/"
+                    MEDIA_ROOT = BASE_DIR / "media"
+
+                    # WSGI
+                    WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+                    "cabanas/__init__.py", STATIC_URL = "/static/"
+                    STATICFILES_DIRS = [BASE_DIR / "static"]
+
+                    MEDIA_URL = "/media/"
+                    MEDIA_ROOT = BASE_DIR / "media"
+
+                    # WSGI
+                    WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+                    "cabanas/settings.py", STATIC_URL = "/static/"
+                    STATICFILES_DIRS = [BASE_DIR / "static"]
+
+                    MEDIA_URL = "/media/"
+                    MEDIA_ROOT = BASE_DIR / "media"
+
+                    # WSGI
+                    WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+                    "cabanas/urls.py", STATIC_URL = "/static/"
+                    STATICFILES_DIRS = [BASE_DIR / "static"]
+
+                    MEDIA_URL = "/media/"
+                    MEDIA_ROOT = BASE_DIR / "media"
+
+                    # WSGI
+                    WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+                    "cabanas/wsgi.py", STATIC_URL = "/static/"
+                    STATICFILES_DIRS = [BASE_DIR / "static"]
+
+                    MEDIA_URL = "/media/"
+                    MEDIA_ROOT = BASE_DIR / "media"
+
+                    # WSGI
+                    WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+                    "cabanas/asgi.py", STATIC_URL = "/static/"
+                    STATICFILES_DIRS = [BASE_DIR / "static"]
+
+                    MEDIA_URL = "/media/"
+                    MEDIA_ROOT = BASE_DIR / "media"
+
+                    # WSGI
+                    WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+                    "manage.py", STATIC_URL = "/static/"
+                    STATICFILES_DIRS = [BASE_DIR / "static"]
+
+                    MEDIA_URL = "/media/"
+                    MEDIA_ROOT = BASE_DIR / "media"
+
+                    # WSGI
+                    WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+                    "cabanas_api/__init__.py", STATIC_URL = "/static/"
+                    STATICFILES_DIRS = [BASE_DIR / "static"]
+
+                    MEDIA_URL = "/media/"
+                    MEDIA_ROOT = BASE_DIR / "media"
+
+                    # WSGI
+                    WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+                    "cabanas_api/apps.py", STATIC_URL = "/static/"
+                    STATICFILES_DIRS = [BASE_DIR / "static"]
+
+                    MEDIA_URL = "/media/"
+                    MEDIA_ROOT = BASE_DIR / "media"
+
+                    # WSGI
+                    WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+                    "cabanas_api/models.py", STATIC_URL = "/static/"
+                    STATICFILES_DIRS = [BASE_DIR / "static"]
+
+                    MEDIA_URL = "/media/"
+                    MEDIA_ROOT = BASE_DIR / "media"
+
+                    # WSGI
+                    WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+                    "cabanas_api/views.py", STATIC_URL = "/static/"
+                    STATICFILES_DIRS = [BASE_DIR / "static"]
+
+                    MEDIA_URL = "/media/"
+                    MEDIA_ROOT = BASE_DIR / "media"
+
+                    # WSGI
+                    WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+                    "cabanas_api/admin.py", STATIC_URL = "/static/"
+                    STATICFILES_DIRS = [BASE_DIR / "static"]
+
+                    MEDIA_URL = "/media/"
+                    MEDIA_ROOT = BASE_DIR / "media"
+
+                    # WSGI
+                    WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+                    "cabanas_api/tests.py", STATIC_URL = "/static/"
+                    STATICFILES_DIRS = [BASE_DIR / "static"]
+
+                    MEDIA_URL = "/media/"
+                    MEDIA_ROOT = BASE_DIR / "media"
+
+                    # WSGI
+                    WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+                    "cabanas_api/migrations/__init__.py", STATIC_URL = "/static/"
+                    STATICFILES_DIRS = [BASE_DIR / "static"]
+
+                    MEDIA_URL = "/media/"
+                    MEDIA_ROOT = BASE_DIR / "media"
+
+                    # WSGI
+                    WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+                    ]STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+
+def verificar() -> None: STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+""" define verificacion"""STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+print("🔍 Verificando estructura del proyecto Django...\n")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+faltantes = []STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+for item in estructura:
+    STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+ruta = os.path.join(BASE_DIR, item)STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+if os.path.exists(ruta):
+    STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+print(f"✅ Existe: {item}")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+else:
+    STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+print(f"❌ Falta: {item}")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+faltantes.append(item)STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+if not faltantes:
+    STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+print("\n🎉 Todo está en orden, tu proyecto tiene la estructura completa.")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+else:
+    STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+print("\n⚠️ Archivos/carpetas faltantes:")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+for f in faltantes:
+    STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+print(f"   - {f}")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
 
 if __name__ == "__main__":
-    verificar()
-import os
+    STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
-# Carpeta raíz del proyecto (ajusta si no coincide)
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
-# Lista de carpetas críticas que deben existir
-carpetas = [
-    "cabanas_project",
-    "cabanas_apps",
-    "cabanas_apps/migrations",
-    "chatbot",
-    "chatbot/migrations",
-    "templates",
-    "templates/cabanas",
-    "templates/reservas",
-    "templates/chatbot",
-    "static",
-    "static/css",
-    "static/js",
-    "static/img",
-    "media"   # para archivos subidos por usuarios
-]
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
 
-def verificar_carpetas():
-    print("🔍 Verificando estructura de carpetas...\n")
-    for carpeta in carpetas:
-        ruta = os.path.join(BASE_DIR, carpeta)
-        if os.path.exists(ruta):
-            print(f"✅ Existe: {carpeta}")
-        else:
-            print(f"❌ Falta: {carpeta}")
+verificar()STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+# Carpeta raíz del proyecto (ajusta si no coincide)STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+# Lista de carpetas críticas que deben existirSTATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+carpetas = [STATIC_URL = "/static/"
+            STATICFILES_DIRS= [BASE_DIR / "static"]
+
+            MEDIA_URL= "/media/"
+            MEDIA_ROOT= BASE_DIR / "media"
+
+            # WSGI
+            WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+            "cabanas_project", STATIC_URL = "/static/"
+            STATICFILES_DIRS= [BASE_DIR / "static"]
+
+            MEDIA_URL= "/media/"
+            MEDIA_ROOT= BASE_DIR / "media"
+
+            # WSGI
+            WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+            "cabanas_apps", STATIC_URL = "/static/"
+            STATICFILES_DIRS= [BASE_DIR / "static"]
+
+            MEDIA_URL= "/media/"
+            MEDIA_ROOT= BASE_DIR / "media"
+
+            # WSGI
+            WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+            "cabanas_apps/migrations", STATIC_URL = "/static/"
+            STATICFILES_DIRS= [BASE_DIR / "static"]
+
+            MEDIA_URL= "/media/"
+            MEDIA_ROOT= BASE_DIR / "media"
+
+            # WSGI
+            WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+            "chatbot", STATIC_URL = "/static/"
+            STATICFILES_DIRS= [BASE_DIR / "static"]
+
+            MEDIA_URL= "/media/"
+            MEDIA_ROOT= BASE_DIR / "media"
+
+            # WSGI
+            WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+            "chatbot/migrations", STATIC_URL = "/static/"
+            STATICFILES_DIRS= [BASE_DIR / "static"]
+
+            MEDIA_URL= "/media/"
+            MEDIA_ROOT= BASE_DIR / "media"
+
+            # WSGI
+            WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+            "templates", STATIC_URL = "/static/"
+            STATICFILES_DIRS= [BASE_DIR / "static"]
+
+            MEDIA_URL= "/media/"
+            MEDIA_ROOT= BASE_DIR / "media"
+
+            # WSGI
+            WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+            "templates/cabanas", STATIC_URL = "/static/"
+            STATICFILES_DIRS= [BASE_DIR / "static"]
+
+            MEDIA_URL= "/media/"
+            MEDIA_ROOT= BASE_DIR / "media"
+
+            # WSGI
+            WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+            "templates/reservas", STATIC_URL = "/static/"
+            STATICFILES_DIRS= [BASE_DIR / "static"]
+
+            MEDIA_URL= "/media/"
+            MEDIA_ROOT= BASE_DIR / "media"
+
+            # WSGI
+            WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+            "templates/chatbot", STATIC_URL = "/static/"
+            STATICFILES_DIRS= [BASE_DIR / "static"]
+
+            MEDIA_URL= "/media/"
+            MEDIA_ROOT= BASE_DIR / "media"
+
+            # WSGI
+            WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+            "static", STATIC_URL = "/static/"
+            STATICFILES_DIRS= [BASE_DIR / "static"]
+
+            MEDIA_URL= "/media/"
+            MEDIA_ROOT= BASE_DIR / "media"
+
+            # WSGI
+            WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+            "static/css", STATIC_URL = "/static/"
+            STATICFILES_DIRS= [BASE_DIR / "static"]
+
+            MEDIA_URL= "/media/"
+            MEDIA_ROOT= BASE_DIR / "media"
+
+            # WSGI
+            WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+            "static/js", STATIC_URL = "/static/"
+            STATICFILES_DIRS= [BASE_DIR / "static"]
+
+            MEDIA_URL= "/media/"
+            MEDIA_ROOT= BASE_DIR / "media"
+
+            # WSGI
+            WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+            "static/img", STATIC_URL = "/static/"
+            STATICFILES_DIRS= [BASE_DIR / "static"]
+
+            MEDIA_URL= "/media/"
+            MEDIA_ROOT= BASE_DIR / "media"
+
+            # WSGI
+            WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+            "media"   # para archivos subidos por usuariosSTATIC_URL = "/static/"
+            STATICFILES_DIRS= [BASE_DIR / "static"]
+
+            MEDIA_URL= "/media/"
+            MEDIA_ROOT= BASE_DIR / "media"
+
+            # WSGI
+            WSGI_APPLICATION= 'cabanas.wsgi.application'
+
+            ]STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+
+def verificar_carpetas(): STATIC_URL = "/static/"
+
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+print("🔍 Verificando estructura de carpetas...\n")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+for carpeta in carpetas:
+    STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+ruta = os.path.join(BASE_DIR, carpeta)STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+if os.path.exists(ruta):
+    STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+print(f"✅ Existe: {carpeta}")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+else:
+    STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+print(f"❌ Falta: {carpeta}")STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
 
 if __name__ == "__main__":
-    verificar_carpetas()
+    STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'
+
+verificar_carpetas()STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# WSGI
+WSGI_APPLICATION = 'cabanas.wsgi.application'

@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Seguridad
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-dev-key")
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
@@ -28,6 +28,7 @@ INSTALLED_APPS = [
 
     # Apps propias
     'cabanas_apps.gestion_cabanas',
+    'cabanas_apps.interfaz_gestion_cabanas',
     'cabanas_apps.chatbot_app',
     'cabanas_apps.registros',
     'cabanas_apps.reservas',
@@ -87,12 +88,19 @@ TEMPLATES = [
     },
 ]
 
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 # WSGI
 WSGI_APPLICATION = 'cabanas.wsgi.application'
 
 # Bases de datos
 
-    
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
