@@ -1,8 +1,11 @@
+""""Este archivo contiene la configuración de la aplicación FastAPI para Render."""
 import os
 from fastapi import FastAPI
 from dotenv import load_dotenv
+import uvicorn
 
 class RenderApp:
+    """ class RenderApp para la configuración de la aplicación FastAPI en Render."""
     def __init__(self):
         # Cargar variables de entorno desde .env
         load_dotenv()
@@ -18,10 +21,10 @@ class RenderApp:
         def root():
             return {"message": "Cabana API funcionando en Render"}
 
-    def run(self):
-        import uvicorn
+    def run(self:RenderApp)->None:
+        """Arranca la aplicación FastAPI en Render."""
         host = os.getenv("HOST", "0.0.0.0")
-        port = int(os.getenv("PORT", 8080))
+        port = int(os.getenv("PORT", "8080"))
 
         uvicorn.run(self.app, host=host, port=port)
 
