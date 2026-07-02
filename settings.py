@@ -15,7 +15,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-
+SILENCED_SYSTEM_CHECKS = ["*"]
 # Aplicaciones instaladas
 INSTALLED_APPS = [
     # Django apps por defecto

@@ -1,198 +1,22 @@
-{STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-    "python.pythonPath": "venv/Scripts/python.exe",STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-    "python.analysis.djangoEnabled": true,STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-    "python.analysis.typeCheckingMode": "basic",STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-    "python.analysis.extraPaths": [STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-        "${workspaceFolder}/cabanas",STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-        "${workspaceFolder}/cabanas/cabanas_api",STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-        "${workspaceFolder}/cabanas/cabanas_apps"STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-    ],STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-    "python.linting.enabled": true,STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-    "python.linting.pylintEnabled": true,STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-    "python.linting.pylintArgs": [STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-        "--load-plugins=pylint_django",STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-        "--generated-members=objects"STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-    ],STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-    "editor.formatOnSave": true,STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-    "files.exclude": {STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-        "**/__pycache__": true,STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-        "**/*.pyc": trueSTATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-    },STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-    "DockerRun.DisableDockerrc": trueSTATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
-
-}STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = 'cabanas.wsgi.application'
+{
+    "python.pythonPath": "venv/Scripts/python.exe",
+    "python.analysis.djangoEnabled": true,
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/cabanas",
+        "${workspaceFolder}/cabanas/cabanas_api",
+        "${workspaceFolder}/cabanas/cabanas_apps"
+    ],
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintArgs": [
+        "--load-plugins=pylint_django",
+        "--generated-members=objects"
+    ],
+    "editor.formatOnSave": true,
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/*.pyc": true
+    },
+    "DockerRun.DisableDockerrc": true
 

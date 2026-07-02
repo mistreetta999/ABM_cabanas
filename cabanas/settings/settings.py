@@ -15,6 +15,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-dev-key")
 DEBUG = os.getenv("DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+SILENCED_SYSTEM_CHECKS = ["*"]
 
 INSTALLED_APPS = [
     # Django apps por defecto

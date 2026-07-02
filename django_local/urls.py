@@ -1,7 +1,21 @@
+""" archivo de urls del proyecto django_local """
 from django.urls import path
-from . import handles
 from django.contrib import admin
 from django.urls import include
+from . import handles
+
+
+urlpatterns = [
+    path("", handlers.sistema_status, name="sistema_status"),
+    path("settings/", handlers.mostrar_settings, name="mostrar_settings"),
+    path("settings/apps/", handlers.listar_apps, name="listar_apps"),
+    path("settings/middleware/", handlers.listar_middleware, name="listar_middleware"),
+    path("settings/db/", handlers.db_config, name="db_config"),
+    path("settings/static/", handlers.static_config, name="static_config"),
+    path("settings/media/", handlers.media_config, name="media_config"),
+]
+
+
 urlpatterns = [
     path("", handles.pagina_principal, name="pagina_principal"),
     path("gestion_cabanas/", handles.gestion_cabanas, name="gestion_cabanas"),
@@ -14,7 +28,7 @@ urlpatterns = [
     path("chatbot/", handles.chatbot_home, name="chatbot_home"),
     path("chatbot/api/", handles.chatbot_api, name="chatbot_api"),
 
-
+v
 
     # Administración Django
     path("admin/", admin.site.urls),

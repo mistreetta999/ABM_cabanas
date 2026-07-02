@@ -1,5 +1,5 @@
+""" archivo de urls del proyecto django_local """
 from django.urls import path
-from . import handles
 from django.contrib import admin
 from django.urls import include
 urlpatterns = [
@@ -17,6 +17,7 @@ urlpatterns = [
 
 
     # Administración Django
+
     path("admin/", admin.site.urls),
 
     # Punto de entrada de gestión

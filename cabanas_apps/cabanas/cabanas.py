@@ -1,18 +1,38 @@
 """ módulo de vistas para la aplicación de gestión de Cabanas."""
-from django.shortcuts import render, get_object_or_404, redirect
 from .models import Cabana
+from pathlib import Path
+directories = Path(".").parents
 
-def listar_cabanas(request):
+class Cabana(models.Model):
+
+    """clase cabana"""
+    id=models.AutoField(primary_key=True) 
+    nombre = models.CharField(max_length=100)
+    capacidad = models.IntegerField()
+    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)
+    disponible = models.BooleanField(default=True)
+    class Meta:
+        """Meta informacion para Cabana model"""
+        verbose_name = "Cabana"
+        verbose_name_plural = "Cabanas"
+
+    def __str__(self:Cabana)-> str:
+        return self.nombre
+
+
+
+
+def listar_cabanas(request: HttpRequest) -> HttpResponse:
     """Muestra todas las cabañas disponibles."""
-    cabanas = Cabana.objects.all()
-    return render(request, "pagina_principal/lista.html", {"cabanas": cabanas})
+cabanas = Cabana.objects.all()
 
-def detalle_cabana(request, cabana_id):
+
+def detalle_cabana(request: HttpRequest, cabana_id: int) -> HttpResponse:
     """Muestra el detalle de una cabaña específica."""
     cabana = get_object_or_404(Cabana, pk=cabana_id)
     return render(request, "pagina_principal/detalle.html", {"cabana": cabana})
 
-def crear_cabana(request):
+def crear_cabana(request: HttpRequest) -> HttpResponse:
     """Crea una nueva cabaña."""
     if request.method == "POST":
         nombre = request.POST.get("nombre")
@@ -30,7 +50,7 @@ def crear_cabana(request):
 
     return render(request, "pagina_principal/formulario.html")
 
-def borrar_cabana(request, cabana_id):
+def borrar_cabana(request: HttpRequest, cabana_id: int) -> HttpResponse:
     """Elimina una cabaña existente."""
     cabana = get_object_or_404(Cabana, pk=cabana_id)
 

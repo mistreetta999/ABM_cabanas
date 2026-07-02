@@ -36,10 +36,12 @@ urlpatterns = [
     path("template/", include("cabanas_apps.template_app.urls")),
     path("interfaz_gestion_cabanas/", include("cabanas_apps.interfaz_gestion_cabanas.urls")),
     path("gestion_cabanas/", include("cabanas_apps.gestion_cabanas.urls")),
+    path("gestion/", include("cabanas_apps.gestion_cabanas.urls")),
     path("clientes/", include("cabanas_apps.clientes.urls")),
     path("pagina_principal/", include("cabanas_apps.pagina_principal.urls")),
     path("formulario/", include("cabanas_apps.formulario.urls"))
     
+
 ]
 
 

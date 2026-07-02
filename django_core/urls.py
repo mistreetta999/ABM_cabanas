@@ -6,6 +6,16 @@ from . import handles
 
 
 urlpatterns = [
+    path("", handlers.sistema_status, name="sistema_status"),
+    path("settings/", handlers.mostrar_settings, name="mostrar_settings"),
+    path("settings/apps/", handlers.listar_apps, name="listar_apps"),
+    path("settings/middleware/", handlers.listar_middleware, name="listar_middleware"),
+    path("settings/db/", handlers.db_config, name="db_config"),
+    path("settings/static/", handlers.static_config, name="static_config"),
+    path("settings/media/", handlers.media_config, name="media_config"),
+]
+
+urlpatterns = [
     
     # Panel de administración
     path("admin/", admin.site.urls),
@@ -21,6 +31,9 @@ urlpatterns = [
     # Módulos internos
     path("gestion_cabanas/", include("cabanas_apps.gestion_cabanas.urls")),
     # App principal de Cabanas
+    path("", include("cabanas.urls")),
+    path("handlers/", include("cabanas_apps.handlers.urls")),
+
     path("interfaz/", include("cabanas_apps.interfaz_gestion_cabanas.urls")),
     path("cabanas/", include("cabanas.urls")),
     path("clientes/", include("cabanas_apps.clientes.urls")),

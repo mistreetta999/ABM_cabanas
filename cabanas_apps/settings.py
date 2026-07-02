@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 # Cargar variables de entorno
 load_dotenv()
 
-# 🔑 RUTA BASE DEL PROYECTO: AUTOMÁTICA, NO DEPENDE DE ONEDRIVE
+# RUTA BASE DEL PROYECTO: AUTOMÁTICA, NO DEPENDE DE ONEDRIVE
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Seguridad
@@ -15,7 +15,7 @@ DEBUG = os.getenv("DEBUG", "True") == "True"
 DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-
+SILENCED_SYSTEM_CHECKS = ["*"]
 INSTALLED_APPS = [
     # Django apps por defecto
     'django.contrib.admin',

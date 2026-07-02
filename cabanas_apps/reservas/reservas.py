@@ -1,6 +1,18 @@
+"""Este archivo contiene las vistas para la aplicación de reservas.
+"""
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Reserva, Cliente, Cabana,Alquileres, Pago
+from .models import  Cabana,Alquileres, Pago
+from django.http import HttpResponse
 
+
+class reservas:
+    def __init__(self, cliente, cabana, fecha_ingreso, fecha_salida, observaciones):    
+        self.cliente = cliente
+        self.cabana = cabana
+        self.fecha_ingreso = fecha_ingreso
+        self.fecha_salida = fecha_salida
+        self.observaciones = observaciones
 def listar_reservas(request):
     """Muestra todas las reservas."""
     reservas = Reserva.objects.all()
@@ -33,6 +45,6 @@ def crear_reserva(request, cliente_id, cabana_id):
 
     return render(request, "pagina_principal/formulario.html", {"cliente": cliente, "cabana": cabana})
 
-def borrar_reserva(request, reserva_id):
-    """Elimina una reserva existente."""
-    reserva = get_object_or_404(Reserva, pk
+def borrar_reserva(request,HttpRequest, reserva_id):
+    """Borra una reserva específica."""
+    return HttpResponse(f"Borrar reserva {reserva_id}")

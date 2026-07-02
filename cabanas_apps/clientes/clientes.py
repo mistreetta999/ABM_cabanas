@@ -1,10 +1,26 @@
 """ archivo clientes"""
+import os
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Cliente
+from django.db import models
+
+
+class Cliente(models.Model):
+    """ Modelo que representa un cliente."""
+    id = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    class Meta:
+        verbose_name = "Cliente"
+        verbose_name_plural = "Clientes"
+
+
+
+
 
 def listar_clientes(request):
     """Muestra todos los clientes registrados."""
-    clientes = Cliente.objects: BaseManager[Cliente].all()
+    clientes = Cliente.objects.all()
     return render(request, "pagina_principal/lista.html", {"clientes": clientes})
 
 def detalle_cliente(request, cliente_id):

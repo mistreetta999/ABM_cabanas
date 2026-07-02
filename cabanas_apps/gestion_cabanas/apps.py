@@ -1,5 +1,7 @@
 """App configuracion   para cabanas_apps """ 
 from django.apps import AppConfig
+from cabanas_apps.reservas import handlers as reservas
+from cabanas_apps.reservas import views as reservas
 
 class CabanaAppsConfig(AppConfig):
     """App configuracion para cabanas_apps."""
