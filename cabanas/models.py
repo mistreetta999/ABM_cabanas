@@ -1,3 +1,9 @@
+""" Modelos de la app cabanas """
+from django.db import models
+from django.contrib.auth.models import User
+from django.utils import timezone
+from django.core.validators import MinValueValidator
+
 class Cabana(models.Model):
     """ Modelo que representa una cabaña """
     id = models.AutoField(primary_key=True)  # clave primaria automática
@@ -7,8 +13,10 @@ class Cabana(models.Model):
     precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
+        """Metadatos del modelo"""
         db_table = "cabanas"
-        verbose_name = "Cabaña"
-        verbose_name_plural = "Cabañas"
+        verbose_name = "Cabana"
+        verbose_name_plural = "Cabanas"
+
     def __str__(self):
-        return self.nombre
+        return str(self.nombre)

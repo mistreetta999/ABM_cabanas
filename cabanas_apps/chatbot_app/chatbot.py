@@ -58,10 +58,12 @@ class ChatBot:
             return self.get_info()["contacto"]
         else:
             return "🤖 Hola, soy el asistente de las cabañas. Preguntame por ubicación, servicios, características, reservas o contacto."
+
 class Message :
     """ clase para los mensajes del chatbot """
     def __init__(self, content: str):
         self.content = content
 
     def get_content(self) -> str:
+        """Devuelve el contenido del mensaje."""
         return self.content

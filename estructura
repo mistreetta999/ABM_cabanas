@@ -71,3 +71,6 @@ cabanas/
 │   └-- img/
 │
 └-- media/                     # Archivos subidos por usuarios
+|django_core
+|django_local
+|DATABASE

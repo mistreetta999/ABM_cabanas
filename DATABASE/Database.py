@@ -1,22 +1,17 @@
 # cabanas_project/DATABASE/database.py
-"""Este módulo define la clase Database y las funciones para configurar la base de datos.
-La clase Database representa la estructura de la base de datos, mientras que las funciones
-get_sqlite_config, get_postgresql_config y get_database_settings proporcionan la configuración necesaria para conectar con la base de datos según el entorno (desarrollo o producción).
-"""
+"""Este módulo define la clase Database y las funciones para configurar la base de datos."""
 
 import os
 from pathlib import Path
+
 from cabanas_apps.models import models
-from django.db import models
-from django.db.models import Model
-from django.db.models import ForeignKey
-from django.db.models   import CharField
 
 class Database:
+    """ Clase que representa la configuración de la base de datos para el proyecto de gestión de Cabanas."""
     def __init__(self):
-        self.BASE_DIR = Path(__file__).resolve().parent.parent
-        self.nombre = CharField(max_length=100)
-        self.descripcion = CharField(max_length=255)    
+        self.base_dir = Path(__file__).resolve().parent.parent
+        self.nombre = models.CharField(max_length=100)
+        self.descripcion = models.CharField(max_length=255)    
         self.reservas = models.ManyToManyField('Reserva', related_name='cabanas')
         self.alquileres = models.ManyToManyField('Alquiler', related_name='cabanas')    
         self.precios = models.ManyToManyField('Precio', related_name='cabanas')
@@ -86,6 +81,7 @@ class Cliente(models.Model):
     def __str__(self):
         return f"{self.nombre} {self.apellido} - DNI: {self.dni}"
     class Meta:
+        """Meta información para el modelo Cliente."""
         verbose_name = 'cliente'
         verbose_name_plural = 'clientes'
 class Reserva(models.Model):
@@ -94,6 +90,7 @@ class Reserva(models.Model):
     """
     id = models.AutoField(primary_key=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='reservas')
+    nombre = models.CharField(max_length=100)   
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
     estado = models.CharField(max_length=20, choices=[
@@ -101,8 +98,8 @@ class Reserva(models.Model):
         ('confirmada', 'Confirmada'),
         ('cancelada', 'Cancelada'), 
     ], default='pendiente')     
-    def __str__(self):
-        return f"Reserva {self.id} - Cliente: {self.cliente.nombre} {self.cliente.apellido} - Estado: {self.estado}"    
+    def __str__(self)-> str:
+        return f"Reserva {self.id} - Cliente: {self.cliente} - Estado: {self.estado}"    
     
 class Alquiler(models.Model):
     """Modelo para representar un alquiler de Cabana."""
@@ -110,5 +107,5 @@ class Alquiler(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='alquileres')
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
-    def __str__(self):
-        return f"Alquiler {self.id} - Cliente: {self.cliente.nombre} {self.cliente.apellido}"
+    def __str__(self)-> str:
+        return f"Alquiler {self.id} - Cliente: {self.cliente}"

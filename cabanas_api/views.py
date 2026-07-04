@@ -3,18 +3,20 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
 import json
+from .models import Reserva, Alquiler, Pago, Factura, ActividadCabana
 
-from registros.models import Reserva, Alquiler, Pago, Factura, ActividadCabana
 
 
 # Vista de inicio simple
-def home(request):
+def home(_request):
+    """Vista de inicio de la API de Cabañas."""
     return JsonResponse({"mensaje": "API de Cabañas funcionando"})
 
 
 # --- RESERVAS ---
 @csrf_exempt
 def crear_reserva(request):
+    """Crea una nueva reserva en el sistema."""
     if request.method == "POST":
         data = json.loads(request.body)
         reserva = Reserva.objects.create(
@@ -32,6 +34,7 @@ def crear_reserva(request):
             referencia_id=reserva.id
         )
         return JsonResponse({"id": reserva.id, "mensaje": "Reserva creada"})
+    return JsonResponse({"error": "Método no permitido"}, status=405)
 
 
 # --- ALQUILERES ---

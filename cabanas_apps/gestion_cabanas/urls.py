@@ -1,64 +1,25 @@
-"""URL patterns for the gestion_cabanas app."""
-from django.urls import path
-from . import reservas
-
+"""archivo de urls del proyecto django_local"""
+from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
-    path("reservas/", reservas.listar_reservas, name="listar_reservas"),
-    path("", views.pagina_principal, name="pagina_principal"),
-    path(
-        "reservas/<int:reserva_id>/",
-        reservas.detalle_reserva,
-        name="detalle_reserva",
-    ),
-    path(
-        "reservas/nueva/<int:cliente_id>/<int:cabana_id>/",
-        reservas.crear_reserva,
-        name="crear_reserva",
-    ),
-    path(
-        "reservas/borrar/<int:reserva_id>/",
-        reservas.borrar_reserva,
-        name="borrar_reserva",
-    ),
-   path("alquileres/", reservas.listar_reservas, name="listar_reservas"),
-    path("", views.pagina_principal, name="pagina_principal"),
-    path(
-        "alquileres/<int:reserva_id>/",
-        reservas.detalle_reserva,
-        name="detalle_reserva",
-    ),
-    path(
-        "alquileres/nueva/<int:cliente_id>/<int:cabana_id>/",
-        reservas.crear_reserva,
-        name="crear_reserva",
-    ),
-    path(
-        "alquileres/borrar/<int:reserva_id>/",
-        reservas.borrar_reserva,
-        name="borrar_reserva",
-    ),
+    # Administración Django
+    path("admin/", admin.site.urls),
 
+    # Punto de entrada de gestión
+    path("gestion/", include("cabanas_apps.gestion_cabanas.urls")),
 
+    # Interfaz principal
+    path("interfaz/", include("cabanas_apps.interfaz_gestion_cabanas.urls")),
 
-   path("pagos/", reservas.listar_reservas, name="listar_reservas"),
-    path("", views.pagina_principal, name="pagina_principal"),
-    path(
-        "pagos/<int:reserva_id>/",
-        reservas.detalle_reserva,
-        name="detalle_reserva",
-    ),
-    path(
-        "pagos/nueva/<int:cliente_id>/<int:cabana_id>/",
-        reservas.crear_reserva,
-        name="crear_reserva",
-    ),
-    path(
-        "pagos/borrar/<int:reserva_id>/",
-        reservas.borrar_reserva,
-        name="borrar_reserva",
-    ),
-
-
-
+    # Apps del sistema de cabañas
+    path("cabanas/", include("cabanas_apps.cabanas.urls")),
+    path("reservas/", include("cabanas_apps.reservas.urls")),
+    path("alquileres/", include("cabanas_apps.alquileres.urls")),
+    path("pagos/", include("cabanas_apps.pagos.urls")),
+    path("registros/", include("cabanas_apps.registros.urls")),
+    path("chatbot/", include("cabanas_apps.chatbot_app.urls")),
+    path("clientes/", include("cabanas_apps.clientes.urls")),
+    path("pagina_principal/", include("cabanas_apps.pagina_principal.urls")),
+    path("formulario/", include("cabanas_apps.formulario.urls")),
 ]

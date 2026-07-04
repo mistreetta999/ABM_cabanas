@@ -1,13 +1,20 @@
+"""archivo de urls para la app alquileres"""
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db import models
+from pathlib import Path
+from logging import getLogger
+
+LOGGER = getLogger(__name__)
 from cabanas_apps.cabanas.models import Cabana
 from cabanas_apps.clientes.models import Cliente
 from cabanas_apps.reservas.models import Reserva
 
+directories = Path(".").parents
 
 class Alquiler(models.Model):
     """class Alquiler models"""
     id = models.AutoField(primary_key=True)
+    objects = models.Manager()
     cabanas = models.ForeignKey(Cabana, on_delete=models.CASCADE)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     reserva = models.OneToOneField(Reserva, on_delete=models.CASCADE)
@@ -21,7 +28,7 @@ class Alquiler(models.Model):
 def listar_alquileres(request):
     """Muestra todos los alquileres."""
     alquileres = Alquiler.objects.all()
-    return render(request, "pagina_principal/lista.html", {"alquileres": alquileres})
+    return render(request, "django", {"alquileres": alquileres})
 
 def detalle_alquiler(request, alquiler_id):
     """Muestra el detalle de un alquiler específico."""

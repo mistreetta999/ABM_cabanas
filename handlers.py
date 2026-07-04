@@ -1,5 +1,40 @@
 # django_core/handlers.py
 from django.http import HttpResponse, JsonResponse
+from django.conf import settings
+from django.urls import path
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
+from django.views.decorators.cache import cache_page
+from . import handlers
+
+
+
+
+urlpatterns = [
+    path("", handlers.sistema_status, name="sistema_status"),
+    path("settings/", handlers.mostrar_settings, name="mostrar_settings"),
+    path("settings/apps/", handlers.listar_apps, name="listar_apps"),
+    path("settings/middleware/", handlers.listar_middleware, name="listar_middleware"),
+    path("settings/db/", handlers.db_config, name="db_config"),
+    path("settings/static/", handlers.static_config, name="static_config"),
+    path("settings/media/", handlers.media_config, name="media_config"),
+]
+def sistema_status(request):
+    return JsonResponse({"status": "OK"})   
+def handler (request,connections()):
+    return handler({"status": "OK"})
+
+def mostrar_settings(request):
+    from django.conf import settings
+    settings_dict = {setting: getattr(settings, setting) for setting in dir(settings) if setting.isupper()}
+    return JsonResponse(settings_dict)
+def db (request):
+    from django.conf import settings
+    db_dict = {setting: getattr(settings, setting) for setting in dir(settings) if setting.isupper()}
+    return JsonResponse(db_dict)
+
+
 
 # -------------------
 # PÁGINA PRINCIPAL

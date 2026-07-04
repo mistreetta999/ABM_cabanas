@@ -5,7 +5,19 @@ import subprocess
 import webbrowser
 from django.apps import AppConfig
 from django.core.management import execute_from_command_line
+from django import forms
+from .models import Cabana
+from django.http import HttpResponse,HttpRequest
+
+def home_view(request: HttpRequest) -> HttpResponse:
+    """"Vista para la página principal completa.
+    """
+
+
+    return HttpResponse("")  # Página principal vacía
+
 def iniciar_django():
+    """Inicia el servidor Django y abre el navegador en la URL local."""
     # Aseguramos que estamos en la carpeta del proyecto
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     

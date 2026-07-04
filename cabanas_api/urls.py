@@ -1,20 +1,29 @@
 """URL configuration for cabanas_api project."""
 
-
-from django.urls import path
-from . import views
+from django.urls import path, include
+from django.contrib import admin
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('pagos/', views.pagos, name='pagos'),
-    path('clientes/', views.clientes, name='clientes'),
-    path('registros/', views.registros, name='registros'),
-    path('actividades/', views.actividades, name='actividades'),
-    path('cabanas/', views.cabanas, name='cabanas'),
-    path('reservas/', views.reservas, name='reservas'),
-    path('alquileres/', views.alquileres, name='alquileres'),
-    path('chatbot/', views.chatbot, name='chatbot'),    
-    path('api/', views.api, name='api'),
-    path('admin/', views.admin, name='admin'),
-    path('Template/', views.Template, name='Template'),
+    # Administración Django
+    path("admin/", admin.site.urls),
+
+    # Punto de entrada de gestión
+    path("gestion/", include("cabanas_apps.gestion_cabanas.urls")),
+
+    # Interfaz principal
+    path("interfaz/", include("cabanas_apps.interfaz_gestion_cabanas.urls")),
+
+    # Apps del sistema de cabañas
+    path("cabanas/", include("cabanas_apps.cabanas.urls")),
+    path("reservas/", include("cabanas_apps.reservas.urls")),
+    path("alquileres/", include("cabanas_apps.alquileres.urls")),
+    path("pagos/", include("cabanas_apps.pagos.urls")),
+    path("registros/", include("cabanas_apps.registros.urls")),
+    path("chatbot/", include("cabanas_apps.chatbot_app.urls")),
+    path("template/", include("cabanas_apps.template_app.urls")),
+    path("interfaz_gestion_cabanas/", include("cabanas_apps.interfaz_gestion_cabanas.urls")),
+    path("gestion_cabanas/", include("cabanas_apps.gestion_cabanas.urls")),
+    path("clientes/", include("cabanas_apps.clientes.urls")),
+    path("pagina_principal/", include("cabanas_apps.pagina_principal.urls")),
+    path("formulario/", include("cabanas_apps.formulario.urls")),
 ]
