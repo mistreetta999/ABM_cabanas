@@ -1,10 +1,16 @@
+"""  archivo cabanas"""
 from django.shortcuts import render, get_object_or_404, redirect
+from django.db import models
 from .models import Cabana
 
-def listar_cabanas(request):
-    """Muestra todas las cabañas disponibles."""
-    cabanas = Cabana.objects.all()
-    return render(request, "pagina_principal/lista.html", {"cabanas": cabanas})
+def Cabana():
+    nombre = models.CharField(max_length=100)
+    ubicacion = models.CharField(max_length=200)
+    capacidad = models.IntegerField()
+    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)
+    print("Cabaña creada:", nombre, ubicacion, capacidad, precio_por_noche)
+
+
 
 def detalle_cabana(request, cabana_id):
     """Muestra el detalle de una cabaña específica."""
@@ -38,3 +44,9 @@ def borrar_cabana(request, cabana_id):
         return redirect("listar_cabanas")
 
     return render(request, "pagina_principal/confirma_borrar.html", {"cabana": cabana})
+    
+def listar_cabanas(request):
+    """Muestra todas las cabañas disponibles."""
+    cabana.list()
+    
+    return render(request, "pagina_principal/lista.html", {"cabanas": cabanas})

@@ -1,21 +1,25 @@
 """Views para la aplicación de Cabanas."""
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Cabana
 from django.shortcuts import render
 
+from .models import Cabana
+
+
 # Vista inicial
-def index(request) -> HttpResponse:
+def index(request: HttpRequest) -> HttpResponse:  # pylint: disable=unused-argument
+    """ Vista inicial de la aplicación de Cabanas."""
     return HttpResponse("Vista inicial de Cabanas")
 
 
-def pagina_principal(request):
+def pagina_principal(request: HttpRequest) -> HttpResponse:
+    """ Renderiza la página principal de la aplicación de Cabanas."""
     return render(request, "pagina_principal.html")
 
 
 # Vista de lista usando función
-def lista_cabanas(request):
-    cabanas = Cabana.objects.all()
+def lista_cabanas(request: HttpRequest) -> HttpResponse:
+    cabanas = Cabana.objects.all()  # pylint: disable=no-member
     return render(request, "cabanas/lista.html", {"cabanas": cabanas})
 
 # Vista basada en clase para listar

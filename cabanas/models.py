@@ -1,8 +1,6 @@
 """ Modelos de la app cabanas """
 from django.db import models
-from django.contrib.auth.models import User
-from django.utils import timezone
-from django.core.validators import MinValueValidator
+
 
 class Cabana(models.Model):
     """ Modelo que representa una cabaña """
@@ -20,3 +18,4 @@ class Cabana(models.Model):
 
     def __str__(self):
         return str(self.nombre)
+    

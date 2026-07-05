@@ -1,8 +1,5 @@
 """archivo principal models"""
 from django.db import models
-from django.contrib.auth.models import User
-from django.utils import timezone
-from django.db import models
 from django.core.validators import RegexValidator
 class Publisher(models.Model):
     """Modelo que representa un editor de libros."""
@@ -11,11 +8,14 @@ class Publisher(models.Model):
     website = models.URLField(blank=True, null=True)
 
     class Meta:
+        """ class Meta para definir el nombre del modelo en singular y plural. """
+        app_label = "cabanas_apps"
         verbose_name = "Publisher"
         verbose_name_plural = "Publishers"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
+
 class Cabana(models.Model):
     """ Modelo que representa una cabaña """
     id = models.AutoField(primary_key=True)  # clave primaria automática
@@ -28,6 +28,8 @@ class Cabana(models.Model):
         db_table = "cabanas"
         verbose_name = "Cabaña"
         verbose_name_plural = "Cabañas"
+    def __str__(self) -> str:
+        return f"{self.nombre} - Capacidad: {self.capacidad} - Precio por noche: {self.precio_por_noche}"
 class Cliente(models.Model):
     """ Modelo que representa un cliente """
     id = models.AutoField(primary_key=True)  # clave primaria automática
@@ -43,10 +45,12 @@ class Cliente(models.Model):
     email = models.EmailField(unique=True)
 
     class Meta:
+        """ class Meta para definir el nombre del modelo en singular y plural. """
+        app_label = "cabanas_apps"
         db_table = "clientes"
         verbose_name = "Cliente"
         verbose_name_plural = "Clientes"
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.nombre} {self.apellido} - DNI: {self.dni}"
 
 
@@ -59,10 +63,11 @@ class Chatbot(models.Model):
          app_label = "chatbot_app"
          verbose_name = "Chatbot"
          verbose_name_plural = "Chatbots"
-    def __str__(self):
-        return str(self.nombre)
+    def __str__(self) -> str:
+        return self.nombre
 
 class Reserva(models.Model):
+    """ Modelo que representa una reserva de cabaña """
     cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE, related_name="reservas")
     cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE, related_name="reservas")
     fecha_ingreso = models.DateField()
@@ -70,14 +75,17 @@ class Reserva(models.Model):
     estado = models.CharField(max_length=30, default="pendiente")
     observaciones = models.TextField(blank=True)
     class Meta:
+        """ class Meta para definir el nombre del modelo en singular y plural. """
+        app_label = "cabanas_apps"
         verbose_name = "Reserva"
         verbose_name_plural = "Reservas"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Reserva {self.pk}"
 
 
 class Alquiler(models.Model):
+    """ Modelo que representa un alquiler de cabaña """
     reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE, related_name="alquileres")
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="alquileres")
     cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE, related_name="alquileres")
@@ -86,34 +94,42 @@ class Alquiler(models.Model):
     monto_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     estado = models.CharField(max_length=30, default="activo")
     class Meta:
+        """ class Meta para definir el nombre del modelo en singular y plural. """
+        app_label = "cabanas_apps"
         verbose_name = "Alquiler"
         verbose_name_plural = "Alquileres"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Alquiler {self.pk}"
 
 
 class Pago(models.Model):
+    """ Modelo que representa un pago realizado por un cliente """
     alquiler = models.ForeignKey(Alquiler, on_delete=models.CASCADE, related_name="pagos")
     fecha = models.DateField()
     monto = models.DecimalField(max_digits=10, decimal_places=2)
     metodo = models.CharField(max_length=30)
     comprobante = models.CharField(max_length=200, blank=True)
     class Meta:
+        """ class Meta para definir el nombre del modelo en singular y plural. """
+        app_label = "cabanas_apps"
         verbose_name = "Pago"
         verbose_name_plural = "Pagos"
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Pago {self.pk}"
 
 
 class Registro(models.Model):
+    """ Modelo que representa un registro de actividad en el sistema """
     modulo = models.CharField(max_length=100)
     descripcion = models.TextField()
     responsable = models.CharField(max_length=100)
     creado_en = models.DateTimeField(auto_now_add=True)
     class Meta:
+        """ class Meta para definir el nombre del modelo en singular y plural. """
+        app_label = "cabanas_apps"      
         verbose_name = "Registro"
         verbose_name_plural = "Registros"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.modulo}: {self.responsable}"

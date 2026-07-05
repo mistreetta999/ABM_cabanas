@@ -1,26 +1,19 @@
 """archivo contiene los modelos del programa."""
-from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
-from django.core.exceptions import ValidationError
-from django.utils.translation import gettext_lazy as _
-from django.db.models import Sum
-from cabanas_apps.chatbot_app.models import ChatbotResponse
 from pathlib import Path
+
+from django.db import models
+
 
 directories = Path(".").parents
 
 
 class Publisher:
-    
     """ esta clase es del publisher"""
-    
     def __init__(self, name):
         self.name = name
-    
     def publish(self, message):
         """ este metodo es para publicar"""
         print(f"{self.name} published: {message}")
-
     class Meta:
         """ Metadatos del modelo Publisher """
         verbose_name = "Publisher"
@@ -47,11 +40,7 @@ class Chatbot(models.Model):
         """ Representación en cadena del modelo Chatbot """
         return str(self.nombre)
 
-    class Meta:
-        """ Metadatos del modelo Chatbot """
-        verbose_name = "Chatbot"
-        verbose_name_plural = "Chatbots"
-
+   
 
 class Cabanas(models.Model):
     """ esta clase es de la Cabana"""
@@ -99,47 +88,10 @@ class Alquileres(models.Model):
     id = models.AutoField(primary_key=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="alquileres")
     cabana = models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="alquileres")
-    cantidad_clientes = models.PositiveIntegerField(
-        validators=[
-            MinValueValidator(1, message="La cantidad de clientes debe ser al menos 1."),
-            MaxValueValidator(20, message="La cantidad de clientes no puede exceder 20."),
-        ]
-    )
-    cantidad_clientes = int(input("Ingrese la cantidad de clientes: "))
-    capacidad_cabanas = int(input("Ingrese la capacidad de la cabana:2,3,4.5 "))
-    fecha_inicio = models.DateField()
-    fecha_fin = models.DateField()
-    precio_total = models.DecimalField(max_digits=10, decimal_places=2)
-    chatbot = models.ForeignKey(Chatbot, on_delete=models.SET_NULL, null=True, related_name="reservas")
-    Cabanas=models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="alquileres")
-    estado = models.BooleanField(default=False, choices=[(True, "Aceptada"), (False, "Pendiente")])
-    def acepar_reserva(self):
-        """ Método para aceptar la reserva. """
-        self.estado = "aceptada"
-        self.save()
-        if self.cantidad_clientes == self.capacidad_cabanas:
-            print("La reserva ha sido aceptada.")
-    
-    def clean(self) -> None:
-        super().clean()
-        if self.fecha_fin and self.fecha_inicio and self.fecha_fin <= self.fecha_inicio:
-            raise ValidationError(_("La fecha de fin debe ser posterior a la fecha de inicio."))
-
-        if self.cantidad_clientes > self.cabana.capacidad_cabanas:  # type: ignore
-            
-            raise ValidationError(_("La cantidad de clientes excede la capacidad de la cabana."))
-  
-
-
-        reservas_solapadas = Alquileres.objects.filter(  # type: ignore
-            cabana=self.cabana,
-            fecha_inicio__lte=self.fecha_fin,
-            fecha_fin__gte=self.fecha_inicio,
-        ).exclude(id=self.id)
-
-        if reservas_solapadas.exists():
-            raise ValidationError(_("La Cabana ya está reservada para las fechas seleccionadas."))
+    capacidad_cabanas = models.PositiveIntegerField()
+    cantidad_clientes = models.PositiveIntegerField()
     class Meta:
+  
         """ Metadatos del modelo Alquileres """
         verbose_name = "Alquiler"
         verbose_name_minuscula = "alquiler"
@@ -150,52 +102,32 @@ class Alquileres(models.Model):
 
 
 class Reserva(models.Model):
+    """ Clase que representa una reserva de Cabana. """
     id = models.AutoField(primary_key=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="reservas")
     cabana = models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="reservas")
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
-    cantidad_clientes = models.PositiveIntegerField(
-        validators=[
-            MinValueValidator(1, message="La cantidad de clientes debe ser al menos 1."),
-            MaxValueValidator(20, message="La cantidad de clientes no puede exceder 20."),
-        ]
-    )
-    precio_total = models.DecimalField(max_digits=10, decimal_places=2)
-    chatbot = models.ForeignKey(Chatbot, on_delete=models.SET_NULL, null=True, related_name="reservas")
-
-    def clean(self) -> None:
-        super().clean()
-        if self.fecha_fin <= self.fecha_inicio:
-            raise ValidationError(_("La fecha de fin debe ser posterior a la fecha de inicio."))
-
-        if self.cantidad_clientes > self.cabana.capacidad:  # type: ignore
-            raise ValidationError(_("La cantidad de clientes excede la capacidad de la Cabana."))
-
-        reservas_solapadas = Reserva.objects.filter(  # type: ignore
-            cabana=self.cabana,
-            fecha_inicio__lte=self.fecha_fin,
-            fecha_fin__gte=self.fecha_inicio,
-        ).exclude(id=self.id)
-
-        if reservas_solapadas.exists():
-            raise ValidationError(_("La Cabana ya está reservada para las fechas seleccionadas."))
+    capacidad_cabanas= models.PositiveIntegerField()
+    cantidad_clientes = models.PositiveIntegerField()
     class Meta:
         """ Metadatos del modelo Reserva """
         verbose_name = "Reserva"
         verbose_name_minuscula = "reserva"
         verbose_name_minuscula_plural = "reservas"
-        verbose_name_plural = "Reservas"
-   
+        verbose_name_plural = "Reservas" 
     def __str__(self) -> str:
-        return f"Reserva {self.id}"
+            return f"Reserva {self.id}"
 
 
 class RegistroDiario(models.Model):
+    """ class RegistrosDiarios   """
     id = models.AutoField(primary_key=True)
     cabana = models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="registros")
     fecha = models.DateField()
     observaciones = models.TextField(blank=True, null=True)
+    reservas = models.ForeignKey(Reserva, on_delete=models.CASCADE, related_name="registros")
+    alquileres = models.ForeignKey(Alquileres, on_delete=models.CASCADE, related_name="registros")
     chatbot = models.ForeignKey(Chatbot, on_delete=models.SET_NULL, null=True, related_name="registros")
 
     class Meta:
@@ -203,15 +135,17 @@ class RegistroDiario(models.Model):
         verbose_name = "Registro Diario"
         verbose_name_minuscula = "registro_diario"
         verbose_name_minuscula_plural = "registros_diarios"
-        verbose_name_plural = "Registros Diarios"
+        verbose_name_plural = "Registros Diarios"   
 
     def __str__(self) -> str:
         return f"Registro {self.id} - {self.fecha}"
 
 
 class Factura(models.Model):
+    """ class factura para emitir despues del pago """
     id = models.AutoField(primary_key=True)
     reserva = models.OneToOneField(Reserva, on_delete=models.CASCADE, related_name="factura")
+    alquileres= models.OneToOneField(Reserva, on_delete=models.CASCADE, related_name="factura")
     fecha_emision = models.DateField(auto_now_add=True)
     monto_total = models.DecimalField(max_digits=10, decimal_places=2)
     pagada = models.BooleanField(default=False)
@@ -229,10 +163,11 @@ class Factura(models.Model):
 
 
 class Pago(models.Model):
+    """ class pagos de facturas """
     id = models.AutoField(primary_key=True)
     factura = models.ForeignKey(Factura, on_delete=models.CASCADE, related_name="pagos")
     fecha_pago = models.DateField(auto_now_add=True)
-    monto = models.DecimalField(max_digits=10, decimal_places=2)
+    monto_total = models.DecimalField(max_digits=10, decimal_places=2)
     metodo = models.CharField(
         max_length=20,
         choices=[
@@ -250,17 +185,5 @@ class Pago(models.Model):
         verbose_name_plural = "Pagos"
   
 
-    def __str__(self) -> str:
+    def __str__(self) :
         return f"Pago {self.id}"
-
-    def clean(self) -> None:
-        super().clean()
-        if self.monto > self.factura.monto_total:  # type: ignore
-            raise ValidationError(_("El monto del pago no puede exceder el monto total de la factura."))
-
-    def save(self, *args, **kwargs) -> None:
-        super().save(*args, **kwargs)
-        pagos_totales = self.factura.pagos.aggregate(total=Sum("monto"))["total"] or 0  # type: ignore
-        if pagos_totales >= self.factura.monto_total:  # type: ignore
-            self.factura.pagada = True  # type: ignore
-            self.factura.save(update_fields=["pagada"])  # type: ignore

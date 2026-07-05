@@ -3,13 +3,29 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
 import json
-from .models import Reserva, Alquiler, Pago, Factura, ActividadCabana
+from cabanas_apps.reservas.models import Reserva
+from cabanas_apps.cabanas.models import Alquiler, ActividadCabana
+from cabanas_apps.clientes.models import Pago, Factura
 
+class ViewsCabanasApi:
+    """Clase para manejar las vistas de la API de Cabañas."""
+    def __init__(self):
+         self.models.cabanas.views ()
+         self.models.alquileres.views ()
+         self.models.reservas.views ()
+         self.models.pagos.views ()
+         self.models.facturas.views ()
+         self.models.actividades.views ()
+         self.models.registros.views()
 
+ @staticmethod
+def home(_request):
+        """Vista de inicio simple."""
+        return JsonResponse({"mensaje": "API de Cabañas funcionando"})  
 
 # Vista de inicio simple
 def home(_request):
-    """Vista de inicio de la API de Cabañas."""
+        """Vista de inicio de la API de Cabañas."""
     return JsonResponse({"mensaje": "API de Cabañas funcionando"})
 
 

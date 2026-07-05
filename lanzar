@@ -69,3 +69,9 @@ pyinstaller --onefile --windowed app.py
 .venv\Scripts\python.exe manage.py migrate
 python manage.py runserver --skip-checks
 
+verifica 
+python manage.py shell
+from cabanas_apps.clientes.models import Pago
+print(Pago.objects.all())
+ejecutar para que el idit dj reconozca
+pip install django-stubs

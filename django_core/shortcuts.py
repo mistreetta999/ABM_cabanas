@@ -1,21 +1,31 @@
 """
 Module for shortcut functions to handle cabanas rendering and retrieval.
 """
-from django.shortcuts import render, get_object_or_404
-from .models import Cabanas
+import json
 
-def render_with_cabanas(request, template_name, extra_context=None):
-    """
-    Atajo para renderizar cualquier template con todas las Cabanas cargadas.
-    """
-    cabanas = Cabanas.objects.all()
-    context = {'cabanas': cabanas}
-    if extra_context:
-        context.update(extra_context)
-    return render(request, template_name, context)
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
-def get_cabana_or_404(pk):
-    """
-    Atajo para obtener una Cabana por su ID o lanzar 404 si no existe.
-    """
-    return get_object_or_404(Cabanas, pk=pk)
+from cabanas_apps.reservas.models import Reserva
+
+
+def home(_request):
+    """View function for the home page of the cabanas API."""
+    return JsonResponse({"mensaje": "API de Cabañas funcionando"})
+
+@csrf_exempt
+def crear_reserva(request):
+    """View function to create a new reservation."""
+    if request.method == "POST":
+        data = json.loads(request.body)
+        reserva = Reserva.objects.create(
+            cliente=data.get("cliente"),
+            fecha_inicio=data.get("fecha_inicio"),
+            fecha_fin=data.get("fecha_fin"),
+            cabana=data.get("cabana"),
+            estado="pendiente"
+        )
+        return JsonResponse({"id": reserva.id, "mensaje": "Reserva creada"})
+    return JsonResponse({"error": "Método no permitido"}, status=405)
+
+# ... y lo mismo para alquiler, pago, factura, actividades

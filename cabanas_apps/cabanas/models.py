@@ -1,5 +1,4 @@
 """models cabana"""
-from cabanas_apps.reservas.models import Reserva
 from django.db import models
 
 class Cabana(models.Model):
@@ -15,5 +14,5 @@ class Cabana(models.Model):
         verbose_name = "Cabana"
         verbose_name_plural = "Cabanas"
 
-    def __str__(self:Cabana)-> str:
-        return self.nombre
+    def __str__(self) -> str:
+        return str(self.nombre)

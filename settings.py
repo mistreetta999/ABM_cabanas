@@ -27,16 +27,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Apps propias
-    'cabanas_apps.gestion_cabanas',
-    'cabanas_apps.interfaz_gestion_cabanas',
-    'cabanas_apps.chatbot_app',
-    'cabanas_apps.registros',
-    'cabanas_apps.reservas',
-    'cabanas_apps.cabanas',
-    'cabanas_apps.alquileres',
-    'cabanas_apps.clientes',
-    'cabanas_apps.pagos',
-
+    "cabanas_apps.clientes",
+    "cabanas_apps.reservas",
+    "cabanas_apps.cabanas",
+    "cabanas_apps.interfaz_gestion_cabanas",
+    "cabanas_apps.chatbot",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+ 
     # Django REST Framework y drf-spectacular
     'rest_framework',
     'drf_spectacular',
@@ -98,15 +100,12 @@ MEDIA_ROOT = BASE_DIR / "media"
 WSGI_APPLICATION = 'cabanas.wsgi.application'
 
 # Bases de datos
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Validación de contraseñas
 AUTH_PASSWORD_VALIDATORS = [
@@ -133,14 +132,6 @@ LANGUAGE_CODE = 'es-ar'
 TIME_ZONE = 'America/Argentina/Cordoba'
 USE_I18N = True
 USE_TZ = True
-
-# Archivos estáticos
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
-
-# Archivos multimedia
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
 
 # Configuración por defecto
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

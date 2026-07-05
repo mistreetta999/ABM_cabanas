@@ -1,26 +1,30 @@
 """ archivo clientes"""
 import os
+from typing import TYPE_CHECKING
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Cliente
-from django.db import models
 
+class Cliente:
+    """Modelo de cliente."""
+    def __init__(self, nombre: str, apellido: str, email: str, telefono: str):
+        self.nombre = nombre
+        self.apellido = apellido
+        self.email = email
+        self.telefono = telefono
+        self.id = None  # Se asignará un ID único al guardar en la base de datos
+        self.pagos = []  # Lista de pagos asociados al cliente
 
-class Cliente(models.Model):
-    """ Modelo que representa un cliente."""
-    id = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    class Meta:
-        verbose_name = "Cliente"
-        verbose_name_plural = "Clientes"
-
-
+if TYPE_CHECKING:
+    from django.db.models import QuerySet
+def lista_facturas(request):
+    # lógica de la vista
+    return render(request, 'facturas/lista.html')
 
 
 
 def listar_clientes(request):
     """Muestra todos los clientes registrados."""
-    clientes = Cliente.objects.all()
+    clientes: "QuerySet[Cliente]" = Cliente.objects.all()  # pylint: disable=no-member
     return render(request, "pagina_principal/lista.html", {"clientes": clientes})
 
 def detalle_cliente(request, cliente_id):
@@ -36,13 +40,15 @@ def crear_cliente(request):
         email = request.POST.get("email")
         telefono = request.POST.get("telefono")
 
-    Cliente.objects.create(
+        Cliente.objects.create(
             nombre=nombre,
             apellido=apellido,
             email=email,
             telefono=telefono
         )
-    return redirect("listar_clientes")
+        return redirect("listar_clientes")
+    
+    return render(request, "pagina_principal/crear_cliente.html")
 
 
 def borrar_cliente(request, cliente_id):

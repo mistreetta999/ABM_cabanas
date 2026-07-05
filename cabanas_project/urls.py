@@ -4,12 +4,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.http import HttpResponse, HttpRequest
 from django.urls import include, path
-
-from django.contrib import admin
-from django.urls import path
 from django.shortcuts import render
 
 def pagina_principal(request):
+    """Renderiza la página principal"""
     return render(request, "pagina_principal.html")
 
 urlpatterns = [
@@ -61,6 +59,7 @@ urlpatterns = [
     path("sitemap.xml", sitemap_xml),
 
     # Rutas de tus aplicaciones
+    path('admin/', admin.site.urls),
     path("cabanas/", include("cabanas_apps.cabanas.urls")),
     path("reservas/", include("cabanas_apps.reservas.urls")),
     path("alquileres/", include("cabanas_apps.alquileres.urls")),

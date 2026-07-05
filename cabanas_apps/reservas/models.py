@@ -1,7 +1,7 @@
 """ este archivo es models de reserva. """
 from django.db import models
 from cabanas_apps.clientes.models import Cliente
-
+from typing import Any
 
 class Reserva(models.Model):
     """Modelo que representa una reserva de Cabana."""
@@ -10,7 +10,7 @@ class Reserva(models.Model):
     fecha_inicio = models.DateTimeField()
     fecha_fin = models.DateTimeField()
     estado = models.CharField(max_length=20, default="pendiente")
-
+    ActividadCabana = models.ForeignKey('cabanas.ActividadCabana', on_delete=models.CASCADE, null=True, blank=True)
     objects = models.Manager()
 
     @staticmethod
@@ -27,10 +27,16 @@ class Reserva(models.Model):
     def get_all_reservas():
         """Obtiene todas las reservas."""
         return Reserva.objects.all()
+    def ActividadCabana(self)-> Any:
+        """Obtiene todas las actividades de una Cabana específica."""
+        actividades = ActividadCabana.objects.filter(referencia_id=self.id)
+        return actividades
 
     def __str__(self):
         return f"Reserva {self.cliente} - {self.cabana}  - Estado: {self.estado}"
 
+
+    
     class Meta:
         """ nombres de la tabla y ordenamiento de la tabla """
         db_table = 'reservas_reserva'

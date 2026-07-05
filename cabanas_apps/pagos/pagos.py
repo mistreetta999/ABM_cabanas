@@ -1,5 +1,19 @@
+""" archivo pagos"""
 from django.shortcuts import render, get_object_or_404, redirect
-from cabanas_apps.gestion_cabanas.models import Pago, Alquiler
+from cabanas_apps.models import Pago, Alquiler
+
+
+
+
+class Pagos:
+    """Clase que maneja los pagos de un alquiler."""
+    def __init__(self, alquiler_id):
+        self.alquiler_id = alquiler_id
+        self.reserva_id = alquiler_id
+    def pagos (self):
+        """Obtiene todos los pagos asociados a un alquiler específico."""
+        pagos = Pago.objects.filter(alquiler_id=self.alquiler_id)
+        return pagos
 
 def listar_pagos(request):
     """Muestra todos los pagos registrados."""
