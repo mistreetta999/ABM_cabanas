@@ -1,30 +1,17 @@
-""" archivo main para ejecutar el proyecto de Django """
+""" archivo main.py "
 import os
 import sys
-from django.core.wsgi import get_wsgi_application
+import django
 from django.core.management import execute_from_command_line
 
-class DjangoAppRunner:
-    """Class para ejecutar comandos de Django sin usar la línea de comandos directamente."""    
-    def __init__(self, settings_module="cabanas_project.settings"):
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", settings_module)
-        self.application = get_wsgi_application()
-
-    def runserver(self, host="127.0.0.1", port="8000"):
-        """Arranca el servidor Django en host:port"""
-        sys.argv = ["manage.py", "runserver", f"{host}:{port}"]
+def main():
+    """Punto de entrada principal para tu proyecto Django."""
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cabanas_api.settings")
+    try:
+        django.setup()
         execute_from_command_line(sys.argv)
-
-    def migrate(self):
-        """Ejecuta migraciones"""
-        sys.argv = ["manage.py", "migrate"]
-        execute_from_command_line(sys.argv)
-
-    def createsuperuser(self):
-        """Crea superusuario interactivo"""
-        sys.argv = ["manage.py", "createsuperuser"]
-        execute_from_command_line(sys.argv)
+    except Exception as e:
+        print(f"Error al iniciar el proyecto: {e}")
 
 if __name__ == "__main__":
-    runner = DjangoAppRunner()
-    runner.runserver()
+    main()
