@@ -40,6 +40,4 @@ En Windows, el archivo `levantar_programa.bat` ejecuta las migraciones y levanta
 - `/abm/cabanas/`: gestion de cabanas.
 - `/abm/reservas/`: gestion de reservas.
 - `/chatbot/`: chatbot.
-- `/admin/`: administracion Django.
-
-# no agregar nada 
+- `/admin/`: administracion 
