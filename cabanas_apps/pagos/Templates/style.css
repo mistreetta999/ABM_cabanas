@@ -1,0 +1,85 @@
+:root {
+    --page-bg: #f5f7f2;
+    --ink: #1f2a24;
+    --muted: #66736b;
+    --line: #dde5dc;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--page-bg);
+    color: var(--ink);
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.hero-section {
+    min-height: 420px;
+    background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.62)),
+        url("cabana_foto4.jpg") center / cover no-repeat;
+}
+
+.hero-copy {
+    max-width: 720px;
+}
+
+.reservation-panel {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 28px;
+}
+
+.gallery-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border: 1px solid var(--line);
+}
+
+.table-band {
+    background: #edf3ec;
+}
+
+.chatbot-wrapper {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.chat-window-custom {
+    width: min(360px, calc(100vw - 32px));
+    height: 420px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.btn-chatbot-float {
+    width: 64px;
+    height: 64px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        min-height: 360px;
+    }
+
+    .reservation-panel {
+        padding: 20px;
+    }
+
+    .chatbot-wrapper {
+        right: 16px;
+        bottom: 16px;
+    }
+}

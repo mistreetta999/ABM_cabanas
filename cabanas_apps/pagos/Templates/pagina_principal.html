@@ -1,0 +1,403 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espindola Cabanas</title>
+    <link href="{% static 'css/local_bootstrap.css' %}" rel="stylesheet">
+    
+    <style>
+        /* Paleta de colores - Tonalidades de Verde */
+        :root {
+            --verde-fondo: #e8f5e9;       /* Verde muy claro para el fondo */
+            --verde-oscuro: #1b5e20;      /* Verde bosque para header y footer */
+            --verde-medio: #2e7d32;       /* Verde medio para bordes o textos destacados */
+            --verde-boton: #4caf50;       /* Verde brillante para botones */
+            --verde-boton-hover: #388e3c; /* Verde al pasar el mouse por el boton */
+        }
+
+        body {
+            background-color: var(--verde-fondo);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Utilidades Clientelizadas */
+        .bg-verde-oscuro {
+            background-color: var(--verde-oscuro);
+        }
+
+        .text-verde-medio {
+            color: var(--verde-medio);
+        }
+
+        .btn-verde {
+            background-color: var(--verde-boton);
+            color: white;
+            font-weight: bold;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-verde:hover {
+            background-color: var(--verde-boton-hover);
+            color: white;
+        }
+
+        .tarjeta-formulario {
+            border-top: 5px solid var(--verde-medio);
+            border-radius: 10px;
+        }
+
+        /* Efecto en las imagenes de la galeria */
+        .galeria-img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            object-fit: cover;
+            height: 250px;
+            width: 100%;
+        }
+
+        .galeria-img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(27, 94, 32, 0.2) !important;
+        }
+
+        .galeria-fotos {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1rem;
+        }
+
+        .foto-principal {
+            height: 520px;
+        }
+
+        .foto-secundaria {
+            height: 252px;
+        }
+
+        .foto-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .foto-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 45%, rgba(0, 0, 0, 0.45));
+            pointer-events: none;
+        }
+
+        .foto-texto {
+            position: absolute;
+            left: 1rem;
+            bottom: 1rem;
+            z-index: 1;
+            color: white;
+            font-weight: 700;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+        }
+
+        .chat-widget {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 20;
+            width: min(360px, calc(100vw - 36px));
+        }
+
+        .chat-panel {
+            display: none;
+            overflow: hidden;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+        .chat-panel.open {
+            display: block;
+        }
+
+        .chat-messages {
+            height: 240px;
+            overflow: auto;
+            background: #f8faf9;
+        }
+
+        .chat-message {
+            max-width: 88%;
+            margin-bottom: 10px;
+            padding: 9px 10px;
+            border-radius: 8px;
+            font-size: .94rem;
+            white-space: pre-line;
+        }
+
+        .chat-bot {
+            background: #e7f1ed;
+        }
+
+        .chat-user {
+            background: var(--verde-medio);
+            color: white;
+            margin-left: auto;
+        }
+
+        .ubicacion-card {
+            background: white;
+            border-left: 5px solid var(--verde-medio);
+            border-radius: 10px;
+        }
+
+        .chatbot-iframe {
+            background: white;
+            border-left: 5px solid var(--verde-medio);
+            border-radius: 10px;
+            padding: 18px;
+        }
+
+        .chatbot-iframe iframe {
+            border: 0;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .galeria-fotos {
+                grid-template-columns: 1fr;
+            }
+
+            .foto-principal,
+            .foto-secundaria {
+                height: 260px;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% block content %}
+    <!-- Aquí se cargan las vistas específicas -->
+    {% endblock %}
+
+    <!-- Scripts globales -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/clientes.js' %}"></script>
+    <script src="{% static 'js/reservas.js' %}"></script>
+    <script src="{% static 'js/pagos.js' %}"></script>
+    <script src="{% static 'js/alquileres.js' %}"></script>
+</body>
+<body>
+
+    <header class="bg-verde-oscuro text-white text-center py-5 shadow">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Espindola Cabanas</h1>
+            <p class="lead mb-0">Tu refugio de paz y naturaleza en Mina Clavero, Cordoba</p>
+        </div>
+   
+        
+        <nav>
+            <ul>
+                <li><a href="{% url 'dashboard' %}">Panel de Control</a></li>
+                <li><a href="{% url 'clientes' %}">Clientes</a></li>
+                <li><a href="{% url 'reservas' %}">Reservas</a></li>
+                <li><a href="{% url 'pagos' %}">Pagos</a></li>
+                <li><a href="{% url 'cabanas' %}">Cabañas</a></li>
+            </ul>
+        </nav>
+   
+   
+   
+    </header>
+
+    <main class="container flex-grow-1 my-5">
+        <p>Selecciona una opción del menú para comenzar.</p>
+        <section class="galeria-fotos mb-5">
+            <div class="foto-card shadow-sm">
+                <img src="{% static 'images/foto_principal.jpg.jpeg' %}" alt="Vista principal de las cabanas" class="galeria-img foto-principal">
+                <span class="foto-texto">Cabanas rodeadas de naturaleza</span>
+            </div>
+            <!-- Sección del Chatbot en pagina_principal.html -->
+            <div class="chatbot-container" style="margin-top:20px;">
+                <h2>Chatbot</h2>
+                <iframe src="{% url 'chatbot:chatbot_home' %}" 
+                        width="100%" 
+                        height="400" 
+                        style="border:1px solid #ccc; border-radius:8px;">
+                </iframe>
+            </div>
+            
+
+            <div class="d-grid gap-3">
+                <div class="foto-card shadow-sm">
+                    <img src="{% static 'images/picina.jpg.jpeg' %}" alt="Piscina del complejo" class="galeria-img foto-secundaria">
+                    <span class="foto-texto">Piscina y descanso</span>
+                </div>
+
+                <div class="foto-card shadow-sm">
+                    <img src="{% static 'images/segunda_imagen.jpg.jpeg' %}" alt="Exterior de una Cabanas
+" class="galeria-img foto-secundaria">
+                    <span class="foto-texto">Espacios comodos</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="row justify-content-center mb-5" id="ubicacion">
+            <div class="col-lg-10">
+                <div class="ubicacion-card shadow-sm p-4">
+                    <h2 class="h4 text-verde-medio fw-bold mb-2">Ubicacion</h2>
+                    <p class="mb-3">Nos encontramos en Mina Clavero, Cordoba. La ubicacion queda visible para uso local sin conexion a internet.</p>
+                    <p class="fw-semibold mb-3">WhatsApp: 3544562397</p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <span class="btn btn-verde px-4">Mina Clavero, Cordoba</span>
+                        <span class="btn btn-outline-success px-4">WhatsApp: 3544562397</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="row justify-content-center mb-5" id="chatbot">
+            <div class="col-lg-10">
+                <div class="chatbot-iframe shadow-sm">
+                    <iframe src="/chatbot/" width="100%" height="500" title="Chatbot de consultas"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow tarjeta-formulario border-0">
+                    <div class="card-body p-5">
+                        <h2 class="text-verde-medio mb-4 border-bottom pb-2">Consultas y reservas</h2>
+                        <p class="fs-5 mb-3">La pagina web es solo para mostrar las cabanas y responder consultas de visitantes.</p>
+                        <p class="mb-4">Completa el formulario para que la administracion pueda revisar tu solicitud.</p>
+
+                        <div class="d-flex gap-3 flex-wrap">
+                            <button type="button" class="btn btn-verde px-4" onclick="toggleChat()">Consultar por chat</button>
+                            <a href="/cabanas/#registro" class="btn btn-outline-success px-4">Registrarse o reservar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <section class="chat-widget" aria-label="Asistente de consultas">
+        <div class="card shadow-lg chat-panel" id="chatPanel">
+            <div class="card-header bg-verde-oscuro text-white d-flex justify-content-between align-items-center">
+                <strong>Asistente de consultas</strong>
+                <button type="button" class="btn btn-sm btn-outline-light" onclick="toggleChat()">Cerrar</button>
+            </div>
+            <div class="card-body chat-messages" id="chatMessages">
+                <div class="chat-message chat-bot">Bienvenidos a nuestras cabanas con piscina en el centro de Mina Clavero
+
+Estamos emocionados de ofrecerte un hogar lejos de casa en el corazon de Mina Clavero.
+
+Nuestras cabanas son ideales para familias, parejas y amigos que buscan una estadia relajante y divertida.
+
+Nuestra ubicacion es la mejor, en el corazon de Mina Clavero, a solo 200 mts de Av San Martin, de la Direccion de turismo, de la comisaria y nueva estacion YPF. Tambien a 500 mts del balneario y playas centrales, Casino, paseo de artesanos y mucho mas.
+
+Cerca de restaurantes, tiendas, supermercados y lugares de interes turistico.
+
+No se necesita el vehiculo para salir de paseo y compras, todo esta cerca y a pocos pasos.
+
+Caracteristicas de las cabanas
+
+- Cabanas con capacidad para 2, 3, 4 y 5 huespedes, con una o dos habitaciones.
+- Cada Cabanas
+ cuenta con una cocina equipada, aire acondicionado y WiFi gratuito.
+- Cochera cubierta y galeria individual.
+- Juegos de jardin individuales con sombrillas.
+- Piscina compartida de 9 x 4 metros para disfrutar del sol y la diversion.
+- Solarium con reposeras comodas para relajarte.
+
+Servicios y comodidades
+
+- Asistencia turistica para ayudarte a planificar tus actividades en Mina Clavero.
+- Quincho y asadores portatiles.
+- Ventiladores.
+- TV smart.
+- Microondas.
+- Heladera con freezer.
+- Vajilla completa.
+- Pava electrica.
+- Secador de pelo disponible bajo pedido.
+- Plancha y tabla de planchar disponible bajo pedido.
+- Lavarropas de uso compartido.
+- Amplio parque cerrado y seguro.
+- Incluyen sabanas pero no toallas ni toallones.
+
+Reservas mediante sena unicamente.
+
+Ninos cuentan como huespedes.
+
+No se reciben mascotas.
+
+Por consultas y reservas comunicarse:
+
+WhatsApp 3544562397
+
+Telefono 03544470253
+
+Esperamos verte pronto!!!</div>
+            </div>
+            <form class="card-footer bg-white d-flex gap-2" onsubmit="sendChatMessage(event)">
+                <input id="chatInput" type="text" class="form-control" placeholder="Escribi tu consulta" aria-label="Mensaje para el chatbot" autocomplete="off">
+                <button class="btn btn-verde" type="submit">Enviar</button>
+            </form>
+        </div>
+        <button class="btn btn-verde w-100 py-3 shadow" type="button" onclick="toggleChat()">Consultar por chat</button>
+    </section>
+
+    <footer class="bg-verde-oscuro text-white text-center py-4 mt-auto">
+        <div class="container">
+            <p class="mb-1">&copy; 2026 Espindola Cabanas. Todos los derechos reservados.</p>
+            <p class="mb-0 small">Mina Clavero, Cordoba | WhatsApp: 3544562397 | reservas@espindolacabanas.com</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleChat() {
+            document.getElementById("chatPanel").classList.toggle("open");
+        }
+
+        function addChatMessage(text, type) {
+            const messages = document.getElementById("chatMessages");
+            const item = document.createElement("div");
+            item.className = "chat-message " + type;
+            item.textContent = text;
+            messages.appendChild(item);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        async function sendChatMessage(event) {
+            event.preventDefault();
+            const input = document.getElementById("chatInput");
+            const message = input.value.trim();
+
+            if (!message) {
+                return;
+            }
+
+            addChatMessage(message, "chat-user");
+            input.value = "";
+
+            try {
+                const response = await fetch("/chatbot/api/", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message })
+                });
+                const data = await response.json();
+                addChatMessage(data.reply || "No pude procesar la consulta.", "chat-bot");
+            } catch (error) {
+                addChatMessage("No se pudo conectar con el asistente. Intenta nuevamente.", "chat-bot");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: cabanas-django
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate"
+    startCommand: "gunicorn cabanas_project.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: cabanas_project.settings
+      - key: PYTHON_VERSION
+        value: 3.11.9

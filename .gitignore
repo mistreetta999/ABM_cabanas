@@ -1,0 +1,51 @@
+
+# Added by ggshield
+.cache_ggshield
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Archivos de entorno
+.env
+*.env
+
+# Archivos de configuración locales
+*.local
+*.log
+*.pot
+*.pyc
+__pycache__/
+*.sqlite3
+
+# Archivos de migraciones compilados
+*/migrations/__pycache__/
+*/migrations/*.pyc
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de compilación
+*.egg-info/
+*.egg
+*.manifest
+*.spec
+
+# Archivos de coverage y testing
+.coverage
+htmlcov/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Archivos de IDE
+.vscode/
+.idea/
+*.swp
+
+# Archivos estáticos y media generados
+staticfiles/
+media/

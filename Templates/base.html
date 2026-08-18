@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Gestión de Cabanas{% endblock %}</title>
+    <link href="{% static 'css/local_bootstrap.css' %}" rel="stylesheet">
+    
+    <style>
+        :root {
+            --verde-fondo: #e8f5e9;
+            --verde-oscuro: #1b5e20;
+            --verde-medio: #2e7d32;
+            --verde-boton: #4caf50;
+            --verde-boton-hover: #388e3c;
+        }
+        body { background-color: var(--verde-fondo); font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        .bg-verde-oscuro { background-color: var(--verde-oscuro); }
+        .text-verde-medio { color: var(--verde-medio); }
+        .btn-verde { background-color: var(--verde-boton); color: white; font-weight: bold; border: none; }
+        .btn-verde:hover { background-color: var(--verde-boton-hover); color: white; }
+        .tarjeta-formulario { border-top: 5px solid var(--verde-medio); border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <header class="bg-verde-oscuro text-white text-center py-4 shadow">
+        <div class="container">
+            <h1 class="fw-bold">Cabanas El Descanso</h1>
+            <p class="mb-0">Tu refugio de paz y naturaleza en Mina Clavero, Córdoba</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-verde-oscuro text-white text-center py-3 mt-auto">
+        <div class="container">
+            <p class="mb-1">&copy; 2026 Cabanas El Descanso. Todos los derechos reservados.</p>
+            <p class="mb-0 small">Mina Clavero, Córdoba | info@cabanaseldescanso.com | Tel: +54 9 3544 123-456</p>
+        </div>
+    </footer>
+
+</body>
+</html>

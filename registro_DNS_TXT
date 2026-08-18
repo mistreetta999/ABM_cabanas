@@ -1,0 +1,22 @@
+Domain:              crmcabanas.com
+Record:              _acme-challenge.crmcabanas.com
+Type:                TXT
+Content:             "3OLYRyLzzidNEkKyrxE_BsdNoLiWNwHrKj3Y0cyrnI8"
+Note:                Some DNS managers add quotes automatically. A single set is needed.
+Please press <Enter> after you've created and verified the record
+                                                                                 
+ Plugin Manual generated source crmcabanas.com with 1 identifiers
+ Plugin Single created 1 order
+ [crmcabanas.com] Authorizing...
+ [crmcabanas.com] Authorizing using dns-01 validation (Manual)
+ Unable to find any name servers for crmcabanas.com
+                                                                                 
+Domain:              crmcabanas.com                                              
+Record:              _acme-challenge.crmcabanas.com                              
+Type:                TXT                                                         
+Content:             "3OLYRyLzzidNEkKyrxE_BsdNoLiWNwHrKj3Y0cyrnI8"               
+Note:                Some DNS managers add quotes automatically. A single set    
+                     is needed.   
+                         
+    nslookup -type=ns crmcabanas.com
+                 

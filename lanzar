@@ -1,0 +1,199 @@
+python manage.py runserver
+uvicorn django_core.asgi:application --reload
+limpieza
+Get-ChildItem -Recurse -Include *.pyc | Remove-Item
+Get-ChildItem -Recurse -Include __pycache__ | Remove-Item -Recurse -Force
+python manage.py runserver 127.0.0.1:8080
+python manage.py makemigrations
+python manage.py migrate
+python manage.py makemigrations chatbot_app
+python manage.py migrate
+borrar 
+# Eliminar todas las carpetas __pycache__ y archivos .pyc
+Get-ChildItem -Path . -Include "__pycache__", "*.pyc" -Recurse -Force | Remove-Item -Recurse -Force
+
+Write-Host "Cache de Python eliminado correctamente."
+python manage.py runserver 127.0.0.1:8000
+limpieza
+python manage.py clean_pyc
+Get-ChildItem -Recurse -Include *.pyc,__pycache__ | Remove-Item -Recurse -Force
+python manage.py migrate --database=default   # PostgreSQL
+python manage.py migrate --database=sqlite    # SQLite
+# Borrar archivos .pyc
+Get-ChildItem -Path . -Filter *.pyc -Recurse | Remove-Item -Force
+
+# Borrar carpetas __pycache__
+Get-ChildItem -Path . -Name __pycache__ -Recurse -Directory | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
+# Definir rutas explícitas
+$env:PYTHONPATH = "C:\Users\carol\OneDrive\Desktop\cabanas"
+$env:DJANGO_SETTINGS_MODULE = "gestion_cabanas.settings"
+
+# Verificar Django
+python -c "import django; print('✅ Django versión:', django.__version__)"
+
+# Prueba definitiva
+python manage.py check
+# Copiar todo el proyecto a una ruta normal, sin sincronización
+xcopy "C:\Users\carol\OneDrive\Desktop\cabanas" "C:\cabanas" /E /I /H /K /Y
+
+# Ir a la nueva ubicación
+cd C:\cabanas
+
+# Activar el entorno
+.\venv\Scripts\Activate.ps1
+# Ruta raíz correcta
+$env:PYTHONPATH = "C:\cabanas"
+$env:DJANGO_SETTINGS_MODULE = "gestion_cabanas.settings"
+python -c "import gestion_cabanas; print('✅ Módulo encontrado')"
+python manage.py check
+pip install django-extensions ipython jupyter
+# Crear archivo vacío __init__.py dentro de gestion_cabanas
+New-Item -Path gestion_cabanas\__init__.py -ItemType File -Force
+# Copiar todo el proyecto a una ruta normal, sin sincronización
+xcopy "C:\Users\carol\OneDrive\Desktop\cabanas" "C:\cabanas" /E /I /H /K /Y
+
+# Ir a la nueva ubicación
+cd C:\cabanas
+
+# Activar el entorno virtual
+.\venv\Scripts\Activate.ps1
+pip install django-extensions ipython jupyter
+python manage.py shell_plus --notebook
+python manage.py startapp gestion
+python manage.py startapp reservas
+python manage.py startapp usuarios
+pip install pyinstaller
+pyinstaller --onefile --windowed app.py
+.venv\Scripts\python.exe manage.py makemigrations
+.venv\Scripts\python.exe manage.py migrate
+python manage.py runserver --skip-checks
+pip install python-dotenv
+
+verifica 
+python manage.py shell
+ejecutar para que el idit dj reconozca
+pip install django-stubs
+pip install pylint-django
+python manage.py runserver
+python manage.py test cabanas_apps.clientes
+pip freeze | findstr Django
+pip freeze | findstr Django
+pip install "requests>=2.32.0,<2.33.0"
+para que windows no me siga bloqueando 
+python -m pip install --upgrade pip
+python -m pip install django djangorestframework drf-spectacular django-extensions
+& c:\Users\carol\OneDrive\Desktop\cabanas\.venv\Scripts\Activate.ps1
+python -m pip install django djangorestframework drf-spectacular django-extensions
+python -m pip list
+python -m pip install django djangorestframework drf-spectacular django-extensions
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+& c:\Users\carol\OneDrive\Desktop\cabanas\.venv\Scripts\Activate.ps1
+python -m pip install django djangorestframework drf-spectacular django-extensions
+python -m pip list
+python -m pip install "requests>=2.32.0,<2.33.0"
+nuevo venv
+deactivate
+Remove-Item -Recurse -Force .venv
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+.venv\Scripts\Activate.ps1
+
+.venv\Scripts\activate.bat
+
+python -m pip list
+python -m pip install psycopg2-binary
+falta instalar 
+python -m pip install pylint-django
+python -m pip list
+python -m pip install pylint-django
+python -m pip install pylint-django
+conexion database
+crear usuario 
+psql -U postgres -d cabanas_db
+contrasena = cabanas
+python manage.py migrate
+eliminar asteroides 
+git rm -r --cached .
+git add .
+git commit -m "Limpiar cache de Python"
+venv nuevo
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+ python.exe -m pip install --upgrade pip
+pip install django psycopg2-binary python-dotenv
+pip install djangorestframework
+pip install django-cors-headers
+pip install drf-spectacular
+pip install drf-spectacular[sidecar]
+pip install django-extensions
+.venv\Scripts\Activate.ps1
+pip install django psycopg2-binary python-dotenv djangorestframework django-cors-headers drf-spectacular django-extensions
+.venv\Scripts\Activate.ps1
+pip install --upgrade django
+pip install pylint pylint-django
+
+python manage.py migrate
+crear venv
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install python-dotenv
+pip install python-dotenv
+python manage.py makemigrations
+python manage.py migrate
+abrir puertos
+netstat -ano | findstr :8000
+taskkill /PID 7900 /F
+netstat -ano | findstr :8001
+taskkill /PID NUMERO_DEL_PID /F
+taskkill /PID NUMERO_DEL_PID /F
+taskkill /PID 7900 /F
+resolver conflictos venv
+pip install --use-deprecated=legacy-resolver -r requirements.txt
+python -m pip install --upgrade pip
+pip install pip-audit
+pip-audit
+pip install --upgrade "django>=5.0.13"
+pip install --upgrade "starlette>=1.3.1"
+pip install --upgrade "urllib3>=2.7.0"
+pip install --upgrade "idna>=3.15"
+pip install --upgrade "requests>=2.33.0"
+pip freeze > requirements.txt
+pip install --upgrade "pydantic-settings>=2.14.2"
+pip show pydantic-settings
+
+pip-audit
+python -m pip install django
+# Instalar Django
+python -m pip install django
+
+# Instalar soporte para variables de entorno (.env)
+python -m pip install python-decouple
+
+# Instalar base de datos (si usás Postgres)
+python -m pip install psycopg2-binary
+
+# Instalar utilidades comunes
+python -m pip install pillow
+python -m pip install djangorestframework
+# Crear migraciones a partir de cambios en los modelos
+python manage.py makemigrations
+
+# Aplicar las migraciones a la base de datos
+python manage.py migrate
+# boorrar __pycache__
+Get-ChildItem -Recurse -Include __pycache__ | Remove-Item -Recurse -Force
+para que django reconozca
+python -c "from decouple import config; print(config('SECRET_KEY'))"
+pip install python-decouple
+pip install django-cors-headers
+python manage.py makemigrations alquileres
+python manage.py makemigrations registros
+python manage.py makemigrations reservas
+python manage.py makemigrations cabanas
+python manage.py makemigrations gestion_cabanas
+python manage.py makemigrations chatbot_app
+python manage.py migrate

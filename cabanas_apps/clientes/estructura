@@ -1,0 +1,12 @@
+cabanas_apps/
+   └── clientes/
+       ├── __init__.py
+       ├── models.py
+       ├── views.py
+       ├── clientes.py   ← aquí lo creás
+       └── Templates/
+           └── pagina_principal/
+               ├── lista.html
+               ├── detalle.html
+               ├── formulario.html
+               └── confirma_borrar.html

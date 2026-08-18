@@ -1,0 +1,6 @@
+SRC
+├── cabanas_project/   # Configuración principal de Django
+├── cabana_apps/       # Apps internas (reservas, clientes, etc.)
+├── templates/         # Plantillas HTML
+├── static/            # Archivos estáticos (CSS, JS, imágenes)
+└── scripts/           # Scripts auxiliares

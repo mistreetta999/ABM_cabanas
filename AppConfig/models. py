@@ -1,0 +1,13 @@
+"""AppConfig no define modelos de base de datos.
+
+Los modelos reales del sistema estan en las apps registradas:
+- cabanas_apps.cabanas.models
+- cabanas_apps.clientes.models
+- cabanas_apps.reservas.models
+- cabanas_apps.alquileres.models
+- cabanas_apps.pagos.models
+- cabanas_apps.registros.models
+- cabanas_apps.chatbot_app.models
+
+Las funciones interfaz_gestion_cabanas compartidas estan en cabanas_apps.interfaz_gestion_cabanas.CrudModelMixin.
+"""

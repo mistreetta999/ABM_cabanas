@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #1f2933;
+    background: #f6f8fb;
+}
+
+.page {
+    width: min(960px, calc(100% - 32px));
+    margin: 40px auto;
+}
+
+.list {
+    display: grid;
+    gap: 16px;
+}
+
+.item,
+.detail {
+    background: #ffffff;
+    border: 1px solid #d8dee8;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+a {
+    color: #0f6f77;
+}
+
+.back {
+    display: inline-block;
+    margin-bottom: 16px;
+}

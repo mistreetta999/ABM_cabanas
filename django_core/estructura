@@ -1,0 +1,22 @@
+abrir_el_proyecto_cabanas/
+│
+├── manage.py
+│
+├── django_core/              # ahora es tu módulo central
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+│   └── asgi.py
+│
+├── cabanas_apps_django/
+│   ├── usuarios/
+│   ├── clientes/
+│   ├── alquileres/
+│   ├── cabanas/
+│   └── facturas/
+    pagos
+    registros
+    usuarios
+│
+└── templates/

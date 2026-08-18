@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Cabanas</title>
+    <link href="{% static 'css/local_bootstrap.css' %}" rel="stylesheet">
+    
+    <style>
+        /* Paleta de colores - Tonalidades de Verde */
+        :root {
+            --verde-fondo: #e8f5e9;       /* Verde muy claro para el fondo */
+            --verde-oscuro: #1b5e20;      /* Verde bosque para header y footer */
+            --verde-medio: #2e7d32;       /* Verde medio para bordes o textos destacados */
+            --verde-boton: #4caf50;       /* Verde brillante para botones */
+            --verde-boton-hover: #388e3c; /* Verde al pasar el mouse por el botón */
+        }
+
+        body {
+            background-color: var(--verde-fondo);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Utilidades personalizadas */
+        .bg-verde-oscuro {
+            background-color: var(--verde-oscuro);
+        }
+
+        .text-verde-medio {
+            color: var(--verde-medio);
+        }
+
+        .btn-verde {
+            background-color: var(--verde-boton);
+            color: white;
+            font-weight: bold;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-verde:hover {
+            background-color: var(--verde-boton-hover);
+            color: white;
+        }
+
+        .tarjeta-formulario {
+            border-top: 5px solid var(--verde-medio);
+            border-radius: 10px;
+        }
+
+        /* Efecto en las imágenes de la galería */
+        .galeria-img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            object-fit: cover;
+            height: 250px;
+            width: 100%;
+        }
+
+        .galeria-img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(27, 94, 32, 0.2) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="bg-verde-oscuro text-white text-center py-5 shadow">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Cabanas El Descanso</h1>
+            <p class="lead mb-0">Tu refugio de paz y naturaleza en Mina Clavero, Córdoba</p>
+        </div>
+    </header>
+
+    <main class="container flex-grow-1 my-5">
+
+        <section class="row g-4 mb-5">
+            <div class="col-md-6">
+                <img src="{% static 'images/foto_principal.jpg.jpeg' %}" alt="Vista exterior de la Cabanas
+" class="img-fluid rounded shadow-sm galeria-img">
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'images/cabana_foto1.jpg' %}" alt="Interior acogedor" class="img-fluid rounded shadow-sm galeria-img">
+            </div>
+        </section>
+
+        <section class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow tarjeta-formulario border-0">
+                    <div class="card-body p-5">
+                        <h2 class="text-verde-medio mb-4 border-bottom pb-2">Registro y Reserva</h2>
+                        
+                        <form action="#" method="POST" class="row g-3">
+                            
+                            <div class="col-md-6">
+                                <label for="nombre" class="form-label fw-semibold">Nombre Completo</label>
+                                <input type="text" class="form-control" id="nombre" placeholder="Ej: Juan Pérez" required>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="dni" class="form-label fw-semibold">DNI / Pasaporte</label>
+                                <input type="text" class="form-control" id="dni" placeholder="Número de documento" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="email" class="form-label fw-semibold">Correo Electrónico</label>
+                                <input type="email" class="form-control" id="email" placeholder="ejemplo@correo.com" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="telefono" class="form-label fw-semibold">Teléfono</label>
+                                <input type="tel" class="form-control" id="telefono" placeholder="Código de área + Número" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="llegada" class="form-label fw-semibold">Fecha de Llegada</label>
+                                <input type="date" class="form-control" id="llegada" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="salida" class="form-label fw-semibold">Fecha de Salida</label>
+                                <input type="date" class="form-control" id="salida" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="tipo_cabana" class="form-label fw-semibold">Tipo de Cabanas
+</label>
+                                <select class="form-select" id="tipo_cabana" required>
+                                    <option value="" selected disabled>Seleccione una opción...</option>
+                                    <option value="pareja">Cabanas
+ para 2 personas</option>
+                                    <option value="familia">Cabanas
+ Familiar (4-6 personas)</option>
+                                    <option value="premium">Cabanas
+ Premium con Jacuzzi</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="personas" class="form-label fw-semibold">Cantidad de Personas</label>
+                                <input type="number" class="form-control" id="personas" min="1" max="10" required>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="comentarios" class="form-label fw-semibold">Comentarios o Requerimientos Especiales</label>
+                                <textarea class="form-control" id="comentarios" rows="3" placeholder="¿Necesita cuna, viaja con mascotas? Cuéntenos..."></textarea>
+                            </div>
+
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-verde w-100 py-3 fs-5 rounded-3">Confirmar Solicitud de Reserva</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-verde-oscuro text-white text-center py-4 mt-auto">
+        <div class="container">
+            <p class="mb-1">&copy; 2026 Espindola Cabanas. Todos los derechos reservados.</p>
+            <p class="mb-0 small">Mina Clavero, Córdoba | info@cabanaseldescanso.com | Tel: +54 9 3544 123-456</p>
+        </div>
+    </footer>
+
+</body>
+</html>

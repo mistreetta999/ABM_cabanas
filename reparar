@@ -1,0 +1,17 @@
+# 1. Eliminar venv roto
+rm -rf venv
+
+# 2. Crear nuevo entorno
+python3.14 -m venv venv
+
+# 3. Activar entorno
+venv\Scripts\activate      # Windows
+
+# 4. Instalar dependencias desde requirements.txt
+pip install -r requirements.txt
+ habilito permisos
+ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+# Desde la raíz del proyecto
+Remove-Item -Recurse -Force **\__pycache__\
+Select-String -Path *.py -Pattern "usuarios_sistema"
+Get-ChildItem -Recurse -Include *.py | Select-String "AUTH_USER_MODEL"
