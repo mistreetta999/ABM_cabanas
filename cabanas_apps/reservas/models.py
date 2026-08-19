@@ -4,18 +4,16 @@ from cabanas_apps.clientes.models import Cliente
 
 
 class Reserva(models.Model):
-    """Modelo que representa una reserva de Cabanas
-."""
+    """Modelo que representa una reserva de Cabanas"""
     class Estado(models.TextChoices):
+        """Estados posibles de una reserva."""
         PENDIENTE = "pendiente", "Pendiente"
         CONFIRMADA = "confirmada", "Confirmada"
         CANCELADA = "cancelada", "Cancelada"
         COMPLETADA = "completada", "Completada"
 
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    Cabanas
- = models.ForeignKey('cabanas.Cabanas
-', on_delete=models.CASCADE)
+    Cabanas= models.ForeignKey('cabanas.Cabanas', on_delete=models.CASCADE)
     fecha_inicio = models.DateTimeField()
     fecha_fin = models.DateTimeField()
     estado = models.CharField(
@@ -23,9 +21,7 @@ class Reserva(models.Model):
         choices=Estado.choices,
         default=Estado.PENDIENTE,
     )
-    ActividadCabana = models.ForeignKey(
-        'cabanas.Cabanas
-',
+    ActividadCabana = models.ForeignKey('cabanas.Cabanas',
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -57,14 +53,9 @@ class Reserva(models.Model):
         """Obtiene todas las reservas."""
         return Reserva.objects.all()
 
+    def get_actividad_cabana(self):
+        """Obtiene la actividad asociada a la reserva."""
+        return self.ActividadCabana
+
     def __str__(self)-> str:
-        return f"Reserva {self.cliente} - {self.Cabanas
-}  - Estado: {self.estado}"
-
-def ActividadCabana(self):
-     """Obtiene todas las actividades ."""
-     actividades = ActividadCabana.objects.filter(referencia_id=self.id)
-     return actividades
-
-
-
+        return f"Reserva {self.cliente} - {self.Cabanas}  - Estado: {self.estado}"

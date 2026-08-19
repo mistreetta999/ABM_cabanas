@@ -1,29 +1,36 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from .models import Cabana
 from .forms import CabanaForm
 
-""" Vistas CRUD para el modelo Cabana """
-
 # Listar todas las cabañas
-def cabana_list(request):
-    cabanas = Cabana.objects.all()
-    return render(request, "cabanas_app/cabana_list.html", {"cabanas": cabanas})
+class CabanaListView(ListView):
+    """ cabanas views"""
+    model = Cabana
+    context_object_name = "cabanas"
 
 # Ver detalle de una cabaña
-def cabana_detail(request, pk):
-    cabana = get_object_or_404(Cabana, pk=pk)
-    return render(request, "cabanas_app/cabana_detail.html", {"cabana": cabana})
+class CabanaDetailView(DetailView):
+    """ cabanas detalle """
+    model = Cabana
+    context_object_name = "cabana"
 
-# Crear nueva cabaña
-def cabana_create(request):
-    if request.method == "POST":
-        form = CabanaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("cabanas_app:cabana_list")
-    else:
-        form = CabanaForm()
-    return render(request, "cabanas_app/cabana_form.html", {"form": form})
+# Crear nueva cabaña (devuelve form de Django)
+class CabanaCreateView(CreateView):
+    """ cabana crear """
+    model = Cabana
+    form_class = CabanaForm
+    success_url = reverse_lazy("cabanas_app:cabana_list")
 
-# Editar cabaña existente
-def cabana_update(request, pk):
+# Editar cabaña existente (devuelve form de Django)
+class CabanaUpdateView(UpdateView):
+    """cabana actualizar"""
+    model = Cabana
+    form_class = CabanaForm
+    success_url = reverse_lazy("cabanas_app:cabana_list")
+
+# Eliminar cabaña
+class CabanaDeleteView(DeleteView):
+    """"borrar """
+    model = Cabana
+    success_url = reverse_lazy("cabanas_app:cabana_list")

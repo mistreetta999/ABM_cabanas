@@ -1,13 +1,33 @@
 """Vistas de la app de alquileres."""
+from typing import Any
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
-
 from cabanas_apps.reservas.models import Reserva
-
 from .forms import AlquilerForm
-from .handles import alquiler_buttons
 from .models import Alquiler
+def alquileres (_request)->Any:
+    """ def alquileres"""
+    return alquileres_list(_request)
+
+def alquiler_buttons(view):
+    """Construye los botones para las vistas de alquileres."""
+    buttons = []
+    if view == "list":
+        buttons.append(
+            {
+                "text": "Crear alquiler",
+                "url": reverse_lazy("alquileres:crear_alquiler"),
+            }
+        )
+    elif view in {"form", "detail"}:
+        buttons.append(
+            {
+                "text": "Volver",
+                "url": reverse_lazy("alquileres:lista_alquileres"),
+            }
+        )
+    return buttons
 
 
 def crear_alquileres(request):
@@ -70,7 +90,7 @@ class AlquilerUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         """Agrega botones al formulario."""
         context = super().get_context_data(**kwargs)
-        context["buttons"] = alquiler_buttons("form", self.object.pk)
+        context["buttons"] = alquiler_buttons("form")
         return context
 
 
@@ -83,5 +103,5 @@ class AlquilerDeleteView(DeleteView):
     def get_context_data(self, **kwargs):
         """Agrega botones a la confirmacion de borrado."""
         context = super().get_context_data(**kwargs)
-        context["buttons"] = alquiler_buttons("detail", self.object.pk)
+        context["buttons"] = alquiler_buttons("detail")
         return context

@@ -1,10 +1,10 @@
 """Formulario para la aplicación de cabañas."""
 from django import forms
+from .models import Cabana   # Importa tu modelo, no la clase base
 
-
-class CabanasForm(forms.Form):
-    """Formulario para capturar datos de una reserva."""
-    cliente = forms.CharField(label="Cliente")
-    cabana = forms.CharField(label="Cabaña")
-    fecha_inicio = forms.DateField(label="Fecha de inicio")
-    fecha_fin = forms.DateField(label="Fecha de fin")
+class CabanaForm(forms.ModelForm):
+    """ class form"""
+    class Meta:
+        """ class meta"""
+        model = Cabana       # Aquí debe ir tu modelo Cabana
+        fields = "__all__"   # O lista explícita de campos

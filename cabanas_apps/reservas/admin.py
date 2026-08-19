@@ -5,6 +5,5 @@ from .models import Reserva
 @interfaz_gestion_cabanas.register(Reserva)
 class ReservaAdmin(interfaz_gestion_cabanas.ModelAdmin):
     """interfaz_gestion_cabanas configuracion para el modelo Reserva."""
-    list_display = ("cliente", "Cabanas
-", "fecha_inicio", "fecha_fin", "estado")
+    list_display = ("cliente", "Cabanas", "fecha_inicio", "fecha_fin", "estado")
     search_fields = ("cliente__nombre", "cabana__nombre")

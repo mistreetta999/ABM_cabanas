@@ -1,45 +1,47 @@
 """ Vistas de la aplicación Cabañas."""
 from pathlib import Path
-
+from django.http import JsonResponse
+from typing import Any
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 
 from django.shortcuts import render
-from .models import Cliente, Cabanas
-, Reserva, Alquiler, Registro
+from . import models
+from .models import Cliente, Cabanas as CabanasModel, Reserva, Alquileres, Registro
+
+Alquiler = Alquileres
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 # cabanas_apps/interfaz_gestion_cabanas/views.py
-from django.http import JsonResponse
 
-def Cabanas
-(request):
-    return JsonResponse({"vista": "Cabanas
- funcionando"})
+def Cabanas(request)->JsonResponse:
+    """ def cabanas"""
+    return JsonResponse({"vista": "Cabanas funcionando"})
 
-def Alquileres(request):
+def Alquileres(request)->JsonResponse:
+    """ def alquileres"""
     return JsonResponse({"vista": "Alquileres funcionando"})
 
-def Usuarios(request):
+def Usuarios(request)->JsonResponse:
     return JsonResponse({"vista": "Usuarios funcionando"})
 
-def Reservas(request):
+def Reservas(request)->JsonResponse:
     return JsonResponse({"vista": "Reservas funcionando"})
 
-def Pagos(request):
+def Pagos(request)->JsonResponse:
     return JsonResponse({"vista": "Pagos funcionando"})
 
-def Registros(request):
+def Registros(request)->JsonResponse:
     return JsonResponse({"vista": "Registros funcionando"})
 
-def Chatbot(request):
+def Chatbot(request)->JsonResponse:
     return JsonResponse({"vista": "Chatbot funcionando"})
 
-def Clientes(request):
+def Clientes(request)->JsonResponse:
     return JsonResponse({"vista": "Clientes funcionando"})
 
-def pagina_principal(request):
+def pagina_principal(request)->JsonResponse:
     """ Vista para la página principal """
     return render(request, "pagina_principal.html")
 
@@ -88,14 +90,14 @@ class ClienteDeleteView(DeleteView):
 
 class CabanaListView(ListView):
     """ Vista para listar las cabañas """
-    model = Cabanas
+    model = CabanasModel
 
     template_name = "cabanas/list.html"
 
 
 class CabanaCreateView(CreateView):
     """ Vista para crear una nueva cabaña """
-    model = Cabanas
+    model = CabanasModel
 
     fields = ["nombre", "capacidad", "precio_por_noche", "precio_por_cabana"]
     template_name = "cabanas/form.html"
@@ -104,7 +106,7 @@ class CabanaCreateView(CreateView):
 
 class CabanaUpdateView(UpdateView):
     """ Vista para actualizar una cabaña existente """
-    model = Cabanas
+    model = CabanasModel
 
     fields = ["nombre", "capacidad", "precio_por_noche", "precio_por_cabana"]
     template_name = "cabanas/form.html"
@@ -113,7 +115,7 @@ class CabanaUpdateView(UpdateView):
 
 class CabanaDeleteView(DeleteView):
     """ Vista para eliminar una cabaña existente """
-    model = Cabanas
+    model = CabanasModel
 
     template_name = "cabanas/confirm_delete.html"
     success_url = reverse_lazy("cabana_list")
@@ -129,8 +131,7 @@ class ReservaListView(ListView):
 class ReservaCreateView(CreateView):
     """ Vista para crear una nueva reserva """
     model = Reserva
-    fields = ["Cabanas
-", "cliente", "fecha_inicio", "fecha_fin", "estado"]
+    fields = ["Cabanas", "cliente", "fecha_inicio", "fecha_fin", "estado"]
     template_name = "reservas/form.html"
     success_url = reverse_lazy("reserva_list")
 
@@ -138,8 +139,7 @@ class ReservaCreateView(CreateView):
 class ReservaUpdateView(UpdateView):
     """ Vista para actualizar una reserva existente """
     model = Reserva
-    fields = ["Cabanas
-", "cliente", "fecha_inicio", "fecha_fin", "estado"]
+    fields = ["Cabanas", "cliente", "fecha_inicio", "fecha_fin", "estado"]
     template_name = "reservas/form.html"
     success_url = reverse_lazy("reserva_list")
 
@@ -161,8 +161,7 @@ class AlquilerListView(ListView):
 class AlquilerCreateView(CreateView):
     """ Vista para crear un nuevo alquiler """
     model = Alquiler
-    fields = ["Cabanas
-", "cliente", "fecha_inicio", "fecha_fin", "precio_total", "pagado"]
+    fields = ["Cabanas", "cliente", "fecha_inicio", "fecha_fin", "precio_total", "pagado"]
     template_name = "alquileres/form.html"
     success_url = reverse_lazy("alquiler_list")
 
@@ -170,8 +169,7 @@ class AlquilerCreateView(CreateView):
 class AlquilerUpdateView(UpdateView):
     """ Vista para actualizar un alquiler existente """
     model = Alquiler
-    fields = ["Cabanas
-", "cliente", "fecha_inicio", "fecha_fin", "precio_total", "pagado"]
+    fields = ["Cabanas", "cliente", "fecha_inicio", "fecha_fin", "precio_total", "pagado"]
     template_name = "alquileres/form.html"
     success_url = reverse_lazy("alquiler_list")
 

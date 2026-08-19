@@ -13,5 +13,8 @@ start "" http://127.0.0.1:8000/pagina_principal/
 
 REM Abrir navegador en el admin de Django
 start "" http://127.0.0.1:8000/admin/
+REM Abrir navegador cabanas django
+start "" http://127.0.0.1:8000/cabanas.dj/
+
 
 pause
