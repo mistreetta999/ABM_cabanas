@@ -28,9 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     # Apps propias
-    "cabanas_apps.cabanas_app",
     "cabanas_apps.cabanas",
-    "cabanas_apps.usuarios",
     "cabanas_apps.clientes",
     "cabanas_apps.pagos",
     "cabanas_apps.alquileres",

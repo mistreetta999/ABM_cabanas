@@ -3,6 +3,7 @@
 from django.db import models
 
 class CabanaInformacion(models.Model):
+    """class cabana informacion"""
     nombre = models.CharField(max_length=100, unique=True)
     descripcion = models.TextField(blank=True, null=True)
     capacidad = models.PositiveIntegerField(default=2)
@@ -12,10 +13,10 @@ class CabanaInformacion(models.Model):
     fecha_actualizacion = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = "Cabanas
-"
-        verbose_name = "Cabaña"
-        verbose_name_plural = "Cabañas"
+        """ class meta"""
+        db_table = "Cabanas"
+        verbose_name = "Cabana"
+        verbose_name_plural = "Cabanas"
 
     def __str__(self):
         return f"{self.nombre} (Capacidad: {self.capacidad})"

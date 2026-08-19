@@ -54,6 +54,8 @@ xcopy "C:\Users\carol\OneDrive\Desktop\cabanas" "C:\cabanas" /E /I /H /K /Y
 
 # Ir a la nueva ubicación
 cd C:\cabanas
+pip install python-dotenv
+pip install django-cors-headers
 
 # Activar el entorno virtual
 .\venv\Scripts\Activate.ps1

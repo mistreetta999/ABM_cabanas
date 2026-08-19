@@ -1,8 +1,8 @@
+""" gestion cabanas"""
 from django.db import models
 from django.core.validators import RegexValidator
 
-class Cabanas
-(models.Model):
+class Cabanas(models.Model):
     """Modelo que representa una cabaña"""
     nombre = models.CharField(max_length=100, unique=True)
     descripcion = models.TextField(blank=True, null=True)
@@ -10,12 +10,13 @@ class Cabanas
     precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
+        """class meta"""
         db_table = "cabanas"
         verbose_name = "Cabaña"
         verbose_name_plural = "Cabañas"
 
-    def __str__(self):
-        return self.nombre
+    def __str__(self) -> str:
+        return str(self.nombre)
 
 
 class Cliente(models.Model):
@@ -32,12 +33,13 @@ class Cliente(models.Model):
     email = models.EmailField(unique=True)
 
     class Meta:
+        """" class meta"""
         db_table = "clientes"
         verbose_name = "Cliente"
         verbose_name_plural = "Clientes"
 
-    def __str__(self):
-        return f"{self.nombre} {self.apellido} - DNI: {self.dni}"
+    def __str__(self) -> str:
+        return str(f"{self.nombre} {self.apellido} - DNI: {self.dni}")
 
 
 class Chatbot(models.Model):
@@ -46,14 +48,16 @@ class Chatbot(models.Model):
     descripcion = models.TextField(blank=True, null=True)
 
     class Meta:
+        """class meta"""
         verbose_name = "Chatbot"
         verbose_name_plural = "Chatbots"
 
-    def __str__(self):
-        return self.nombre
+    def __str__(self) -> str:
+        return str(self.nombre)
 
 
 class Reserva(models.Model):
+    """class reservas"""
     ESTADOS_RESERVA = [
         ("pendiente", "Pendiente"),
         ("confirmada", "Confirmada"),
@@ -61,24 +65,23 @@ class Reserva(models.Model):
     ]
 
     cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE, related_name="reservas")
-    Cabanas
- = models.ForeignKey(Cabanas
-, on_delete=models.CASCADE, related_name="reservas")
+    Cabanas= models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="reservas")
     fecha_ingreso = models.DateField()
     fecha_salida = models.DateField()
     estado = models.CharField(max_length=30, choices=ESTADOS_RESERVA, default="pendiente")
     observaciones = models.TextField(blank=True)
 
     class Meta:
+        """class meta"""
         verbose_name = "Reserva"
         verbose_name_plural = "Reservas"
 
     def __str__(self):
-        return f"Reserva de {self.cliente} en {self.Cabanas
-}"
+        return f"Reserva de {self.cliente} en {self.Cabanas}"
 
 
 class Alquiler(models.Model):
+    """class alquiler"""
     ESTADOS_ALQUILER = [
         ("activo", "Activo"),
         ("finalizado", "Finalizado"),
@@ -87,15 +90,14 @@ class Alquiler(models.Model):
 
     reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE, related_name="alquileres")
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="alquileres")
-    Cabanas
- = models.ForeignKey(Cabanas
-, on_delete=models.CASCADE, related_name="alquileres")
+    Cabanas= models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="alquileres")
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
     monto_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     estado = models.CharField(max_length=30, choices=ESTADOS_ALQUILER, default="activo")
 
     class Meta:
+        """ class meta"""
         verbose_name = "Alquiler"
         verbose_name_plural = "Alquileres"
 
@@ -104,6 +106,7 @@ class Alquiler(models.Model):
 
 
 class Pago(models.Model):
+    """ class pagos"""
     METODOS_PAGO = [
         ("efectivo", "Efectivo"),
         ("tarjeta", "Tarjeta"),
@@ -117,6 +120,7 @@ class Pago(models.Model):
     comprobante = models.CharField(max_length=200, blank=True)
 
     class Meta:
+        """class meta"""
         verbose_name = "Pago"
         verbose_name_plural = "Pagos"
 
@@ -125,12 +129,14 @@ class Pago(models.Model):
 
 
 class Registro(models.Model):
+    """ class regitro"""
     modulo = models.CharField(max_length=100)
     descripcion = models.TextField()
     responsable = models.CharField(max_length=100)
     creado_en = models.DateTimeField(auto_now_add=True)
 
     class Meta:
+        """"class meta"""
         verbose_name = "Registro"
         verbose_name_plural = "Registros"
 

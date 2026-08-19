@@ -1,18 +1,18 @@
 from django.test import TestCase
-from .models import Cabanas
+from .models import Cabana
 
-
-class CabanaTestCase(TestCase):
-    def test_crear_cabana(self):
-        Cabanas
- = Cabanas
-.objects.create(
-            nombre="Cabanas
- Test",
+class CabanaModelTest(TestCase):
+    def setUp(self):
+        self.cabana = Cabana.objects.create(
+            nombre="Cabaña Test",
             capacidad=4,
-            precio_por_noche=1000.00,
+            descripcion="Cabaña de prueba",
+            precio_base=1000.00,
             disponible=True
         )
-        self.assertEqual(Cabanas
-.nombre, "Cabanas
- Test")
+
+    def test_cabana_str(self):
+        self.assertEqual(str(self.cabana), "Cabaña Test")
+
+    def test_cabana_disponible(self):
+        self.assertTrue(self.cabana.disponible)

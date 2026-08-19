@@ -1,96 +1,26 @@
-"""views dajango"""
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-from django.shortcuts import render
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-from pathlib import Path
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-from django.http import HttpResponse,HttpResponse
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-from django.shortcuts import render
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
+""" Vistas principales de la app django_local """
+from typing import Any
 
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-def pagina_principal(request:Any)->HttpResponse:
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    """def pagina principal"""
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.views import View
+
+# Vista simple para probar que todo funciona
+def inicio():
+    """Vista de bienvenida."""
+    return HttpResponse("Bienvenida a Gestión de Cabañas")
+
+
+# Ejemplo de vista que renderiza un template
+def pagina_principal(request):
+    """Vista que renderiza un template principal."""
     return render(request, "pagina_principal.html")
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
 
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-# Vista de prueba
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-def home(_request:Any)->HttpResponse:
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    """ def home"""
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    return HttpResponse("Servidor Django Local funcionando correctamente")
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
 
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
+# Ejemplo con clase basada en vistas
+class CabanaView(View):
+    """Vista de listado de cabañas."""
 
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-# Ejemplo de vista para listar cabañas
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-def lista_cabanas(request):
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    """def listas"""
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    cabanas = [
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-        {"nombre": "Cabaña 1", "capacidad": 2},
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-        {"nombre": "Cabaña 2", "capacidad": 3},
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    ]
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    return render(request, "cabanas/lista.html", {"cabanas": cabanas})
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
+    def get(self, _request, *_args, **_kwargs) -> Any:
+        """Devuelve el listado de cabañas."""
+        return HttpResponse("Listado de cabañas")

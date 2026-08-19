@@ -4,8 +4,7 @@ from django.utils import timezone
 from django.http import HttpRequest, HttpResponse
 
 
-class Cabanas
-(models.Model):
+class Cabanas(models.Model):
     """ Modelo que representa una cabaña """
     id = models.AutoField(primary_key=True)  # clave primaria automática
     nombre = models.CharField(max_length=100, unique=True)
@@ -49,9 +48,7 @@ class Chatbot(models.Model):
 class Reserva(models.Model):
     """ Modelo que representa una reserva de cabaña """
     cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE, related_name="reservas")
-    Cabanas
- = models.ForeignKey(Cabanas
-, on_delete=models.CASCADE, related_name="reservas")
+    Cabanas= models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="reservas")
     fecha_ingreso = models.DateField()
     fecha_salida = models.DateField()
     estado = models.CharField(max_length=30, default="pendiente")
@@ -68,14 +65,13 @@ class Alquileres(models.Model):
     """ Modelo que representa un alquiler de cabaña """
     reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE, related_name="alquileres")
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="alquileres")
-    Cabanas
- = models.ForeignKey(Cabanas
-, on_delete=models.CASCADE, related_name="alquileres")
+    Cabanas= models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="alquileres")
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
     monto_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     estado = models.CharField(max_length=30, default="activo")
     class Meta:
+        """class meta"""
         verbose_name = "Alquiler"
         verbose_name_plural = "Alquileres"
 
@@ -85,12 +81,13 @@ class Alquileres(models.Model):
 
 class Pago(models.Model):
     """ Modelo que representa un pago de un alquiler """
-    alquiler = models.ForeignKey(Alquiler, on_delete=models.CASCADE, related_name="pagos")
+    alquiler = models.ForeignKey('Alquileres', on_delete=models.CASCADE, related_name="pagos")
     fecha = models.DateField()
     monto = models.DecimalField(max_digits=10, decimal_places=2)
     metodo = models.CharField(max_length=30)
     comprobante = models.CharField(max_length=200, blank=True)
     class Meta:
+        """ class meta"""
         verbose_name = "Pago"
         verbose_name_plural = "Pagos"
     def __str__(self) -> str:

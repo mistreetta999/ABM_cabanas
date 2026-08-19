@@ -1,76 +1,37 @@
-"""
-reservas_models.py
-Modelos para la gestión de reservas en el sistema de Cabanas.
-Incluye definiciones de Reserva y posibles extensiones.
-Cumple con estándares Pylint y buenas prácticas de Django.
-"""
-
+"""models de pago"""
 from django.db import models
-from .cabanas_models import Cabanas
+from .facturas_models import Factura
 
-from .cabanas_models import Cliente
+class Pago(models.Model):
+    """Modelo de Pago asociado a una Factura."""
 
-
-class Reserva(models.Model):
-    """
-    Representa una reserva realizada por un cliente en una Cabanas
-.
-    """
-    cliente = models.ForeignKey(
-        Cliente,
-        on_delete=models.CASCADE,
-        related_name="reservas",
-        help_text="Cliente que realiza la reserva."
-    )
-    Cabanas
- = models.ForeignKey(
-        Cabanas
-,
-        on_delete=models.CASCADE,
-        related_name="reservas",
-        help_text="Cabanas
- reservada."
-    )
-    fecha_inicio = models.DateField(
-        help_text="Fecha de pagina_principal de la reserva."
-    )
-    fecha_fin = models.DateField(
-        help_text="Fecha de fin de la reserva."
-    )
-    cantidad_clientes = models.PositiveIntegerField(
-        help_text="Número de clientes incluidas en la reserva."
-    )
-    estado = models.CharField(
+    id = models.AutoField(primary_key=True)
+    fecha_pago = models.DateField(auto_now_add=True)
+    monto_total = models.DecimalField(max_digits=10, decimal_places=2)
+    metodo = models.CharField(
         max_length=20,
         choices=[
-            ("pendiente", "Pendiente"),
-            ("confirmada", "Confirmada"),
-            ("cancelada", "Cancelada"),
-            ("finalizada", "Finalizada"),
+            ("efectivo", "Efectivo"),
+            ("tarjeta", "Tarjeta"),
+            ("transferencia", "Transferencia"),
         ],
-        default="pendiente",
-        help_text="Estado actual de la reserva."
     )
-    creada_en = models.DateTimeField(
-        auto_now_add=True,
-        help_text="Fecha de creación de la reserva."
-    )
-    actualizada_en = models.DateTimeField(
-        auto_now=True,
-        help_text="Última fecha de actualización de la reserva."
-    )
+    factura = models.ForeignKey(Factura, on_delete=models.CASCADE, related_name="pagos")
 
     class Meta:
-        """ Metadatos para el modelo Reserva."""
-        verbose_name = "Reserva"
-        verbose_name_plural = "Reservas"
-        ordering = ["-fecha_inicio"]
+        verbose_name = "Pago"
+        verbose_name_plural = "Pagos"
 
     def __str__(self):
-        return (
-            f"Reserva de {self.cliente} en {self.Cabanas
-} "
-            f"del {self.fecha_inicio} al {self.fecha_fin} "
-            f"({self.estado})"
-        )   
-           
+        return f"Pago {self.id} - {self.metodo} - {self.monto_total}"
+
+    def actualizar(self, **datos):
+        """Actualiza la instancia actual con datos nuevos."""
+        for campo, valor in datos.items():
+            setattr(self, campo, valor)
+        self.save(update_fields=list(datos.keys()) if datos else None)
+        return self
+
+    def eliminar(self):
+        """Elimina la instancia actual."""
+        return self.delete()

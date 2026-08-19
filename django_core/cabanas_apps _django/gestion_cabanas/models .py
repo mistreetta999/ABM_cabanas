@@ -4,8 +4,7 @@ from django.core.validators import RegexValidator
 from django.db import models
 from django.utils import timezone
 
-class Cabanas
-(models.Model):
+class Cabanas(models.Model):
     """Modelo que representa una cabaña."""
 
     id = models.AutoField(primary_key=True)  # clave primaria automática
@@ -51,17 +50,14 @@ class Reserva(models.Model):
     """Modelo que representa una reserva de cabaña."""
 
     cliente = models.ForeignKey("Cliente", on_delete=models.CASCADE, related_name="reservas")
-    Cabanas
- = models.ForeignKey(Cabanas
-, on_delete=models.CASCADE, related_name="reservas")
+    Cabanas = models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="reservas")
     fecha_ingreso = models.DateField()
     fecha_salida = models.DateField()
     estado = models.CharField(max_length=30, default="pendiente")
     observaciones = models.TextField(blank=True)
 
     def __str__(self):
-        return f"Reserva de {self.cliente} en {self.Cabanas
-} ({self.fecha_ingreso} - {self.fecha_salida})"
+        return f"Reserva de {self.cliente} en {self.Cabanas} ({self.fecha_ingreso} - {self.fecha_salida})"
 
 
 class Alquiler(models.Model):
@@ -69,9 +65,7 @@ class Alquiler(models.Model):
 
     reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE, related_name="alquileres")
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="alquileres")
-    Cabanas
- = models.ForeignKey(Cabanas
-, on_delete=models.CASCADE, related_name="alquileres")
+    Cabanas= models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="alquileres")
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
     monto_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)

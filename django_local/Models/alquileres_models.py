@@ -1,74 +1,33 @@
-"""
-reservas_models.py
-Modelos para la gestión de reservas en el sistema de Cabanas.
-Incluye definiciones de Reserva y posibles extensiones.
-Cumple con estándares Pylint y buenas prácticas de Django.
-"""
-
+""" alquileres models"""
 from django.db import models
-from django.utils import timezone
-from .models import Cliente, Cabanas
-,Pagos,Alquiler,Registro,Usuarios
+from .clientes_models import Cliente
 
-class Alquileres(models.Model):
-    """
-     Alquileres de un cliente en una Cabanas
-.
-    """
-    cliente = models.ForeignKey(
-        Cliente,
-        on_delete=models.CASCADE,
-        related_name="reservas",
-        help_text="Cliente que realiza la reserva."
-    )
-    Cabanas
- = models.ForeignKey(
-        Cabanas
-,
-        on_delete=models.CASCADE,
-        related_name="reservas",
-        help_text="Cabanas
- reservada."
-    )
-    fecha_inicio = models.DateField(
-        help_text="Fecha de pagina_principal de la reserva."
-    )
-    fecha_fin = models.DateField(
-        help_text="Fecha de fin de la reserva."
-    )
-    cantidad_clientes = models.PositiveIntegerField(
-        help_text="Número de clientes incluidas en la reserva."
-    )
-    estado = models.CharField(
-        max_length=20,
-        choices=[
-            ("pendiente", "Pendiente"),
-            ("confirmada", "Confirmada"),
-            ("cancelada", "Cancelada"),
-            ("finalizada", "Finalizada"),
-        ],
-        default="pendiente",
-        help_text="Estado actual de la reserva."
-    )
-    creada_en = models.DateTimeField(
-        auto_now_add=True,
-        help_text="Fecha de creación de la reserva."
-    )
-    actualizada_en = models.DateTimeField(
-        auto_now=True,
-        help_text="Última fecha de actualización de la reserva."
-    )
 
-    
+class Alquiler(models.Model):
+    """Modelo de Alquiler de cabañas."""
+
+    id = models.AutoField(primary_key=True)
+    cabana = models.ForeignKey("Models.Cabana", on_delete=models.CASCADE, related_name="alquileres")
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="alquileres")
+    reserva = models.OneToOneField("Models.Reserva", on_delete=models.CASCADE, related_name="alquiler")
+    monto_total = models.DecimalField(max_digits=10, decimal_places=2)
+    fecha_pago = models.DateField(null=True, blank=True)
+
     class Meta:
-        verbose_name = "Reserva"
-        verbose_name_plural = "Reservas"
-        ordering = ["-fecha_inicio"]
+        """ class meta nombres"""
+        verbose_name = "Alquiler"
+        verbose_name_plural = "Alquileres"
 
     def __str__(self):
-        return (
-            f"Reserva de {self.cliente} en {self.Cabanas
-} "
-            f"del {self.fecha_inicio} al {self.fecha_fin} "
-            f"({self.estado})"
-        )
+        return f"Alquiler {self.id} - {self.cliente} ({self.cabana})"
+
+    def actualizar(self, **datos):
+        """Actualiza la instancia actual con datos nuevos."""
+        for campo, valor in datos.items():
+            setattr(self, campo, valor)
+        self.save(update_fields=list(datos.keys()) if datos else None)
+        return self
+
+    def eliminar(self):
+        """Elimina la instancia actual."""
+        return self.delete()

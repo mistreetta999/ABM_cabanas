@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     "django_core",
     "AppConfig",
     # Apps propias
-    "cabanas_apps.cabanas_app",
     "cabanas_apps.cabanas",
     "cabanas_apps.usuarios",
     "cabanas_apps.clientes",
@@ -58,7 +57,6 @@ INSTALLED_APPS = [
     "cabanas_apps.alquileres",
     "cabanas_apps.reservas",
     "cabanas_apps.registros",
-    "cabanas_apps.usuarios",
     "cabanas_apps.interfaz_gestion_cabanas",
     "cabanas_apps.gestion_cabanas",
     "cabanas_apps.chatbot_app",
@@ -86,6 +84,7 @@ SPECTACULAR_SETTINGS = {
 
 # Middleware
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",   # ← debe ir arriba de CommonMiddleware
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -93,8 +92,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-
 ]
+
 
 # URLs principales
 ROOT_URLCONF = "cabanas_principal.urls"

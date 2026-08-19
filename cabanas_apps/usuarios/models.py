@@ -22,6 +22,7 @@ class UserPermisos(models.Model):
 class Usuario(AbstractUser):
     """"class usuarios para el sistema"""
     telefono = models.CharField(max_length=20, blank=True)
+    name = 'usuarios_app'
 
     def __str__(self):
         return str(self.username)

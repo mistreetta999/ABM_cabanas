@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de pagos</title>
+</head>
+<body>
+    <h1>Panel de pagos</h1>
+    <nav>
+        {% for link in panel_links %}
+            <a href="{{ link.href }}">{{ link.label }}</a>
+        {% endfor %}
+    </nav>
+</body>
+</html>

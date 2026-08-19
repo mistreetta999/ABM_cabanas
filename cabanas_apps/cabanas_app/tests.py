@@ -11,6 +11,6 @@ class ClienteTestCase(TestCase):
             apellido="Test",
             email="carolina@test.com"
         )
-        self.assertEqual(cliente.nombre, "Carolina")
+        self.assertEqual(cliente.nombre, "nombre")
         self.assertEqual(cliente.apellido, "Test")
-        self.assertEqual(cliente.email, "carolina@test.com")
+        self.assertEqual(cliente.email, "nombre@test.com")

@@ -1,0 +1,371 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Panel Django | Sistema de Gestion de Cabanas</title>
+    <style>
+        :root {
+            --bg: #eef7ef;
+            --text: #1f3025;
+            --muted: #5f7466;
+            --line: #c7dfce;
+            --brand: #2f7d4f;
+            --brand-dark: #174d2f;
+            --brand-deep: #0f3a24;
+            --card: #fbfffb;
+            --soft: #dcefe2;
+            --soft-2: #f4faf5;
+            --danger: #315740;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        header {
+            border-bottom: 1px solid var(--line);
+            background: var(--brand-dark);
+            color: white;
+            box-shadow: 0 2px 12px rgba(15, 58, 36, .18);
+        }
+
+        .bar,
+        main {
+            width: min(1120px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        .bar {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .brand strong {
+            font-size: 20px;
+        }
+
+        .brand span {
+            color: #d9efe0;
+            font-size: 14px;
+        }
+
+        .top-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .nav-link,
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 38px;
+            padding: 0 13px;
+            border-radius: 6px;
+            border: 1px solid var(--line);
+            background: var(--soft-2);
+            color: var(--brand-deep);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .button.primary {
+            border-color: var(--brand);
+            background: var(--brand);
+            color: white;
+        }
+
+        .button:hover,
+        .nav-link:hover {
+            border-color: #9fcfab;
+            background: var(--soft);
+        }
+
+        .button.primary:hover {
+            background: var(--brand-dark);
+            color: white;
+        }
+
+        .button.danger {
+            border-color: #e0b7b7;
+            color: var(--danger);
+        }
+
+        main {
+            padding: 28px 0 48px;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 280px minmax(0, 1fr);
+            gap: 22px;
+            align-items: start;
+        }
+
+        .sidebar,
+        .content,
+        .module {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            box-shadow: 0 1px 0 rgba(15, 58, 36, .04);
+        }
+
+        .sidebar {
+            padding: 18px;
+            position: sticky;
+            top: 16px;
+        }
+
+        .sidebar h1 {
+            font-size: 22px;
+            line-height: 1.2;
+            margin: 0 0 8px;
+        }
+
+        .sidebar p {
+            color: var(--muted);
+            line-height: 1.5;
+            margin: 0 0 18px;
+        }
+
+        .side-list {
+            display: grid;
+            gap: 8px;
+        }
+
+        .side-list a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            min-height: 42px;
+            padding: 0 12px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            background: var(--soft);
+            text-decoration: none;
+            font-weight: 700;
+            color: var(--brand-deep);
+        }
+
+        .side-list a:hover {
+            background: #cfe8d7;
+            border-color: #9fcfab;
+        }
+
+        .side-list span {
+            color: var(--brand-dark);
+            font-size: 13px;
+        }
+
+        .content {
+            padding: 22px;
+        }
+
+        .content-header {
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 16px;
+            margin-bottom: 16px;
+        }
+
+        .content-header h2 {
+            font-size: 26px;
+            margin: 0 0 8px;
+        }
+
+        .content-header p {
+            color: var(--muted);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .modules {
+            display: grid;
+            gap: 12px;
+        }
+
+        .module {
+            display: grid;
+            grid-template-columns: minmax(180px, 1fr) auto;
+            gap: 16px;
+            align-items: center;
+            padding: 16px;
+            background: linear-gradient(90deg, #fbfffb 0%, #f2faf4 100%);
+        }
+
+        .module h3 {
+            margin: 0 0 6px;
+            font-size: 18px;
+        }
+
+        .module p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.45;
+        }
+
+        .module-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .count {
+            display: inline-flex;
+            align-items: center;
+            min-height: 28px;
+            padding: 0 10px;
+            border-radius: 999px;
+            background: var(--soft);
+            color: var(--brand-dark);
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 860px) {
+            .bar,
+            .layout,
+            .module {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .module-actions {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="bar">
+            <div class="brand">
+                <strong>Sistema de Gestion de Cabanas</strong>
+                <span>Panel Django administrativo local</span>
+            </div>
+            <nav class="top-nav" aria-label="Navegacion principal">
+                <a class="nav-link" href="/">pagina_principal.html</a>
+                <a class="nav-link" href="{% url 'panel_django' %}">Panel Django</a>
+                <a class="nav-link" href="{% url 'chatbot_page' %}">Chatbot</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="layout">
+            <aside class="sidebar" aria-label="Modulos administrativos">
+                <h1>Administracion</h1>
+                <p>Orden principal del sistema Django para la tesis.</p>
+                <nav class="side-list">
+                    <a href="{% url 'cliente_list' %}">Clientes <span>{{ clientes_count|default:0 }}</span></a>
+                    <a href="{% url 'reserva_list' %}">Reservas <span>{{ reservas_count|default:0 }}</span></a>
+                    <a href="{% url 'alquiler_list' %}">Alquileres <span>{{ alquileres_count|default:0 }}</span></a>
+                    <a href="{% url 'pago_list' %}">Pagos <span>{{ pagos_count|default:0 }}</span></a>
+                    <a href="{% url 'registro_list' %}">Registros <span>{{ registros_count|default:0 }}</span></a>
+                </nav>
+            </aside>
+
+            <section class="content" aria-label="interfaz_gestion_cabanas por modulo">
+                <div class="content-header">
+                    <h2>Panel Django estructurado</h2>
+                    <p>Cada modulo tiene funciones interfaz_gestion_cabanas: crear, listar, editar y borrar registros desde vistas Django locales.</p>
+                </div>
+
+                <div class="modules">
+                    <article class="module">
+                        <div>
+                            <span class="count">{{ clientes_count|default:0 }} registros</span>
+                            <h3>Clientes</h3>
+                            <p>Alta, consulta, modificacion y baja de clientes.</p>
+                        </div>
+                        <div class="module-actions">
+                            <a class="button primary" href="{% url 'cliente_create' %}">Crear</a>
+                            <a class="button" href="{% url 'cliente_list' %}">Listar / editar / borrar</a>
+                        </div>
+                    </article>
+
+                    <article class="module">
+                        <div>
+                            <span class="count">{{ reservas_count|default:0 }} registros</span>
+                            <h3>Reservas</h3>
+                            <p>Control de reservas asociadas a clientes y cabanas.</p>
+                        </div>
+                        <div class="module-actions">
+                            <a class="button primary" href="{% url 'reserva_create' %}">Crear</a>
+                            <a class="button" href="{% url 'reserva_list' %}">Listar / editar / borrar</a>
+                        </div>
+                    </article>
+
+                    <article class="module">
+                        <div>
+                            <span class="count">{{ alquileres_count|default:0 }} registros</span>
+                            <h3>Alquileres</h3>
+                            <p>Gestion de alquileres activos, finalizados o cancelados.</p>
+                        </div>
+                        <div class="module-actions">
+                            <a class="button primary" href="{% url 'alquiler_create' %}">Crear</a>
+                            <a class="button" href="{% url 'alquiler_list' %}">Listar / editar / borrar</a>
+                        </div>
+                    </article>
+
+                    <article class="module">
+                        <div>
+                            <span class="count">{{ pagos_count|default:0 }} registros</span>
+                            <h3>Pagos</h3>
+                            <p>Registro de importes, metodos de pago y comprobantes.</p>
+                        </div>
+                        <div class="module-actions">
+                            <a class="button primary" href="{% url 'pago_create' %}">Crear</a>
+                            <a class="button" href="{% url 'pago_list' %}">Listar / editar / borrar</a>
+                        </div>
+                    </article>
+
+                    <article class="module">
+                        <div>
+                            <span class="count">{{ registros_count|default:0 }} registros</span>
+                            <h3>Registros</h3>
+                            <p>Novedades administrativas y seguimiento de movimientos.</p>
+                        </div>
+                        <div class="module-actions">
+                            <a class="button primary" href="{% url 'registro_create' %}">Crear</a>
+                            <a class="button" href="{% url 'registro_list' %}">Listar / editar / borrar</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

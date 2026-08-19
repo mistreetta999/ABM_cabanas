@@ -1,0 +1,17 @@
+@echo off
+REM Activar entorno virtual
+call %~dp0\.venv\Scripts\activate.bat
+
+REM Ir a la carpeta del proyecto
+cd %~dp0
+
+REM Levantar el servidor Django
+start "" python manage.py runserver
+
+REM Abrir navegador en la página principal
+start "" http://127.0.0.1:8000/pagina_principal/
+
+REM Abrir navegador en el admin de Django
+start "" http://127.0.0.1:8000/admin/
+
+pause

@@ -1,8 +1,8 @@
 """Models de cabanas_api."""
 from django.db import models
 
-class Cabanas
-(models.Model):
+class Cabanas(models.Model):
+    """class cabanas"""
     nombre = models.CharField(max_length=100, unique=True)
     descripcion = models.TextField(blank=True, null=True)
     capacidad = models.PositiveIntegerField(default=2)
@@ -12,10 +12,10 @@ class Cabanas
     fecha_actualizacion = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = "Cabanas
-"
-        verbose_name = "Cabaña"
-        verbose_name_plural = "Cabañas"
+        """ class meta nombres"""
+        db_table = "Cabanas"
+        verbose_name = "Cabana"
+        verbose_name_plural = "Cabanas"
 
     def __str__(self):
         return f"{self.nombre} (Capacidad: {self.capacidad})"

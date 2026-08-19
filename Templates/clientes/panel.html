@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de clientes</title>
+</head>
+<body>
+    <h1>Panel de clientes</h1>
+    <nav>
+        {% for link in panel_links %}
+            <a href="{{ link.href }}">{{ link.label }}</a>
+        {% endfor %}
+    </nav>
+    <section>
+        <h2>Clientes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>DNI</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Telefono</th>
+                    <th>Direccion</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in clientes %}
+                    <tr>
+                        <td>{{ cliente.dni }}</td>
+                        <td>{{ cliente.nombre }}</td>
+                        <td>{{ cliente.apellido }}</td>
+                        <td>{{ cliente.telefono|default:"" }}</td>
+                        <td>{{ cliente.direccion|default:"" }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5">No hay clientes cargados.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>

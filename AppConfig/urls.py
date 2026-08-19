@@ -7,14 +7,11 @@ app_name = ["appconfig"]
 
 urlpatterns = [
 
-    path('', handles.lista_cabanas, name='lista_cabanas'),
-    path('<int:cabana_id>/', handles.detalle_cabana, name='detalle_cabana'),
-    path('crear/', handles.crear_cabana, name='crear_cabana'),
-    path('editar/<int:cabana_id>/', handles.editar_cabana, name='editar_cabana'),
-    path('eliminar/<int:cabana_id>/', handles.eliminar_cabana, name='eliminar_cabana'),
-    path('api/', handles.api_cabanas, name='api_cabanas'),
-
-
+    path('', handles.appconfig_home, name='lista_cabanas'),
+    path('<int:cabana_id>/', handles.appconfig_home, name='detalle_cabana'),
+    path('crear/', handles.appconfig_home, name='crear_cabana'),
+    path('editar/<int:cabana_id>/', handles.appconfig_home, name='editar_cabana'),
+    path('eliminar/<int:cabana_id>/', handles.appconfig_home, name='eliminar_cabana'),
     path("django_core/", include("django_core.urls")),
     path("chatbot/", include("cabanas_apps.chatbot_app.urls")),
     path("", handles.appconfig_home, name="home"),

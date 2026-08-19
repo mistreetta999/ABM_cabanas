@@ -3,7 +3,7 @@ from django import forms
 from django.db.models.base import Model
 
 
-class CabanasAppsForm(forms.ModelForm):
+class CabanaForm(forms.ModelForm):
     """crear formulario de la app cabanas"""
     class Meta:
         """metadatos del formulario"""

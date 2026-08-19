@@ -1,10 +1,10 @@
-""" Formulario para la aplicación de cabañas."""
+"""Formulario para la aplicación de cabañas."""
 from django import forms
-from .models import Reserva
 
-class CabanasForm(forms.ModelForm):
-    """Formulario para crear o actualizar una cabaña."""
-    class Meta:
-        """ Meta información del formulario."""
-        model = Reserva
-        fields = ['cliente', 'cabaña', 'fecha_inicio', 'fecha_fin']
+
+class CabanasForm(forms.Form):
+    """Formulario para capturar datos de una reserva."""
+    cliente = forms.CharField(label="Cliente")
+    cabana = forms.CharField(label="Cabaña")
+    fecha_inicio = forms.DateField(label="Fecha de inicio")
+    fecha_fin = forms.DateField(label="Fecha de fin")

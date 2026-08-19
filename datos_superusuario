@@ -1,0 +1,4 @@
+(.venv) PS C:\Users\carol\OneDrive\Desktop\cabanas> python manage.py createsuperuser
+Nombre de usuario: carolinamistretta
+Dirección de email: carolinamistretta999@gmail.com
+Password: 

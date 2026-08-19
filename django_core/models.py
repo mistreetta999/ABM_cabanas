@@ -1,217 +1,158 @@
-"""archivo contiene los modelos del programa."""
-from pathlib import Path
-
-from django.conf import settings
+"""archivo  models"""
 from django.db import models
+from django.utils import timezone
+from django.http import HttpRequest, HttpResponse
 
 
-directories = Path(".").parents
+class Cabanas(models.Model):
+    """ Modelo que representa una cabaña """
+    id = models.AutoField(primary_key=True)  # clave primaria automática
+    nombre = models.CharField(max_length=100, unique=True)
+    descripcion = models.TextField(blank=True, null=True)
+    capacidad = models.IntegerField()
+    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)
 
-class Models:
-    """ esta clase es de los modelos"""
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.nombre = "Modelos Cabanas"
-        self.descripcion = "Estos son los modelos para la gestión de Cabanas."  
-        
+    class Meta:
+        """ class meta"""
+        db_table = "cabanas"
+        verbose_name = "Cabaña"
+        verbose_name_plural = "Cabañas"
+class Cliente(models.Model):
+    """ Modelo que representa un cliente """
+    id = models.AutoField(primary_key=True)  # clave primaria automática
+    dni = models.IntegerField(max_length=100)
+    nombre = models.CharField(max_length=100)
+    apellido = models.CharField(max_length=100)
+    direccion = models.CharField(max_length=200, blank=True, null=True)
+    telefono = models.CharField(max_length=20, blank=True, null=True)
+    email = models.EmailField(unique=True)
+
+    class Meta:
+        """class meta"""
+        db_table = "clientes"
+        verbose_name = "Cliente"
+        verbose_name_plural = "Clientes"
+    def __str__(self) -> str:
+        return f"{self.nombre} {self.apellido} - DNI: {self.dni}"
+
 
 class Chatbot(models.Model):
-    """ esta clase es del chatbot"""
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.nombre = "Chatbot Cabanas"
-        self.descripcion = "Este es un chatbot para la gestión de Cabanas."
-        self.reponses = ChatbotResponse(chatbot=self)
-            
-    id = models.AutoField(primary_key=True)
+    """"Modelo para representar un chatbot."""
     nombre = models.CharField(max_length=100, default="Chatbot Cabanas")
     descripcion = models.TextField(blank=True, null=True)
     class Meta:
-        """ Metadatos del modelo Chatbot """
+        """ class Meta para definir el nombre del modelo en singular y plural. """
         verbose_name = "Chatbot"
-        verbose_name_plural = "Chatbots"    
-
+        verbose_name_plural = "Chatbots"
     def __str__(self) -> str:
-        """ Representación en cadena del modelo Chatbot """
         return str(self.nombre)
 
-   
-
-class Cabanas(models.Model):
-    """ esta clase es de la Cabanas
-"""
-    
-    id = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=100, unique=True)
-    capacidad = models.PositiveIntegerField()
-    descripcion = models.TextField(blank=True, null=True)
-    precio_base = models.DecimalField(max_digits=10, decimal_places=2)
-    disponible = models.BooleanField(default=True)
-    chatbot = models.ForeignKey(Chatbot, on_delete=models.SET_NULL, null=True, related_name="cabanas")
+class Reserva(models.Model):
+    """ Modelo que representa una reserva de cabaña """
+    cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE, related_name="reservas")
+    Cabanas= models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="reservas")
+    fecha_ingreso = models.DateField()
+    fecha_salida = models.DateField()
+    estado = models.CharField(max_length=30, default="pendiente")
+    observaciones = models.TextField(blank=True)
     class Meta:
+        """"class meta"""
+        verbose_name = "Reserva"
+        verbose_name_plural = "Reservas"
 
-        """ Metadatos del modelo Cabanas """
-        verbose_name = "Cabanas
-"
-        verbose_name_plural = "Cabanas"
-
-    def __str__(self) -> str:
-        return f"{self.nombre} - Capacidad: {self.capacidad} - Precio: ${self.precio_base}"
-
-class Cliente(models.Model):
-    """ esta clase es del cliente"""
-    id = models.AutoField(primary_key=True)
-    DNI = models.CharField(max_length=100)
-    nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    telefono = models.CharField(max_length=20, blank=True, null=True)
-    chatbot = models.ForeignKey(Chatbot, on_delete=models.SET_NULL, null=True, related_name="clientes")
-
-    def __str__(self) -> str:
-        return f"{self.nombre} {self.apellido}"
-    class Meta:
-        """ Metadatos del modelo Cliente """
-        verbose_name = "Cliente"
-        verbose_name_plural = "Clientes"
+    def __str__(self):
+        return f"Reserva {self.pk}"
 
 
 class Alquileres(models.Model):
-    """ Clase que representa un alquiler de Cabanas
-. """
-    id = models.AutoField(primary_key=True)
+    """ Modelo que representa un alquiler de cabaña """
+    reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE, related_name="alquileres")
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="alquileres")
-    Cabanas
- = models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="alquileres")
-    capacidad_cabanas = models.PositiveIntegerField()
-    cantidad_clientes = models.PositiveIntegerField()
-    class Meta:
-  
-        """ Metadatos del modelo Alquileres """
-        verbose_name = "Alquiler"
-        verbose_name_plural = "Alquileres"
-    def __str__(self) -> str:
-        return f"Reserva {self.id}"
-
-
-class Reserva(models.Model):
-    """ Clase que representa una reserva de Cabanas
-. """
-    id = models.AutoField(primary_key=True)
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="reservas")
-    Cabanas
- = models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="reservas")
+    Cabanas= models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="alquileres")
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
-    capacidad_cabanas= models.PositiveIntegerField()
-    cantidad_clientes = models.PositiveIntegerField()
+    monto_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    estado = models.CharField(max_length=30, default="activo")
     class Meta:
-        """ Metadatos del modelo Reserva """
-        verbose_name = "Reserva"
-        verbose_name_plural = "Reservas" 
-    def __str__(self) -> str:
-            return f"Reserva {self.id}"
-
-
-class RegistroDiario(models.Model):
-    """ class RegistrosDiarios   """
-    id = models.AutoField(primary_key=True)
-    Cabanas
- = models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="registros")
-    fecha = models.DateField()
-    observaciones = models.TextField(blank=True, null=True)
-    reservas = models.ForeignKey(Reserva, on_delete=models.CASCADE, related_name="registros")
-    alquileres = models.ForeignKey(Alquileres, on_delete=models.CASCADE, related_name="registros")
-    chatbot = models.ForeignKey(Chatbot, on_delete=models.SET_NULL, null=True, related_name="registros")
-
-    class Meta:
-        """ Metadatos del modelo RegistroDiario """
-        verbose_name = "Registro Diario"
-        verbose_name_plural = "Registros Diarios"   
+        """class meta"""
+        verbose_name = "Alquiler"
+        verbose_name_plural = "Alquileres"
 
     def __str__(self) -> str:
-        return f"Registro {self.id} - {self.fecha}"
-
-
-class Factura(models.Model):
-    """ class factura para emitir despues del pago """
-    id = models.AutoField(primary_key=True)
-    reserva = models.OneToOneField(Reserva, on_delete=models.CASCADE, related_name="factura")
-    alquileres = models.OneToOneField(
-        Alquileres,
-        on_delete=models.CASCADE,
-        related_name="factura_alquiler",
-    )
-    fecha_emision = models.DateField(auto_now_add=True)
-    monto_total = models.DecimalField(max_digits=10, decimal_places=2)
-    pagada = models.BooleanField(default=True)
-    chatbot = models.ForeignKey(Chatbot, on_delete=models.SET_NULL, null=True, related_name="facturas")
-
-    class Meta:
-        """ Metadatos del modelo Factura """
-        verbose_name = "Factura"
-        verbose_name_plural = "Facturas"
-
-    def __str__(self) -> str:
-        return f"Factura {self.id}"
+        return f"Alquiler {self.pk}"
 
 
 class Pago(models.Model):
-    """ class pagos de facturas """
-    id = models.AutoField(primary_key=True)
-    factura = models.ForeignKey(Factura, on_delete=models.CASCADE, related_name="pagos")
-    fecha_pago = models.DateField(auto_now_add=True)
-    monto_total = models.DecimalField(max_digits=10, decimal_places=2)
-    metodo = models.CharField(
-        max_length=20,
-        choices=[
-            ("efectivo", "Efectivo"),
-            ("tarjeta", "Tarjeta"),
-            ("transferencia", "Transferencia"),
-        ],
-    )
-    chatbot = models.ForeignKey(Chatbot, on_delete=models.SET_NULL, null=True, related_name="pagos")
+    """ Modelo que representa un pago de un alquiler """
+    alquiler = models.ForeignKey('Alquileres', on_delete=models.CASCADE, related_name="pagos")
+    fecha = models.DateField()
+    monto = models.DecimalField(max_digits=10, decimal_places=2)
+    metodo = models.CharField(max_length=30)
+    comprobante = models.CharField(max_length=200, blank=True)
     class Meta:
-        """ Metadatos del modelo Pago """
+        """ class meta"""
         verbose_name = "Pago"
         verbose_name_plural = "Pagos"
-  
+    def __str__(self) -> str:
+        return f"Pago {self.pk}"
 
-    def __str__(self) :
-        return f"Pago {self.id}"
-class Usuarios (models.Model):
-    user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name="django_core_usuario",
-    )
-    telefono = models.CharField(max_length=20, blank=True, null=True)
-    direccion = models.CharField(max_length=200, blank=True, null=True)
+
+class Registro(models.Model):
+    """ Modelo que representa un registro de actividad en el sistema """
+    fecha = models.DateTimeField(default=timezone.now)
+    modulo = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    responsable = models.CharField(max_length=100)
+    creado_en = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        verbose_name = "Registro"
+        verbose_name_plural = "Registros"
+
+    def __str__(self) -> str:
+        return f"{self.modulo}: {self.responsable}"
+class TemplatesModels(models.Model):
+    """Modelo para representar plantillas de correo electrónico."""
+    nombre = models.CharField(max_length=100, unique=True)
+    asunto = models.CharField(max_length=200)
+    cuerpo = models.TextField()
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_modificacion = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "Usuario"
-        verbose_name_plural = "Usuarios"
+        verbose_name = "Plantilla"
+        verbose_name_plural = "Plantillas"
 
-    def __str__(self):
-        return self.user.username
-class Interfaz:
-    """Helper para exponer los modelos principales."""
+    def __str__(self) -> str:
+        return (f"Plantilla: {self.nombre} - Asunto: {self.asunto} - Fecha de creación: {self.fecha_creacion}" )
+class TempaltesModels(models.Model):
+    """Modelo para representar plantillas de correo electrónico."""
+    nombre = models.CharField(max_length=100, unique=True)
+    asunto = models.CharField(max_length=200)
+    cuerpo = models.TextField()
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_modificacion = models.DateTimeField(auto_now=True)
 
-    def __init__(self):
-        self.cabanas_model = Cabanas
-        self.clientes_model = Cliente
-        self.alquileres_model = Alquileres
-        self.reservas_model = Reserva
-        self.pagos_model = Pago
-        self.registros_model = RegistroDiario
+    class Meta:
+        verbose_name = "Plantilla"
+        verbose_name_plural = "Plantillas"
 
-    def interfaz(self):
-        return {
-            "cabanas": self.cabanas_model,
-            "clientes": self.clientes_model,
-            "alquileres": self.alquileres_model,
-            "reservas": self.reservas_model,
-            "pagos": self.pagos_model,
-            "registros": self.registros_model,
-        }   
-    
+    def __str__(self) -> str:
+        return (f"Plantilla: {self.nombre} - Asunto: {self.asunto} - Fecha de creación: {self.fecha_creacion}" )
+class Formulario(models.Model):
+    """Modelo para representar un formulario de contacto."""
+    nombre = models.CharField(max_length=100)
+    email = models.EmailField()
+    mensaje = models.TextField()
+    fecha_envio = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Formulario de Contacto"
+        verbose_name_plural = "Formularios de Contacto"
+
+    def __str__(self) -> str:
+        return f"Formulario: {self.nombre} - Email: {self.email} - Fecha de envío: {self.fecha_envio}"
+
+
+def index(request: HttpRequest) -> HttpResponse:
+    """Vista de ejemplo para la página de pagina_principal."""
+    return HttpResponse("¡Bienvenido a la aplicación de gestión de cabañas!")

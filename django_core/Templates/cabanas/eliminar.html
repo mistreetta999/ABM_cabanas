@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Eliminar cabana{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <h1 class="h3 mb-3">Eliminar cabana</h1>
+    <p>Seguro que queres borrar <strong>{{ object }}</strong>?</p>
+
+    <form method="post" class="d-flex gap-2">
+        {% csrf_token %}
+        <button class="btn btn-danger" type="submit">Borrar</button>
+        <a class="btn btn-secondary" href="{% url 'cabanas:lista_cabanas' %}">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

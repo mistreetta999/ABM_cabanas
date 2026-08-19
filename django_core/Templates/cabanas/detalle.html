@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Detalle de cabana{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <h1 class="h3 mb-3">{{ cabana.nombre }}</h1>
+
+    <ul class="list-group mb-3">
+        <li class="list-group-item"><strong>Capacidad:</strong> {{ cabana.capacidad }}</li>
+        <li class="list-group-item"><strong>Precio por noche:</strong> {{ cabana.precio_por_noche }}</li>
+        <li class="list-group-item"><strong>Disponible:</strong> {{ cabana.disponible|yesno:"Si,No" }}</li>
+    </ul>
+
+    <div class="d-flex gap-2">
+        <a class="btn btn-secondary" href="{% url 'cabanas:lista_cabanas' %}">Volver</a>
+        <a class="btn btn-warning" href="{% url 'cabanas:editar_cabana' cabana.pk %}">Editar</a>
+        <a class="btn btn-danger" href="{% url 'cabanas:eliminar_cabana' cabana.pk %}">Borrar</a>
+    </div>
+</div>
+{% endblock %}

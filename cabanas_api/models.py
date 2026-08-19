@@ -3,8 +3,7 @@ from django.db import models
 from django.core.validators import RegexValidator
 
 
-class Cabanas
-(models.Model):
+class Cabanas(models.Model):
     """ Modelo que representa una cabaña """
     id = models.AutoField(primary_key=True)  # clave primaria automática
     nombre = models.CharField(max_length=100, unique=True)
@@ -17,6 +16,11 @@ class Cabanas
         db_table = "cabanas"
         verbose_name = "Cabaña"
         verbose_name_plural = "Cabañas"
+
+    def __str__(self) -> str:
+        """Devuelve una representación legible de la cabaña."""
+        return f"{self.nombre} - Capacidad: {self.capacidad}"
+
 class Cliente(models.Model):
     """ Modelo que representa un cliente """
     id = models.AutoField(primary_key=True)  # clave primaria automática
@@ -55,9 +59,7 @@ class Chatbot(models.Model):
 class Reserva(models.Model):
     """ Modelo que representa una reserva de cabaña por un cliente. """
     cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE, related_name="reservas")
-    Cabanas
- = models.ForeignKey(Cabanas
-, on_delete=models.CASCADE, related_name="reservas")
+    Cabanas= models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="reservas")
     fecha_ingreso = models.DateField()
     fecha_salida = models.DateField()
     estado = models.CharField(max_length=30, default="pendiente")
@@ -75,13 +77,7 @@ class Alquiler(models.Model):
     """ Modelo que representa un alquiler de cabaña por un cliente. """
     reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE, related_name="alquileres")
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="alquileres")
-    Cabanas
- = models.ForeignKey(Cabanas
-, on_delete=models.CASCADE, related_name="alquileres")
-    fecha_inicio = models.DateField()
-    fecha_fin = models.DateField()
-    monto_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    estado = models.CharField(max_length=30, default="activo")
+    cabanas = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="alquileres")
     class Meta:
         """ class Meta para definir el nombre del modelo en singular y plural. """
         verbose_name = "Alquiler"
@@ -132,4 +128,4 @@ class Usuarios(models.Model):
         verbose_name_plural = "Usuarios"
 
     def __str__(self) -> str:
-        return self.username
+        return str(self.username)
