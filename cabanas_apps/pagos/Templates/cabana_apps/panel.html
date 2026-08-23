@@ -1,0 +1,23 @@
+{% extends 'cabanas_apps/base.html' %}
+
+{% block title %}Panel ABM{% endblock %}
+
+{% block content %}
+<div class="card tarjeta shadow-sm border-0">
+    <div class="card-body p-4">
+        <h1 class="h3 text-verde-medio mb-3">Avance del proyecto final: ABM de gestion</h1>
+        <p class="mb-4">Modulo administrativo para gestionar clientes, cabanas y reservas del complejo.</p>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <a class="btn btn-verde w-100 py-3" href="{% url 'cliente_list' %}">Clientes: {{ clientes_count }}</a>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-verde w-100 py-3" href="{% url 'cabana_list' %}">Cabanas: {{ cabanas_count }}</a>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-verde w-100 py-3" href="{% url 'reserva_list' %}">Reservas: {{ reservas_count }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

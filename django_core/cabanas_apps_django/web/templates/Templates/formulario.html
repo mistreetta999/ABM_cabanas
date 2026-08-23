@@ -1,0 +1,42 @@
+{% extends 'cabanas_app/base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Formulario Huésped{% endblock %}
+
+{% block content %}
+<div class="card tarjeta-formulario shadow">
+    <div class="card-body">
+        <h2 class="text-verde-medio mb-4">Registro y Reserva</h2>
+        <form method="post" class="row g-3">
+            {% csrf_token %}
+            <div class="col-md-6">
+                <label class="form-label">Nombre</label>
+                {{ form.nombre|add_class:"form-control" }}
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Apellido</label>
+                {{ form.apellido|add_class:"form-control" }}
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Email</label>
+                {{ form.email|add_class:"form-control" }}
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Teléfono</label>
+                {{ form.telefono|add_class:"form-control" }}
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Fecha de llegada</label>
+                {{ form.fecha_llegada|add_class:"form-control" }}
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Fecha de salida</label>
+                {{ form.fecha_salida|add_class:"form-control" }}
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-verde w-100">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

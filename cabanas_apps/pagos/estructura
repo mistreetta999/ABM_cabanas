@@ -1,0 +1,12 @@
+cabanas_apps/
+   └── pagos/
+       ├── __init__.py
+       ├── models.py
+       ├── views.py
+       ├── pagos.py   ← aquí lo creás
+       └── Templates/
+           └── pagina_principal/
+               ├── lista.html
+               ├── detalle.html
+               ├── formulario.html
+               └── confirma_borrar.html

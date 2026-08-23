@@ -1,0 +1,16 @@
+{% extends 'cabanas_app/base.html' %}
+
+{% block title %}Detalle Huésped{% endblock %}
+
+{% block content %}
+<h2>Detalle del Huésped</h2>
+<ul class="list-group">
+    <li class="list-group-item"><strong>Nombre:</strong> {{ persona.nombre }}</li>
+    <li class="list-group-item"><strong>Apellido:</strong> {{ persona.apellido }}</li>
+    <li class="list-group-item"><strong>Email:</strong> {{ persona.email }}</li>
+    <li class="list-group-item"><strong>Teléfono:</strong> {{ persona.telefono }}</li>
+    <li class="list-group-item"><strong>Fecha llegada:</strong> {{ persona.fecha_llegada }}</li>
+    <li class="list-group-item"><strong>Fecha salida:</strong> {{ persona.fecha_salida }}</li>
+</ul>
+<a href="{% url 'lista_personas' %}" class="btn btn-secondary mt-3">Volver</a>
+{% endblock %}

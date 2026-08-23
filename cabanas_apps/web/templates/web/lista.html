@@ -1,0 +1,26 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Web</title>
+    <link rel="stylesheet" href="{% static 'web/style.css' %}">
+</head>
+<body>
+    <main class="page">
+        <h1>Publicaciones</h1>
+        <section class="list">
+            {% for publicacion in publicaciones %}
+                <article class="item">
+                    <h2><a href="{% url 'web:detalle' publicacion.pk %}">{{ publicacion.titulo }}</a></h2>
+                    <p>{{ publicacion.descripcion|truncatewords:24 }}</p>
+                </article>
+            {% empty %}
+                <p>No hay publicaciones cargadas.</p>
+            {% endfor %}
+        </section>
+    </main>
+    <script src="{% static 'web/script.js' %}"></script>
+</body>
+</html>

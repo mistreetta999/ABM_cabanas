@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Gestion de Cabanas{% endblock %}</title>
+    <link href="{% static 'css/local_bootstrap.css' %}" rel="stylesheet">
+    <style>
+        :root {
+            --verde-fondo: #eef7ef;
+            --verde-panel: #f8fcf8;
+            --verde-oscuro: #174d2f;
+            --verde-profundo: #0f3a24;
+            --verde-medio: #2f7d4f;
+            --verde-suave: #dcefe2;
+            --verde-linea: #c7dfce;
+            --verde-boton: #2f7d4f;
+            --verde-boton-hover: #245f3d;
+            --texto: #1f3025;
+        }
+        body { background-color: var(--verde-fondo); color: var(--texto); font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        .bg-verde-oscuro { background-color: var(--verde-oscuro); }
+        .text-verde-medio { color: var(--verde-medio); }
+        .btn-verde { background-color: var(--verde-boton); color: white; font-weight: 700; border: 0; }
+        .btn-verde:hover { background-color: var(--verde-boton-hover); color: white; }
+        .tarjeta { border-top: 5px solid var(--verde-medio); border-radius: 8px; background: var(--verde-panel); }
+        .navbar { box-shadow: 0 2px 10px rgba(15, 58, 36, .18); }
+        .navbar-brand,
+        .navbar-dark .navbar-nav .nav-link { color: #f4fff6; }
+        .navbar-dark .navbar-nav .nav-link:hover { color: #ccebd5; }
+        .card { border: 1px solid var(--verde-linea) !important; background: var(--verde-panel); }
+        .table { --bs-table-striped-bg: #f1f8f2; --bs-table-hover-bg: #e4f2e8; color: var(--texto); }
+        .table-success { --bs-table-bg: var(--verde-suave); --bs-table-color: var(--verde-profundo); }
+        .form-control,
+        .form-select {
+            border-color: var(--verde-linea);
+        }
+        .form-control:focus,
+        .form-select:focus {
+            border-color: var(--verde-medio);
+            box-shadow: 0 0 0 .2rem rgba(47, 125, 79, .18);
+        }
+        .btn-warning {
+            background: #a8d8b5;
+            border-color: #8fc99f;
+            color: var(--verde-profundo);
+            font-weight: 700;
+        }
+        .btn-warning:hover {
+            background: #8fc99f;
+            border-color: #79ba8b;
+            color: var(--verde-profundo);
+        }
+        .btn-danger {
+            background: #3f6f52;
+            border-color: #365f47;
+            color: white;
+            font-weight: 700;
+        }
+        .btn-danger:hover {
+            background: #315740;
+            border-color: #294936;
+            color: white;
+        }
+        .btn-secondary {
+            background: #6f8a77;
+            border-color: #637d6b;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-verde-oscuro">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'panel_django' %}">Panel Django</a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="{% url 'cliente_list' %}">Clientes</a>
+                <a class="nav-link" href="{% url 'reserva_list' %}">Reservas</a>
+                <a class="nav-link" href="{% url 'alquiler_list' %}">Alquileres</a>
+                <a class="nav-link" href="{% url 'pago_list' %}">Pagos</a>
+                <a class="nav-link" href="{% url 'registro_list' %}">Registros</a>
+            </div>
+        </div>
+    </nav>
+    <main class="container my-4">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

@@ -1,0 +1,14 @@
+cabanas_apps_django/
+└── facturas/
+    ├── __init__.py
+    ├── admin.py
+    ├── apps.py
+    ├── models.py
+    ├── views.py
+    ├── urls.py
+    └── templates/
+        └── facturas/
+            ├── factura_list.html
+            ├── factura_detail.html
+            ├── factura_form.html
+            └── factura_confirm_delete.html
