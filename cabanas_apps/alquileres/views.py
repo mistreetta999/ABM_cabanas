@@ -105,3 +105,18 @@ class AlquilerDeleteView(DeleteView):
         context = super().get_context_data(**kwargs)
         context["buttons"] = alquiler_buttons("detail")
         return context
+
+
+# Detalle del alquiler
+from django.views.generic import DetailView
+
+class AlquilerDetailView(DetailView):
+    """Vista detalle del alquiler."""
+    model = Alquiler
+    template_name = "reservas_alquileres/alquiler_detail.html"
+    context_object_name = "alquiler"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["buttons"] = alquiler_buttons("detail")
+        return context

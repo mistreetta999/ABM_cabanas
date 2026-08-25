@@ -1,16 +1,15 @@
 """ urls"""
 from django.http import HttpRequest, HttpResponse
 from django.urls import path
-from django.urls import path
 from .views import (
-    CabanaListView,
-    CabanaDetailView,
-    CabanaCreateView,
-    CabanaUpdateView,
-    CabanaDeleteView,
+    AlquilerListView,
+    AlquilerCreateView,
+    AlquilerUpdateView,
+    AlquilerDeleteView,
+    AlquilerDetailView,
 )
 
-app_name = "cabanas_app
+app_name = "alquileres"
 
 def lista_alquileres(_request: HttpRequest) -> HttpResponse:
     """ def lista"""
@@ -35,12 +34,12 @@ def actualizar_alquiler(_request, alquiler_id):
 def eliminar_alquiler(_request: HttpRequest, alquiler_id: int) -> HttpResponse:
     """def eliminar"""
     return HttpResponse(f"Eliminar alquiler {alquiler_id}")
-"
+
 
 urlpatterns = [
-    path("", CabanaListView.as_view(), name="cabana_list"),
-    path("<int:pk>/", CabanaDetailView.as_view(), name="cabana_detail"),
-    path("crear/", CabanaCreateView.as_view(), name="cabana_create"),
-    path("editar/<int:pk>/", CabanaUpdateView.as_view(), name="cabana_update"),
-    path("eliminar/<int:pk>/", CabanaDeleteView.as_view(), name="cabana_delete"),
+    path("", AlquilerListView.as_view(), name="alquiler_list"),
+    path("<int:pk>/", AlquilerDetailView.as_view(), name="alquiler_detail"),
+    path("crear/", AlquilerCreateView.as_view(), name="alquiler_create"),
+    path("editar/<int:pk>/", AlquilerUpdateView.as_view(), name="alquiler_update"),
+    path("eliminar/<int:pk>/", AlquilerDeleteView.as_view(), name="alquiler_delete"),
 ]
