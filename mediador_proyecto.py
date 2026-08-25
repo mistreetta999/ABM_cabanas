@@ -1,3 +1,4 @@
+""" mediador"""
 from __future__ import annotations
 
 import subprocess
@@ -13,16 +14,19 @@ PUBLIC_DIR = PROJECT_DIR / "public"
 
 
 def ejecutar_check_django() -> bool:
+    """"def ejecutar chek """
     print("Verificando Django...")
     resultado = subprocess.run(
         [str(PYTHON), str(MANAGE), "check"],
         cwd=PROJECT_DIR,
         text=True,
+        check=False,
     )
     return resultado.returncode == 0
 
 
 def iniciar_django() -> subprocess.Popen[str] | None:
+    """ def iniciar"""
     print("Levantando Django con la configuracion por defecto de runserver...")
     return subprocess.Popen(
         [
@@ -37,6 +41,7 @@ def iniciar_django() -> subprocess.Popen[str] | None:
 
 
 def validar_archivos() -> None:
+    """ validar archivos"""
     faltantes = [
         ruta
         for ruta in (
@@ -54,6 +59,7 @@ def validar_archivos() -> None:
 
 
 def abrir_paginas() -> None:
+    """ def abrir"""
     paginas = [
         PUBLIC_DIR / "pagina_principal.html",
         PUBLIC_DIR / "index.html",
@@ -65,12 +71,14 @@ def abrir_paginas() -> None:
 
 
 def detener_procesos(procesos: list[subprocess.Popen[str]]) -> None:
+    """ detener"""
     for proceso in procesos:
         if proceso.poll() is None:
             proceso.terminate()
 
 
 def main() -> int:
+    """ def main"""
     procesos: list[subprocess.Popen[str]] = []
 
     try:
@@ -101,7 +109,7 @@ def main() -> int:
         print("\nCerrando servidores iniciados por este mediador...")
         detener_procesos(procesos)
         return 0
-    except Exception as exc:
+    except (OSError, subprocess.SubprocessError) as exc:
         print(f"Error: {exc}")
         detener_procesos(procesos)
         return 1

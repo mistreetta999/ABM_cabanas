@@ -1,6 +1,5 @@
 """Configuraciones auxiliares de apps del proyecto."""
 from django.apps import AppConfig
-from django.apps import 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 

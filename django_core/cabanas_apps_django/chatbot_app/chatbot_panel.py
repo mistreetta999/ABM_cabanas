@@ -1,5 +1,23 @@
 """"Vistas para la aplicación del chatbot."""
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
+from django_core. cabanas_apps_django .models import Reservas
+from django.shortcuts import render
+
+
+def panel_chatbot(request):
+    return render(request, "chatbot/panel.html")
+
+def detalle_reserva(request, reserva_id):
+    reserva = get_object_or_404(Reserva, pk=reserva_id)
+    return JsonResponse({
+        "id": reserva.id,
+        "cliente": reserva.cliente.nombre,
+        "cabana": reserva.cabana.nombre,
+        "fecha_ingreso": reserva.fecha_ingreso,
+        "fecha_salida": reserva.fecha_salida,
+    })
+
 def panel_chatbot(request):
     """
     Vista que muestra el panel del chatbot.

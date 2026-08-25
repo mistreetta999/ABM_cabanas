@@ -29,7 +29,6 @@ INSTALLED_APPS = [
 
 
   # Apps propias django
-     "django_core",
      "django_core.cabanas_apps_django.alquileres",
      "django_core.cabanas_apps_django.reservas",
      "django_core.cabanas_apps_django.cabanas",
@@ -39,8 +38,7 @@ INSTALLED_APPS = [
      "django_core.cabanas_apps_django.registros",
      "django_core.cabanas_apps_django.usuarios",
      "django_core.cabanas_apps_django.web",
-     "django_core.cabanas_apps_django.interfaz_gestion_cabanas",
-     
+     "django_core.cabanas_apps_django.interfaz_gestion_cabanas",   
 
     # Django REST Framework y drf-spectacular
     "rest_framework",

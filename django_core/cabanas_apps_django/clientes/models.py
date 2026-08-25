@@ -1,10 +1,11 @@
 """ archivo de modelos para la app de clientes """
-from logging import getLogger
+import logging
 from typing import Any
+from django.db import models
+
 from django.contrib.auth.models import AbstractUser
-from django.db import models
-from django.core.validators import RegexValidator
-from django.db import models
+
+LOGGER = logging.getLogger(__name__)
 
 class Usuario(AbstractUser):
     """class usuario"""
@@ -15,9 +16,9 @@ class Usuario(AbstractUser):
     class Meta:
         """class meta"""
         verbose_name = "Usuario"
-         verbose_name_plural = "Usuarios"
-    def __str__(self):
-        return self.username
+        verbose_name_plural = "Usuarios"
+    def __str__(self)->str:
+        return str(self.username)
 
 
 class Cliente(models.Model):
@@ -35,12 +36,7 @@ class Cliente(models.Model):
 
 class ClienteDatos(models.Model):
     """ Modelo que representa un cliente """
-    id = models.AutoField(primary_key=True)  # clave primaria automática
-    dni = models.CharField(
-        max_length=20,
-        unique=True,          # obligatorio y único, pero no clave primaria
-        validators=[RegexValidator(r'^\d{1,20}$', 'El DNI debe contener solo números (máx. 20).')]
-    )
+    dni = models.IntegerField()
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
     direccion = models.CharField(max_length=200, blank=True)
@@ -95,7 +91,6 @@ class ClienteManager(models.Manager):
 
 class UsuarioSistema(models.Model):
     """ Modelo que representa un usuario del sistema """
-    id = models.AutoField(primary_key=True)
     usuario = models.OneToOneField("usuarios.Usuario", on_delete=models.CASCADE)
     # otros campos extra, ej:
     nro_cliente = models.CharField(max_length=20, unique=True)
@@ -104,5 +99,3 @@ class UsuarioSistema(models.Model):
 
     def __str__(self) -> str:
         return str(self.usuario)
-
-

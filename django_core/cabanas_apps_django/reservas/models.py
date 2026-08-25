@@ -1,15 +1,12 @@
 """ este archivo es models de reserva. """
 from django.db import models
-from cabanas_apps.clientes.models import Cliente
+from django_core.cabanas_apps_django.clientes.models import Cliente
 
 
 class Reserva(models.Model):
-    """Modelo que representa una reserva de Cabanas
-."""
+    """Modelo que representa una reserva de Cabanas."""
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    Cabanas
- = models.ForeignKey('cabanas.Cabanas
-', on_delete=models.CASCADE)
+    Cabanas= models.ForeignKey('cabanas.Cabanas', on_delete=models.CASCADE)
     fecha_inicio = models.DateTimeField()
     fecha_fin = models.DateTimeField()
     estado = models.CharField(max_length=20, default="pendiente")

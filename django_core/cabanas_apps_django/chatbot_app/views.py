@@ -1,16 +1,19 @@
 """ views chatbot"""
 import json
-from django.http import JsonResponse, HttpResponse, HttpRequest
+
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+
 from .chatbot import ChatBot
-from django.shortcuts import render
+
 
 bot = ChatBot()
 
 
 
-class chatbot_home:
+# pylint: disable=too-few-public-methods
+class ChatbotHome:
     """ views chatbot"""
     @csrf_exempt
     def chatbot_home(self, request: HttpRequest) -> JsonResponse:
@@ -60,38 +63,33 @@ def chatbot_page(request: HttpRequest) -> HttpResponse:
     return render(request, 'chatbot/chatbot.html')
 
 
-@csrf_exempt    
+@csrf_exempt
 def chatbot_api(request: HttpRequest) -> JsonResponse:
-    """ Maneja las solicitudes POST al endpoint del chatbot y devuelve respuestas basadas en el mensaje recibido."""
-    if request.method != 'POST':
-        return JsonResponse({'reply': 'Envia una consulta para recibir informacion.'})
+    """Endpoint JSON del chatbot."""
+    if request.method != "POST":
+        return JsonResponse({"reply": "Envía una consulta para recibir información."})
 
-    data = json.loads(request.body or '{}')
-    message = data.get('message', '').lower()
-    if 'precio' in message or 'tarifa' in message:
-        reply = 'Las tarifas dependen de la cantidad de huespedes y fechas. Podes dejar tus datos en reservas.'
-    elif 'ubicacion' in message or 'donde' in message:
-        reply = 'Estamos en Mina Clavero, Cordoba, cerca del centro y de los balnearios principales.'
-    else:
-        reply = 'Gracias por consultar. Para reservar, comunicate por WhatsApp o carga una reserva en el ABM.'
-    return JsonResponse({'reply': reply})
-def index(request):
-    """index chatbot"""
-    return render(request, "chatbot/index.html")
-class ChatbotPanel:
-    """ views chatbot"""
-    def chatbot_panel(self, request: HttpRequest) -> HttpResponse:
-        """Renderiza la página del panel del chatbot."""
-        if request.method == "POST":
-            user_message = request.POST.get("message", "")
-            response = bot.respond(user_message)
-            return render(request, "chatbot/panel.html", {"response": response})
-        return render(request, "chatbot/panel.html", {"response": bot.welcome_message})
+    data = json.loads(request.body or "{}")
+    user_message = data.get("message", "")
+    reply = bot.respond(user_message)
+    return JsonResponse({"reply": reply})
 
-def chatbot_panel(request):
-    """Renderiza el panel del chatbot."""
-    return render(request, "chatbot/panel_chatbot.html")
 
-def chatbot_view(request):
-    """Renderiza la interfaz principal del chatbot."""
+def chatbot_panel(request: HttpRequest) -> HttpResponse:
+    """Panel HTML del chatbot."""
+    if request.method == "POST":
+        user_message = request.POST.get("message", "")
+        response = bot.respond(user_message)
+        return render(request, "chatbot/panel.html", {"response": response})
+
+    return render(request, "chatbot/panel.html", {"response": bot.welcome_message})
+
+
+def chatbot_view(request: HttpRequest) -> HttpResponse:
+    """Interfaz principal del chatbot."""
     return render(request, "chatbot/chatbot.html")
+
+
+def index(request: HttpRequest) -> HttpResponse:
+    """Página de inicio del chatbot."""
+    return render(request, "chatbot/index.html")

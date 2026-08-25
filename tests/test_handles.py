@@ -13,10 +13,11 @@ Calling the view functions directly (rather than going through the URL conf)
 avoids the problem that the project's urlpatterns files only `include()`
 other url modules without ever wiring these specific functions to a route.
 """
+import importlib
 from django.test import RequestFactory, TestCase
 
-from cabanas_apps.interfaz_gestion_cabanas import handles as handles_iface
-from django_core.gestion_cabanas import handles as handlers_core
+handles_iface = importlib.import_module("cabanas_apps.interfaz_gestion_cabanas.handles")
+handles_core = importlib.import_module("django_core.gestion_cabanas.handles")
 
 
 # ---------------------------------------------------------------------------
@@ -48,6 +49,7 @@ class HandlesViewsTests(TestCase):
     """Verifies every view in handles.py returns 200 and uses its template."""
 
     def setUp(self):
+        """Set up the request factory for each test."""
         self.factory = RequestFactory()
 
     def _assert_view(self, view, expected_template):
@@ -60,58 +62,74 @@ class HandlesViewsTests(TestCase):
         # 2. Template check (works for both TemplateResponse and HttpResponse)
         self.assertIn(expected_template, response.template_name)
 
-
     # --- interfaz_gestion_cabanas/handles.py ---------------------------------
     def test_pagina_principal_html(self):
+        """Test pagina principal HTML view."""
         self._assert_view(*INTERFAZ_VIEWS[0])
 
     def test_formularios_panel_django(self):
+        """Test formularios panel view."""
         self._assert_view(*INTERFAZ_VIEWS[1])
 
     def test_imagen_panel_django(self):
+        """Test imagen panel view."""
         self._assert_view(*INTERFAZ_VIEWS[2])
 
     def test_cabanas_panel_django(self):
+        """Test cabanas panel view."""
         self._assert_view(*INTERFAZ_VIEWS[3])
 
     def test_reservas_panel_django(self):
+        """Test reservas panel view."""
         self._assert_view(*INTERFAZ_VIEWS[4])
 
     def test_alquileres_panel_django(self):
+        """Test alquileres panel view."""
         self._assert_view(*INTERFAZ_VIEWS[5])
 
     def test_chatbot_panel_django(self):
+        """Test chatbot panel view."""
         self._assert_view(*INTERFAZ_VIEWS[6])
 
     def test_registros_panel_django(self):
+        """Test registros panel view."""
         self._assert_view(*INTERFAZ_VIEWS[7])
 
     def test_clientes_panel_django(self):
+        """Test clientes panel view."""
         self._assert_view(*INTERFAZ_VIEWS[8])
 
     def test_pagos_panel_django(self):
+        """Test pagos panel view."""
         self._assert_view(*INTERFAZ_VIEWS[9])
 
     # --- django_core/gestion_cabanas/handles.py -----------------------------
     def test_core_pagina_principal(self):
+        """Test core pagina principal view."""
         self._assert_view(*CORE_VIEWS[0])
 
     def test_core_cabanas_panel(self):
+        """Test core cabanas panel view."""
         self._assert_view(*CORE_VIEWS[1])
 
     def test_core_reservas_panel(self):
+        """Test core reservas panel view."""
         self._assert_view(*CORE_VIEWS[2])
 
     def test_core_chatbot_panel(self):
+        """Test core chatbot panel view."""
         self._assert_view(*CORE_VIEWS[3])
 
     # --- Smoke test: every view in both modules returns 200 -----------------
     def test_all_interfaz_views_return_200(self):
+        """Test every interfaz view returns HTTP 200."""
         for view, _tpl in INTERFAZ_VIEWS:
             with self.subTest(view=view.__name__):
                 self.assertEqual(view(self.factory.get("/")).status_code, 200)
 
     def test_all_core_views_return_200(self):
+        """Test every core view returns HTTP 200."""
         for view, _tpl in CORE_VIEWS:
             with self.subTest(view=view.__name__):
                 self.assertEqual(view(self.factory.get("/")).status_code, 200)
+                

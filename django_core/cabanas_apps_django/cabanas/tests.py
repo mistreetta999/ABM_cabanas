@@ -1,21 +1,25 @@
+""" test cabanas"""
+# pylint: disable=E1101
 from django.test import TestCase
 from .models import Cabana
 
+
 class CabanaModelTest(TestCase):
+    """ class cabanas test"""
+
     def setUp(self):
-        # Creamos una instancia de prueba
         self.cabana = Cabana.objects.create(
-            nombre="Cabaña Test",
+            nombre="Cabana Test",
             capacidad=4,
-            descripcion="Cabaña de prueba",
+            descripcion="cabana 1",
             precio_por_noche=1500.00,
-            disponible=True
+            disponible=True,
         )
 
     def test_cabana_str(self):
-        # Verificamos que el método __str__ devuelva el nombre
-        self.assertEqual(str(self.cabana), "Cabaña Test")
+        """ test cabanas"""
+        self.assertEqual(str(self.cabana), "Cabana Test")
 
     def test_cabana_disponible(self):
-        # Verificamos que la cabaña esté marcada como disponible
+        """  test disponibilidad"""
         self.assertTrue(self.cabana.disponible)

@@ -10,11 +10,9 @@ django.setup()
 def ejecutar_migraciones():
     """Función para ejecutar las migraciones de Django."""
     try:
-        print("Iniciando aplicación de migraciones...")
-        
+        print("Iniciando aplicación de migraciones...")      
         # 2. Ejecuta python manage.py migrate
         call_command('migrate')
-        
         print("¡Migraciones aplicadas con éxito!")
     except django.core.management.CommandError as e:
         print(f"Ocurrió un error al migrar: {e}")

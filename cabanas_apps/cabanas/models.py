@@ -1,16 +1,17 @@
-"""cabana models"""
+""" models"""
 from django.db import models
 
-class Cabana(models.Model):
+class Cabana(models.Model):  
     """ class cabana"""
     nombre = models.CharField(max_length=100)
-    capacidad = models.PositiveIntegerField()
-    descripcion = models.TextField(blank=True, null=True)
-    precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)
+    descripcion = models.TextField()
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
     disponible = models.BooleanField(default=True)
-    class Metas ():
-        """ class meta"""
-        vervose_nom = "Cabana"
 
-    def __str__(self) -> str:
+    class Meta:
+        """ class meta"""
+        verbose_name = "Cabana"
+        verbose_name_plural = "Cabanas"
+
+    def __str__(self):
         return str(self.nombre)

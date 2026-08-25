@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link href="{% static 'css/local_bootstrap.css' %}" rel="stylesheet">
+</head>
+<body class="p-3">
+    <div class="alert alert-success mb-3">
+        Asistente disponible para consultas básicas sobre ubicación, tarifas y reservas.
+    </div>
+
+    <div id="messages" class="border rounded p-3 mb-3" style="height: 260px; overflow:auto; background:#f8f9fa;">
+        <div><strong>Bot:</strong> ¡Hola! ¿Querés consultar por tarifas, ubicación o reservas?</div>
+    </div>
+
+    <div class="input-group">
+        <input id="messageInput" type="text" class="form-control" placeholder="Escribí tu consulta..." />
+        <button id="sendBtn" class="btn btn-success" type="button">Enviar</button>
+    </div>
+
+    <script>
+        const messages = document.getElementById('messages');
+        const input = document.getElementById('messageInput');
+        const button = document.getElementById('sendBtn');
+
+        function addMessage(author, text) {
+            const row = document.createElement('div');
+            row.innerHTML = `<strong>${author}:</strong> ${text}`;
+            messages.appendChild(row);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const text = input.value.trim();
+            if (!text) return;
+
+            addMessage('Vos', text);
+            input.value = '';
+
+            try {
+                const response = await fetch('/chatbot/api/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text })
+                });
+                const data = await response.json();
+                addMessage('Bot', data.reply || 'No pude procesar tu consulta.');
+            } catch (error) {
+                addMessage('Bot', 'Error de conexión con el chatbot.');
+            }
+        }
+
+        button.addEventListener('click', sendMessage);
+        input.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') sendMessage();
+        });
+    </script>
+</body>
+</html>

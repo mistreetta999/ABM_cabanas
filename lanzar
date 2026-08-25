@@ -199,3 +199,9 @@ python manage.py makemigrations cabanas
 python manage.py makemigrations gestion_cabanas
 python manage.py makemigrations chatbot_app
 python manage.py migrate
+importante ejecutar en raiz
+$env:DJANGO_SETTINGS_MODULE="django_core.settings"
+importante ejecutar en raiz
+cd C:\Users\carol\OneDrive\Desktop\cabanas
+.venv\Scripts\python.exe manage.py runserver
+pip install django

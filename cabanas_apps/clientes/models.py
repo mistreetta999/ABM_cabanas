@@ -4,7 +4,6 @@ from django.contrib.auth.models import AbstractUser
 
 class Cliente(models.Model):
     """class cliente de las cabanas"""   
-    id = models.AutoField(primary_key=True)
     dni = models.IntegerField(unique=True)
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)

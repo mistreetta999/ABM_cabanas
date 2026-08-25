@@ -1,18 +1,11 @@
-"""Este archivo contiene las rutas URL para la aplicación de chatbot.
-"""
+"""URLs para la aplicación de Chatbot en el sistema de cabañas."""
+
 from django.urls import path
-
-import django_core
-from . import views   # el punto indica "desde esta carpeta"
-
-
-app_name = "chatbot"
+from . import views
 
 urlpatterns = [
-    path("django_core/", django_core.views("django_core.views.urls"), name="django_core_views"),
-    path("shortcut/", django_core.views("django_core.views.urls"), name="shortcut"),
-    path("shortcuts/", django_core.views("django_core.views.urls"), name="shortcuts"),
-    path("panel/", views.chatbot_panel, name="chatbot_panel"),
-    path("", views.chatbot_view, name="chatbot"),
-    path("pagina/", views.chatbot_page, name="chatbot_page"),
+    path("", views.index, name="chatbot_index"),
+    path("chatbot/", views.chatbot_view, name="chatbot_view"),
+    path("chatbot/panel/", views.chatbot_panel, name="chatbot_panel"),
+    path("chatbot/api/", views.chatbot_api, name="chatbot_api"),
 ]

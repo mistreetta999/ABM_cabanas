@@ -2,27 +2,52 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-import os
-import django
+from cabanas_principal.env_loader import load_env
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cabanas_project.settings")
-django.setup()
 
-# Cargar variables de entorno desde .env
+def config(name, default=None):
+    """Obtiene una variable de entorno sin depender de python-decouple."""
+    return os.getenv(name, default)
+
+env = load_env()
+SECRET_KEY = env["SECRET_KEY"]
+DEBUG = env["DEBUG"]
+
 load_dotenv()
 
-# Base directory del proyecto
+SECRET_KEY = os.getenv("SECRET_KEY", "dummy-secret-key")
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent
+# settings visuales
+ADMIN_SITE_HEADER = "Gestión de Cabañas"
+ADMIN_SITE_TITLE = "Panel de Administración"
+ADMIN_INDEX_TITLE = "Bienvenida, Carolina"
 
-# Seguridad
-SECRET_KEY = os.getenv("SECRET_KEY")
-if not SECRET_KEY:
-    raise RuntimeError("SECRET_KEY must be set as an environment variable")
+# Configuración principal: usa .env cuando existe; si no, usa valores por defecto.
+SECRET_KEY = config("SECRET_KEY", default="django-insecure-default-key")
+
 DEBUG = False
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'cabanas-app.com']
+ALLOWED_HOSTS = ['*']
+
+DB_NAME = config("DB_NAME", default="cabanas_db")
+DB_USER = config("DB_USER", default="usuario")
+DB_PASSWORD = config("DB_PASSWORD", default="")
+DB_HOST = config("DB_HOST", default="localhost")
+DB_PORT = config("DB_PORT", default="5432")
+
+if not SECRET_KEY:
+    raise ValueError("SECRET_KEY environment variable is not set. Please set it in your .env file.")
+
+# usuarios
+AUTH_USER_MODEL = "usuarios.Usuario"
 
 
-AUTH_USER_MODEL = "cabanas_apps.clientes.UsuarioSistema"
+
+STATIC_URL = config("STATIC_URL", default="/static/")
+MEDIA_URL = config("MEDIA_URL", default="/media/")
+STATIC_ROOT = BASE_DIR / "staticfiles"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Aplicaciones instaladas
 INSTALLED_APPS = [
@@ -33,20 +58,17 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
-    # Apps propias
-    "cabanas_apps.cabanas",
-    "cabanas_apps.clientes",
-    "cabanas_apps.alquileres",
-    "cabanas_apps.facturas",
-    "cabanas_apps.usuarios",
-    "cabanas_apps.reservas",
-    "cabanas_apps.registros",
-    "cabanas_apps.interfaz_gestion_cabanas",
-    "cabanas_apps.gestion_cabanas",
-    "cabanas_apps.chatbot_app",
-    "web",
-
+   # Apps propias django
+    "django_core.cabanas_apps_django.alquileres",
+    "django_core.cabanas_apps_django.reservas",
+    "django_core.cabanas_apps_django.cabanas",
+    "django_core.cabanas_apps_django.clientes",
+    "django_core.cabanas_apps_django.gestion_cabanas",
+    "django_core.cabanas_apps_django.pagos",
+    "django_core.cabanas_apps_django.registros",
+    "django_core.cabanas_apps_django.usuarios",
+    "django_core.cabanas_apps_django.web",
+    "django_core.cabanas_apps_django.interfaz_gestion_cabanas",
     # Django REST Framework y drf-spectacular
     "rest_framework",
     "drf_spectacular",
@@ -69,6 +91,7 @@ SPECTACULAR_SETTINGS = {
 
 # Middleware
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",   # ← debe ir arriba de CommonMiddleware
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -77,6 +100,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
 
 # URLs principales
 ROOT_URLCONF = "cabanas_principal.urls"
@@ -108,28 +132,28 @@ MEDIA_ROOT = BASE_DIR / "media"
 # WSGI
 WSGI_APPLICATION = "cabanas_principal.wsgi.application"
 
-# Bases de datos: PostgreSQL (default) + SQL Server (secundaria)
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": os.getenv("DB_HOST"),
-        "PORT": os.getenv("DB_PORT"),
-    },
-    "sqlserver": {
-        "ENGINE": "mssql",
-        "NAME": os.getenv("SQLSERVER_NAME"),
-        "USER": os.getenv("SQLSERVER_USER"),
-        "PASSWORD": os.getenv("SQLSERVER_PASSWORD"),
-        "HOST": os.getenv("SQLSERVER_HOST"),
-        "PORT": os.getenv("SQLSERVER_PORT"),
-        "OPTIONS": {
-            "driver": "ODBC Driver 17 for SQL Server",
+# Bases de datos: SQLite3 local + PostgreSQL opcional
+# Configuración de base de datos
+DJANGO_ENV = os.getenv("DJANGO_ENV", "development")
+
+if DJANGO_ENV == "production":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.getenv("DB_NAME", "cabanas_db"),
+            "USER": os.getenv("DB_USER", "carolina"),
+            "PASSWORD": os.getenv("DB_PASSWORD"),  # ← ya no queda hardcodeado
+            "HOST": os.getenv("DB_HOST", "localhost"),
+            "PORT": os.getenv("DB_PORT", "5432"),
         },
-    },
-}
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        },
+    }
 
 # Validación de contraseñas
 AUTH_PASSWORD_VALIDATORS = [

@@ -12,7 +12,13 @@ from django.views.decorators.http import require_GET, require_POST
 
 from cabanas_apps.reservas.models import Reserva
 
-from django_core.respuestas import error, ok
+try:
+    from .respuestas import error, ok
+except ImportError:  # pragma: no cover - compatibilidad con importación absoluta
+    try:
+        from django_core.respuestas import error, ok
+    except ImportError:  # pragma: no cover - último recurso para entorno no package
+        from respuestas import error, ok
 
 
 def _parse_int(value, field_name):
@@ -54,8 +60,7 @@ def crear_reserva(request):
         data = json.loads(request.body)
     except json.JSONDecodeError:
         return error(message="JSON inválido", http_status=400)
-    campos_requeridos = ["cliente", "fecha_inicio", "fecha_fin", "Cabanas
-"]
+    campos_requeridos = ["cliente", "fecha_inicio", "fecha_fin", "Cabana"]
     faltantes = [
         campo for campo in campos_requeridos if not data.get(campo)
     ]
@@ -73,10 +78,7 @@ def crear_reserva(request):
             message="No tienes permiso para crear reservas a nombre de otro cliente",
             http_status=403,
         )
-    Cabanas
-, err = _parse_int(data.get("Cabanas
-"), "Cabanas
-")
+    cabana, err = _parse_int(data.get("Cabana"), "Cabana")
     if err:
         return error(message=err, http_status=400)
     fecha_inicio, err = _parse_date(data.get("fecha_inicio"), "fecha_inicio")
@@ -91,9 +93,7 @@ def crear_reserva(request):
             http_status=400,
         )
     solapada = Reserva.objects.filter(
-        Cabanas
-=Cabanas
-,
+        Cabanas=cabana,
         fecha_inicio__lte=fecha_fin,
         fecha_fin__gte=fecha_inicio,
     ).exclude(estado=Reserva.Estado.CANCELADA)
@@ -107,9 +107,8 @@ def crear_reserva(request):
             cliente=cliente,
             fecha_inicio=fecha_inicio,
             fecha_fin=fecha_fin,
-            Cabanas
-=Cabanas
-,
+            Cabanas=cabana,
+
             estado=Reserva.Estado.PENDIENTE,
         )
     except IntegrityError:
@@ -127,24 +126,3 @@ def crear_reserva(request):
         message="Reserva creada",
         data={"id": reserva.id},
     )
-
-
-# ---------------------------------------------------------------------------
-# Pendiente de implementación (ver TODO.md -> "API de Cabañas: vistas faltantes")
-#
-# Vistas aún no implementadas en este módulo:
-#   - alquiler:       interfaz_gestion_cabanas de alquileres asociados a una reserva.
-#   - pago:           registro y consulta de pagos por reserva/alquiler.
-#   - factura:        emisión y descarga de facturas.
-#   - actividades:    gestión de actividades y reservas de actividades.
-#
-# Plan acordado:
-#   1. Refactorizar 'crear_reserva' a un ViewSet de DRF (ReservaViewSet) para
-#      reducir duplicación y estandarizar autenticación, permisos y validación.
-#   2. Implementar los recursos restantes (alquiler, pago, factura, actividades)
-#      como ViewSets equivalentes, registrando los routers en urls.py.
-#   3. Cubrir cada ViewSet con tests de integración (éxito, validación,
-#      permisos, método no permitido).
-# ---------------------------------------------------------------------------
-
-# ... y lo mismo para alquiler, pago, factura, actividades
