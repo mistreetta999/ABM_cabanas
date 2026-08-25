@@ -6,7 +6,8 @@ from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse, reverse_lazy
 from django.http import HttpResponse ,HttpRequest
-from .models import Cliente, Pago, Factura
+# Importar los modelos disponibles; mapear nombres esperados a los reales cuando sea necesario
+from .models import Cliente, ClientesPago as Pago, FacturaCliente as Factura
 
 class ClienetesViews(ListView):
     """Vista para listar todos los clientes registrados en la aplicación."""

@@ -15,3 +15,12 @@ class Cabana(models.Model):
 
     def __str__(self):
         return str(self.nombre)
+
+
+# Compatibilidad con código antiguo que espera un modelo llamado 'Cabanas'
+# Definir un proxy que reutilice la misma tabla para evitar crear nuevas migraciones.
+class Cabanas(Cabana):
+    class Meta:
+        proxy = True
+        verbose_name = "Cabanas"
+        verbose_name_plural = "Cabanas"

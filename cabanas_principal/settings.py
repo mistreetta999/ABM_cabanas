@@ -40,7 +40,8 @@ if not SECRET_KEY:
     raise ValueError("SECRET_KEY environment variable is not set. Please set it in your .env file.")
 
 # usuarios
-AUTH_USER_MODEL = "usuarios.Usuario"
+# Usar el modelo de usuario personalizado definido en cabanas_apps.clientes
+AUTH_USER_MODEL = "clientes.UsuarioSistema"
 
 
 
@@ -49,7 +50,7 @@ MEDIA_URL = config("MEDIA_URL", default="/media/")
 STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_ROOT = BASE_DIR / "media"
 
-# Aplicaciones instaladas
+# Aplicaciones instaladas (temporalmente reducir para permitir migrate)
 INSTALLED_APPS = [
     # Django apps por defecto
     "django.contrib.admin",
@@ -58,25 +59,17 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-   # Apps propias django
-    "django_core.cabanas_apps_django.alquileres",
-    "django_core.cabanas_apps_django.reservas",
-    "django_core.cabanas_apps_django.cabanas",
-    "django_core.cabanas_apps_django.clientes",
-    "django_core.cabanas_apps_django.gestion_cabanas",
-    "django_core.cabanas_apps_django.pagos",
-    "django_core.cabanas_apps_django.registros",
-    "django_core.cabanas_apps_django.usuarios",
-    "django_core.cabanas_apps_django.web",
-    "django_core.cabanas_apps_django.interfaz_gestion_cabanas",
-    
 
-    # Django REST Framework y drf-spectacular
+    # Apps propias (habilitando clientes para migrar)
+    "cabanas_apps.clientes",
+    "cabanas_apps.alquileres",
+    "cabanas_apps.cabanas",
+    "cabanas_apps.reservas",
+
+    # Dependencias de the API / utilidades
     "rest_framework",
     "drf_spectacular",
     "corsheaders",
-
-    # Extensiones útiles
     "django_extensions",
 ]
 
