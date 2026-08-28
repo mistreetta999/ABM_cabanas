@@ -1,0 +1,9 @@
+<h2>Lista de Cabañas</h2>
+<ul>
+  {% for cabana in cabanas %}
+    <li>
+      <a href="{% url 'cabana_detail' cabana.pk %}">{{ cabana.nombre }}</a>
+    </li>
+  {% endfor %}
+</ul>
+<a href="{% url 'cabana_create' %}">Crear nueva cabaña</a>

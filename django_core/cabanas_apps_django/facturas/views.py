@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from facturas.models import Factura
+from cabanas_apps_django.facturas.models import Factura
 
 class FacturaListView(ListView):
     """class facturas vistas"""

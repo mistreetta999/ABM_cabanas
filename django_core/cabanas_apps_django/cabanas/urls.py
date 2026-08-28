@@ -1,24 +1,28 @@
-"""URLs de cabanas relacionadas con alquileres y clientes."""
-from django.urls import include, path
-from django.views.generic import TemplateView
-from . import views
+"""URLs de la aplicación Cabañas, integradas con el sistema."""
+
+from django.urls import path, include
+from .views import (
+    CabanaListView,
+    CabanaCreateView,
+    CabanaUpdateView,
+    CabanaDeleteView,
+    CabanaDetailView,
+)
 
 app_name = "cabanas"
 
 urlpatterns = [
-    # Listado de cabañas
-    path("cabanas/", views.CabanaListView.as_view(), name="cabanas_list"),
-
-    # Página principal con TemplateView
-    path("pagina_principal/", TemplateView.as_view(template_name="pagina_principal.html"), name="pagina_principal"),
-
     # CRUD de cabañas
-    path("crear/", views.CabanaCreateView.as_view(), name="crear_cabana"),
-    path("<int:pk>/", views.CabanaDetailView.as_view(), name="detalle_cabana"),
-    path("<int:pk>/editar/", views.CabanaUpdateView.as_view(), name="editar_cabana"),
-    path("<int:pk>/eliminar/", views.CabanaDeleteView.as_view(), name="eliminar_cabana"),
+    path("", CabanaListView.as_view(), name="cabana_list"),
+    path("nueva/", CabanaCreateView.as_view(), name="cabana_create"),
+    path("<int:pk>/", CabanaDetailView.as_view(), name="cabana_detail"),
+    path("<int:pk>/editar/", CabanaUpdateView.as_view(), name="cabana_update"),
+    path("<int:pk>/borrar/", CabanaDeleteView.as_view(), name="cabana_delete"),
 
-    # Enlaces a otras apps
-    path("alquileres/", include("django_core.cabanas_apps_django.alquileres.urls")),
-    path("clientes/", include("django_core.cabanas_apps_django.clientes.urls")),
+    # 🔗 Integraciones con otras apps del sistema
+    path("alquileres/", include("alquileres.urls")),   # relación con alquileres
+    path("reservas/", include("reservas.urls")),       # relación con reservas
+    path("clientes/", include("clientes.urls")),       # relación con clientes
+    path("pagos/", include("pagos.urls")),             # relación con pagos
+    path("usuarios/", include("usuarios.urls")),       # relación con usuarios
 ]

@@ -1,11 +1,16 @@
+""" models"""
 from django.db import models
 from cabanas_apps.clientes.models import Cliente
-from django.core.exceptions import ValidationError
-from django.utils.translation import gettext_lazy as _
-from django.db.models import Sum
-from pathlib import Path
 
+class Chatbot(models.Model):
+    """
+    Representa el chatbot dentro de la aplicación.
+    """
+    nombre = models.CharField(max_length=100, default="Chatbot Cabanas")
+    descripcion = models.TextField(blank=True, null=True)
 
+    def __str__(self:models.Model) -> str:
+        return str(self.nombre)
 class ChatbotResponse(models.Model):
     """
     Respuestas del chatbot a los mensajes del cliente.
@@ -32,21 +37,15 @@ class Message(models.Model):
     sender = models.CharField(max_length=50, choices=[("cliente", "Cliente"), ("chatbot", "Chatbot")])
 
     class Meta:
+        """ Metadatos del modelo Message """
+        verbose_name = "Message"
+        verbose_name_plural = "Messages"
         ordering = ["-created_at"]
 
     def __str__(self):
         return f"{self.sender}"
 
 
-class Chatbot(models.Model):
-    """
-    Representa el chatbot dentro de la aplicación.
-    """
-    nombre = models.CharField(max_length=100, default="Chatbot Cabanas")
-    descripcion = models.TextField(blank=True, null=True)
-
-    def __str__(self:models.Model) -> str:
-        return str(self.nombre)
 
 
 class ChatbotHandler(models.Model):

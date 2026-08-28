@@ -1,18 +1,20 @@
-"""Este archivo contiene las rutas URL para la aplicación de chatbot.
-"""
+"""URLs de la aplicación Chatbot (pública)."""
+
 from django.urls import path
+from . import views
 
-import django_core
-from . import views   # el punto indica "desde esta carpeta"
-
-
-app_name = "chatbot"
+app_name = "chatbot_app"
 
 urlpatterns = [
-    path("django_core/", django_core.views("django_core.views.urls"), name="django_core_views"),
-    path("shortcut/", django_core.views("django_core.views.urls"), name="shortcut"),
-    path("shortcuts/", django_core.views("django_core.views.urls"), name="shortcuts"),
-    path("panel/", views.chatbot_panel, name="chatbot_panel"),
-    path("", views.chatbot_view, name="chatbot"),
-    path("pagina/", views.chatbot_page, name="chatbot_page"),
+    # Página principal del chatbot
+    path("", views.ChatbotHomeView.as_view(), name="chatbot_home"),
+
+    # Endpoint para procesar mensajes
+    path("send/", views.chatbot_send, name="chatbot_send"),
+
+    # Endpoint para recibir respuestas (AJAX / API)
+    path("response/", views.chatbot_response, name="chatbot_response"),
+
+    # Endpoint para historial de conversaciones
+    path("history/", views.ChatbotHistoryView.as_view(), name="chatbot_history"),
 ]

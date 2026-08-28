@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-   # Apps propias django
+    # Apps del proyecto
     "django_core.cabanas_apps_django.alquileres",
     "django_core.cabanas_apps_django.reservas",
     "django_core.cabanas_apps_django.cabanas",

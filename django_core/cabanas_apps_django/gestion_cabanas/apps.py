@@ -3,4 +3,4 @@ from django.apps import AppConfig
 class CabanaAppsConfig(AppConfig):
     """App configuracion para cabanas_apps."""
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'cabanas_apps'
+    name = 'django_core.cabanas_apps_django.gestion_cabanas'

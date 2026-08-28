@@ -1,18 +1,34 @@
-""" archivo de urls de la app pagos
-"""
-from django.urls import path
+"""URLs de la aplicación Pagos."""
 
-import django_core
-from . import pagos
+from django.urls import path, include
+from .views import (
+    PagoListView,
+    PagoCreateView,
+    PagoDetailView,
+    PagoUpdateView,
+    PagoDeleteView,
+)
 
 app_name = "pagos"
 
 urlpatterns = [
-    path("django_core/", django_core.views("django_core.views.urls"), name="django_core_views"),
-    path("shortcut/", django_core.views("django_core.views.urls"), name="shortcut"),
-    path("shortcuts/", django_core.views("django_core.views.urls"), name="shortcuts"),
-    path("pagos/", pagos.listar_pagos, name="listar_pagos"),
-    path("pagos/<int:pago_id>/", pagos.detalle_pago, name="detalle_pago"),
-    path("pagos/nuevo/<int:alquiler_id>/", pagos.crear_pago, name="crear_pago"),
-    path("pagos/borrar/<int:pago_id>/", pagos.borrar_pago, name="borrar_pago"),
+    # CRUD de pagos
+    path("", PagoListView.as_view(), name="pago_list"),
+    path("nuevo/", PagoCreateView.as_view(), name="pago_create"),
+    path("<int:pk>/", PagoDetailView.as_view(), name="pago_detail"),
+    path("<int:pk>/editar/", PagoUpdateView.as_view(), name="pago_update"),
+    path("<int:pk>/borrar/", PagoDeleteView.as_view(), name="pago_delete"),
+
+    # 🔗 Integraciones con otras apps del sistema
+    path("cabanas/", include("cabanas.urls")),                # relación con cabañas
+    path("alquileres/", include("alquileres.urls")),          # relación con alquileres
+    path("reservas/", include("reservas.urls")),              # relación con reservas
+    path("clientes/", include("clientes.urls")),              # relación con clientes
+    path("facturas/", include("facturas.urls")),              # relación con facturas
+    path("usuarios/", include("usuarios.urls")),              # relación con usuarios
+    path("chatbot/", include("chatbot_app.urls")),            # relación con chatbot
+    path("gestion/", include("gestion_cabanas.urls")),        # relación con gestión de cabañas
+    path("interfaz/", include("interfaz_gestion_cabanas.urls")),  # relación con interfaz de gestión
+    path("registros/", include("registros.urls")),            # relación con registros
+    path("web/", include("web.urls")),                        # relación con web pública
 ]

@@ -1,97 +1,47 @@
-""" views chatbot"""
-import json
-from django.http import JsonResponse, HttpResponse, HttpRequest
+"""
+Vistas de la aplicación Chatbot.
+Permite la interacción con el chatbot, historial y página principal.
+"""
+
+from django.views.generic import TemplateView, ListView, FormView
 from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
-from .chatbot import ChatBot
-from django.shortcuts import render
-
-bot = ChatBot()
+from django.urls import reverse_lazy
+from .models import ChatMessage
+from .forms import ChatForm
 
 
-
-class chatbot_home:
-    """ views chatbot"""
-    @csrf_exempt
-    def chatbot_home(self, request: HttpRequest) -> JsonResponse:
-        """ Maneja las solicitudes POST al endpoint del chatbot y devuelve respuestas basadas en el mensaje recibido."""
-        if request.method != 'POST':
-            return JsonResponse({'reply': 'Envia una consulta para recibir informacion.'})
-
-        data = json.loads(request.body or '{}')
-        message = data.get('message', '').lower()
-        if 'precio' in message or 'tarifa' in message:
-            reply = 'Las tarifas dependen de la cantidad de huespedes y fechas. Podes dejar tus datos en reservas.'
-        elif 'ubicacion' in message or 'donde' in message:
-            reply = 'Estamos en Mina Clavero, Cordoba, cerca del centro y de los balnearios principales.'
-        else:
-            reply = 'Gracias por consultar. Para reservar, comunicate por WhatsApp o carga una reserva en el ABM.'
-        return JsonResponse({'reply': reply})
-
-class ChatBotRespuestaViews:
-    """ views chatbot"""
-    def chatbot(self, request: HttpRequest) -> JsonResponse:
-        """ Maneja las solicitudes POST al endpoint del chatbot y devuelve respuestas basadas en el mensaje recibido."""
-        if request.method != 'POST':
-            return JsonResponse({'reply': 'Envia una consulta para recibir informacion.'})
-
-        data = json.loads(request.body or '{}')
-        message = data.get('message', '').lower()
-        if 'precio' in message or 'tarifa' in message:
-            reply = 'Las tarifas dependen de la cantidad de huespedes y fechas. Podes dejar tus datos en reservas.'
-        elif 'ubicacion' in message or 'donde' in message:
-            reply = 'Estamos en Mina Clavero, Cordoba, cerca del centro y de los balnearios principales.'
-        else:
-            reply = 'Gracias por consultar. Para reservar, comunicate por WhatsApp o carga una reserva en el ABM.'
-        return JsonResponse({'reply': reply})
-class Chatbotviews:
-    """ views chatbot"""
-    def index(self, request: HttpRequest) -> HttpResponse:
-        """ index chatbot"""
-        return render(request, 'chatbot/index.html')
-class ChatbotViewsTemplates:
-    """ views chatbot"""
-    def index(self, request: HttpRequest) -> HttpResponse:
-        """ index chatbot"""
-        return render(request, 'chatbot/index.html')    
-
-def chatbot_page(request: HttpRequest) -> HttpResponse:
-    """Renderiza la página del chatbot."""
-    return render(request, 'chatbot/chatbot.html')
+class ChatbotHomeView(TemplateView):
+    """Vista principal del chatbot."""
+    template_name = "chatbot_app/home.html"
 
 
-@csrf_exempt    
-def chatbot_api(request: HttpRequest) -> JsonResponse:
-    """ Maneja las solicitudes POST al endpoint del chatbot y devuelve respuestas basadas en el mensaje recibido."""
-    if request.method != 'POST':
-        return JsonResponse({'reply': 'Envia una consulta para recibir informacion.'})
+class ChatbotInteractView(FormView):
+    """Vista para interactuar con el chatbot."""
+    template_name = "chatbot_app/interact.html"
+    form_class = ChatForm
+    success_url = reverse_lazy("chatbot_app:chatbot_interact")
 
-    data = json.loads(request.body or '{}')
-    message = data.get('message', '').lower()
-    if 'precio' in message or 'tarifa' in message:
-        reply = 'Las tarifas dependen de la cantidad de huespedes y fechas. Podes dejar tus datos en reservas.'
-    elif 'ubicacion' in message or 'donde' in message:
-        reply = 'Estamos en Mina Clavero, Cordoba, cerca del centro y de los balnearios principales.'
-    else:
-        reply = 'Gracias por consultar. Para reservar, comunicate por WhatsApp o carga una reserva en el ABM.'
-    return JsonResponse({'reply': reply})
-def index(request):
-    """index chatbot"""
-    return render(request, "chatbot/index.html")
-class ChatbotPanel:
-    """ views chatbot"""
-    def chatbot_panel(self, request: HttpRequest) -> HttpResponse:
-        """Renderiza la página del panel del chatbot."""
-        if request.method == "POST":
-            user_message = request.POST.get("message", "")
-            response = bot.respond(user_message)
-            return render(request, "chatbot/panel.html", {"response": response})
-        return render(request, "chatbot/panel.html", {"response": bot.welcome_message})
+    def form_valid(self, form):
+        # Guardar mensaje del usuario
+        user_message = form.cleaned_data["message"]
+        ChatMessage.objects.create(
+            remitente="usuario",
+            contenido=user_message
+        )
 
-def chatbot_panel(request):
-    """Renderiza el panel del chatbot."""
-    return render(request, "chatbot/panel_chatbot.html")
+        # Generar respuesta del chatbot (placeholder)
+        respuesta = f"🤖 El chatbot recibió: {user_message}"
+        ChatMessage.objects.create(
+            remitente="chatbot",
+            contenido=respuesta
+        )
 
-def chatbot_view(request):
-    """Renderiza la interfaz principal del chatbot."""
-    return render(request, "chatbot/chatbot.html")
+        return super().form_valid(form)
+
+
+class ChatbotHistoryView(ListView):
+    """Vista para mostrar el historial de conversación."""
+    model = ChatMessage
+    template_name = "chatbot_app/history.html"
+    context_object_name = "mensajes"
+    ordering = ["-fecha"]

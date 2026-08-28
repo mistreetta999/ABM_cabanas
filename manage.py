@@ -6,6 +6,7 @@ from django.core.management import execute_from_command_line
 def main():
     """Arranca el proyecto Django sin excepciones."""
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cabanas_principal.settings")
+
     try:
         execute_from_command_line(sys.argv)
     except ImportError as exc:

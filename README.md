@@ -43,3 +43,5 @@ En Windows, el archivo `levantar_programa.bat` ejecuta las migraciones y levanta
 - `/interfaz_gestion_cabanas/`: administracion Django.
 
 
+1. Ejecuta iniciar_django.bat para levantar el servidor.
+2. Ejecuta abrir_pagina_principal.bat para abrir la página principal en el navegador.

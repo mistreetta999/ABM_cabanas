@@ -1,11 +1,29 @@
-"""URLs para la aplicación de Chatbot en el sistema de cabañas."""
+"""URLs de la aplicación Chatbot, integradas con el sistema."""
 
-from django.urls import path
-from . import views
+from django.urls import path, include
+from .views import (
+    ChatbotHomeView,
+    ChatbotInteractView,
+    ChatbotHistoryView,
+)
+
+app_name = "chatbot_app"
 
 urlpatterns = [
-    path("", views.index, name="chatbot_index"),
-    path("chatbot/", views.chatbot_view, name="chatbot_view"),
-    path("chatbot/panel/", views.chatbot_panel, name="chatbot_panel"),
-    path("chatbot/api/", views.chatbot_api, name="chatbot_api"),
+    # Página principal del chatbot
+    path("", ChatbotHomeView.as_view(), name="chatbot_home"),
+
+    # Interacción con el chatbot
+    path("interactuar/", ChatbotInteractView.as_view(), name="chatbot_interact"),
+
+    # Historial de conversaciones
+    path("historial/", ChatbotHistoryView.as_view(), name="chatbot_history"),
+
+    # 🔗 Integraciones con otras apps del sistema
+    path("cabanas/", include("cabanas.urls")),        # relación con cabañas
+    path("alquileres/", include("alquileres.urls")),  # relación con alquileres
+    path("reservas/", include("reservas.urls")),      # relación con reservas
+    path("clientes/", include("clientes.urls")),      # relación con clientes
+    path("pagos/", include("pagos.urls")),            # relación con pagos
+    path("usuarios/", include("usuarios.urls")),      # relación con usuarios
 ]

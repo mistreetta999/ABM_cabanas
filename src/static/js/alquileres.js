@@ -1,4 +1,4 @@
-/ /alquileres.js - Rental app features
+// alquileres.js - Rental app features
 function calcularTotal() {
     const dias = document.getElementById("dias");
     const precio = document.getElementById("precio");

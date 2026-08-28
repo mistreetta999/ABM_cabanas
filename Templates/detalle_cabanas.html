@@ -1,0 +1,6 @@
+<h2>{{ cabana.nombre }}</h2>
+<p>{{ cabana.descripcion }}</p>
+<p>Capacidad: {{ cabana.capacidad }}</p>
+<p>Precio: {{ cabana.precio }}</p>
+<a href="{% url 'cabana_update' cabana.pk %}">Editar</a>
+<a href="{% url 'cabana_delete' cabana.pk %}">Eliminar</a>

@@ -1,31 +1,30 @@
-"""Rutas de la interfaz de gestion de cabanas."""
-from django.urls import path
+"""URLs de la aplicación Interfaz de Gestión de Cabañas."""
 
-import django_core
-from . import handles
+from django.urls import path, include
+from .views import (
+    InterfazHomeView,
+    InterfazCabanaListView,
+    InterfazCabanaDetailView,
+)
 
 app_name = "interfaz_gestion_cabanas"
 
 urlpatterns = [
-    path("django_core/", django_core.views("django_core.views.urls"), name="django_core_views"),
-    path("shortcut/", django_core.views("django_core.views.urls"), name="shortcut"),
-    path("shortcuts/", django_core.views("django_core.views.urls"), name="shortcuts"),
-    path("", handles.pagina_principal, name="pagina_principal"),
-    
-    path(
-        "panel_getion_cabanas/<str:app_label>/<str:model_name>/",
-        handles.panel_getion_cabanas,
-        name="panel_getion_cabanas",
-    ),
+    # Vistas principales de la interfaz
+    path("", InterfazHomeView.as_view(), name="interfaz_home"),
+    path("cabanas/", InterfazCabanaListView.as_view(), name="interfaz_cabana_list"),
+    path("cabanas/<int:pk>/", InterfazCabanaDetailView.as_view(), name="interfaz_cabana_detail"),
 
-    path("reservas-demo/", handles.listar_reservas, name="listar_reservas_demo"),
-    path("formularios/", handles.Formularios_panel_Django, name="formularios_panel"),
-    path("imagenes/", handles.imagen_panel_Django, name="imagenes_panel"),
-    path("panel/cabanas/", handles.cabanas_panel_Django, name="cabanas_panel"),
-    path("panel/reservas/", handles.reservas_panel_Django, name="reservas_panel"),
-    path("panel/alquileres/", handles.alquileres_panel_Django, name="alquileres_panel"),
-    path("panel/chatbot/", handles.chatbot_panel_Django, name="chatbot_panel"),
-    path("panel/registros/", handles.registros_panel_Django, name="registros_panel"),
-    path("panel/clientes/", handles.clientes_panel_Django, name="clientes_panel"),
-    path("panel/pagos/", handles.pagos_panel_Django, name="pagos_panel"),
+    # 🔗 Integraciones con otras apps del sistema
+    path("cabanas/", include("cabanas.urls")),                # relación con cabañas
+    path("alquileres/", include("alquileres.urls")),          # relación con alquileres
+    path("reservas/", include("reservas.urls")),              # relación con reservas
+    path("clientes/", include("clientes.urls")),              # relación con clientes
+    path("facturas/", include("facturas.urls")),              # relación con facturas
+    path("pagos/", include("pagos.urls")),                    # relación con pagos
+    path("usuarios/", include("usuarios.urls")),              # relación con usuarios
+    path("chatbot/", include("chatbot_app.urls")),            # relación con chatbot
+    path("gestion/", include("gestion_cabanas.urls")),        # relación con gestión de cabañas
+    path("registros/", include("registros.urls")),            # relación con registros
+    path("web/", include("web.urls")),                        # relación con web pública
 ]

@@ -1,7 +1,12 @@
 """Configuraciones auxiliares de apps del proyecto."""
 from django.apps import AppConfig
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+class AlquileresConfig(AppConfig):
+    """Config de la app alquileres."""
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "alquileres"
+
 
 
 class DjangoCoreAppConfig(AppConfig):
@@ -27,11 +32,6 @@ class ReservasConfig(AppConfig):
     name = "cabanas_apps.reservas"
     label = "reservas"
 
-class AlquileresConfig(AppConfig):
-    """Config de la app alquileres."""
-    default_auto_field = DEFAULT_AUTO_FIELD
-    name = "cabanas_apps.alquileres"
-    label = "alquileres"
 
 class ClientesConfig(AppConfig):
     """Config de la app clientes."""
@@ -123,5 +123,6 @@ class DjangoCoreConfig(AppConfig):
     name = "django_core"
 
 class WebConfig(AppConfig):
+    """Config de la app web."""
     default_auto_field = "django.db.models.BigAutoField"
     name = "django_core.cabanas_apps_django.web"

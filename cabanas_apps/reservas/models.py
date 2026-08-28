@@ -1,61 +1,55 @@
-""" este archivo es models de reserva. """
+"""
+Modelos de la aplicación Reservas.
+"""
+
 from django.db import models
-from cabanas_apps.clientes.models import Cliente
+from django.core.validators import MinValueValidator
+from clientes.models import Cliente
+from cabanas.models import Cabana
 
 
 class Reserva(models.Model):
-    """Modelo que representa una reserva de Cabanas"""
-    class Estado(models.TextChoices):
-        """Estados posibles de una reserva."""
-        PENDIENTE = "pendiente", "Pendiente"
-        CONFIRMADA = "confirmada", "Confirmada"
-        CANCELADA = "cancelada", "Cancelada"
-        COMPLETADA = "completada", "Completada"
+    """Modelo que representa una reserva de cabaña."""
 
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    Cabanas= models.ForeignKey('cabanas.Cabanas', on_delete=models.CASCADE)
-    fecha_inicio = models.DateTimeField()
-    fecha_fin = models.DateTimeField()
-    estado = models.CharField(
-        max_length=20,
-        choices=Estado.choices,
-        default=Estado.PENDIENTE,
-    )
-    ActividadCabana = models.ForeignKey('cabanas.Cabanas',
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='reservas_actividad',
-    )
-    objects = models.Manager()
+    ESTADOS = [
+        ("pendiente", "Pendiente"),
+        ("confirmada", "Confirmada"),
+        ("cancelada", "Cancelada"),
+        ("finalizada", "Finalizada"),
+    ]
+
+    id = models.AutoField(primary_key=True)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="reservas")
+    cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE, related_name="reservas")
+    fecha_inicio = models.DateField(verbose_name="Fecha de inicio")
+    fecha_fin = models.DateField(verbose_name="Fecha de fin")
+    estado = models.CharField(max_length=20, choices=ESTADOS, default="pendiente", verbose_name="Estado de la reserva")
+    monto_total = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.01)], verbose_name="Monto total")
+    fecha_creacion = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
 
     class Meta:
-        """ nombres de la tabla y ordenamiento de la tabla """
-        db_table = 'reservas_reserva'
-        managed = True
-        verbose_name = 'Reserva'
-        verbose_name_plural = 'Reservas'
-        ordering = ['fecha_inicio']
+        verbose_name = "Reserva"
+        verbose_name_plural = "Reservas"
+        ordering = ["-fecha_creacion"]
 
-    @staticmethod
-    def get_reservas_by_cliente(cliente_id):
-        """Obtiene todas las reservas de un cliente específico."""
-        return Reserva.objects.filter(cliente_id=cliente_id)
+    def __str__(self):
+        return f"Reserva #{self.id} - {self.cliente} - {self.cabana}"
 
-    @staticmethod
-    def get_reservas_by_cabana(cabana_id):
-        """Obtiene todas las reservas de una Cabanas
- específica."""
-        return Reserva.objects.filter(cabana_id=cabana_id)
+    def duracion(self) -> int:
+        """Devuelve la cantidad de días de la reserva."""
+        return (self.fecha_fin - self.fecha_inicio).days
 
-    @staticmethod
-    def get_all_reservas():
-        """Obtiene todas las reservas."""
-        return Reserva.objects.all()
+    def confirmar(self):
+        """Confirma la reserva cambiando su estado."""
+        self.estado = "confirmada"
+        self.save(update_fields=["estado"])
 
-    def get_actividad_cabana(self):
-        """Obtiene la actividad asociada a la reserva."""
-        return self.ActividadCabana
+    def cancelar(self):
+        """Cancela la reserva cambiando su estado."""
+        self.estado = "cancelada"
+        self.save(update_fields=["estado"])
 
-    def __str__(self)-> str:
-        return f"Reserva {self.cliente} - {self.Cabanas}  - Estado: {self.estado}"
+    def finalizar(self):
+        """Finaliza la reserva cambiando su estado."""
+        self.estado = "finalizada"
+        self.save(update_fields=["estado"])

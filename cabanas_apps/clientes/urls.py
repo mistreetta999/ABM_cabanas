@@ -1,31 +1,34 @@
-"""urls.py de la app clientes"""
-from django.urls import path
+"""URLs de la aplicación Clientes, integradas con el sistema."""
 
-import django_core
-from . import views
+from django.urls import path, include
+from .views import (
+    ClienteListView,
+    ClienteCreateView,
+    ClienteUpdateView,
+    ClienteDeleteView,
+    ClienteDetailView,
+)
 
 app_name = "clientes"
 
 urlpatterns = [
-    path("django_core/", django_core.views("django_core.views.urls"), name="django_core_views"),
-    path("shortcut/", django_core.views("django_core.views.urls"), name="shortcut"),
-    path("shortcuts/", django_core.views("django_core.views.urls"), name="shortcuts"),
-    path("interfaz_gestion_cabanas/", views.lista_clientes, name="lista_clientes"),
-    path("", views.lista_clientes, name="lista_clientes"),
-    path("home/", views.ClientesHomeView.as_view(), name="home"),
-    path(
-        "clientes/<int:pk>/",
-        views.ClienteDetailView.as_view(),
-        name="detalle_cliente",
-    ),
-    path(
-        "clientes/<int:pk>/editar/",
-        views.ClienteUpdateView.as_view(),
-        name="editar_cliente",
-    ),
-    path(
-        "clientes/<int:pk>/eliminar/",
-        views.ClienteDeleteView.as_view(),
-        name="eliminar_cliente",
-    ),
+    # CRUD de clientes
+    path("", ClienteListView.as_view(), name="cliente_list"),
+    path("nuevo/", ClienteCreateView.as_view(), name="cliente_create"),
+    path("<int:pk>/", ClienteDetailView.as_view(), name="cliente_detail"),
+    path("<int:pk>/editar/", ClienteUpdateView.as_view(), name="cliente_update"),
+    path("<int:pk>/borrar/", ClienteDeleteView.as_view(), name="cliente_delete"),
+
+    # 🔗 Integraciones con otras apps del sistema
+    path("cabanas/", include("cabanas.urls")),                # relación con cabañas
+    path("alquileres/", include("alquileres.urls")),          # relación con alquileres
+    path("reservas/", include("reservas.urls")),              # relación con reservas
+    path("facturas/", include("facturas.urls")),              # relación con facturas
+    path("pagos/", include("pagos.urls")),                    # relación con pagos
+    path("usuarios/", include("usuarios.urls")),              # relación con usuarios
+    path("chatbot/", include("chatbot_app.urls")),            # relación con chatbot
+    path("gestion/", include("gestion_cabanas.urls")),        # relación con gestión de cabañas
+    path("interfaz/", include("interfaz_gestion_cabanas.urls")),  # relación con interfaz de gestión
+    path("registros/", include("registros.urls")),            # relación con registros
+    path("web/", include("web.urls")),                        # relación con web pública
 ]

@@ -205,3 +205,6 @@ importante ejecutar en raiz
 cd C:\Users\carol\OneDrive\Desktop\cabanas
 .venv\Scripts\python.exe manage.py runserver
 pip install django
+pip install pyinstaller
+pip install pyinstaller
+pyinstaller --onefile --windowed handles.py

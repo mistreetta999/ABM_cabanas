@@ -1,7 +1,9 @@
-# gestion_cabanas.py
+"""Módulo principal para iniciar la gestión de cabañas."""
+
 import os
 import sys
 import django
+from django.core.exceptions import ImproperlyConfigured
 from django.core.management import execute_from_command_line
 
 def main():
@@ -10,8 +12,8 @@ def main():
 
     try:
         django.setup()
-        print("✅ Sistema de gestión de cabañas inicializado correctamente")
-    except Exception as e:
+        print("Sistema de gestión de cabañas inicializado correctamente")
+    except ImproperlyConfigured as e:
         print("❌ Error al inicializar Django:", e)
         sys.exit(1)
 

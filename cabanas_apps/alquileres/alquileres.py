@@ -16,8 +16,7 @@ class Alquiler(models.Model):
     """class Alquiler models"""
     id = models.AutoField(primary_key=True)
     objects = models.Manager()
-    cabanas = models.ForeignKey(Cabanas
-, on_delete=models.CASCADE)
+    cabanas = models.ForeignKey(Cabanas, on_delete=models.CASCADE)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     reserva = models.OneToOneField(Reserva, on_delete=models.CASCADE)
     monto_total = models.DecimalField(max_digits=10, decimal_places=2)
@@ -30,7 +29,7 @@ class Alquiler(models.Model):
 def listar_alquileres(request):
     """Muestra todos los alquileres."""
     alquileres = Alquiler.objects.all()
-    return render(request, "django", {"alquileres": alquileres})
+    return render(request, "lista_cabanas.html", {"alquileres": alquileres})
 
 def detalle_alquiler(request, alquiler_id):
     """Muestra el detalle de un alquiler específico."""
@@ -41,10 +40,7 @@ def crear_alquiler(request, reserva_id):
     """Crea un nuevo alquiler a partir de una reserva."""
     reserva = get_object_or_404(Reserva, pk=reserva_id)
     cliente = reserva.cliente
-    Cabanas
- = reserva.Cabanas
-
-
+    Cabanas= reserva.Cabanas
     if request.method == "POST":
         fecha_inicio = request.POST.get("fecha_inicio")
         fecha_fin = request.POST.get("fecha_fin")
@@ -53,8 +49,7 @@ def crear_alquiler(request, reserva_id):
         alquiler = Alquiler.objects.create(
             reserva=reserva,
             cliente=cliente,
-            Cabanas
-=Cabanas
+            Cabanas=Cabanas
 ,
             fecha_inicio=fecha_inicio,
             fecha_fin=fecha_fin,

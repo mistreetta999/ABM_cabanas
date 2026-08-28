@@ -1,69 +1,60 @@
-""" archivo pagos para pagar"""
-from django.shortcuts import render, get_object_or_404, redirect
-from cabanas_apps.pagos.models import Pago
-from cabanas_apps.alquileres.models import Alquiler
-from cabanas_apps.clientes.models import Cliente
-from django.urls import reverse
+"""
+Funciones auxiliares para la gestión de pagos.
+Este archivo sirve como capa de servicios/handlers para la app Pagos.
+"""
+
+from django.core.exceptions import ValidationError
+from facturas.models import Factura
+from clientes.models import Cliente
+from .models import Pago
 
 
+def registrar_pago(cliente_id: int, factura_id: int, monto: float, metodo: str, referencia: str = None) -> Pago:
+    """
+    Registra un pago en el sistema y actualiza el estado de la factura si corresponde.
+    """
+    cliente = Cliente.objects.get(pk=cliente_id)
+    factura = Factura.objects.get(pk=factura_id)
 
-class Pagos:
-    """Clase que maneja los pagos de un alquiler."""
-    def __init__(self, alquiler_id):
-        self.alquiler_id = alquiler_id
-        self.reserva_id = alquiler_id
-    def pagos (self):
-        """Obtiene todos los pagos asociados a un alquiler específico."""
-        pagos = Pago.objects.filter(alquiler_id=self.alquiler_id)
-        return pagos
+    if monto <= 0:
+        raise ValidationError("El monto del pago debe ser mayor a cero.")
 
-def listar_pagos(request):
-    """Muestra todos los pagos registrados."""
-    pagos = Pago.objects.all()
-    return render(request, "pagos/panel.html", {"pagos": pagos})
+    pago = Pago.objects.create(
+        cliente=cliente,
+        factura=factura,
+        monto=monto,
+        metodo=metodo,
+        referencia=referencia
+    )
 
-def detalle_pago(request, pago_id):
-    """Muestra el detalle de un pago específico."""
-    pago = get_object_or_404(Pago, pk=pago_id)
-    return render(request, "pagos/panel.html", {"pago": pago})
+    # Si el pago cubre el monto de la factura, marcar como pagada
+    pago.marcar_factura_pagada()
 
-def crear_pago(request, alquiler_id):
-    """Crea un nuevo pago asociado a un alquiler."""
-    alquiler = get_object_or_404(Alquiler, pk=alquiler_id)
+    return pago
 
-    if request.method == "POST":
-        fecha = request.POST.get("fecha")
-        monto = request.POST.get("monto")
-        metodo = request.POST.get("metodo")
-        comprobante = request.POST.get("comprobante", "")
 
-        pago = Pago.objects.create(
-            alquiler=alquiler,
-            fecha=fecha,
-            monto=monto,
-            metodo=metodo,
-            comprobante=comprobante
-        )
-        return redirect("detalle_pago", pago_id=pago.id)
+def obtener_pagos_cliente(cliente_id: int):
+    """
+    Devuelve todos los pagos realizados por un cliente.
+    """
+    return Pago.objects.filter(cliente_id=cliente_id).order_by("-fecha_pago")
 
-    return render(request, "pagos/panel.html", {"alquiler": alquiler})
 
-def borrar_pago(request, pago_id):
-    """Elimina un pago existente."""
-    pago = get_object_or_404(Pago, pk=pago_id)
+def obtener_pagos_factura(factura_id: int):
+    """
+    Devuelve todos los pagos asociados a una factura.
+    """
+    return Pago.objects.filter(factura_id=factura_id).order_by("-fecha_pago")
 
-    if request.method == "POST":
-        pago.delete()
-        return redirect("listar_pagos")
 
-    return render(request, "pagos/panel.html", {"pago": pago})
-def boton (self)->Any:
-    """Genera botones de acción para la Cabanas
- en el admin."""
-    editar = reverse('admin:cabanas_cabana_change', args=[self.pk])
-    eliminar = reverse('admin:cabanas_cabana_delete', args=[self.pk])
-    crear = reverse('admin:cabanas_cabana_add')
-    imprimir = reverse('admin:cabanas_cabana_print', args=[self.pk])
-    buscar = reverse('admin:cabanas_cabana_changelist')
-    salir = reverse('admin:index')
-    return boton
+def resumen_pagos_cliente(cliente_id: int) -> dict:
+    """
+    Devuelve un resumen de pagos de un cliente.
+    """
+    pagos = obtener_pagos_cliente(cliente_id)
+    total_pagado = sum([p.monto for p in pagos])
+    return {
+        "total_pagos": pagos.count(),
+        "total_pagado": total_pagado,
+        "ultimo_pago": pagos.first().fecha_pago if pagos.exists() else None,
+    }

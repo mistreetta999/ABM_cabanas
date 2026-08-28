@@ -1,65 +1,55 @@
-# django_core/handles.py
-from django.http import HttpResponse, JsonResponse
+"""
+Handlers para la aplicación Chatbot (pública).
+Se encargan de procesar mensajes, generar respuestas y manejar historial.
+"""
 
-# -------------------
-# PÁGINA PRINCIPAL
-# -------------------
-def pagina_principal(request):
-    return HttpResponse("Bienvenida al sistema de gestión de cabañas")
+from registros.models import Registro
+from django.utils import timezone
 
-# -------------------
-# RESERVAS
-# -------------------
-def listar_reservas(request):
-    reservas = [
-        {"id": 1, "cliente": "Carolina", "cabaña": "Premium"},
-        {"id": 2, "cliente": "Juan", "cabaña": "Standard"},
-    ]
-    return JsonResponse(reservas, safe=False)
 
-def detalle_reserva(request, reserva_id):
-    return HttpResponse(f"Detalle de la reserva {reserva_id}")
+class ChatbotHandler:
+    """Handler principal para el chatbot público."""
 
-def crear_reserva(request, cliente_id, cabana_id):
-    return HttpResponse(f"Reserva creada para cliente {cliente_id} en cabaña {cabana_id}")
+    @staticmethod
+    def procesar_mensaje(usuario, mensaje: str) -> dict:
+        """
+        Procesa un mensaje entrante del usuario y devuelve una respuesta.
+        """
+        respuesta = ChatbotHandler.generar_respuesta(mensaje)
 
-def borrar_reserva(request, reserva_id):
-    return HttpResponse(f"Reserva {reserva_id} borrada")
+        # Guardar en registros para historial
+        Registro.objects.create(
+            usuario=usuario,
+            tipo="chatbot",
+            descripcion=f"Usuario dijo: {mensaje} | Bot respondió: {respuesta}",
+            fecha=timezone.now()
+        )
 
-# -------------------
-# ALQUILERES
-# -------------------
-def listar_alquileres(request):
-    alquileres = [
-        {"id": 1, "cliente": "Pedro", "cabaña": "Suite"},
-        {"id": 2, "cliente": "Lucía", "cabaña": "Deluxe"},
-    ]
-    return JsonResponse(alquileres, safe=False)
+        return {"mensaje": mensaje, "respuesta": respuesta}
 
-def detalle_alquiler(request, reserva_id):
-    return HttpResponse(f"Detalle del alquiler {reserva_id}")
+    @staticmethod
+    def generar_respuesta(mensaje: str) -> str:
+        """
+        Genera una respuesta básica según el contenido del mensaje.
+        (Aquí podrías integrar IA, reglas o APIs externas).
+        """
+        mensaje = mensaje.lower()
 
-def crear_alquiler(request, cliente_id, cabana_id):
-    return HttpResponse(f"Alquiler creado para cliente {cliente_id} en cabaña {cabana_id}")
+        if "hola" in mensaje:
+            return "¡Hola! ¿Cómo puedo ayudarte con tu reserva de cabañas?"
+        elif "disponibilidad" in mensaje:
+            return "Puedes consultar disponibilidad en la sección 'Reservas' del sitio."
+        elif "precio" in mensaje:
+            return "Los precios dependen de la cabaña y la temporada. ¿Quieres que te muestre opciones?"
+        elif "gracias" in mensaje:
+            return "¡De nada! Estoy aquí para ayudarte."
+        else:
+            return "No entendí bien tu consulta, ¿podrías reformularla?"
 
-def borrar_alquiler(request, reserva_id):
-    return HttpResponse(f"Alquiler {reserva_id} borrado")
-
-# -------------------
-# PAGOS
-# -------------------
-def listar_pagos(request):
-    pagos = [
-        {"id": 1, "reserva": 1, "monto": 5000},
-        {"id": 2, "reserva": 2, "monto": 7000},
-    ]
-    return JsonResponse(pagos, safe=False)
-
-def detalle_pago(request, reserva_id):
-    return HttpResponse(f"Detalle del pago para reserva {reserva_id}")
-
-def crear_pago(request, cliente_id, cabana_id):
-    return HttpResponse(f"Pago registrado para cliente {cliente_id} en cabaña {cabana_id}")
-
-def borrar_pago(request, reserva_id):
-    return HttpResponse(f"Pago de reserva {reserva_id} borrado")
+    @staticmethod
+    def historial(usuario) -> list:
+        """
+        Devuelve el historial de conversaciones del usuario.
+        """
+        registros = Registro.objects.filter(usuario=usuario, tipo="chatbot").order_by("-fecha")
+        return [{"fecha": r.fecha, "descripcion": r.descripcion} for r in registros]

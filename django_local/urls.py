@@ -1,132 +1,37 @@
-"""URLs locales del sistema de cabanas."""
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-from django.urls import include, path
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-from django.contrib import admin
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
+"""URLs de la instancia django_local."""
+
 from django.urls import path
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-from django_local import views
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-from django.urls.resolvers import _URLConf
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-from typing import Any
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
 from . import views
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
 
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
 app_name = "django_local"
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-def include(
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
- arg: _URLConf:Any | tuple[_URLConf, str],
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
- namespace: str | None = None
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-) -> _IncludedURLConf
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
 
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
 urlpatterns = [
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    path('admin/', admin.site.urls),
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    path('principal/', views.pagina_principal, name='pagina_principal'),
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    path("pagina_principal", views.PaginaPrincipalViews, name="pagina_principal.html"),
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    path("panel/", views.panel_django, name="panel_django.dj"),
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    path("clientes/", views.cliente_list, name="cliente_list"),
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    path("clientes/nuevo/", views.cliente_create, name="cliente_create"),
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    path("clientes/<int:pk>/editar/", views.cliente_edit, name="cliente_edit"),
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    path("clientes/<int:pk>/borrar/", views.cliente_delete, name="cliente_delete"),
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    path("reservas/", views.reserva_list, name="reserva_list"),
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    path("reservas/nuevo/", views.reserva_create, name="reserva_create"),
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    path("alquileres/", views.alquiler_list, name="alquiler_list"),
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    path("alquileres/nuevo/", views.alquiler_create, name="alquiler_create"),
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    path("pagos/", views.pago_list, name="pago_list"),
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    path("pagos/nuevo/", views.pago_create, name="pago_create"),
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    path("registros/", views.registro_list, name="registro_list"),
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    path("registros/nuevo/", views.registro_create, name="registro_create"),
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
+    # Dashboard y resumen general
+    path("", views.DashboardView.as_view(), name="dashboard"),
+    path("resumen/", views.resumen, name="resumen"),
+
+    # CRUD de clientes
+    path("clientes/", views.ClienteListView.as_view(), name="cliente_list"),
+    path("clientes/<int:pk>/", views.ClienteDetailView.as_view(), name="cliente_detail"),
+    path("clientes/nuevo/", views.ClienteCreateView.as_view(), name="cliente_create"),
+    path("clientes/<int:pk>/editar/", views.ClienteUpdateView.as_view(), name="cliente_update"),
+    path("clientes/<int:pk>/borrar/", views.ClienteDeleteView.as_view(), name="cliente_delete"),
+
+    # CRUD de reservas
+    path("reservas/", views.ReservaListView.as_view(), name="reserva_list"),
+    path("reservas/<int:pk>/", views.ReservaDetailView.as_view(), name="reserva_detail"),
+    path("reservas/nueva/", views.ReservaCreateView.as_view(), name="reserva_create"),
+    path("reservas/<int:pk>/editar/", views.ReservaUpdateView.as_view(), name="reserva_update"),
+    path("reservas/<int:pk>/borrar/", views.ReservaDeleteView.as_view(), name="reserva_delete"),
+
+    # Facturas
+    path("facturas/", views.FacturaListView.as_view(), name="factura_list"),
+    path("facturas/<int:pk>/", views.FacturaDetailView.as_view(), name="factura_detail"),
+
+    # Pagos
+    path("pagos/", views.PagoListView.as_view(), name="pago_list"),
+    path("pagos/<int:pk>/", views.PagoDetailView.as_view(), name="pago_detail"),
+
+    # Auditoría y registros
+    path("registros/", views.RegistroListView.as_view(), name="registro_list"),
 ]
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",

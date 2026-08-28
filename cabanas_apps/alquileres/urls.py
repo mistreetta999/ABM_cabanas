@@ -1,46 +1,34 @@
-""" urls"""
-from django.http import HttpRequest, HttpResponse
-from django.urls import path
-from django.urls import path
+"""URLs de la aplicación Alquileres, integradas con el sistema."""
+
+from django.urls import path, include
 from .views import (
-    CabanaListView,
-    CabanaDetailView,
-    CabanaCreateView,
-    CabanaUpdateView,
-    CabanaDeleteView,
+    AlquilerListView,
+    AlquilerCreateView,
+    AlquilerUpdateView,
+    AlquilerDeleteView,
+    AlquilerDetailView,
 )
 
-app_name = "cabanas_app
-
-def lista_alquileres(_request: HttpRequest) -> HttpResponse:
-    """ def lista"""
-    return HttpResponse("Lista de alquileres")
-
-
-def detalle_alquiler(_request, alquiler_id)->HttpResponse:
-    """ def detalle"""
-    return HttpResponse(f"Detalle del alquiler {alquiler_id}")
-
-
-def crear_alquiler(_request: HttpRequest) -> HttpResponse:
-    """ def crear"""
-    return HttpResponse("Crear alquiler")
-
-
-def actualizar_alquiler(_request, alquiler_id):
-    """ def actualizar"""
-    return HttpResponse(f"Actualizar alquiler {alquiler_id}")
-
-
-def eliminar_alquiler(_request: HttpRequest, alquiler_id: int) -> HttpResponse:
-    """def eliminar"""
-    return HttpResponse(f"Eliminar alquiler {alquiler_id}")
-"
+app_name = "alquileres"
 
 urlpatterns = [
-    path("", CabanaListView.as_view(), name="cabana_list"),
-    path("<int:pk>/", CabanaDetailView.as_view(), name="cabana_detail"),
-    path("crear/", CabanaCreateView.as_view(), name="cabana_create"),
-    path("editar/<int:pk>/", CabanaUpdateView.as_view(), name="cabana_update"),
-    path("eliminar/<int:pk>/", CabanaDeleteView.as_view(), name="cabana_delete"),
+    # CRUD de alquileres
+    path("", AlquilerListView.as_view(), name="alquiler_list"),
+    path("nuevo/", AlquilerCreateView.as_view(), name="alquiler_create"),
+    path("<int:pk>/", AlquilerDetailView.as_view(), name="alquiler_detail"),
+    path("<int:pk>/editar/", AlquilerUpdateView.as_view(), name="alquiler_update"),
+    path("<int:pk>/borrar/", AlquilerDeleteView.as_view(), name="alquiler_delete"),
+
+    # 🔗 Integraciones con otras apps del sistema
+    path("cabanas/", include("cabanas.urls")),                # relación con cabañas
+    path("reservas/", include("reservas.urls")),              # relación con reservas
+    path("clientes/", include("clientes.urls")),              # relación con clientes
+    path("facturas/", include("facturas.urls")),              # relación con facturas
+    path("pagos/", include("pagos.urls")),                    # relación con pagos
+    path("usuarios/", include("usuarios.urls")),              # relación con usuarios
+    path("chatbot/", include("chatbot_app.urls")),            # relación con chatbot
+    path("gestion/", include("gestion_cabanas.urls")),        # relación con gestión de cabañas
+    path("interfaz/", include("interfaz_gestion_cabanas.urls")),  # relación con interfaz de gestión
+    path("registros/", include("registros.urls")),            # relación con registros
+    path("web/", include("web.urls")),                        # relación con web pública
 ]

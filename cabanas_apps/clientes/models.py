@@ -1,85 +1,48 @@
-""" archivo de modelos para la app de clientes """
+"""
+Modelos de la aplicación Clientes.
+"""
+
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.core.validators import RegexValidator
+
 
 class Cliente(models.Model):
-    """class cliente de las cabanas"""   
-    dni = models.IntegerField(unique=True)
-    nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=100)
-    direccion = models.CharField(max_length=200, blank=True)
-    telefono = models.CharField(max_length=20, blank=True)
+    """Modelo que representa un cliente del sistema."""
+
+    id = models.AutoField(primary_key=True)
+    dni = models.CharField(
+        max_length=20,
+        unique=True,
+        validators=[RegexValidator(r'^\d{1,20}$', 'El DNI debe contener solo números (máx. 20).')],
+        verbose_name="DNI"
+    )
+    nombre = models.CharField(max_length=100, verbose_name="Nombre")
+    apellido = models.CharField(max_length=100, verbose_name="Apellido")
+    direccion = models.CharField(max_length=200, blank=True, verbose_name="Dirección")
+    telefono = models.CharField(max_length=20, blank=True, verbose_name="Teléfono")
+    email = models.EmailField(unique=True, verbose_name="Correo electrónico")
+    fecha_registro = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de registro")
+    activo = models.BooleanField(default=True, verbose_name="Activo")
 
     class Meta:
-        """ class meta como se escribe"""
         verbose_name = "Cliente"
         verbose_name_plural = "Clientes"
+        ordering = ["apellido", "nombre"]
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.nombre} {self.apellido} - DNI: {self.dni}"
 
+    def nombre_completo(self) -> str:
+        """Devuelve el nombre completo del cliente."""
+        return f"{self.nombre} {self.apellido}"
 
-class FacturaClientes(models.Model):
-    """class factura cliente"""
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    numero = models.CharField(max_length=20, unique=True)
-    fecha = models.DateField()
-    total = models.DecimalField(max_digits=10, decimal_places=2)
+    def actualizar(self, **datos):
+        """Actualiza la instancia actual con los datos proporcionados."""
+        for campo, valor in datos.items():
+            setattr(self, campo, valor)
+        self.save(update_fields=list(datos.keys()) if datos else None)
+        return self
 
-class ListaClientes(models.Model):
-    """lista """
-    id = models.AutoField(primary_key=True)
-    clientes = models.ManyToManyField(Cliente, related_name="listas_clientes")
-
-    class Meta:
-        """como se escribe"""
-        verbose_name = "Lista de Clientes"
-        verbose_name_plural = "Listas de Clientes"
-
-    def __str__(self):
-        return f"Lista de Clientes {self.id}"
-
-class ClientesPago(models.Model):
-    """"class que muestra los pagos de este"""
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    monto = models.DecimalField(max_digits=10, decimal_places=2)
-    fecha = models.DateField()
-
-    def __str__(self):
-        return f"Pago de {self.cliente} por {self.monto}"
-
-class FacturaCliente(models.Model):
-    """class muestra las facturas de este"""
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    numero = models.CharField(max_length=50)
-    fecha = models.DateField()
-
-    def __str__(self):
-        return f"Factura {self.numero} de {self.cliente}"
-
-class ListaFacturasClinte(models.Model):
-    """ class lista de facturas"""
-    id = models.AutoField(primary_key=True)
-    facturas = models.ManyToManyField(FacturaCliente, related_name="listas_facturas")
-
-    class Meta:
-        """ class meta """
-        verbose_name = "Lista de Facturas"
-        verbose_name_plural = "Listas de Facturas"
-
-    def __str__(self):
-        return f"Lista de Facturas {self.id}"
-
-
-class UsuarioSistema(AbstractUser):
-    """ estos son los usuarios y sus roles por que django confunde usuario y cliente"""
-    ROLES = (
-        ("transacciones", "Usuario de Transacciones"),
-        ("completo", "Usuario Completo"),
-    )
-    rol = models.CharField(max_length=20, choices=ROLES, default="transacciones")
-
-    telefono = models.CharField(max_length=20, blank=True)
-
-    def __str__(self):
-        return f"{self.username} ({self.rol})"
+    def eliminar(self):
+        """Elimina la instancia actual."""
+        return self.delete()

@@ -1,4 +1,15 @@
-// main.js - Global project script
-document.addEventListener("DOMContentLoaded", function() {
-    console.log("Proyecto Django cargado correctamente.");
+// Script principal para inicializar funciones comunes
+
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("✅ Frontend cargado correctamente.");
+
+    // Navbar dinámica
+    const navToggle = document.querySelector("#nav-toggle");
+    const navMenu = document.querySelector("#nav-menu");
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener("click", () => {
+            navMenu.classList.toggle("is-active");
+        });
+    }
 });

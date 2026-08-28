@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 class PagosConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'cabanas_apps.pagos'
+    name = 'django_core.cabanas_apps_django.pagos'

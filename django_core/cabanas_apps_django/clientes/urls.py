@@ -1,20 +1,29 @@
-"""URL configuration para la app clientes."""
-from django.urls import path
-from .views import ClienteCreateView
-from .views import ClienteDeleteView
-from .views import ClienteDetailView
-from .views import ClienteListView
-from .views import ClienteUpdateView
-from .views import clientes_home
+"""URLs de la aplicación Clientes, integradas con el sistema."""
 
+from django.urls import path, include
+from .views import (
+    ClienteListView,
+    ClienteCreateView,
+    ClienteUpdateView,
+    ClienteDeleteView,
+    ClienteDetailView,
+)
 
-APP_CLIENTES= "clientes"
+app_name = "clientes"
 
 urlpatterns = [
-    path("", clientes_home, name="home"),
-    path("lista/", ClienteListView.as_view(), name="lista"),
-    path("nuevo/", ClienteCreateView.as_view(), name="crear"),
-    path("<int:pk>/", ClienteDetailView.as_view(), name="detalle"),
-    path("<int:pk>/editar/", ClienteUpdateView.as_view(), name="editar"),
-    path("<int:pk>/eliminar/", ClienteDeleteView.as_view(), name="eliminar"),
+    # CRUD de clientes
+    path("", ClienteListView.as_view(), name="cliente_list"),
+    path("nuevo/", ClienteCreateView.as_view(), name="cliente_create"),
+    path("<int:pk>/", ClienteDetailView.as_view(), name="cliente_detail"),
+    path("<int:pk>/editar/", ClienteUpdateView.as_view(), name="cliente_update"),
+    path("<int:pk>/borrar/", ClienteDeleteView.as_view(), name="cliente_delete"),
+
+    # 🔗 Integraciones con otras apps del sistema
+    path("cabanas/", include("cabanas.urls")),        # relación con cabañas
+    path("alquileres/", include("alquileres.urls")),  # relación con alquileres
+    path("reservas/", include("reservas.urls")),      # relación con reservas
+    path("pagos/", include("pagos.urls")),            # relación con pagos
+    path("usuarios/", include("usuarios.urls")),      # relación con usuarios
+    path("chatbot/", include("chatbot_app.urls")),    # relación con chatbot
 ]

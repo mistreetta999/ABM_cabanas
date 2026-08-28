@@ -1,61 +1,75 @@
-"""Este archivo contiene las vistas para la aplicación de reservas.
 """
-from django.shortcuts import get_object_or_404, render, redirect
-from .models import Reserva, Cliente, Cabanas
-,Alquileres, Pago
-from .models import  Cabanas
-,Alquileres, Pago
-from django.http import HttpResponse
+Servicio de gestión de reservas.
+Encapsula la lógica de negocio en una clase para mayor organización.
+"""
+
+from django.core.exceptions import ValidationError
+from datetime import date
+from .models import Reserva
+from cabanas.models import Cabana
+from clientes.models import Cliente
 
 
-class reservas:
-    def __init__(self, cliente, Cabanas
-, fecha_ingreso, fecha_salida, observaciones):    
-        self.cliente = cliente
-        self.Cabanas
- = Cabanas
+class ReservaService:
+    """Clase que centraliza la lógica de gestión de reservas."""
 
-        self.fecha_ingreso = fecha_ingreso
-        self.fecha_salida = fecha_salida
-        self.observaciones = observaciones
-def listar_reservas(request):
-    """Muestra todas las reservas."""
-    reservas = Reserva.objects.all()
-    return render(request, "pagina_principal/lista.html", {"reservas": reservas})
+    @staticmethod
+    def crear(cliente_id: int, cabana_id: int, fecha_inicio: date, fecha_fin: date, monto_total: float) -> Reserva:
+        """Crea una reserva validando disponibilidad y fechas."""
+        if fecha_fin < fecha_inicio:
+            raise ValidationError("La fecha de fin debe ser posterior a la fecha de inicio.")
 
-def detalle_reserva(request, reserva_id):
-    """Muestra el detalle de una reserva específica."""
-    reserva = get_object_or_404(Reserva, pk=reserva_id)
-    return render(request, "pagina_principal/detalle.html", {"reserva": reserva})
+        cabana = Cabana.objects.get(pk=cabana_id)
 
-def crear_reserva(request, cliente_id, cabana_id):
-    """Crea una nueva reserva."""
-    cliente = get_object_or_404(Cliente, pk=cliente_id)
-    Cabanas
- = get_object_or_404(Cabanas
-, pk=cabana_id)
+        # Validar solapamiento de reservas
+        solapadas = Reserva.objects.filter(
+            cabana=cabana,
+            fecha_inicio__lte=fecha_fin,
+            fecha_fin__gte=fecha_inicio
+        ).exclude(estado="cancelada")
 
-    if request.method == "POST":
-        fecha_ingreso = request.POST.get("fecha_ingreso")
-        fecha_salida = request.POST.get("fecha_salida")
-        observaciones = request.POST.get("observaciones", "")
+        if solapadas.exists():
+            raise ValidationError("La cabaña no está disponible en el rango solicitado.")
+
+        cliente = Cliente.objects.get(pk=cliente_id)
 
         reserva = Reserva.objects.create(
             cliente=cliente,
-            Cabanas
-=Cabanas
-,
-            fecha_ingreso=fecha_ingreso,
-            fecha_salida=fecha_salida,
-            observaciones=observaciones,
+            cabana=cabana,
+            fecha_inicio=fecha_inicio,
+            fecha_fin=fecha_fin,
+            monto_total=monto_total,
             estado="pendiente"
         )
-        return redirect("detalle_reserva", reserva_id=reserva.id)
+        return reserva
 
-    return render(request, "pagina_principal/formulario.html", {"cliente": cliente, "Cabanas
-": Cabanas
-})
+    @staticmethod
+    def obtener_por_cliente(cliente_id: int):
+        """Devuelve todas las reservas realizadas por un cliente."""
+        return Reserva.objects.filter(cliente_id=cliente_id).order_by("-fecha_creacion")
 
-def borrar_reserva(request,HttpRequest, reserva_id):
-    """Borra una reserva específica."""
-    return HttpResponse(f"Borrar reserva {reserva_id}")
+    @staticmethod
+    def obtener_por_cabana(cabana_id: int):
+        """Devuelve todas las reservas asociadas a una cabaña."""
+        return Reserva.objects.filter(cabana_id=cabana_id).order_by("-fecha_creacion")
+
+    @staticmethod
+    def confirmar(reserva_id: int) -> Reserva:
+        """Confirma una reserva existente."""
+        reserva = Reserva.objects.get(pk=reserva_id)
+        reserva.confirmar()
+        return reserva
+
+    @staticmethod
+    def cancelar(reserva_id: int) -> Reserva:
+        """Cancela una reserva existente."""
+        reserva = Reserva.objects.get(pk=reserva_id)
+        reserva.cancelar()
+        return reserva
+
+    @staticmethod
+    def finalizar(reserva_id: int) -> Reserva:
+        """Finaliza una reserva existente."""
+        reserva = Reserva.objects.get(pk=reserva_id)
+        reserva.finalizar()
+        return reserva

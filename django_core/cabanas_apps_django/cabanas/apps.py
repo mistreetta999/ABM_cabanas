@@ -3,5 +3,7 @@ from django.apps import AppConfig
 
 class CabanasConfig(AppConfig):
     """Configuration for the cabanas app."""
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'cabanas_apps.cabanas'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "django_core.cabanas_apps_django.cabanas"
+
+

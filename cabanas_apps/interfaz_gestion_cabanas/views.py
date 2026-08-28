@@ -1,75 +1,39 @@
-"""Vistas de la interfaz de gestion de cabanas."""
-from django.http import HttpRequest, HttpResponse
-from django.http import JsonResponse
-from django.shortcuts import render
-from .models import Cabanas
+"""
+Vistas de la aplicación Interfaz de Gestión de Cabañas.
+Permite mostrar la interfaz visual para administración de cabañas.
+"""
 
-from DATABASES import db
-
-def Cabanas
-(request: Any) -> JsonResponse:
-    # Datos simulados de una cabaña
-    data = {
-        "nombre": "Cabaña Los Pinos",
-        "capacidad": 4,
-        "precio_por_noche": 12000,
-        "disponible": True
-    }
-    return JsonResponse(data)
-
-def cabanas_listado(request: HttpRequest) -> HttpResponse:
-    """Listado de cabanas."""
-    return render(request, "interfaz_gestion_cabanas/cabanas.html", {"cabanas": Cabanas
-.objects.all()})
+from django.views.generic import TemplateView, ListView, DetailView
+from cabanas.models import Cabana
+from reservas.models import Reserva
+from interfaz_gestion_cabanas.handles import obtener_cabanas_disponibles, resumen_cabana
 
 
+class InterfazHomeView(TemplateView):
+    """Vista principal de la interfaz de gestión."""
+    template_name = "interfaz_gestion_cabanas/home.html"
 
 
-def cliente_list() -> HttpResponse:
-    """Listado basico de clientes."""
-    return HttpResponse("Listado de clientes")
+class InterfazCabanaListView(ListView):
+    """Lista todas las cabañas disponibles en la interfaz."""
+    model = Cabana
+    template_name = "interfaz_gestion_cabanas/cabana_list.html"
+    context_object_name = "cabanas"
+
+    def get_queryset(self):
+        # Usamos el handler para obtener solo las disponibles
+        return obtener_cabanas_disponibles()
 
 
-def cliente_create() -> HttpResponse:
-    """Formulario basico para crear cliente."""
-    return HttpResponse("Crear cliente")
+class InterfazCabanaDetailView(DetailView):
+    """Muestra el detalle de una cabaña en la interfaz."""
+    model = Cabana
+    template_name = "interfaz_gestion_cabanas/cabana_detail.html"
+    context_object_name = "cabana"
 
-
-def reserva_list() -> HttpResponse:
-    """Listado basico de reservas."""
-    return HttpResponse("Listado de reservas")
-
-
-def reserva_create() -> HttpResponse:
-    """Formulario basico para crear reserva."""
-    return HttpResponse("Crear reserva")
-
-
-def alquiler_list() -> HttpResponse:
-    """Listado basico de alquileres."""
-    return HttpResponse("Listado de alquileres")
-
-
-def alquiler_create() -> HttpResponse:
-    """Formulario basico para crear alquiler."""
-    return HttpResponse("Crear alquiler")
-
-
-def pago_list() -> HttpResponse:
-    """Listado basico de pagos."""
-    return HttpResponse("Listado de pagos")
-
-
-def pago_create() -> HttpResponse:
-    """Formulario basico para registrar pago."""
-    return HttpResponse("Registrar pago")
-
-
-def registro_list() -> HttpResponse:
-    """Listado basico de registros."""
-    return HttpResponse("Listado de registros")
-
-
-def registro_create() -> HttpResponse:
-    """Formulario basico para crear registro."""
-    return HttpResponse("Crear registro")
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        cabana = self.get_object()
+        context["resumen"] = resumen_cabana(cabana.id)
+        context["reservas"] = Reserva.objects.filter(cabana=cabana).order_by("-fecha_inicio")
+        return context

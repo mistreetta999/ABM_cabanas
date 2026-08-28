@@ -58,8 +58,23 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
+
+    # cabanas_apps
+    "alquileres",
+    "cabanas",
+    "clientes",
+    "gestion_cabanas",
+    "interfaz_gestion_cabanas",
+    "pagos",
+    "web",
+    "usuario",
+    "reservas",
+    "chatbot_app"
+
    # Apps propias django
     "django_core.cabanas_apps_django.alquileres",
+    "django_core.cabanas_apps_django.chatbot_app",
     "django_core.cabanas_apps_django.reservas",
     "django_core.cabanas_apps_django.cabanas",
     "django_core.cabanas_apps_django.clientes",
@@ -69,8 +84,6 @@ INSTALLED_APPS = [
     "django_core.cabanas_apps_django.usuarios",
     "django_core.cabanas_apps_django.web",
     "django_core.cabanas_apps_django.interfaz_gestion_cabanas",
-    
-
     # Django REST Framework y drf-spectacular
     "rest_framework",
     "drf_spectacular",

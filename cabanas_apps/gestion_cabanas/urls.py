@@ -1,15 +1,32 @@
-"""Rutas centrales de gestion de cabanas."""
-from django.urls import path
+"""URLs de la aplicación Gestión de Cabañas, integradas con el sistema."""
 
-import django_core
-from . import handlers
+from django.urls import path, include
+from .views import (
+    GestionHomeView,
+    CabanaGestionListView,
+    CabanaGestionDetailView,
+    CabanaGestionUpdateView,
+)
 
 app_name = "gestion_cabanas"
 
 urlpatterns = [
-    path("django_core/", django_core.views("django_core.urls"), name="django_core"),
-    path("views/", django_core.views("views.urls"), name="views"),
-    path("shortcut/", django_core.views("django_core.views.urls"), name="shortcut"),
-    path("rendrer/", render("render .urls"), name="render")
-    path("", handlers.pagina_principal, name="pagina_principal"),
+    # Vistas principales de gestión
+    path("", GestionHomeView.as_view(), name="gestion_home"),
+    path("cabanas/", CabanaGestionListView.as_view(), name="cabana_list"),
+    path("cabanas/<int:pk>/", CabanaGestionDetailView.as_view(), name="cabana_detail"),
+    path("cabanas/<int:pk>/editar/", CabanaGestionUpdateView.as_view(), name="cabana_update"),
+
+    # 🔗 Integraciones con otras apps del sistema
+    path("cabanas/", include("cabanas.urls")),                # relación con cabañas
+    path("alquileres/", include("alquileres.urls")),          # relación con alquileres
+    path("reservas/", include("reservas.urls")),              # relación con reservas
+    path("clientes/", include("clientes.urls")),              # relación con clientes
+    path("facturas/", include("facturas.urls")),              # relación con facturas
+    path("pagos/", include("pagos.urls")),                    # relación con pagos
+    path("usuarios/", include("usuarios.urls")),              # relación con usuarios
+    path("chatbot/", include("chatbot_app.urls")),            # relación con chatbot
+    path("interfaz/", include("interfaz_gestion_cabanas.urls")),  # relación con interfaz de gestión
+    path("registros/", include("registros.urls")),            # relación con registros
+    path("web/", include("web.urls")),                        # relación con web pública
 ]

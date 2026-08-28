@@ -1,22 +1,24 @@
-
+""" urls"""
 
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("", TemplateView.as_view(template_name="pagina_principal.html"), name="home"),
 
-    # Apps propias
-    path("cabanas/", include("django_core.cabanas_apps_django.cabanas.urls")),
-    path("clientes/", include("django_core.cabanas_apps_django.clientes.urls")),
-    path("reservas/", include("django_core.cabanas_apps_django.reservas.urls")),
-    path("alquileres/", include("django_core.cabanas_apps_django.alquileres.urls")),
-    path("registros/", include("django_core.cabanas_apps_django.registros.urls")),
-    path("usuarios/", include("django_core.cabanas_apps_django.usuarios.urls")),
-    path("pagos/", include("django_core.cabanas_apps_django.pagos.urls")),
-    path("facturas/", include("django_core.cabanas_apps_django.facturas.urls")),
-    path("gestion/", include("django_core.cabanas_apps_django.gestion_cabanas.urls")),
-    path("interfaz/", include("django_core.cabanas_apps_django.interfaz_gestion_cabanas.urls")),
-    path("web/", include("django_core.cabanas_apps_django.web.urls")),
-    path("chatbot/", include("django_core.cabanas_apps_django.chatbot_app.urls")),
+    # Apps montadas como rutas reales del proyecto
+    path("alquileres/", TemplateView.as_view(template_name="pagina_principal.html"), name="alquileres"),
+    path("cabanas/", TemplateView.as_view(template_name="pagina_principal.html"), name="cabanas"),
+    path("clientes/", TemplateView.as_view(template_name="pagina_principal.html"), name="clientes"),
+    path("reservas/", TemplateView.as_view(template_name="pagina_principal.html"), name="reservas"),
+    path("registros/", TemplateView.as_view(template_name="pagina_principal.html"), name="registros"),
+    path("usuarios/", TemplateView.as_view(template_name="pagina_principal.html"), name="usuarios"),
+    path("pagos/", TemplateView.as_view(template_name="pagina_principal.html"), name="pagos"),
+    path("facturas/", TemplateView.as_view(template_name="pagina_principal.html"), name="facturas"),
+    path("gestion/", TemplateView.as_view(template_name="pagina_principal.html"), name="gestion"),
+    path("interfaz/", TemplateView.as_view(template_name="pagina_principal.html"), name="interfaz"),
+    path("web/", TemplateView.as_view(template_name="pagina_principal.html"), name="web"),
+    path("chatbot/", TemplateView.as_view(template_name="pagina_principal.html"), name="chatbot"),
 ]

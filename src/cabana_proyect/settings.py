@@ -1,17 +1,34 @@
 """Archivo de configuración principal de Django"""
 import os
 from pathlib import Path
-from decouple import config
+from dotenv import load_dotenv
 from cabanas_principal.env_loader import load_env
 
-load_env()
+
+def config(name, default=None):
+    """Obtiene una variable de entorno sin depender de python-decouple."""
+    return os.getenv(name, default)
+
+env = load_env()
+SECRET_KEY = env["SECRET_KEY"]
+DEBUG = env["DEBUG"]
+
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY", "dummy-secret-key")
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+# settings visuales
+ADMIN_SITE_HEADER = "Gestión de Cabañas"
+ADMIN_SITE_TITLE = "Panel de Administración"
+ADMIN_INDEX_TITLE = "Bienvenida, Carolina"
 
 # Configuración principal: usa .env cuando existe; si no, usa valores por defecto.
 SECRET_KEY = config("SECRET_KEY", default="django-insecure-default-key")
-DEBUG = config("DEBUG", default=True, cast=bool)
-ALLOWED_HOSTS = config("DJANGO_ALLOWED_HOSTS", default="localhost").split(",")
+
+DEBUG = False
+ALLOWED_HOSTS = ['*']
 
 DB_NAME = config("DB_NAME", default="cabanas_db")
 DB_USER = config("DB_USER", default="usuario")
@@ -23,7 +40,8 @@ if not SECRET_KEY:
     raise ValueError("SECRET_KEY environment variable is not set. Please set it in your .env file.")
 
 # usuarios
-AUTH_USER_MODEL = "usuarios.UsuarioSistema"
+AUTH_USER_MODEL = "usuarios.Usuario"
+
 
 
 STATIC_URL = config("STATIC_URL", default="/static/")
@@ -40,23 +58,32 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_local",
-    "django_core",
-    "AppConfig",
-    # Apps propias
-    "cabanas_apps.cabanas",
-    "cabanas_apps.usuarios",
-    "cabanas_apps.clientes",
-    "cabanas_apps.pagos",
-    "cabanas_apps.alquileres",
-    "cabanas_apps.reservas",
-    "cabanas_apps.registros",
-    "cabanas_apps.usuarios",
-    "cabanas_apps.interfaz_gestion_cabanas",
-    "cabanas_apps.gestion_cabanas",
-    "cabanas_apps.chatbot_app",
-    "web",
+    "django.contrib.sites",
 
+    # cabanas_apps
+    "alquileres",
+    "cabanas",
+    "clientes",
+    "gestion_cabanas",
+    "interfaz_gestion_cabanas",
+    "pagos",
+    "web",
+    "usuario",
+    "reservas",
+    "chatbot_app"
+
+   # Apps propias django
+    "django_core.cabanas_apps_django.alquileres",
+    "django_core.cabanas_apps_django.chatbot_app",
+    "django_core.cabanas_apps_django.reservas",
+    "django_core.cabanas_apps_django.cabanas",
+    "django_core.cabanas_apps_django.clientes",
+    "django_core.cabanas_apps_django.gestion_cabanas",
+    "django_core.cabanas_apps_django.pagos",
+    "django_core.cabanas_apps_django.registros",
+    "django_core.cabanas_apps_django.usuarios",
+    "django_core.cabanas_apps_django.web",
+    "django_core.cabanas_apps_django.interfaz_gestion_cabanas",
     # Django REST Framework y drf-spectacular
     "rest_framework",
     "drf_spectacular",
@@ -79,6 +106,7 @@ SPECTACULAR_SETTINGS = {
 
 # Middleware
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",   # ← debe ir arriba de CommonMiddleware
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -86,8 +114,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-
 ]
+
 
 # URLs principales
 ROOT_URLCONF = "cabanas_principal.urls"

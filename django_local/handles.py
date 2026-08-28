@@ -1,95 +1,84 @@
-"""Handlers locales simples para vistas de reservas.
-
-Este modulo no define modelos ni URLs. Solo contiene funciones reutilizables
-que pueden ser llamadas desde archivos de rutas o vistas.
 """
-from __future__ import annotations
+Handlers generales para la instancia django_local.
+Centraliza funciones comunes entre las distintas apps locales.
+"""
 
-from typing import Any
-
-from django.http import HttpRequest, HttpResponse, JsonResponse
-from django.shortcuts import render
-
-
-DEFAULT_BUTTONS: list[dict[str, str]] = [
-    {"label": "pagina_principal", "action": "home", "url_name": "pagina_principal"},
-    {"label": "Listar reservas", "action": "list", "url_name": "listar_reservas"},
-    {"label": "Crear reserva", "action": "create", "url_name": "crear_reserva"},
-]
-
-RESERVAS_DEMO: list[dict[str, Any]] = [
-    {"id": 1, "cliente": "Carolina", "Cabanas
-": "Cabanas
- 1"},
-    {"id": 2, "cliente": "Juan", "Cabanas
-": "Cabanas
- 2"},
-]
+from reservas.models import Reserva
+from clientes.models import Cliente
+from facturas.models import Factura
+from pagos.models import Pago
+from registros.models import Registro
 
 
-class handles:
-    """Clase base para manejar solicitudes HTTP."""
+class ClienteHandler:
+    """Handler para operaciones relacionadas con clientes."""
 
-    buttons = DEFAULT_BUTTONS
-
-    def handles_request(self, request: HttpRequest) -> HttpResponse:
-        """Maneja una solicitud HTTP en subclases concretas."""
-        raise NotImplementedError("Este metodo debe ser implementado por subclases.")
-
-    def get_context(self, **extra: Any) -> dict[str, Any]:
-        """Devuelve contexto comun para respuestas que necesiten botones."""
-        context = {"buttons": self.buttons}
-        context.update(extra)
-        return context
+    @staticmethod
+    def crear_cliente(nombre: str, apellido: str, email: str) -> Cliente:
+        cliente = Cliente.objects.create(nombre=nombre, apellido=apellido, email=email)
+        Registro.objects.create(
+            tipo="cliente",
+            descripcion=f"Cliente {cliente.nombre} {cliente.apellido} creado."
+        )
+        return cliente
 
 
-handler = handles
+class ReservaHandler:
+    """Handler para operaciones relacionadas con reservas."""
+
+    @staticmethod
+    def confirmar_reserva(reserva: Reserva, usuario=None):
+        reserva.confirmar()
+        Registro.objects.create(
+            usuario=usuario,
+            reserva=reserva,
+            tipo="reserva",
+            descripcion=f"Reserva #{reserva.id} confirmada."
+        )
+        return reserva
+
+    @staticmethod
+    def cancelar_reserva(reserva: Reserva, usuario=None):
+        reserva.cancelar()
+        Registro.objects.create(
+            usuario=usuario,
+            reserva=reserva,
+            tipo="reserva",
+            descripcion=f"Reserva #{reserva.id} cancelada."
+        )
+        return reserva
 
 
-def pagina_principal(request: HttpRequest) -> HttpResponse:
-    """Define la vista de la pagina principal del proyecto."""
-    return render(request, "pagina_principal.html")
+class FacturaHandler:
+    """Handler para operaciones relacionadas con facturas."""
+
+    @staticmethod
+    def generar_factura(reserva: Reserva, monto: float, usuario=None):
+        factura = Factura.objects.create(
+            cliente=reserva.cliente,
+            reserva=reserva,
+            monto=monto,
+            estado="pendiente"
+        )
+        Registro.objects.create(
+            usuario=usuario,
+            factura=factura,
+            tipo="factura",
+            descripcion=f"Factura #{factura.id} generada para reserva #{reserva.id}."
+        )
+        return factura
 
 
-def listar_reservas(request: HttpRequest) -> JsonResponse:
-    """Define la vista para listar todas las reservas."""
-    del request
-    return JsonResponse(
-        {"buttons": DEFAULT_BUTTONS, "reservas": RESERVAS_DEMO},
-        json_dumps_params={"ensure_ascii": True},
-    )
+class PagoHandler:
+    """Handler para operaciones relacionadas con pagos."""
 
-
-def detalle_reserva(request: HttpRequest, reserva_id: int) -> JsonResponse:
-    """Define la vista para mostrar el detalle de una reserva."""
-    del request
-    reserva = next((item for item in RESERVAS_DEMO if item["id"] == reserva_id), None)
-    if reserva is None:
-        return JsonResponse({"error": "Reserva no encontrada"}, status=404)
-    return JsonResponse({"buttons": DEFAULT_BUTTONS, "reserva": reserva})
-
-
-def crear_reserva(request: HttpRequest, cliente_id: int, cabana_id: int) -> JsonResponse:
-    """Define la vista para crear una nueva reserva."""
-    return JsonResponse(
-        {
-            "buttons": DEFAULT_BUTTONS,
-            "method": request.method,
-            "message": f"Reserva creada para cliente {cliente_id} en Cabanas
- {cabana_id}",
-            "cliente_id": cliente_id,
-            "cabana_id": cabana_id,
-        }
-    )
-
-
-def borrar_reserva(request: HttpRequest, reserva_id: int) -> JsonResponse:
-    """Define la vista para borrar una reserva."""
-    return JsonResponse(
-        {
-            "buttons": DEFAULT_BUTTONS,
-            "method": request.method,
-            "message": f"Reserva {reserva_id} borrada",
-            "reserva_id": reserva_id,
-        }
-    )
+    @staticmethod
+    def registrar_pago(pago: Pago, usuario=None):
+        pago.marcar_factura_pagada()
+        Registro.objects.create(
+            usuario=usuario,
+            factura=pago.factura,
+            tipo="pago",
+            descripcion=f"Pago #{pago.id} registrado por {pago.monto}."
+        )
+        return pago

@@ -1,73 +1,70 @@
-# django_core/handles.py
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+"""
+Módulo de handlers generales para la gestión de cabañas.
+Centraliza funciones comunes entre las distintas apps.
+"""
 
-# -------------------
-# PAGINA PRINCIPAL
-# -------------------
-def pagina_principal(request):
-    return render(request, "pagina_principal.html")
+from reservas.models import Reserva
+from pagos.models import Pago
+from facturas.models import Factura
+from registros.models import Registro
 
-# -------------------
-# RESERVAS
-# -------------------
-def listar_reservas(request):
-    reservas = [
-        {"id": 1, "cliente": "Carolina", "Cabanas
-": "Premium"},
-        {"id": 2, "cliente": "Juan", "Cabanas
-": "Standard"},
-    ]
-    return JsonResponse(reservas, safe=True)
 
-def detalle_reserva(request, reserva_id):
-    return HttpResponse(f"Detalle de la reserva {reserva_id}")
+class ReservaHandler:
+    """Handler para operaciones relacionadas con reservas."""
 
-def crear_reserva(request, cliente_id, cabana_id):
-    return HttpResponse(f"Reserva creada para cliente {cliente_id} en Cabanas
- {cabana_id}")
+    @staticmethod
+    def confirmar_reserva(reserva: Reserva, usuario=None):
+        reserva.confirmar()
+        Registro.objects.create(
+            usuario=usuario,
+            reserva=reserva,
+            tipo="reserva",
+            descripcion=f"Reserva #{reserva.id} confirmada."
+        )
+        return reserva
 
-def borrar_reserva(request, reserva_id):
-    return HttpResponse(f"Reserva {reserva_id} borrada")
+    @staticmethod
+    def cancelar_reserva(reserva: Reserva, usuario=None):
+        reserva.cancelar()
+        Registro.objects.create(
+            usuario=usuario,
+            reserva=reserva,
+            tipo="reserva",
+            descripcion=f"Reserva #{reserva.id} cancelada."
+        )
+        return reserva
 
-# -------------------
-# ALQUILERES
-# -------------------
-def listar_alquileres(request):
-    alquileres = [
-        {"id": 1, "cliente": "Pedro", "Cabanas
-": "Suite"},
-        {"id": 2, "cliente": "Lucia", "Cabanas
-": "Deluxe"},
-    ]
-    return JsonResponse(alquileres, safe=True)
 
-def detalle_alquiler(request, reserva_id):
-    return HttpResponse(f"Detalle del alquiler {reserva_id}")
+class PagoHandler:
+    """Handler para operaciones relacionadas con pagos."""
 
-def crear_alquiler(request, cliente_id, cabana_id):
-    return HttpResponse(f"Alquiler creado para cliente {cliente_id} en Cabanas
- {cabana_id}")
+    @staticmethod
+    def registrar_pago(pago: Pago, usuario=None):
+        pago.marcar_factura_pagada()
+        Registro.objects.create(
+            usuario=usuario,
+            factura=pago.factura,
+            tipo="pago",
+            descripcion=f"Pago #{pago.id} registrado por {pago.monto}."
+        )
+        return pago
 
-def borrar_alquiler(request, reserva_id):
-    return HttpResponse(f"Alquiler {reserva_id} borrado")
 
-# -------------------
-# PAGOS
-# -------------------
-def listar_pagos(request):
-    pagos = [
-        {"id": 1, "reserva": 1, "monto": 5000},
-        {"id": 2, "reserva": 2, "monto": 7000},
-    ]
-    return JsonResponse(pagos, safe=True)
+class FacturaHandler:
+    """Handler para operaciones relacionadas con facturas."""
 
-def detalle_pago(request, reserva_id):
-    return HttpResponse(f"Detalle del pago para reserva {reserva_id}")
-
-def crear_pago(request, cliente_id, cabana_id):
-    return HttpResponse(f"Pago registrado para cliente {cliente_id} en Cabanas
- {cabana_id}")
-
-def borrar_pago(request, reserva_id):
-    return HttpResponse(f"Pago de reserva {reserva_id} borrado")
+    @staticmethod
+    def generar_factura(reserva: Reserva, monto: float, usuario=None):
+        factura = Factura.objects.create(
+            cliente=reserva.cliente,
+            reserva=reserva,
+            monto=monto,
+            estado="pendiente"
+        )
+        Registro.objects.create(
+            usuario=usuario,
+            factura=factura,
+            tipo="factura",
+            descripcion=f"Factura #{factura.id} generada para reserva #{reserva.id}."
+        )
+        return factura

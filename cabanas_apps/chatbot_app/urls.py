@@ -1,18 +1,30 @@
-"""Este archivo contiene las rutas URL para la aplicación de chatbot.
-"""
-from django.urls import path
+"""URLs de la aplicación Chatbot, integradas con el sistema."""
 
-import django_core
-from . import views   # el punto indica "desde esta carpeta"
+from django.urls import path, include
+from .views import (
+    ChatbotHomeView,
+    ChatbotInteractView,
+    ChatbotHistoryView,
+)
 
-
-app_name = "chatbot"
+app_name = "chatbot_app"
 
 urlpatterns = [
-    path("django_core/", django_core.views("django_core.views.urls"), name="django_core_views"),
-    path("shortcut/", django_core.views("django_core.views.urls"), name="shortcut"),
-    path("shortcuts/", django_core.views("django_core.views.urls"), name="shortcuts"),
-    path("panel/", views.chatbot_panel, name="chatbot_panel"),
-    path("", views.chatbot_view, name="chatbot"),
-    path("pagina/", views.chatbot_page, name="chatbot_page"),
+    # Vistas principales del chatbot
+    path("", ChatbotHomeView.as_view(), name="chatbot_home"),
+    path("interactuar/", ChatbotInteractView.as_view(), name="chatbot_interact"),
+    path("historial/", ChatbotHistoryView.as_view(), name="chatbot_history"),
+
+    # 🔗 Integraciones con otras apps del sistema
+    path("cabanas/", include("cabanas.urls")),                # relación con cabañas
+    path("alquileres/", include("alquileres.urls")),          # relación con alquileres
+    path("reservas/", include("reservas.urls")),              # relación con reservas
+    path("clientes/", include("clientes.urls")),              # relación con clientes
+    path("facturas/", include("facturas.urls")),              # relación con facturas
+    path("pagos/", include("pagos.urls")),                    # relación con pagos
+    path("usuarios/", include("usuarios.urls")),              # relación con usuarios
+    path("gestion/", include("gestion_cabanas.urls")),        # relación con gestión de cabañas
+    path("interfaz/", include("interfaz_gestion_cabanas.urls")),  # relación con interfaz de gestión
+    path("registros/", include("registros.urls")),            # relación con registros
+    path("web/", include("web.urls")),                        # relación con web pública
 ]

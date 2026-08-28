@@ -1,22 +1,51 @@
-""" archivo de registros de actividad   """
-from django.db import models
-class Registos:
-    """ class registros"""
-    def __init__(self, usuario, accion, detalle=None):
-        self.usuario = usuario
-        self.accion = accion
-        self.detalle = detalle
+"""
+Funciones auxiliares para la gestión de registros.
+Este archivo sirve como capa de servicios/handlers para la app Registros.
+"""
 
-class RegistroActividad(models.Model):
-    """ class registro de actividad"""
-    usuario = models.CharField(max_length=100)
-    accion = models.CharField(max_length=200)
-    fecha = models.DateTimeField(auto_now_add=True)
-    detalle = models.TextField(blank=True, null=True)
-    class Meta:
-        verbose_name = "Registro de Actividad"
-        verbose_name_plural = "Registros de Actividad"
-        ordering = ['-fecha']
+from django.contrib.auth.models import User
+from clientes.models import Cliente
+from facturas.models import Factura
+from reservas.models import Reserva
+from alquileres.models import Alquiler
+from .models import Registro
 
-    def __str__(self):
-        return f"{self.usuario} - {self.accion} ({self.fecha})"
+
+def crear_registro(tipo: str, descripcion: str, usuario: User = None,
+                   cliente: Cliente = None, factura: Factura = None,
+                   reserva: Reserva = None, alquiler: Alquiler = None) -> Registro:
+    """
+    Crea un registro en el sistema con los datos proporcionados.
+    """
+    registro = Registro.objects.create(
+        usuario=usuario,
+        cliente=cliente,
+        factura=factura,
+        reserva=reserva,
+        alquiler=alquiler,
+        tipo=tipo,
+        descripcion=descripcion
+    )
+    return registro
+
+
+def obtener_registros_usuario(usuario_id: int):
+    """
+    Devuelve todos los registros asociados a un usuario.
+    """
+    return Registro.objects.filter(usuario_id=usuario_id).order_by("-fecha")
+
+
+def obtener_registros_cliente(cliente_id: int):
+    """
+    Devuelve todos los registros asociados a un cliente.
+    """
+    return Registro.objects.filter(cliente_id=cliente_id).order_by("-fecha")
+
+
+def resumen_registros(limit: int = 10) -> list:
+    """
+    Devuelve un resumen de los últimos registros del sistema.
+    """
+    registros = Registro.objects.all().order_by("-fecha")[:limit]
+    return [r.resumen() for r in registros]

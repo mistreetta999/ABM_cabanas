@@ -3,6 +3,15 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Cabana
+from django.shortcuts import render
+
+def panel_cabanas(request):
+    # Aquí podrías pasar datos reales de tus modelos
+    contexto = {
+        "titulo": "Panel de Cabañas",
+        "mensaje": "Bienvenida al sistema de gestión de cabañas"
+    }
+    return render(request, "cabanas/panel.html", contexto)
 
 # Listado de cabañas
 class CabanaListView(ListView):

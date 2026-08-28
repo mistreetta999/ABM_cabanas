@@ -29,9 +29,7 @@ class AlquilerDeleteView(DeleteView):
 class AlquilerPrintView(DeleteView):
     """Elimina un alquiler"""
     model = Alquiler
-
-    success_url = reverse_lazy("alquiler_list")
-    
+    success_url = reverse_lazy("alquiler_list")   
 class AlquilerGuardarView(UpdateView):
     """Edita un alquiler existente"""
     model = Alquiler

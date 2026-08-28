@@ -1,8 +1,13 @@
+""" form"""
 from django import forms
 from .models import Cabana
 
 class CabanaForm(forms.ModelForm):
-    class Meta:
+    """Formulario para crear y editar cabañas."""
+
+    class Meta:  # pylint: disable=too-few-public-methods
+        """Configuración del modelo y la presentación del formulario."""
+
         model = Cabana
         fields = ["nombre", "capacidad", "descripcion", "precio_por_noche", "disponible"]
 
