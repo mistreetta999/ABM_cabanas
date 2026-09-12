@@ -1,3 +1,4 @@
+"""core"""
 import os
 import sys
 

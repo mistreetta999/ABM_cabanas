@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Detalle del Alquiler</h2>
+<p><strong>Cliente:</strong> {{ alquiler.cliente }}</p>
+<p><strong>Cabaña:</strong> {{ alquiler.cabana }}</p>
+<p><strong>Fecha inicio:</strong> {{ alquiler.fecha_inicio }}</p>
+<p><strong>Fecha fin:</strong> {{ alquiler.fecha_fin }}</p>
+<p><strong>Monto:</strong> {{ alquiler.monto }}</p>
+<a href="{% url 'alquileres:alquiler_list' %}">Volver al listado</a>
+{% endblock %}

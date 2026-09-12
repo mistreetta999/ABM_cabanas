@@ -12,7 +12,7 @@ cd /d "C:\Users\carol\OneDrive\Desktop\cabanas"
 call .venv312\Scripts\activate
 start "" python manage.py runserver
 timeout /t 5 >nul
-start "" http://127.0.0.1:8000/
+start "" http://127.0.0.1:8000/alquileres_cabanas.dj/
 @echo off
 REM Ir a la carpeta raíz del proyecto
 cd /d "C:\Users\carol\OneDrive\Desktop\cabanas"
@@ -24,9 +24,12 @@ REM Levantar servidor Django en segundo plano
 start "" python manage.py runserver
 
 REM Abrir navegador en la página principal
-start "" http://127.0.0.1:8000/
+start "" http://127.0.0.1:8000/pagina_principal.html/
 
 REM Abrir admin en segundo plano (no interfiere con la página principal)
 start "" http://127.0.0.1:8000/admin/
+
+REM Abrir admin en segundo plano (no interfiere con la página principal)
+start "" http://127.0.0.1:8000/alquileres_cabanas.dj/admin/
 
 pause

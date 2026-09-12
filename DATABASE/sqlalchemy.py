@@ -1,16 +1,28 @@
-# cabanas_project/DATABASE/sqlalchemy.py
+"""Módulo de conexión con SQLAlchemy"""
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-import os
+from dotenv import load_dotenv
 
-# Usa una variable de entorno para la URL de la base de datos
-DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///./db.sqlite3")
+# Cargar variables de entorno desde .env
+load_dotenv()
+
+# Configuración de la base de datos
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./db.sqlite3")
 
 # Crear motor de conexión
 engine = create_engine(DATABASE_URL, echo=True)
 
 # Crear sesión
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+SESSION_LOCAL = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Base declarativa para modelos
 Base = declarative_base()
+
+def get_db():
+    """Devuelve una sesión de base de datos"""
+    db = SESSION_LOCAL()
+    try:
+        yield db
+    finally:
+        db.close()

@@ -5,5 +5,6 @@ from .models import Publicacion
 
 @interfaz_gestion_cabanas.register(Publicacion)
 class PublicacionAdmin(interfaz_gestion_cabanas.ModelAdmin):
+    """ admin"""
     list_display = ("titulo", "creado_en")
     search_fields = ("titulo", "descripcion")

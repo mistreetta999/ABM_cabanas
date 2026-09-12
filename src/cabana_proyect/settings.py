@@ -2,16 +2,11 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-from cabanas_principal.env_loader import load_env
 
 
 def config(name, default=None):
     """Obtiene una variable de entorno sin depender de python-decouple."""
     return os.getenv(name, default)
-
-env = load_env()
-SECRET_KEY = env["SECRET_KEY"]
-DEBUG = env["DEBUG"]
 
 load_dotenv()
 
@@ -40,8 +35,7 @@ if not SECRET_KEY:
     raise ValueError("SECRET_KEY environment variable is not set. Please set it in your .env file.")
 
 # usuarios
-AUTH_USER_MODEL = "usuarios.Usuario"
-
+#
 
 
 STATIC_URL = config("STATIC_URL", default="/static/")
@@ -78,8 +72,7 @@ INSTALLED_APPS = [
     "django_core.cabanas_apps_django.reservas",
     "django_core.cabanas_apps_django.cabanas",
     "django_core.cabanas_apps_django.clientes",
-    "django_core.cabanas_apps_django.gestion_cabanas",
-    "django_core.cabanas_apps_django.pagos",
+    #    "django_core.cabanas_apps_django.pagos",
     "django_core.cabanas_apps_django.registros",
     "django_core.cabanas_apps_django.usuarios",
     "django_core.cabanas_apps_django.web",

@@ -1,60 +1,38 @@
-""" base_datos/db.py"""
-from django.conf import settings
-from django.db import  models
-from typing import Any
-from django.utils import timezone
-from cabanas_apps.models import Cabaña, Reserva, Pago, Factura, Alquiler    
-# Clase para manejar múltiples motores de base de datos
-class DatabaseRouter:
-    """
-    Permite elegir entre PostgreSQL y SQLite según el entorno.
-    """
-    def db_for_read(self, _model):
-        return 'default'
+"""Módulo central de conexión a la base de datos con SQLAlchemy"""
+import os
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, declarative_base
+from dotenv import load_dotenv
 
-    def db_for_write(self, _model):
-        return 'default'
+# Cargar variables de entorno desde .env
+load_dotenv()
 
-    def allow_relation(self, _obj1, _obj2):
-        return True
+# Configuración de la base de datos
+DB_NAME = os.getenv("DB_NAME", "cabanas_db")
+DB_USER = os.getenv("DB_USER", "carolina")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "")
+DB_HOST = os.getenv("DB_HOST", "localhost")
+DB_PORT = os.getenv("DB_PORT", "5432")
 
-    def allow_migrate(self, _db, _app_label, **_hints):
-        return True
+# URL de conexión: PostgreSQL por defecto, SQLite si no hay credenciales
+if DB_PASSWORD:
+    DATABASE_URL = f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+else:
+    DATABASE_URL = f"sqlite:///./db.sqlite3"
 
+# Crear motor de conexión
+engine = create_engine(DATABASE_URL, echo=True)
 
-# Modelo genérico para registrar actividades
-class ActividadCabana(models.Model):
-    """
-    Registro de todas las actividades relacionadas con las cabañas:
-    reservas, pagos, alquileres, facturas, etc.
-    """
-    tipo = models.CharField(max_length=50)  # Ej: Reserva, Pago, Factura
-    descripcion = models.TextField(blank=True)
-    fecha = models.DateTimeField(default=timezone.now)
-    usuario = models.CharField(max_length=100, blank=True, null=True)
-    referencia_id = models.PositiveIntegerField(blank=True, null=True)  # ID de la entidad relacionada
-    origen = models.CharField(max_length=20, default="sqlite")  # sqlite o postgresql
+# Crear sesión
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-    class Meta:
-        verbose_name = "Actividad de Cabaña"
-        verbose_name_plural = "Actividades de Cabañas"
-        ordering = ["-fecha"]
+# Base declarativa para modelos
+Base = declarative_base()
 
-    def __str__(self):
-        return f"[{self.tipo}] {self.descripcion} ({self.fecha})"
-
-
-# Función auxiliar para registrar actividades
-def registrar_actividad(tipo: str, descripcion: str, usuario: str = None, referencia_id: int = None):
-    """
-    Inserta un registro en la tabla ActividadCabana.
-    """
-    actividad = ActividadCabana(
-        tipo=tipo,
-        descripcion=descripcion,
-        usuario=usuario,
-        referencia_id=referencia_id,
-        origen=settings.DATABASES['default']['ENGINE']
-    )
-    actividad.save()
-    return actividad
+def get_db():
+    """Devuelve una sesión de base de datos"""
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

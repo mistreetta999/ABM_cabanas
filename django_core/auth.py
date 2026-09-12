@@ -1,3 +1,4 @@
+"""Autenticación personalizada usando email o username."""
 from django.contrib.auth import get_user_model
 from django.contrib.auth.backends import ModelBackend
 
@@ -12,7 +13,7 @@ class EmailOrUsernameModelBackend(ModelBackend):
         try:
             # Buscar por email o username
             user = User.objects.filter(email=username).first() or User.objects.filter(username=username).first()
-            if user and user.check_password(password):
+            if user and password is not None and user.check_password(password):
                 return user
         except User.DoesNotExist:
             return None

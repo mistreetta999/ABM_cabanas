@@ -1,12 +1,15 @@
 """ models de cabanas"""
 from django.db import models
-from django.db import models
-from cabanas_apps.clientes.models import Cliente
-from django.core.exceptions import ValidationError
-from django.utils.translation import gettext_lazy as _
-from django.db.models import Sum
-from pathlib import Path
 
+class Chatbot(models.Model):
+    """
+    Representa el chatbot dentro de la aplicación.
+    """
+    nombre = models.CharField(max_length=100, default="Chatbot Cabanas")
+    descripcion = models.TextField(blank=True, null=True)
+
+    def __str__(self) -> str:
+        return str(self.nombre)
 
 class ChatbotResponse(models.Model):
     """
@@ -34,21 +37,14 @@ class Message(models.Model):
     sender = models.CharField(max_length=50, choices=[("cliente", "Cliente"), ("chatbot", "Chatbot")])
 
     class Meta:
+        """ Metadatos del modelo Message """
         ordering = ["-created_at"]
 
     def __str__(self):
         return f"{self.sender}"
 
 
-class Chatbot(models.Model):
-    """
-    Representa el chatbot dentro de la aplicación.
-    """
-    nombre = models.CharField(max_length=100, default="Chatbot Cabanas")
-    descripcion = models.TextField(blank=True, null=True)
 
-    def __str__(self:models.Model) -> str:
-        return str(self.nombre)
 
 
 class ChatbotHandler(models.Model):
@@ -57,7 +53,7 @@ class ChatbotHandler(models.Model):
     """
     chatbot = models.ForeignKey(Chatbot, on_delete=models.CASCADE, related_name="handles")
     message = models.ForeignKey(Message, on_delete=models.CASCADE, related_name="handles")
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="chatbot_messages", null=True, blank=True)
+    cliente = models.ForeignKey("Cliente", on_delete=models.CASCADE, related_name="chatbot_messages", null=True, blank=True)
 
     def __str__(self):
         return f"{self.chatbot} - {self.message}"

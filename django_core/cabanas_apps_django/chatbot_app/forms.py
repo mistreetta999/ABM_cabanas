@@ -1,6 +1,7 @@
 """ formulario para la aplicación de chatbot."""
 from django import forms
 from .models import Chatbot
+
 class ChatbotForm(forms.ModelForm):
     """class para interactuar con el chatbot."""
     class Meta:

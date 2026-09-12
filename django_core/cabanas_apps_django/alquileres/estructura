@@ -1,6 +1,6 @@
-cabanas_apps/reservas_alquileres_apps/
+cabanas_apps_django/
+alquileres/
 │-- __init__.py
-│-- interfaz_gestion_cabanas.py
 │-- apps.py
 │-- models.py
 │-- views.py

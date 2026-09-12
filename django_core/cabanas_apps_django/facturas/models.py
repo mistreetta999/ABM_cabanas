@@ -1,41 +1,41 @@
-"""
-Modelos de la aplicación Facturas.
-Integrados con Clientes, Reservas, Cabañas y Pagos.
-"""
-
+""" models """
 from django.db import models
-from django.utils import timezone
-from clientes.models import Cliente
-from reservas.models import Reserva
-from cabanas.models import Cabana
-from pagos.models import Pago
+from django_core.cabanas_apps_django.alquileres.models import Alquiler, Cliente
 
 
 class Factura(models.Model):
-    ESTADOS = [
-        ("pendiente", "Pendiente"),
-        ("pagada", "Pagada"),
-        ("vencida", "Vencida"),
-        ("cancelada", "Cancelada"),
-    ]
-
+    """ facturas"""
     numero = models.CharField(max_length=20, unique=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="facturas")
-    cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE, related_name="facturas")
-    reserva = models.ForeignKey(Reserva, on_delete=models.SET_NULL, null=True, blank=True, related_name="facturas")
-    fecha_emision = models.DateField(default=timezone.now)
-    fecha_vencimiento = models.DateField(null=True, blank=True)
-    monto = models.DecimalField(max_digits=10, decimal_places=2)
-    estado = models.CharField(max_length=10, choices=ESTADOS, default="pendiente")
+    cabana = models.ForeignKey(Alquiler, on_delete=models.CASCADE, related_name="facturas")
+    fecha_emision = models.DateField(auto_now_add=True)
+    alquiler = models.ForeignKey(Alquiler, on_delete=models.CASCADE, related_name="facturas")
+    reserva = models.ForeignKey(Alquiler, on_delete=models.CASCADE, related_name="facturas")
+    subtotal = models.DecimalField(max_digits=10, decimal_places=2)
+    pagos = models.DecimalField(max_digits=10, decimal_places=2)
+    total = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
+        """ Metadatos de la clase Factura """
         verbose_name = "Factura"
         verbose_name_plural = "Facturas"
-        ordering = ["-fecha_emision"]
 
     def __str__(self):
-        return f"Factura {self.numero} - Cliente: {self.cliente} - Estado: {self.estado}"
+        return f"Factura {self.numero} - {self.cliente}"
 
-    def marcar_pagada(self):
-        """Marca la factura como pagada si tiene pagos suficientes."""
-        total_pagado = sum(p.m
+
+class DetalleFactura(models.Model):
+    """ detalles de facturas"""
+    factura = models.ForeignKey(Factura, on_delete=models.CASCADE, related_name="detalles")
+    descripcion = models.CharField(max_length=200)
+    cantidad = models.PositiveIntegerField(default=1)
+    precio_unitario = models.DecimalField(max_digits=10, decimal_places=2)
+    total_linea = models.DecimalField(max_digits=10, decimal_places=2)
+
+    class Meta:
+        """ Metadatos de la clase DetalleFactura """
+        verbose_name = "Detalle de Factura"
+        verbose_name_plural = "Detalles de Factura"
+
+    def __str__(self):
+        return f"{self.descripcion} ({self.cantidad} x {self.precio_unitario})"

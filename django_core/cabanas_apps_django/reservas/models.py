@@ -1,43 +1,39 @@
-""" este archivo es models de reserva. """
+"""Modelos para la aplicación de reservas."""
+
 from django.db import models
-from django_core.cabanas_apps_django.clientes.models import Cliente
+
+from ..clientes.models import Cliente
+from ..cabanas.models import Cabana
+
+
+class EstadoReserva(models.TextChoices):
+    """Opciones de estado para una reserva."""
+    PENDIENTE = "pendiente", "Pendiente"
+    CONFIRMADA = "confirmada", "Confirmada"
+    CANCELADA = "cancelada", "Cancelada"
+
+    @classmethod
+    def default(cls):
+        """Devuelve el estado por defecto para una reserva."""
+        return cls.PENDIENTE
 
 
 class Reserva(models.Model):
-    """Modelo que representa una reserva de Cabanas."""
+    """Modelo que representa una reserva de cabaña por un cliente."""
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    Cabanas= models.ForeignKey('cabanas.Cabanas', on_delete=models.CASCADE)
-    fecha_inicio = models.DateTimeField()
-    fecha_fin = models.DateTimeField()
-    estado = models.CharField(max_length=20, default="pendiente")
-
-    objects = models.Manager()
-
-    @staticmethod
-    def get_reservas_by_cliente(cliente_id):
-        """Obtiene todas las reservas de un cliente específico."""
-        return Reserva.objects.filter(cliente_id=cliente_id)
-
-    @staticmethod
-    def get_reservas_by_cabana(cabana_id):
-        """Obtiene todas las reservas de una Cabanas
- específica."""
-        return Reserva.objects.filter(cabana_id=cabana_id)
-
-    @staticmethod
-    def get_all_reservas():
-        """Obtiene todas las reservas."""
-        return Reserva.objects.all()
-
-    def __str__(self):
-        return f"Reserva {self.cliente} - {self.Cabanas
-}  - Estado: {self.estado}"
+    cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE)
+    fecha_inicio = models.DateField()
+    fecha_fin = models.DateField()
+    estado = models.CharField(
+        max_length=20,
+        choices=EstadoReserva.choices,
+        default=EstadoReserva.PENDIENTE,
+    )
 
     class Meta:
-        """ nombres de la tabla y ordenamiento de la tabla """
-        db_table = 'reservas_reserva'
-        managed = True
-        verbose_name = 'Reserva'
-        verbose_name_plural = 'Reservas'
-        ordering = ['fecha_inicio']
-        
+        """ nombre """
+        verbose_name = "Reserva"
+        verbose_name_plural = "Reservas"
+
+    def __str__(self):
+        return f"Reserva de {self.cliente} en {self.cabana}"

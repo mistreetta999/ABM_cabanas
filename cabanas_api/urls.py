@@ -1,20 +1,34 @@
-"""URLs de cabanas_api."""
-from django.urls import include, path
+"""URLs de la API de Cabañas."""
 
-from . import views
-
-app_name = ["cabanas_api"]
+from django.urls import path
+from cabanas_api.views import ApiHomeView
+from cabanas_api.views import  AlquilerListView
+from cabanas_api.views import  AlquilerDetailView
+from cabanas_api.views import  FacturaListView
+from cabanas_api.views import   ClienteListView
+from cabanas_api.views import   PagoListView
+from cabanas_api.views import   RegistroListView
+from cabanas_api.views import   CabanaListView
 
 urlpatterns = [
-    path("", views.home, name="home"),
-    path("home/", views.home, name="home_alias"),
-    path("pagina-principal/", views.pagina_principal, name="pagina_principal.html"),
-    path("reservas", views.crear_reserva, name="crear_reserva"),
-    path("alquileres", views.crear_alquiler, name="crear_alquiler"),
-    path("pagos", views.registrar_pago, name="registrar_pago"),
-    path("facturas", views.generar_factura, name="generar_factura"),
-    path("registros", views.home, name="generar_registro"),
-    path("actividades/", views.obtener_actividades, name="obtener_actividades"),
-    path("interfaz_gestion_cabanas/", include("django_core.cabanas_apps_django_interfaz_urls")),
-    path("gestion_cabanas/", include("cabanas_apps.gestion_cabanas.urls")),
+    path("", ApiHomeView.as_view(), name="api_home"),
+
+    # Endpoints de alquileres
+    path("alquileres/", AlquilerListView.as_view(), name="alquiler_list"),
+    path("alquileres/<int:pk>/", AlquilerDetailView.as_view(), name="alquiler_detail"),
+
+    # Endpoints de clientes
+    path("clientes/", ClienteListView.as_view(), name="cliente_list"),
+
+    # Endpoints de pagos
+    path("pagos/", PagoListView.as_view(), name="pago_list"),
+
+    # Endpoints de registros
+    path("registros/", RegistroListView.as_view(), name="registro_list"),
+
+    # Endpoints de cabañas
+    path("cabanas/", CabanaListView.as_view(), name="cabana_list"),
+
+    # Endpoints de facturas
+    path("facturas/", FacturaListView.as_view(), name="factura_list"),
 ]

@@ -1,13 +1,9 @@
 """URLs de la aplicación Chatbot, integradas con el sistema."""
 
 from django.urls import path, include
-from .views import (
-    ChatbotHomeView,
-    ChatbotInteractView,
-    ChatbotHistoryView,
-)
+from .views import ChatbotHomeView, ChatbotInteractView, ChatbotHistoryView
 
-app_name = "chatbot_app"
+app_name = "chatbot_app"  # pylint: disable=invalid-name
 
 urlpatterns = [
     # Página principal del chatbot
@@ -26,4 +22,5 @@ urlpatterns = [
     path("clientes/", include("clientes.urls")),      # relación con clientes
     path("pagos/", include("pagos.urls")),            # relación con pagos
     path("usuarios/", include("usuarios.urls")),      # relación con usuarios
+    path("chatbot/history/", ChatbotHistoryView.as_view(), name="chatbot_history"),
 ]

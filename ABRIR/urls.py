@@ -1,13 +1,11 @@
 """Puente de URLs para django_core"""
+from django.views import ListViews,
 from django.urls import include, path
 from django.views.generic import TemplateView
-from django_core.cabanas_apps_django.views import (
-    AlquilerCreateView, AlquilerDeleteView, AlquilerListView, AlquilerUpdateView,
-    CabanaCreateView, CabanaDeleteView, CabanaListView, CabanaUpdateView,
-    ClienteCreateView, ClienteDeleteView, ClienteListView, ClienteUpdateView,
-    RegistroCreateView, RegistroDeleteView, RegistroListView, RegistroUpdateView,
-    ReservaCreateView, ReservaDeleteView, ReservaListView, ReservaUpdateView,
-)
+from django_core.cabanas_apps_django.views import ClientesListView
+from django_core.cabanas_apps_django.views import ClientesCreateView  
+
+
 
 # pylint: disable=invalid-name
 app_name = "abrir"

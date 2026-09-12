@@ -12,7 +12,7 @@ subject = issuer = x509.Name([
     x509.NameAttribute(NameOID.COUNTRY_NAME, u"AR"),
     x509.NameAttribute(NameOID.STATE_OR_PROVINCE_NAME, u"Córdoba"),
     x509.NameAttribute(NameOID.LOCALITY_NAME, u"Mina Clavero"),
-    x509.NameAttribute(NameOID.ORGANIZATION_NAME, u"Cabanas Project"),
+    x509.NameAttribute(NameOID.ORGANIZATION_NAME, u"Alquileres Cabañas"),
     x509.NameAttribute(NameOID.COMMON_NAME, u"localhost"),
 ])
 
@@ -22,8 +22,8 @@ cert = (
     .issuer_name(issuer)
     .public_key(key.public_key())
     .serial_number(x509.random_serial_number())
-    .not_valid_before(datetime.datetime.utcnow())
-    .not_valid_after(datetime.datetime.utcnow() + datetime.timedelta(days=365))
+    .not_valid_before(datetime.datetime.now(datetime.timezone.utc))
+    .not_valid_after(datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=365))
     .add_extension(x509.SubjectAlternativeName([x509.DNSName(u"localhost")]), critical=False)
     .sign(key, hashes.SHA256())
 )

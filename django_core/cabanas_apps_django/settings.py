@@ -1,10 +1,16 @@
 """Archivo de configuración principal de Django"""
 import os
 from pathlib import Path
-from decouple import config
-from cabanas_principal.env_loader import load_env
+from dotenv import load_dotenv
 
-load_env()
+
+def config(name, default=None):
+    """Obtiene una variable de entorno sin depender de python-decouple."""
+    return os.getenv(name, default)
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY", "dummy-secret-key")
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 # settings visuales
@@ -14,9 +20,9 @@ ADMIN_INDEX_TITLE = "Bienvenida, Carolina"
 
 # Configuración principal: usa .env cuando existe; si no, usa valores por defecto.
 SECRET_KEY = config("SECRET_KEY", default="django-insecure-default-key")
-DEBUG = config("DEBUG", default=True, cast=bool)
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
+DEBUG = False
+ALLOWED_HOSTS = ['*']
 
 DB_NAME = config("DB_NAME", default="cabanas_db")
 DB_USER = config("DB_USER", default="usuario")
@@ -28,8 +34,7 @@ if not SECRET_KEY:
     raise ValueError("SECRET_KEY environment variable is not set. Please set it in your .env file.")
 
 # usuarios
-AUTH_USER_MODEL = "clientes.UsuarioPermisos"
-
+#
 
 
 STATIC_URL = config("STATIC_URL", default="/static/")
@@ -46,29 +51,18 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_local",
-    "django_core",
-    "AppConfig",
-    "cabanas_apps_django.usuarios",
-    "cabanas_apps_django.clientes",
-    "cabanas_apps_django.alquileres",
-    "cabanas_apps_django.cabanas",
-    "cabanas_apps_django.facturas",
-    # Apps propias
-    "cabanas_apps.cabanas",
-    "cabanas_apps.usuarios",
-    "cabanas_apps.clientes",
-    "cabanas_apps.pagos",
-    "cabanas_apps.alquileres",
-    "cabanas_apps.reservas",
-    "cabanas_apps.registros",
-    "cabanas_apps.usuarios",
-    "cabanas_apps.interfaz_gestion_cabanas",
-    "cabanas_apps.gestion_cabanas",
-    "cabanas_apps.chatbot_app",
-    "web",
-
-    # Django REST Framework y drf-spectacular
+    "django.contrib.sites",
+    "cabanas_principal",
+    "cabanas_api",
+   # Apps propias django
+    "django_core.cabanas_apps_django.chatbot_app",
+    "django_core.cabanas_apps_django.reservas",
+    "django_core.cabanas_apps_django.cabanas",
+    "django_core.cabanas_apps_django.clientes",
+    "django_core.cabanas_apps_django.pagos",
+    "django_core.cabanas_apps_django.registros",
+    "django_core.cabanas_apps_django.web",
+    "django_core.cabanas_apps_django.interfaz_gestion_cabanas",
     "rest_framework",
     "drf_spectacular",
     "corsheaders",
@@ -90,6 +84,7 @@ SPECTACULAR_SETTINGS = {
 
 # Middleware
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",   # ← debe ir arriba de CommonMiddleware
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -97,11 +92,11 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-
 ]
 
+
 # URLs principales
-ROOT_URLCONF = "django_core.urls"
+ROOT_URLCONF = "cabanas_principal.urls"
 
 # Templates
 TEMPLATES = [
@@ -128,8 +123,8 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 # WSGI
-WSGI_APPLICATION = "django_core.wsgi.application"
-ASGI_APPLICATION = "django_core.asgi.application"
+WSGI_APPLICATION = "cabanas_principal.wsgi.application"
+
 # Bases de datos: SQLite3 local + PostgreSQL opcional
 # Configuración de base de datos
 DJANGO_ENV = os.getenv("DJANGO_ENV", "development")
@@ -140,7 +135,7 @@ if DJANGO_ENV == "production":
             "ENGINE": "django.db.backends.postgresql",
             "NAME": os.getenv("DB_NAME", "cabanas_db"),
             "USER": os.getenv("DB_USER", "carolina"),
-            "PASSWORD": os.getenv("DB_PASSWORD"),  # ← ya no queda hardcodeado
+            "PASSWORD": os.getenv("DB_PASSWORD", "1234"),  # ← ya no queda hardcodeado
             "HOST": os.getenv("DB_HOST", "localhost"),
             "PORT": os.getenv("DB_PORT", "5432"),
         },
@@ -186,7 +181,6 @@ LANGUAGE_CODE = "es-ar"
 TIME_ZONE = "America/Argentina/Cordoba"
 USE_I18N = True
 USE_TZ = True
-STATIC_ROOT = BASE_DIR / "staticfiles"
-MEDIA_ROOT = BASE_DIR / "media"
+
 # Configuración por defecto
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

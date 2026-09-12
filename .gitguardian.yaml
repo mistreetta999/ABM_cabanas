@@ -1,0 +1,5 @@
+secret:
+  ignored_matches:
+  - match: aa2a6ca667e641ddf78c697d3415abf6ecb4faeccab51fe8af2954731c2a43b1
+    name: Username Password - create_superuser.py:l.13
+version: 2

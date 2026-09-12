@@ -208,3 +208,9 @@ pip install django
 pip install pyinstaller
 pip install pyinstaller
 pyinstaller --onefile --windowed handles.py
+para activar carpetas
+Get-ChildItem C:\Users\carol\OneDrive\Desktop\cabanas\Templates\chatbot -Filter *.html
+Get-ChildItem C:\Users\carol\OneDrive\Desktop\cabanas\Templates\html_local -Filter *.html
+Get-ChildItem C:\Users\carol\OneDrive\Desktop\cabanas\Templates\images -Filter *.html
+Get-ChildItem C:\Users\carol\OneDrive\Desktop\cabanas\Templates\migrates -Filter *.html
+Get-ChildItem C:\Users\carol\OneDrive\Desktop\cabanas\Templates\migratios -Filter *.html

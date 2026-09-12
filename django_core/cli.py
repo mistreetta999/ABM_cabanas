@@ -5,6 +5,7 @@ import sys
 from django.core.management import execute_from_command_line
 
 def main():
+    """Inicializa y ejecuta la CLI de Django para el proyecto."""
     # Configuración del módulo de settings
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cabanas_principal.settings")
 

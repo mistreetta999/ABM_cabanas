@@ -9,6 +9,7 @@ class AlquilerListView(ListView):
     model = Alquiler
     template_name = "alquileres/lista.html"
     context_object_name = "alquileres"
+    fields = ["cliente", "cabana", "fecha_inicio", "fecha_fin", "monto"]
 
 class AlquilerCreateView(CreateView):
     """Crea un nuevo alquiler"""

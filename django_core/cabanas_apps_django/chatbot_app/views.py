@@ -1,23 +1,18 @@
 """ views chatbot"""
 import json
-
+from django.db import models
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from django.views import View
+import cabanas_principal
 
-from .chatbot import ChatBot
+class Chatbot(View):
+    """Vista principal del chatbot."""
 
-
-bot = ChatBot()
-
-
-
-# pylint: disable=too-few-public-methods
-class ChatbotHome:
-    """ views chatbot"""
     @csrf_exempt
     def chatbot_home(self, request: HttpRequest) -> JsonResponse:
-        """ Maneja las solicitudes POST al endpoint del chatbot y devuelve respuestas basadas en el mensaje recibido."""
+        """  respuestas basadas en el mensaje recibido."""
         if request.method != 'POST':
             return JsonResponse({'reply': 'Envia una consulta para recibir informacion.'})
 
@@ -58,31 +53,70 @@ class ChatbotViewsTemplates:
         """ index chatbot"""
         return render(request, 'chatbot/index.html')    
 
+class ChatbotHomeView(View):
+    """Vista principal del chatbot."""
+
+    def get(self, request: HttpRequest) -> HttpResponse:
+        """Renderiza la página principal del chatbot."""
+        return render(request, 'chatbot/index.html')
+
+
 def chatbot_page(request: HttpRequest) -> HttpResponse:
     """Renderiza la página del chatbot."""
     return render(request, 'chatbot/chatbot.html')
 
 
-@csrf_exempt
-def chatbot_api(request: HttpRequest) -> JsonResponse:
-    """Endpoint JSON del chatbot."""
-    if request.method != "POST":
-        return JsonResponse({"reply": "Envía una consulta para recibir información."})
+class ChatbotInteractView(View):
+    """Vista para la interacción con el chatbot."""
 
-    data = json.loads(request.body or "{}")
-    user_message = data.get("message", "")
-    reply = bot.respond(user_message)
-    return JsonResponse({"reply": reply})
+    @csrf_exempt
+    def post(self, request: HttpRequest) -> JsonResponse:
+        """Maneja las solicitudes POST al endpoint del chatbot y devuelve respuestas basadas en el mensaje recibido."""
+        data = json.loads(request.body or "{}")
+        user_message = data.get("message", "")
+        reply = _respond(user_message)
+        return JsonResponse({"reply": reply})
 
+class Message(models.Model):
+    """Mensaje del chat."""
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    sender = models.CharField(max_length=50, choices=[("cliente", "Cliente"), ("chatbot", "Chatbot")])
+    chatbot = models.CharField(max_length=50, choices=[("cliente", "Cliente"), ("chatbot", "Chatbot")])
+    class Meta:
+        """Metadatos del modelo Message."""
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.sender}"
+def _respond(message: str) -> str:
+    """Genera una respuesta para el mensaje recibido."""
+    message = (message or '').lower()
+    if 'precio' in message or 'tarifa' in message:
+        return 'Las tarifas dependen de la cantidad de huespedes y fechas. Podes dejar tus datos en reservas.'
+    if 'ubicacion' in message or 'donde' in message:
+        return 'Estamos en Mina Clavero, Cordoba, cerca del centro y de los balnearios principales.'
+    return 'Gracias por consultar. Para reservar, comunicate por WhatsApp o carga una reserva en el ABM.'
+
+
+
+class ChatbotHistoryView(View):
+    """Vista para mostrar el historial de conversaciones con el chatbot."""
+
+    def get(self,_request: HttpRequest) -> HttpResponse:
+        """"get"""
+        return HttpResponse("preguntar")
+        
 
 def chatbot_panel(request: HttpRequest) -> HttpResponse:
     """Panel HTML del chatbot."""
     if request.method == "POST":
         user_message = request.POST.get("message", "")
-        response = bot.respond(user_message)
+        response = _respond(user_message)
         return render(request, "chatbot/panel.html", {"response": response})
 
-    return render(request, "chatbot/panel.html", {"response": bot.welcome_message})
+    welcome = 'Bienvenido al chatbot.'
+    return render(request, "chatbot/panel.html", {"response": welcome})
 
 
 def chatbot_view(request: HttpRequest) -> HttpResponse:

@@ -1,14 +1,18 @@
-"""URLs de la aplicación DATABASE."""
-
+"""Rutas principales para la app DATABASE"""
 from django.urls import path
-from . import views
-
-app_name = "database"
+from DATABASE import views
 
 urlpatterns = [
-    path("", views.DatabaseDashboardView.as_view(), name="dashboard"),
-    path("backup/", views.DatabaseBackupView.as_view(), name="backup"),
-    path("restore/", views.DatabaseRestoreView.as_view(), name="restore"),
-    path("status/", views.DatabaseStatusView.as_view(), name="status"),
-    path("query/", views.execute_query, name="query"),
+    # Ejemplo: endpoint para probar conexión a la base de datos
+    path("db/test/", views.test_connection, name="test_connection"),
+
+    # Ejemplo: endpoint para listar clientes
+    path("db/clientes/", views.list_clientes, name="list_clientes"),
+
+    # Ejemplo: endpoint para crear un cliente
+    path("db/clientes/nuevo/", views.create_cliente, name="create_cliente"),
+
+    # Ejemplo: endpoint para reservas
+    path("db/reservas/", views.list_reservas, name="list_reservas"),
+
 ]

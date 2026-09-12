@@ -1,10 +1,15 @@
 """ archivo interfaz_gestion_cabanas"""
-from django.contrib import admin as interfaz_gestion_cabanas
-from .models import ActividadCabanas
+from django.contrib import admin
+from .models import Registro
 
-@interfaz_gestion_cabanas.register(ActividadCabanas)
-class ActividadCabanasAdmin(interfaz_gestion_cabanas.ModelAdmin):
-    """Class actividades cabanas interfaz_gestion_cabanas"""
-    list_display = ("Cabanas
-", "cliente", "descripcion", "fecha")
-    search_fields = ("cabana__nombre", "cliente__nombre")
+@admin.register(Registro)
+class RegistroAdmin(admin.ModelAdmin):
+    list_display = ("reserva", "cliente", "fecha_registro", "detalle")
+    search_fields = ("detalle", "cliente__nombre_apellido")
+    list_filter = ("fecha_registro",)
+
+
+
+
+
+

@@ -1,11 +1,10 @@
 """"Vistas para la aplicación del chatbot."""
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from django_core. cabanas_apps_django .models import Reservas
-from django.shortcuts import render
 
 
 def panel_chatbot(request):
+    """ panel"""
     return render(request, "chatbot/panel.html")
 
 def detalle_reserva(request, reserva_id):

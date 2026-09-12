@@ -1,3 +1,6 @@
+"""
+Vistas para la aplicación de facturas.
+"""
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from cabanas_apps_django.facturas.models import Factura

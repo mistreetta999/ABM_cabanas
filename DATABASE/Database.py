@@ -1,20 +1,14 @@
-# cabanas_project/DATABASE/database.py
-"""Este módulo define la clase Database y las funciones para configurar la base de datos.
-La clase Database representa la estructura de la base de datos, mientras que las funciones
-get_sqlite_config, get_postgresql_config y get_database_settings proporcionan la configuración necesaria para conectar con la base de datos según el entorno (desarrollo o producción).
-"""
+"""database"""
 
 import os
 from pathlib import Path
 from django.db import models
-from django.db.models import Model
-from django.db.models import ForeignKey
 from django.db.models import CharField
 
 class Database:
     """class database muetra datos"""
     def __init__(self):
-        self.BASE_DIR = Path(__file__).resolve().parent.parent
+        self.base_dir = Path(__file__).resolve().parent.parent
         self.nombre = CharField(max_length=100)
         self.descripcion = CharField(max_length=255)    
         self.reservas = models.ManyToManyField('Reserva', related_name='cabanas')

@@ -1,7 +1,0 @@
-cabanas_apps/
-├── usuarios/
-    ├── __init__.py
-    ├── apps.py
-    ├── models.py
-    ├── views.py
-    ├── urls.py

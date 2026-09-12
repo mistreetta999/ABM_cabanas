@@ -1,76 +1,50 @@
-cabanas/
-│__manage.py                 # Entrada estándar Django
-│__ main.py                   # Entrada alternativa (OOP)
-|__ levantar_programa.bat      # Script arranque local
-│-- render.yaml                # Configuración Render
-│-- requirements.txt
-│-- README.md
-│-- db.sqlite3                 # BD local
+Templates
+│   base.html
+│   cabanas.html
+│   confirma_borrar.html
+│   consultas.html
+│   detalle.html
+│   detalle_cabanas.html
+│   formulario.html
+│   handlers.py
+│   index.html
+│   lista_cabanas.html
+│   pagina_principal.html
+│   panel.html
+│   reservas.html
+│   style.css
+│   urls.py
+│   __init__.py
 │
-│-- cabanas_project/           # Configuración principal del proyecto
-│   │-- __init__.py
-│   │-- settings.py
-│   │-- urls.py
-│   │-- wsgi.py
-│   └-- asgi.py
+├── chatbot
+│   ├── chatbot.html
+│   ├── panel_chatbot.html
+│   └── style.css
 │
-│-- cabanas_apps/               # Apps internas
-│   │-- clientes/              # App clientes
-│   │   │-- __init__.py
-│   │   │-- apps.py
-│   │   │-- models.py
-│   │   │-- views.py
-│   │   │-- urls.py
-│   │   └-- migrations/
-│   │
-│   │-- reservas/              # App reservas
-│   │   │-- __init__.py
-│   │   │-- apps.py
-│   │   │-- models.py
-│   │   │-- views.py
-│   │   │-- urls.py
-│   │   └-- migrations/
-│   │
-│   └-- cabanas/               # App cabanas
-│       │-- __init__.py
-│       │-- apps.py
-│       │-- models.py
-│       │-- views.py
-│       │-- urls.py
-│       └-- migrations/
+├── html_local
+│   ├── presentacion_cabanas.html
+│   ├── urls.py
+│   └── __init__.py
 │
-│-- chatbot/                   # App chatbot
-│   │-- __init__.py
-│   │-- apps.py
-│   │-- urls.py
-│   └-- views.py
+├── images
+│   ├── cabana_foto2.jpg
+│   ├── cabana_foto3.jpg
+│   ├── cabana_foto4.jpg
+│   ├── foto_principal.jpg.jpeg
+│   ├── icono.png.jpg
+│   ├── imagen_principal.jpeg
+│   ├── logotipo_cabanas.ico.jpeg
+│   ├── picina.jpg.jpeg
+│   ├── segunda_imagen.jpg.jpeg
+│   └── image
+│       └── WhatsApp Image 2026-05-12 at 15.37.15 (1).jpeg
+│   └── images
+│       ├── cabana_foto2.jpg
+│       ├── cabana_foto3.jpg
+│       ├── cabana_foto4.jpg
+│       ├── foto_principal.jpg.jpeg
+│       ├── picina.jpg.jpeg
+│       └── segunda_imagen.jpg.jpeg
 │
-│-- core/                      # Código reutilizable (antes django_core/local)
-│   │-- __init__.py
-│   │-- management.py
-│   └-- config.py
-│
-│-- database/                  # Configuración BD modular
-│   │-- __init__.py
-│   │-- sqlite.py
-│   └-- postgresql.py
-│
-│-- Templates/                 # Plantillas globales
-│   │-- base.html
-│   │-- pagina_principal.html
-│   │-- cabanas/
-│   │   └-- panel.html
-│   │-- reservas/
-│   │   └-- panel.html
-│   └-- chatbot/
-│       └-- panel.html
-│
-│-- static/                    # Archivos estáticos
-│   │-- css/
-│   │-- js/
-│   └-- img/
-│
-└-- media/                     # Archivos subidos por usuarios
-|django_core
-|django_local
-|DATABASE
+└── migratios
+    └── __init__.py

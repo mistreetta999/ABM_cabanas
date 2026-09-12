@@ -9,6 +9,5 @@ import os
 from django.core.wsgi import get_wsgi_application
 
 # Ajusta el nombre del módulo de settings a tu proyecto real
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cabanas_project.settings")
-
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cabanas_principal.settings")
 application = get_wsgi_application()

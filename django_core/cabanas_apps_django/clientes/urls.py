@@ -9,7 +9,7 @@ from .views import (
     ClienteDetailView,
 )
 
-app_name = "clientes"
+app_name = "clientes"  # pylint: disable=invalid-name
 
 urlpatterns = [
     # CRUD de clientes
@@ -24,6 +24,6 @@ urlpatterns = [
     path("alquileres/", include("alquileres.urls")),  # relación con alquileres
     path("reservas/", include("reservas.urls")),      # relación con reservas
     path("pagos/", include("pagos.urls")),            # relación con pagos
-    path("usuarios/", include("usuarios.urls")),      # relación con usuarios
+    path("facturas/", include("facturas.urls")),        # relación con facturas
     path("chatbot/", include("chatbot_app.urls")),    # relación con chatbot
 ]

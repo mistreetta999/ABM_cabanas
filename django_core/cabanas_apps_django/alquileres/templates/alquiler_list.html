@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Listado de Alquileres</h2>
+<table>
+  <tr>
+    <th>Cliente</th>
+    <th>Cabaña</th>
+    <th>Fecha inicio</th>
+    <th>Fecha fin</th>
+    <th>Monto</th>
+    <th>Acciones</th>
+  </tr>
+  {% for alquiler in alquileres %}
+  <tr>
+    <td>{{ alquiler.cliente }}</td>
+    <td>{{ alquiler.cabana }}</td>
+    <td>{{ alquiler.fecha_inicio }}</td>
+    <td>{{ alquiler.fecha_fin }}</td>
+    <td>{{ alquiler.monto }}</td>
+    <td>
+      <a href="{% url 'alquileres:alquiler_detail' alquiler.pk %}">Ver</a> |
+      <a href="{% url 'alquileres:alquiler_update' alquiler.pk %}">Editar</a> |
+      <a href="{% url 'alquileres:alquiler_delete' alquiler.pk %}">Borrar</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+<a href="{% url 'alquileres:alquiler_create' %}">Nuevo alquiler</a>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Confirmar eliminación</h2>
+<p>¿Seguro que querés borrar el alquiler de {{ alquiler.cliente }} en la cabaña {{ alquiler.cabana }}?</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Sí, borrar</button>
+</form>
+<a href="{% url 'alquileres:alquiler_list' %}">Cancelar</a>
+{% endblock %}

@@ -9,7 +9,7 @@ from .views import (
     CabanaDetailView,
 )
 
-app_name = "cabanas"
+app_name = "cabanas"  # pylint: disable=invalid-name
 
 urlpatterns = [
     # CRUD de cabañas
@@ -20,9 +20,9 @@ urlpatterns = [
     path("<int:pk>/borrar/", CabanaDeleteView.as_view(), name="cabana_delete"),
 
     # 🔗 Integraciones con otras apps del sistema
-    path("alquileres/", include("alquileres.urls")),   # relación con alquileres
-    path("reservas/", include("reservas.urls")),       # relación con reservas
-    path("clientes/", include("clientes.urls")),       # relación con clientes
-    path("pagos/", include("pagos.urls")),             # relación con pagos
-    path("usuarios/", include("usuarios.urls")),       # relación con usuarios
+    path("alquileres/", include("cabanas_api.urls")),   # relación con alquileres
+    path("reservas/", include("django_core.cabanas_apps_django.reservas.urls")),
+    path("clientes/", include("django_core.cabanas_apps_django.clientes.urls")),
+    path("pagos/", include("django_core.cabanas_apps_django.pagos.urls")),
+    # usuarios eliminado porque la app ya no existe
 ]

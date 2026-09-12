@@ -1,7 +1,6 @@
 """archivo principal models"""
 from django.db import models
 from django.utils import timezone
-from django.http import HttpRequest, HttpResponse
 
 
 class Cabanas(models.Model):
@@ -29,9 +28,7 @@ class Cliente(models.Model):
 
     class Meta:
 
-        """ class meta"""
-        db_table = "clientes"
-        verbose_name = "Cliente"
+        """ class meta"""#        verbose_name = "Cliente"
         verbose_name_plural = "Clientes"
     def __str__(self) -> str:
         return f"{self.nombre} {self.apellido} - DNI: {self.dni}"
@@ -57,6 +54,7 @@ class Reserva(models.Model):
     estado = models.CharField(max_length=30, default="pendiente")
     observaciones = models.TextField(blank=True)
     class Meta:
+        """Metadatos del modelo Reserva."""
         verbose_name = "Reserva"
         verbose_name_plural = "Reservas"
 
@@ -74,7 +72,7 @@ class Alquileres(models.Model):
     monto_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     estado = models.CharField(max_length=30, default="activo")
     class Meta:
-        """class meta"""
+        """Metadatos del modelo Alquileres."""
         verbose_name = "Alquiler"
         verbose_name_plural = "Alquileres"
 

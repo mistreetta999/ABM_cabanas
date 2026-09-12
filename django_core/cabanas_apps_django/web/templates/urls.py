@@ -4,8 +4,7 @@ from django.urls import include, path
 app_name = "templates"
 
 urlpatterns = [
-    path("gestion/", include("django_core.cabanas_apps_django.gestion_cabanas.urls")),
-    path("interfaz/", include("django_core.cabanas_apps_django.interfaz_gestion_cabanas.urls")),
+    #    path("interfaz/", include("django_core.cabanas_apps_django.interfaz_gestion_cabanas.urls")),
     path("cabanas/", include("django_core.cabanas_apps_django.cabanas.urls")),
     path("reservas/", include("django_core.cabanas_apps_django.reservas.urls")),
     path("alquileres/", include("django_core.cabanas_apps_django.alquileres.urls")),

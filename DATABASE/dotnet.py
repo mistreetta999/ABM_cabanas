@@ -1,56 +1,35 @@
-# cabanas_project/DATABASE/dotnet.py
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
+"""Conexión simple a SQLite estilo .NET"""
+import os
+import sqlite3
 from pathlib import Path
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
 
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-class load_dotenv:
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    def __init__(self):
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-        pass
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
+# Ruta de la base de datos (por defecto en la carpeta del proyecto)
 BASE_DIR = Path(__file__).resolve().parent.parent
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
+DB_PATH = os.getenv("DB_PATH", BASE_DIR / "db.sqlite3")
 
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-DATABASES = {
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    "default": {
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-        "ENGINE": "django.db.backends.sqlite3",
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-        "NAME": BASE_DIR / "db.sqlite3",
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-    }
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
-}
-  # Apps propias
-    "cabanas_apps.cabanas_app",  
-    "cabanas_apps.cabanas",
+def get_connection():
+    """Devuelve una conexión a SQLite"""
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        return conn
+    except Exception as e:
+        raise RuntimeError(f"Error al conectar a la base de datos: {e}") from e
+
+def execute_query(query, params=None):
+    """Ejecuta una consulta SELECT y devuelve resultados"""
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(query, params or [])
+    results = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return results
+
+def execute_non_query(query, params=None):
+    """Ejecuta un INSERT/UPDATE/DELETE"""
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(query, params or [])
+    conn.commit()
+    cursor.close()
+    conn.close()

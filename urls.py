@@ -1,8 +1,11 @@
 """Rutas raiz del proyecto."""
 from django.urls import include, path
 from django.views.generic import TemplateView
+from django.contrib import admin
 
 urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", include("django_core.cabanas_apps_django.web.urls")),
     path("pagina_principal.html", TemplateView.as_view(template_name="pagina_principal.html"), name="pagina_principal_html_sin_barra"),
     path("", include("cabanas_principal.urls")),
     path("reservas/", include("cabanas_apps.reservas.urls")),
@@ -15,4 +18,5 @@ urlpatterns = [
     path("pagos/", include("cabanas_apps.pagos.urls")),
     path("chatbot/", include("cabanas_apps.chatbot_app.urls")),
     path("facturas/", include("cabanas_apps.facturas.urls")),
+
 ]

@@ -7,5 +7,4 @@ App/
 │   ├── wsgi.py                  # Configuración para servidor WSGI
 │   ├── asgi.py                  # Configuración para servidor ASGI (websockets)
 │   ├── logging.py               # Configuración de logs
-│   ├── middleware.py            # Middlewares personalizados
 │   └── utils.py                 # Funciones auxiliares (helpers, validaciones)

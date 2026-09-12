@@ -1,14 +1,12 @@
 """URLs de la aplicación Reservas, integradas con el sistema."""
 
 from django.urls import path, include
-from .views import (
-    ReservaListView,
-    ReservaCreateView,
-    ReservaUpdateView,
-    ReservaDeleteView,
-    ReservaDetailView,
-)
-
+from reservas.views import  ReservaListView
+from reservas.views import  ReservaCreateView
+from reservas.views import   ReservaUpdateView
+from reservas.views import   ReservaDeleteView
+def views(self):
+    return views(self.views)
 app_name = "reservas"
 
 urlpatterns = [
@@ -18,6 +16,7 @@ urlpatterns = [
     path("<int:pk>/", ReservaDetailView.as_view(), name="reserva_detail"),
     path("<int:pk>/editar/", ReservaUpdateView.as_view(), name="reserva_update"),
     path("<int:pk>/borrar/", ReservaDeleteView.as_view(), name="reserva_delete"),
+    path("lista/", views.lista_reservas, name="lista_reservas"),
 
     # 🔗 Integraciones con otras apps del sistema
     path("cabanas/", include("cabanas.urls")),                # relación con cabañas

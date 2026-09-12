@@ -1,20 +1,21 @@
 """URLs de la aplicación Web, integradas con el sistema."""
 
 from django.urls import path, include
-from .views import (
-    WebHomeView,
-    WebAboutView,
-    WebContactView,
-)
 
-app_name = "web"
+app_name = "web"  # pylint: disable=invalid-name
 
 urlpatterns = [
     # Páginas principales del sitio web
-    path("", WebHomeView.as_view(), name="web_home"),
-    path("about/", WebAboutView.as_view(), name="web_about"),
-    path("contacto/", WebContactView.as_view(), name="web_contact"),
 
+    path("cabanas/", include("django_core.cabanas_apps_django.cabanas.urls")),
+    path("clientes/", include("django_core.cabanas_apps_django.clientes.urls")),
+    path("reservas/", include("django_core.cabanas_apps_django.reservas.urls")),
+    path("pagos/", include("django_core.cabanas_apps_django.pagos.urls")),
+    path("chatbot/", include("django_core.cabanas_apps_django.chatbot_app.urls")),
+    path("web/", include("django_core.cabanas_apps_django.web.urls")),
+
+    # Ejemplo de ruta raíz
+    path("", include("django_core.cabanas_apps_django.web.urls")),
     # 🔗 Integraciones con otras apps del sistema
     path("cabanas/", include("cabanas.urls")),                # relación con cabañas
     path("alquileres/", include("alquileres.urls")),          # relación con alquileres
