@@ -1,4 +1,4 @@
-/ /reservas.js - Booking app features
+// reservas.js - Booking app features
 function calcularTotal() {
     const dias = document.getElementById("dias");
     const precio = document.getElementById("precio");

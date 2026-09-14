@@ -8,20 +8,25 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Configuración de la base de datos
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./db.sqlite3")
+DB_NAME = os.getenv("DB_NAME", "cabanas_db")
+DB_USER = os.getenv("DB_USER", "carolina")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "")
+DB_HOST = os.getenv("DB_HOST", "localhost")
+DB_PORT = os.getenv("DB_PORT", "5432")
 
-# Crear motor de conexión
+# URL de conexión (PostgreSQL por defecto, cambiar si usás SQLite u otro motor)
+DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+
+# Crear engine y sesión
 engine = create_engine(DATABASE_URL, echo=True)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Crear sesión
-SESSION_LOCAL = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-# Base declarativa para modelos
+# Base para modelos
 Base = declarative_base()
 
 def get_db():
     """Devuelve una sesión de base de datos"""
-    db = SESSION_LOCAL()
+    db = SessionLocal()
     try:
         yield db
     finally:

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Clientes</title>
+</head>
+<body>
+    <h1>Clientes</h1>
+    <ul>
+        {% for cliente in clientes %}
+            <li>
+                <a href="{% url 'clientes:detalle_cliente' cliente.pk %}">
+                    {{ cliente.nombre }} {{ cliente.apellido }} - {{ cliente.email }}
+                </a>
+            </li>
+        {% empty %}
+            <li>No hay clientes registrados.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'clientes:crear_cliente' %}">Registrar nuevo cliente</a>
+</body>
+</html>

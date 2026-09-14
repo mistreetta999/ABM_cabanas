@@ -1,3 +1,4 @@
+from decimal import Decimal
 """archivo  models"""
 from django.db import models
 from django.utils import timezone
@@ -59,18 +60,26 @@ class Reserva(models.Model):
 
 
 class Pago(models.Model):
-    """ Modelo que representa un pago de un alquiler """
-    alquiler = models.ForeignKey('Alquileres', on_delete=models.CASCADE, related_name="pagos")
+    """Modelo que representa un pago de un alquiler"""
+    alquiler = models.ForeignKey(
+        "alquileres.Alquiler",   # referencia correcta al modelo Alquiler
+        on_delete=models.CASCADE,
+        related_name="pagos"
+    )
     fecha = models.DateField()
     monto = models.DecimalField(max_digits=10, decimal_places=2)
     metodo = models.CharField(max_length=30)
     comprobante = models.CharField(max_length=200, blank=True)
+
     class Meta:
-        """ class meta"""
+        """ Metadatos del modelo Pago """
         verbose_name = "Pago"
         verbose_name_plural = "Pagos"
+        ordering = ["-fecha"]  # ordena por fecha descendente
+
     def __str__(self) -> str:
-        return f"Pago {self.pk}"
+        return f"Pago {self.pk} - {self.monto} ({self.metodo})"
+
 
 
 class Registro(models.Model):
@@ -103,7 +112,7 @@ class TemplatesModels(models.Model):
     def __str__(self) -> str:
         return (f"Plantilla: {self.nombre} - Fecha de creación: {self.fecha_creacion}" )
 
-class TempaltesModels(models.Model):
+class TempltesModels(models.Model):
     """Modelo para representar plantillas de correo electrónico."""
     nombre = models.CharField(max_length=100, unique=True)
     asunto = models.CharField(max_length=200)
@@ -224,3 +233,4 @@ class DetalleFactura(models.Model):
 
     def __str__(self):
         return f"{self.descripcion} ({self.cantidad} x {self.precio_unitario})"
+

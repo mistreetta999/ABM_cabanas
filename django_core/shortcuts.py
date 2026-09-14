@@ -1,128 +1,53 @@
 """
-Module for shortcut functions to handle cabanas rendering and retrieval.
+Atajos y utilidades para renderizar templates y obtener objetos de cabanas_api.
 """
-import json
-from datetime import datetime
-
-from django.contrib.auth.decorators import login_required
-from django.core.exceptions import ValidationError
-from django.db import IntegrityError
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_GET, require_POST
-
-from cabanas_apps.reservas.models import Reserva
-
-try:
-    from .respuestas import error, ok
-except ImportError:  # pragma: no cover - compatibilidad con importación absoluta
-    try:
-        from django_core.respuestas import error, ok
-    except ImportError:  # pragma: no cover - último recurso para entorno no package
-        from respuestas import error, ok
+from django.shortcuts import render, get_object_or_404
+from cabanas_api.models import Cabana, Cliente, Reserva, Alquiler, Pago
+def object_or_404(model, pk):
+    """
+    Obtiene un objeto de cualquier modelo por su ID o lanza 404 si no existe.
+    """
+    return get_object_or_404(model, pk=pk)
 
 
-def _parse_int(value, field_name):
-    """Convierte un valor a int o devuelve un mensaje de error."""
-    if isinstance(value, bool):
-        return None, f"{field_name} debe ser un entero"
-    try:
-        return int(value), None
-    except (TypeError, ValueError):
-        return None, f"{field_name} debe ser un entero válido"
 
+def render_with_cabanas(request, template_name, extra_context=None):
 
-def _parse_date(value, field_name):
-    """Convierte un valor a date vía ISO 8601 o devuelve un mensaje de error."""
-    if not isinstance(value, str):
-        return None, f"{field_name} debe ser una fecha en formato ISO 8601"
-    try:
-        return datetime.fromisoformat(value).date(), None
-    except ValueError:
-        return None, f"{field_name} debe ser una fecha válida en formato ISO 8601"
+    """
+    Renderiza cualquier template con todas las cabañas cargadas.
+    """
+    cabanas = getattr(Cabana, "objects").all()
+    context = {"cabanas": cabanas}
+    if extra_context:
+        context.update(extra_context)
+    return render(request, template_name, context)
 
+def get_cabana_or_404(pk):
+    """
+    Obtiene una cabaña por su ID o lanza 404 si no existe.
+    """
+    return get_object_or_404(Cabana, pk=pk)
 
-@require_GET
-def home(_request):
-    """View function for the home page of the cabanas API."""
-    return ok(message="API de Cabañas funcionando")
+def get_cliente_or_404(pk):
+    """
+    Obtiene un cliente por su ID o lanza 404 si no existe.
+    """
+    return get_object_or_404(Cliente, pk=pk)
 
-@csrf_exempt
-@require_POST
-@login_required
-def crear_reserva(request):
-    """View function to create a new reservation."""
-    if request.content_type != "application/json":
-        return error(
-            message="Content-Type debe ser application/json",
-            http_status=415,
-        )
-    try:
-        data = json.loads(request.body)
-    except json.JSONDecodeError:
-        return error(message="JSON inválido", http_status=400)
-    campos_requeridos = ["cliente", "fecha_inicio", "fecha_fin", "Cabana"]
-    faltantes = [
-        campo for campo in campos_requeridos if not data.get(campo)
-    ]
-    if faltantes:
-        return error(
-            message="Campos obligatorios faltantes",
-            errors={"faltantes": faltantes},
-            http_status=400,
-        )
-    cliente, err = _parse_int(data.get("cliente"), "cliente")
-    if err:
-        return error(message=err, http_status=400)
-    if cliente != request.user.id:
-        return error(
-            message="No tienes permiso para crear reservas a nombre de otro cliente",
-            http_status=403,
-        )
-    cabana, err = _parse_int(data.get("Cabana"), "Cabana")
-    if err:
-        return error(message=err, http_status=400)
-    fecha_inicio, err = _parse_date(data.get("fecha_inicio"), "fecha_inicio")
-    if err:
-        return error(message=err, http_status=400)
-    fecha_fin, err = _parse_date(data.get("fecha_fin"), "fecha_fin")
-    if err:
-        return error(message=err, http_status=400)
-    if fecha_fin < fecha_inicio:
-        return error(
-            message="fecha_fin debe ser posterior o igual a fecha_inicio",
-            http_status=400,
-        )
-    solapada = Reserva.objects.filter(
-        Cabanas=cabana,
-        fecha_inicio__lte=fecha_fin,
-        fecha_fin__gte=fecha_inicio,
-    ).exclude(estado=Reserva.Estado.CANCELADA)
-    if solapada.exists():
-        return error(
-            message="La cabaña no está disponible en el rango solicitado",
-            http_status=409,
-        )
-    try:
-        reserva = Reserva.objects.create(
-            cliente=cliente,
-            fecha_inicio=fecha_inicio,
-            fecha_fin=fecha_fin,
-            Cabanas=cabana,
+def get_reserva_or_404(pk):
+    """
+    Obtiene una reserva por su ID o lanza 404 si no existe.
+    """
+    return get_object_or_404(Reserva, pk=pk)
 
-            estado=Reserva.Estado.PENDIENTE,
-        )
-    except IntegrityError:
-        return error(
-            message="Conflicto al crear la reserva (FK inexistente o duplicado)",
-            http_status=409,
-        )
-    except ValidationError as exc:
-        return error(
-            message="Datos inválidos para la reserva",
-            errors={"detalle": exc.messages},
-            http_status=400,
-        )
-    return ok(
-        message="Reserva creada",
-        data={"id": reserva.id},
-    )
+def get_alquiler_or_404(pk):
+    """
+    Obtiene un alquiler por su ID o lanza 404 si no existe.
+    """
+    return get_object_or_404(Alquiler, pk=pk)
+
+def get_pago_or_404(pk):
+    """
+    Obtiene un pago por su ID o lanza 404 si no existe.
+    """
+    return get_object_or_404(Pago, pk=pk)

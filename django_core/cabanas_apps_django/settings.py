@@ -1,77 +1,86 @@
 """Archivo de configuración principal de Django"""
 import os
+import sys
 from pathlib import Path
 from dotenv import load_dotenv
 
-
-def config(name, default=None):
-    """Obtiene una variable de entorno sin depender de python-decouple."""
-    return os.getenv(name, default)
+# Cargar variables de entorno
 load_dotenv()
 
-SECRET_KEY = os.getenv("SECRET_KEY", "dummy-secret-key")
+def config(name, default=None):
+    """Obtiene una variable de entorno de forma segura."""
+    value = os.getenv(name)
+    return default if value is None else value
 
+# Base del proyecto
+base_dir
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-# settings visuales
+ = Path(__file__).resolve().parent
+if base_dir
+
+.name in ["settings", "cabanas_principal", "config"]:
+    base_dir
+
+ = base_dir
+
+.parent
+
+# Cargar .env desde la raíz
+if load_dotenv is not None:
+    load_dotenv(base_dir
+
+ / ".env")
+
+# Ajustar sys.path para que Django encuentre las apps
+sys.path.append(str(base_dir
+
+))
+sys.path.append(str(base_dir
+
+ / "django_core" / "cabanas_apps_django"))
+
+# Seguridad
+SECRET_KEY = config("SECRET_KEY", default="django-insecure-default-key")
+DEBUG = str(config("DEBUG", "True")).lower() in ["true", "1", "yes"]
+
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", "*").split(",")
+ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS if host.strip()]
+
+# Admin visual
 ADMIN_SITE_HEADER = "Gestión de Cabañas"
 ADMIN_SITE_TITLE = "Panel de Administración"
-ADMIN_INDEX_TITLE = "Bienvenida, Carolina"
-
-# Configuración principal: usa .env cuando existe; si no, usa valores por defecto.
-SECRET_KEY = config("SECRET_KEY", default="django-insecure-default-key")
-
-DEBUG = False
-ALLOWED_HOSTS = ['*']
-
-DB_NAME = config("DB_NAME", default="cabanas_db")
-DB_USER = config("DB_USER", default="usuario")
-DB_PASSWORD = config("DB_PASSWORD", default="")
-DB_HOST = config("DB_HOST", default="localhost")
-DB_PORT = config("DB_PORT", default="5432")
-
-if not SECRET_KEY:
-    raise ValueError("SECRET_KEY environment variable is not set. Please set it in your .env file.")
-
-# usuarios
-#
-
-
-STATIC_URL = config("STATIC_URL", default="/static/")
-MEDIA_URL = config("MEDIA_URL", default="/media/")
-STATIC_ROOT = BASE_DIR / "staticfiles"
-MEDIA_ROOT = BASE_DIR / "media"
+ADMIN_INDEX_TITLE = "Bienvenidos a cabanas"
 
 # Aplicaciones instaladas
 INSTALLED_APPS = [
-    # Django apps por defecto
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.sites",
-    "cabanas_principal",
-    "cabanas_api",
-   # Apps propias django
-    "django_core.cabanas_apps_django.chatbot_app",
-    "django_core.cabanas_apps_django.reservas",
-    "django_core.cabanas_apps_django.cabanas",
-    "django_core.cabanas_apps_django.clientes",
-    "django_core.cabanas_apps_django.pagos",
-    "django_core.cabanas_apps_django.registros",
-    "django_core.cabanas_apps_django.web",
-    "django_core.cabanas_apps_django.interfaz_gestion_cabanas",
+
+    # Terceros
     "rest_framework",
     "drf_spectacular",
     "corsheaders",
-
-    # Extensiones útiles
     "django_extensions",
+    "crispy_forms",
+    "crispy_bootstrap5",
+
+    # Mis aplicaciones reales
+    "django_core.cabanas_apps_django.clientes",
+    "django_core.cabanas_apps_django.reservas",
+    "django_core.cabanas_apps_django.alquileres",
+    "django_core.cabanas_apps_django.cabanas",
+    "django_core.cabanas_apps_django.pagos",
+    "django_core.cabanas_apps_django.facturas",
+    "django_core.cabanas_apps_django.web",
+    "django_core.cabanas_apps_django.chatbot_app","django_core.cabanas_apps_django.registros",
+
 ]
 
-# Configuración de DRF + drf-spectacular
+# DRF + drf-spectacular
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
@@ -84,7 +93,8 @@ SPECTACULAR_SETTINGS = {
 
 # Middleware
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",   # ← debe ir arriba de CommonMiddleware
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -94,15 +104,77 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# Configuración CORS
+CORS_ALLOW_ALL_ORIGINS = True
 
-# URLs principales
-ROOT_URLCONF = "cabanas_principal.urls"
+# URLs y WSGI
+ROOT_URLCONF = "django_core.core.urls"
+WSGI_APPLICATION = "django_core.core.wsgi.application"
 
-# Templates
+# Base de datos
+DJANGO_ENV = config("DJANGO_ENV", "development")
+
+if DJANGO_ENV == "production":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": config("DB_NAME", "cabanas_db"),
+            "USER": config("DB_USER", "carolina"),
+            "PASSWORD": config("DB_PASSWORD", "1234"),
+            "HOST": config("DB_HOST", "localhost"),
+            "PORT": config("DB_PORT", "5432"),
+        },
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": base_dir
+
+ / "db.sqlite3",
+        },
+    }
+
+# Validación de contraseñas
+AUTH_PASSWORD_VALIDATORS = [
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+]
+
+# Internacionalización
+LANGUAGE_CODE = "es-ar"
+TIME_ZONE = "America/Argentina/Cordoba"
+USE_I18N = True
+USE_TZ = True
+
+# Archivos estáticos y multimedia
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [base_dir
+
+ / "static"]
+STATIC_ROOT = base_dir
+
+ / "staticfiles"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = base_dir
+
+ / "media"
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Bootstrap 5 para formularios
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "Template"],
+        "DIRS": [base_dir
+
+ / "templates"],  # carpeta templates en tu proyecto
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -114,73 +186,3 @@ TEMPLATES = [
         },
     },
 ]
-
-# Archivos estáticos y media
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
-WSGI_APPLICATION = "cabanas_principal.wsgi.application"
-
-# Bases de datos: SQLite3 local + PostgreSQL opcional
-# Configuración de base de datos
-DJANGO_ENV = os.getenv("DJANGO_ENV", "development")
-
-if DJANGO_ENV == "production":
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.getenv("DB_NAME", "cabanas_db"),
-            "USER": os.getenv("DB_USER", "carolina"),
-            "PASSWORD": os.getenv("DB_PASSWORD", "1234"),  # ← ya no queda hardcodeado
-            "HOST": os.getenv("DB_HOST", "localhost"),
-            "PORT": os.getenv("DB_PORT", "5432"),
-        },
-    }
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        },
-    }
-
-# Validación de contraseñas
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": (
-            "django.contrib.auth.password_validation."
-            "UserAttributeSimilarityValidator"
-        ),
-    },
-    {
-        "NAME": (
-            "django.contrib.auth.password_validation."
-            "MinimumLengthValidator"
-        ),
-    },
-    {
-        "NAME": (
-            "django.contrib.auth.password_validation."
-            "CommonPasswordValidator"
-        ),
-    },
-    {
-        "NAME": (
-            "django.contrib.auth.password_validation."
-            "NumericPasswordValidator"
-        ),
-    },
-]
-
-# Internacionalización
-LANGUAGE_CODE = "es-ar"
-TIME_ZONE = "America/Argentina/Cordoba"
-USE_I18N = True
-USE_TZ = True
-
-# Configuración por defecto
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

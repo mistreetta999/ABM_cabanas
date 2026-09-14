@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Lista de Pagos</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Monto</th>
+      <th>Fecha</th>
+      <th>Método</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for pago in pagos %}
+    <tr>
+      <td>{{ pago.cliente }}</td>
+      <td>{{ pago.monto }}</td>
+      <td>{{ pago.fecha }}</td>
+      <td>{{ pago.metodo }}</td>
+      <td>
+        <a href="{% url 'detalle_pago' pago.pk %}">Ver</a> |
+        <a href="{% url 'editar_pago' pago.pk %}">Editar</a> |
+        <a href="{% url 'eliminar_pago' pago.pk %}">Eliminar</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a href="{% url 'crear_pago' %}" class="btn btn-primary">Nuevo Pago</a>
+{% endblock %}

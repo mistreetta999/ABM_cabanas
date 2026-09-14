@@ -1,3 +1,4 @@
+from decimal import Decimal
 """Modelos para la aplicación web de publicaciones."""
 from django.db import models
 from django.urls import reverse

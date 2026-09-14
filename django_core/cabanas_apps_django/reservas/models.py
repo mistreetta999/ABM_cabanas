@@ -1,9 +1,9 @@
+from decimal import Decimal
 """Modelos para la aplicación de reservas."""
 
 from django.db import models
-
-from ..clientes.models import Cliente
-from ..cabanas.models import Cabana
+from django_core.cabanas_apps_django.clientes.models import Cliente
+from django_core.cabanas_apps_django.cabanas.models import Cabana
 
 
 class EstadoReserva(models.TextChoices):
@@ -31,9 +31,10 @@ class Reserva(models.Model):
     )
 
     class Meta:
-        """ nombre """
+        """Metadatos para el modelo Reserva."""
         verbose_name = "Reserva"
         verbose_name_plural = "Reservas"
 
     def __str__(self):
         return f"Reserva de {self.cliente} en {self.cabana}"
+

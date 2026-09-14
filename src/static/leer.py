@@ -1,47 +1,23 @@
-"""
-Script para cargar datos de prueba en el sistema de cabañas.
-"""
+"""Script de prueba para leer reservas y mostrarlas en consola."""
 
 import os
 import django
 
-# Configuración de Django
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cabana_proyect.settings")
+# Configuración del entorno Django
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_core.config.settings")
 django.setup()
 
-from django_local.models import Cliente, Cabana, Reserva
-from datetime import date
+from django_core.cabanas_apps_django.reservas.models import Reserva  # pylint: disable=wrong-import-position
 
-def run():
-    # Crear clientes de prueba
-    cliente1 = Cliente.objects.create(nombre="Ana", apellido="Pérez", email="ana@example.com")
-    cliente2 = Cliente.objects.create(nombre="Luis", apellido="Gómez", email="luis@example.com")
-
-    # Crear cabañas de prueba
-    cabana1 = Cabana.objects.create(nombre="Cabaña Río", capacidad=4, precio_noche=15000)
-    cabana2 = Cabana.objects.create(nombre="Cabaña Montaña", capacidad=6, precio_noche=20000)
-
-    # Crear reservas de prueba
-    Reserva.objects.create(
-        cliente=cliente1,
-        cabana=cabana1,
-        fecha_inicio=date(2026, 9, 1),
-        fecha_fin=date(2026, 9, 5),
-        monto_total=60000,
-        estado="confirmada"
-    )
-
-    Reserva.objects.create(
-        cliente=cliente2,
-        cabana=cabana2,
-        fecha_inicio=date(2026, 9, 10),
-        fecha_fin=date(2026, 9, 15),
-        monto_total=100000,
-        estado="pendiente"
-    )
-
-    print("✅ Datos de prueba cargados correctamente.")
-
+def mostrar_reservas():
+    """Imprime todas las reservas registradas en la base de datos."""
+    for reserva in Reserva.objects.all():  # pylint: disable=no-member
+        print(
+            f"Reserva #{reserva.pk} - Cliente: {reserva.cliente} "
+            f"Cabaña: {reserva.cabana} "
+            f"Desde: {reserva.fecha_inicio} Hasta: {reserva.fecha_fin} "
+            f"Estado: {reserva.estado}"
+        )
 
 if __name__ == "__main__":
-    run()
+    mostrar_reservas()

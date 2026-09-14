@@ -6,5 +6,4 @@ class AlquileresConfig(AppConfig):
     """Configuración de la app alquileres."""
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'django_core.cabanas_apps_django.alquileres'
-    verbose_name = "Gestión de Alquileres"
-   
+    

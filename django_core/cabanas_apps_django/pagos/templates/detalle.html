@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Detalle del Pago</h2>
+<p><strong>Cliente:</strong> {{ pago.cliente }}</p>
+<p><strong>Monto:</strong> {{ pago.monto }}</p>
+<p><strong>Fecha:</strong> {{ pago.fecha }}</p>
+<p><strong>Método:</strong> {{ pago.metodo }}</p>
+<a href="{% url 'lista_pagos' %}">Volver a la lista</a>
+{% endblock %}

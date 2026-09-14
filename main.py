@@ -7,8 +7,7 @@ from django.core.management import CommandError, execute_from_command_line
 
 def main():
     """Punto de entrada principal para tu proyecto Django."""
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cabanas_project.settings")
-    
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cabanas_project.settings") 
     try:
         django.setup()
         execute_from_command_line(sys.argv)

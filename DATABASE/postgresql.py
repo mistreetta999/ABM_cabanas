@@ -1,8 +1,7 @@
 """Conexión a PostgreSQL para el proyecto de cabañas."""
-
+import os
 import psycopg2
 from psycopg2 import sql
-import os
 
 # Configuración de conexión (puede venir de variables de entorno .env)
 DB_NAME = os.getenv("DB_NAME", "cabanas_db")
@@ -23,7 +22,7 @@ def get_connection():
         )
         return conn
     except Exception as e:
-        raise RuntimeError(f"Error al conectar con PostgreSQL: {e}")
+        raise RuntimeError(f"Error al conectar con PostgreSQL: {e}") from e
 
 def execute_query(query, params=None):
     """Ejecuta una consulta SQL y devuelve los resultados."""

@@ -28,14 +28,9 @@ class Management:
         # Añadir la raíz al sistema para que cabanas_project y cabanas_apps sean visibles
         if self.project_root not in sys.path:
             sys.path.append(self.project_root)
-        
-        # Establecer el módulo de configuración (Settings)
+         # Establecer el módulo de configuración (Settings)
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', self.settings_module)
-        
         print(f"[*] Entorno preparado en: {self.project_root}")
         print(f"[*] Usando configuraciones de: {self.settings_module}")
-
-    
-
     def __str__(self):
         return f"Core Management System - Root: {self.project_root}"

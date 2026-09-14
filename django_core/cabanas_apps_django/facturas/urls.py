@@ -1,10 +1,11 @@
 """URLs de la aplicación Facturas, integradas con el sistema."""
 
 from django.urls import path, include
-from cabanas_apps_django .views import FacturaListView
-from cabanas_apps_django .views import FacturaCreateView
-from cabanas_apps_django .views import FacturaDeleteView,
-from cabanas_apps_django .views importFacturaDetailView,
+from cabanas_apps_django .facturas.views import FacturaListView
+from cabanas_apps_django .facturas.views import FacturaCreateView
+from cabanas_apps_django .facturas.views import FacturaDeleteView
+from cabanas_apps_django .facturas.views import FacturaDetailView
+from cabanas_apps_django .facturas.views import FacturaUpdateView
 
 
 app_name = "facturas"

@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.db import models
 from cabanas_apps.clientes.models import Cliente
 from django.core.exceptions import ValidationError
@@ -59,3 +60,4 @@ class ChatbotHandler(models.Model):
 
     def __str__(self):
         return f"{self.chatbot} - {self.message}"
+

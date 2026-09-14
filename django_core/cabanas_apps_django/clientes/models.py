@@ -1,3 +1,4 @@
+from decimal import Decimal
 """ archivo de modelos para la app de clientes """
 import logging
 from typing import Any
@@ -42,3 +43,4 @@ class ClienteDatos(models.Model):
     def eliminar(self):
         """Elimina este cliente de la base de datos."""
         return self.delete()
+

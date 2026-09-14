@@ -1,8 +1,9 @@
-""" archivo gestion_cabanas.py: contiene la función principal para levantar el sistema de gestión de cabañas. """
+""" archivo para levantar el sistema de gestión de cabañas. """
 import os
 import sys
 import django
 from django.core.management import execute_from_command_line
+from django.core.exceptions import ImproperlyConfigured
 
 def main():
     """Levanta todo el sistema de gestión de cabañas."""
@@ -10,8 +11,8 @@ def main():
 
     try:
         django.setup()
-        print("✅ Sistema de gestión de cabañas inicializado correctamente")
-    except Exception as e:
+        print("✅ Sistema de gestión de cabañas  correctamente")
+    except (ImproperlyConfigured, ImportError, RuntimeError) as e:
         print("❌ Error al inicializar Django:", e)
         sys.exit(1)
 

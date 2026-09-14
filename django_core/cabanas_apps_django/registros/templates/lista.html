@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Lista de Registros</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Fecha</th>
+      <th>Activo</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for registro in registros %}
+    <tr>
+      <td>{{ registro.nombre }}</td>
+      <td>{{ registro.descripcion }}</td>
+      <td>{{ registro.fecha }}</td>
+      <td>{{ registro.activo|yesno:"Sí,No" }}</td>
+      <td>
+        <a href="{% url 'detalle_registro' registro.pk %}">Ver</a> |
+        <a href="{% url 'editar_registro' registro.pk %}">Editar</a> |
+        <a href="{% url 'eliminar_registro' registro.pk %}">Eliminar</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a href="{% url 'crear_registro' %}" class="btn btn-primary">Nuevo Registro</a>
+{% endblock %}

@@ -1,6 +1,7 @@
 """ este archivo contiene las rutas URL para la aplicación de chatbot."""
 
 # chatbot_api.py
+import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 

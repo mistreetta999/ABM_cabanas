@@ -1,3 +1,4 @@
+from decimal import Decimal
 """ Modelos de la aplicación Chatbot. """
 from django.db import models
 from ..clientes.models import Cliente
@@ -60,3 +61,4 @@ class ChatbotHandler(models.Model):
 
     def __str__(self):
         return f"{self.chatbot} - {self.message}"
+

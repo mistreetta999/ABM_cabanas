@@ -1,51 +1,71 @@
 """Archivo de configuración principal de Django"""
 import os
+import sys
 from pathlib import Path
 from dotenv import load_dotenv
 
+load_dotenv()  # carga el archivo .env en la raíz del proyecto
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+DEBUG = os.getenv("DEBUG", "False") == "True"
+
+
+base_dir
+
+ = Path(__file__).resolve().parent
+if base_dir
+
+.name in ["settings", "cabanas_principal", "config"]:
+    base_dir
+
+ = base_dir
+
+.parent
+
+# Cargar variables de entorno (.env)
+if load_dotenv is not None:
+    load_dotenv(base_dir
+
+ / ".env")
+
+# Detector automático de carpetas
+sys.path.append(str(base_dir
+
+))
+for root, dirs, files in os.walk(base_dir
+
+):
+    if any(part in root for part in ["venv", ".git", "__pycache__", "staticfiles", "media"]):
+        continue
+    if root not in sys.path:
+        sys.path.append(root)
+
+sys.path.append(str(base_dir
+
+ / "django_core" / "cabanas_apps_django"))
 
 def config(name, default=None):
-    """Obtiene una variable de entorno sin depender de python-decouple."""
-    return os.getenv(name, default)
+    """Obtiene una variable de entorno de forma segura."""
+    value = os.getenv(name)
+    return default if value is None else value
 
-load_dotenv()
+# Configuración de Seguridad
+SECRET_KEY = config("SECRET_KEY", default="django-insecure-default-key")
+DEBUG = str(config("DEBUG", "True")).lower() in ["true", "1", "yes"]
 
-SECRET_KEY = os.getenv("SECRET_KEY", "dummy-secret-key")
+# ALLOWED_HOSTS siempre como lista
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", "*").split(",")
+ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS if host.strip()]
 
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-# settings visuales
+# Settings visuales del Admin
 ADMIN_SITE_HEADER = "Gestión de Cabañas"
 ADMIN_SITE_TITLE = "Panel de Administración"
-ADMIN_INDEX_TITLE = "Bienvenida, Carolina"
+ADMIN_INDEX_TITLE = "Bienvenidos a cabanas"
 
-# Configuración principal: usa .env cuando existe; si no, usa valores por defecto.
-SECRET_KEY = config("SECRET_KEY", default="django-insecure-default-key")
-
-DEBUG = False
-ALLOWED_HOSTS = ['*']
-
-DB_NAME = config("DB_NAME", default="cabanas_db")
-DB_USER = config("DB_USER", default="usuario")
-DB_PASSWORD = config("DB_PASSWORD", default="")
-DB_HOST = config("DB_HOST", default="localhost")
-DB_PORT = config("DB_PORT", default="5432")
-
-if not SECRET_KEY:
-    raise ValueError("SECRET_KEY environment variable is not set. Please set it in your .env file.")
-
-# usuarios
+# Modelo de usuario personalizado
 #
-
-
-STATIC_URL = config("STATIC_URL", default="/static/")
-MEDIA_URL = config("MEDIA_URL", default="/media/")
-STATIC_ROOT = BASE_DIR / "staticfiles"
-MEDIA_ROOT = BASE_DIR / "media"
-
 # Aplicaciones instaladas
 INSTALLED_APPS = [
-    # Django apps por defecto
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -53,37 +73,24 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+    "cabanas_principal",
+    "cabanas_api",
 
-    # cabanas_apps
-    "alquileres",
-    "cabanas",
-    "clientes",
-    "gestion_cabanas",
-    "interfaz_gestion_cabanas",
-    "pagos",
-    "web",
-    "usuario",
-    "reservas",
-    "chatbot_app"
-
-   # Apps propias django
-    "django_core.cabanas_apps_django.alquileres",
-    "django_core.cabanas_apps_django.chatbot_app",
-    "django_core.cabanas_apps_django.reservas",
-    "django_core.cabanas_apps_django.cabanas",
-    "django_core.cabanas_apps_django.clientes",
-    #    "django_core.cabanas_apps_django.pagos",
-    "django_core.cabanas_apps_django.registros",
-    "django_core.cabanas_apps_django.usuarios",
-    "django_core.cabanas_apps_django.web",
-    "django_core.cabanas_apps_django.interfaz_gestion_cabanas",
-    # Django REST Framework y drf-spectacular
+    # Terceros
     "rest_framework",
     "drf_spectacular",
     "corsheaders",
-
-    # Extensiones útiles
     "django_extensions",
+
+    # Mis aplicaciones
+    "django_core.cabanas_apps_django.clientes",
+    "django_core.cabanas_apps_django.reservas",
+    "django_core.cabanas_apps_django.alquileres",
+    "django_core.cabanas_apps_django.cabanas",
+    "django_core.cabanas_apps_django.pagos",
+    "django_core.cabanas_apps_django.web",
+    "django_core.cabanas_apps_django.chatbot_app","django_core.cabanas_apps_django.registros",
+
 ]
 
 # Configuración de DRF + drf-spectacular
@@ -99,7 +106,7 @@ SPECTACULAR_SETTINGS = {
 
 # Middleware
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",   # ← debe ir arriba de CommonMiddleware
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -109,15 +116,18 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# Configuración CORS
+CORS_ALLOW_ALL_ORIGINS = True
 
-# URLs principales
-ROOT_URLCONF = "cabanas_principal.urls"
+ROOT_URLCONF = "django_core.core.urls"
 
 # Templates
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "Template"],
+        "DIRS": [base_dir
+
+ / "Templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -130,65 +140,38 @@ TEMPLATES = [
     },
 ]
 
-# Archivos estáticos y media
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
-# WSGI
 WSGI_APPLICATION = "cabanas_principal.wsgi.application"
 
-# Bases de datos: SQLite3 local + PostgreSQL opcional
-# Configuración de base de datos
-DJANGO_ENV = os.getenv("DJANGO_ENV", "development")
+# Base de datos
+DJANGO_ENV = config("DJANGO_ENV", "development")
 
 if DJANGO_ENV == "production":
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.getenv("DB_NAME", "cabanas_db"),
-            "USER": os.getenv("DB_USER", "carolina"),
-            "PASSWORD": os.getenv("DB_PASSWORD"),  # ← ya no queda hardcodeado
-            "HOST": os.getenv("DB_HOST", "localhost"),
-            "PORT": os.getenv("DB_PORT", "5432"),
+            "NAME": config("DB_NAME", "cabanas_db"),
+            "USER": config("DB_USER", "carolina"),
+            "PASSWORD": config("DB_PASSWORD", "1234"),
+            "HOST": config("DB_HOST", "localhost"),
+            "PORT": config("DB_PORT", "5432"),
         },
     }
 else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+            "NAME": base_dir
+
+ / "db.sqlite3",
         },
     }
 
 # Validación de contraseñas
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": (
-            "django.contrib.auth.password_validation."
-            "UserAttributeSimilarityValidator"
-        ),
-    },
-    {
-        "NAME": (
-            "django.contrib.auth.password_validation."
-            "MinimumLengthValidator"
-        ),
-    },
-    {
-        "NAME": (
-            "django.contrib.auth.password_validation."
-            "CommonPasswordValidator"
-        ),
-    },
-    {
-        "NAME": (
-            "django.contrib.auth.password_validation."
-            "NumericPasswordValidator"
-        ),
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
 # Internacionalización
@@ -197,5 +180,17 @@ TIME_ZONE = "America/Argentina/Cordoba"
 USE_I18N = True
 USE_TZ = True
 
-# Configuración por defecto
+# Archivos estáticos y multimedia
+STATIC_URL = "/static/"
+STATIC_ROOT = base_dir
+
+ / "staticfiles"
+STATICFILES_DIRS = [base_dir
+
+ / "static"]
+#MEDIA_URL = "/media/"
+MEDIA_ROOT = base_dir
+
+ / "media"
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

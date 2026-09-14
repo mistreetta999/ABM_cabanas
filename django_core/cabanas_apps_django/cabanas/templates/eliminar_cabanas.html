@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Cabaña</title>
+</head>
+<body>
+    <h1>Eliminar Cabaña</h1>
+    <p>¿Estás segura de que querés eliminar la cabaña {{ cabana.nombre }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Sí, eliminar</button>
+    </form>
+    <a href="{% url 'cabanas:detalle_cabana' cabana.pk %}">Cancelar</a>
+</body>
+</html>

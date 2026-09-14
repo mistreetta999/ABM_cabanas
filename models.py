@@ -1,3 +1,4 @@
+from decimal import Decimal
 """archivo principal models"""
 from django.db import models
 from django.utils import timezone
@@ -69,7 +70,7 @@ class Alquileres(models.Model):
     Cabanas= models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="alquileres")
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
-    monto_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    monto_total = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal("0.00"))
     estado = models.CharField(max_length=30, default="activo")
     class Meta:
         """Metadatos del modelo Alquileres."""
@@ -88,7 +89,7 @@ class Pago(models.Model):
     metodo = models.CharField(max_length=30)
     comprobante = models.CharField(max_length=200, blank=True)
     class Meta:
-        """ class meta"""
+        """Metadatos del modelo Pago."""
         verbose_name = "Pago"
         verbose_name_plural = "Pagos"
     def __str__(self) -> str:
@@ -103,6 +104,7 @@ class Registro(models.Model):
     responsable = models.CharField(max_length=100)
     creado_en = models.DateTimeField(auto_now_add=True)
     class Meta:
+        """Metadatos del modelo Registro."""
         verbose_name = "Registro"
         verbose_name_plural = "Registros"
 
@@ -117,6 +119,7 @@ class TemplatesModels(models.Model):
     fecha_modificacion = models.DateTimeField(auto_now=True)
 
     class Meta:
+        """Metadatos del modelo TemplatesModels."""
         verbose_name = "Plantilla"
         verbose_name_plural = "Plantillas"
 
@@ -131,6 +134,7 @@ class TempaltesModels(models.Model):
     fecha_modificacion = models.DateTimeField(auto_now=True)
 
     class Meta:
+        """Metadatos del modelo TempaltesModels."""
         verbose_name = "Plantilla"
         verbose_name_plural = "Plantillas"
 
@@ -144,10 +148,11 @@ class Formulario(models.Model):
     fecha_envio = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        """class meta"""
+        """Metadatos del modelo Formulario de contacto."""
         verbose_name = "Formulario de Contacto"
         verbose_name_plural = "Formularios de Contacto"
 
     def __str__(self) -> str:
         return f"Formulario de {self.nombre} - Email: {self.email} - Fecha de envío: {self.fecha_envio}"    
+
 

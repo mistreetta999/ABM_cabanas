@@ -1,21 +1,19 @@
 """URLs de la aplicación Public."""
-
 from django.urls import path
-from . import views
-
-app_name = "public"
+from public.views import (
+    AcercaDeTemplateView,
+    AcercaDeView,
+    ContactoTemplateView,
+    ContactoView,
+    HomeTemplateView,
+    HomeView,
+)
 
 urlpatterns = [
-    # Páginas principales
-    path("", views.HomeView.as_view(), name="home"),
-    path("nosotros/", views.NosotrosView.as_view(), name="nosotros"),
-    path("contacto/", views.ContactoView.as_view(), name="contacto"),
-
-    # Catálogo de cabañas
-    path("cabanas/", views.CabanaListView.as_view(), name="cabanas"),
-    path("cabanas/<int:pk>/", views.CabanaDetailView.as_view(), name="cabana_detail"),
-
-    # Disponibilidad y reservas públicas
-    path("disponibilidad/", views.disponibilidad, name="disponibilidad"),
-    path("reservar/<int:cabana_id>/", views.reservar_cabana, name="reservar_cabana"),
+    path("", HomeView.as_view(), name="home"),
+    path("acerca-de/", AcercaDeView.as_view(), name="acerca_de"),
+    path("contacto/", ContactoView.as_view(), name="contacto"),
+    path("home-template/", HomeTemplateView.as_view(), name="home_template"),
+    path("acerca-de-template/", AcercaDeTemplateView.as_view(), name="acerca_de_template"),
+    path("contacto-template/", ContactoTemplateView.as_view(), name="contacto_template"),
 ]

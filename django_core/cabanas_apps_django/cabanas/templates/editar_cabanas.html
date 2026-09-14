@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Cabaña</title>
+</head>
+<body>
+    <h1>Editar {{ cabana.nombre }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Actualizar</button>
+    </form>
+    <a href="{% url 'cabanas:detalle_cabana' cabana.pk %}">Volver al detalle</a>
+</body>
+</html>

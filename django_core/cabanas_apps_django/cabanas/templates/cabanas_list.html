@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Cabañas</title>
+</head>
+<body>
+    <h1>Cabañas disponibles</h1>
+    <ul>
+        {% for cabana in cabanas %}
+            <li>
+                <a href="{% url 'cabanas:detalle_cabana' cabana.pk %}">
+                    {{ cabana.nombre }} - Capacidad: {{ cabana.capacidad }}
+                </a>
+            </li>
+        {% empty %}
+            <li>No hay cabañas registradas.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'cabanas:crear_cabana' %}">Registrar nueva cabaña</a>
+</body>
+</html>

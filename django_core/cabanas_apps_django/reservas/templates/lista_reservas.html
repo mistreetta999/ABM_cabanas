@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Reservas</title>
+</head>
+<body>
+    <h1>Reservas</h1>
+    <ul>
+        {% for reserva in reservas %}
+            <li>
+                <a href="{% url 'reservas:detalle_reserva' reserva.pk %}">
+                    {{ reserva.cliente }} - {{ reserva.cabana }} ({{ reserva.fecha_inicio }} → {{ reserva.fecha_fin }})
+                </a>
+            </li>
+        {% empty %}
+            <li>No hay reservas registradas.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'reservas:crear_reserva' %}">Crear nueva reserva</a>
+</body>
+</html>

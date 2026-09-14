@@ -196,7 +196,6 @@ python manage.py makemigrations alquileres
 python manage.py makemigrations registros
 python manage.py makemigrations reservas
 python manage.py makemigrations cabanas
-python manage.py makemigrations gestion_cabanas
 python manage.py makemigrations chatbot_app
 python manage.py migrate
 importante ejecutar en raiz
@@ -214,3 +213,7 @@ Get-ChildItem C:\Users\carol\OneDrive\Desktop\cabanas\Templates\html_local -Filt
 Get-ChildItem C:\Users\carol\OneDrive\Desktop\cabanas\Templates\images -Filter *.html
 Get-ChildItem C:\Users\carol\OneDrive\Desktop\cabanas\Templates\migrates -Filter *.html
 Get-ChildItem C:\Users\carol\OneDrive\Desktop\cabanas\Templates\migratios -Filter *.html
+pip install djangorestframework
+pip uninstall djangorestframework -y
+pip install djangorestframework
+

@@ -4,51 +4,33 @@ import sys
 from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()  # carga el archivo .env en la raíz del proyecto
-
-SECRET_KEY = os.getenv("SECRET_KEY")
-DEBUG = os.getenv("DEBUG", "False") == "True"
-
-
-# pylint: disable=invalid-name
-BASE_DIR = Path(__file__).resolve().parent
-if BASE_DIR.name in ["settings", "cabanas_principal", "config"]:
-    BASE_DIR = BASE_DIR.parent
-
-# Cargar variables de entorno (.env)
-if load_dotenv is not None:
-    load_dotenv(BASE_DIR / ".env")
-
-# Detector automático de carpetas
-sys.path.append(str(BASE_DIR))
-for root, dirs, files in os.walk(BASE_DIR):
-    if any(part in root for part in ["venv", ".git", "__pycache__", "staticfiles", "media"]):
-        continue
-    if root not in sys.path:
-        sys.path.append(root)
-
-sys.path.append(str(BASE_DIR / "django_core" / "cabanas_apps_django"))
+# Cargar variables de entorno
+load_dotenv()
 
 def config(name, default=None):
     """Obtiene una variable de entorno de forma segura."""
     value = os.getenv(name)
     return default if value is None else value
 
-# Configuración de Seguridad
+# Base del proyecto (en minúsculas, consistente)
+base_dir = Path(__file__).resolve().parent
+
+# Ajustar sys.path para que Django encuentre las apps
+sys.path.append(str(base_dir))
+sys.path.append(str(base_dir / "django_core" / "cabanas_apps_django"))
+
+# Seguridad
 SECRET_KEY = config("SECRET_KEY", default="django-insecure-default-key")
 DEBUG = str(config("DEBUG", "True")).lower() in ["true", "1", "yes"]
 
-# ALLOWED_HOSTS siempre como lista
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", "*").split(",")
 ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS if host.strip()]
 
-# Settings visuales del Admin
+# Admin visual
 ADMIN_SITE_HEADER = "Gestión de Cabañas"
 ADMIN_SITE_TITLE = "Panel de Administración"
 ADMIN_INDEX_TITLE = "Bienvenidos a cabanas"
 
-# Modelo de usuario personalizado
-#
 # Aplicaciones instaladas
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -57,25 +39,28 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.sites",
-    "cabanas_api",   
-    "cabanas_principal",
+
     # Terceros
     "rest_framework",
     "drf_spectacular",
     "corsheaders",
     "django_extensions",
+    "crispy_forms",
+    "crispy_bootstrap5",
 
-    # Mis aplicaciones
+    # Mis aplicaciones reales
     "django_core.cabanas_apps_django.clientes",
     "django_core.cabanas_apps_django.reservas",
+    "django_core.cabanas_apps_django.alquileres",
     "django_core.cabanas_apps_django.cabanas",
     "django_core.cabanas_apps_django.pagos",
+    "django_core.cabanas_apps_django.facturas",
     "django_core.cabanas_apps_django.web",
     "django_core.cabanas_apps_django.chatbot_app",
+    "django_core.cabanas_apps_django.registros",
 ]
 
-# Configuración de DRF + drf-spectacular
+# DRF + drf-spectacular
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
@@ -89,6 +74,7 @@ SPECTACULAR_SETTINGS = {
 # Middleware
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -101,27 +87,9 @@ MIDDLEWARE = [
 # Configuración CORS
 CORS_ALLOW_ALL_ORIGINS = True
 
-
-ROOT_URLCONF = "cabanas_principal.urls"
-
-# Templates
-TEMPLATES = [
-    {
-        "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "Templates"],
-        "APP_DIRS": True,
-        "OPTIONS": {
-            "context_processors": [
-                "django.template.context_processors.debug",
-                "django.template.context_processors.request",
-                "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages",
-            ],
-        },
-    },
-]
-
-WSGI_APPLICATION = "cabanas_principal.wsgi.application"
+# URLs y WSGI
+ROOT_URLCONF = "django_core.core.urls"
+WSGI_APPLICATION = "django_core.core.wsgi.application"
 
 # Base de datos
 DJANGO_ENV = config("DJANGO_ENV", "development")
@@ -133,9 +101,6 @@ if DJANGO_ENV == "production":
             "NAME": config("DB_NAME", "cabanas_db"),
             "USER": config("DB_USER", "carolina"),
             "PASSWORD": config("DB_PASSWORD", "1234"),
-
-    
-
             "HOST": config("DB_HOST", "localhost"),
             "PORT": config("DB_PORT", "5432"),
         },
@@ -144,7 +109,7 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+            "NAME": base_dir / "db.sqlite3",
         },
     }
 
@@ -164,8 +129,31 @@ USE_TZ = True
 
 # Archivos estáticos y multimedia
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-#MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+STATICFILES_DIRS = [base_dir / "static"]
+STATIC_ROOT = base_dir / "staticfiles"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = base_dir / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Bootstrap 5 para formularios
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# Templates
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [base_dir / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
+    },
+]

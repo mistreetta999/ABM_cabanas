@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de Cabaña</title>
+</head>
+<body>
+    <h1>{{ cabana.nombre }}</h1>
+    <p><strong>Capacidad:</strong> {{ cabana.capacidad }}</p>
+    <p><strong>Descripción:</strong> {{ cabana.descripcion }}</p>
+    <p><strong>Precio por noche:</strong> ${{ cabana.precio_noche }}</p>
+
+    <a href="{% url 'cabanas:editar_cabana' cabana.pk %}">Editar</a> |
+    <a href="{% url 'cabanas:eliminar_cabana' cabana.pk %}">Eliminar</a> |
+    <a href="{% url 'cabanas:lista_cabanas' %}">Volver a la lista</a>
+</body>
+</html>

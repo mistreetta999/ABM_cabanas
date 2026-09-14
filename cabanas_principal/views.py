@@ -61,3 +61,10 @@ class CabanaListView(ListView):
     model = apps.get_model("cabanas_api", "Cabana")
     template_name = "cabanas/list.html"
     context_object_name = "cabanas"
+class ClienteViewSet(View):
+    """Vista de cliente para la API."""
+    def get(self, request, *_args, **_kwargs):
+        """Devuelve la lista de clientes en formato JSON."""
+        _ = request.method
+        clientes = list(Cliente.objects.values())  # pylint: disable=no-member
+        return JsonResponse({"clientes": clientes}, status=200)

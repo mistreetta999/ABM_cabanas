@@ -9,24 +9,23 @@ from .views import (
     PagoDetailView,
 )
 
+# pylint: disable=invalid-name
 app_name = "pagos"
 
 urlpatterns = [
-    # CRUD de pagos
-    path("", PagoListView.as_view(), name="pago_list"),
-    path("nuevo/", PagoCreateView.as_view(), name="pago_create"),
-    path("<int:pk>/", PagoDetailView.as_view(), name="pago_detail"),
-    path("<int:pk>/editar/", PagoUpdateView.as_view(), name="pago_update"),
-    path("<int:pk>/borrar/", PagoDeleteView.as_view(), name="pago_delete"),
+    path("", PagoListView.as_view(), name="lista_pagos"),
+    path("<int:pk>/", PagoDetailView.as_view(), name="detalle_pago"),
+    path("crear/", PagoCreateView.as_view(), name="crear_pago"),
+    path("<int:pk>/editar/", PagoUpdateView.as_view(), name="editar_pago"),
+    path("<int:pk>/eliminar/", PagoDeleteView.as_view(), name="eliminar_pago"),
+    path("alquileres/", include("django_core.cabanas_apps_django.alquileres.urls")),
 
     # 🔗 Integraciones con otras apps del sistema
-    path("cabanas/", include("cabanas.urls")),            # relación con cabañas
-    path("alquileres/", include("alquileres.urls")),      # relación con alquileres
-    path("reservas/", include("reservas.urls")),          # relación con reservas
-    path("clientes/", include("clientes.urls")),          # relación con clientes
-    path("facturas/", include("facturas.urls")),          # relación con facturas
-    path("usuarios/", include("usuarios.urls")),          # relación con usuarios
-    path("chatbot/", include("chatbot_app.urls")),        # relación con chatbot
-    path("gestion/", include("gestion_cabanas.urls")),    # relación con gestión de cabañas
-    path("interfaz/", include("interfaz_gestion_cabanas.urls")),  # relación con interfaz de gestión
+    path("cabanas/", include("cabanas.urls")),
+    path("clientes/", include("clientes.urls")),
+    path("facturas/", include("facturas.urls")),
+    path("usuarios/", include("usuarios.urls")),
+    path("chatbot/", include("chatbot_app.urls")),
+    path("gestion/", include("gestion_cabanas.urls")),
+    path("interfaz/", include("interfaz_gestion_cabanas.urls")),
 ]

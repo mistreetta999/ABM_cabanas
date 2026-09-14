@@ -5,6 +5,7 @@ from django.contrib import admin
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("", include("ABRIR.urls")),
     path("", include("django_core.cabanas_apps_django.web.urls")),
     path("pagina_principal.html", TemplateView.as_view(template_name="pagina_principal.html"), name="pagina_principal_html_sin_barra"),
     path("", include("cabanas_principal.urls")),

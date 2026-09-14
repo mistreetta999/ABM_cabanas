@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Facturas</title>
+</head>
+<body>
+    <h1>Facturas</h1>
+    <ul>
+        {% for factura in facturas %}
+            <li>
+                <a href="{% url 'facturas:detalle_factura' factura.pk %}">
+                    Factura Nº {{ factura.numero }} - Cliente: {{ factura.cliente }}
+                </a>
+            </li>
+        {% empty %}
+            <li>No hay facturas registradas.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'facturas:crear_factura' %}">Crear nueva factura</a>
+</body>
+</html>

@@ -1,3 +1,4 @@
+from decimal import Decimal
 """models"""
 from django.db import models
 from cabanas_apps.cabanas.models import Cabana
@@ -26,3 +27,4 @@ class Alquiler(models.Model):
         reserva_ref = getattr(self, "reserva_id", None)
         reserva_ref = reserva_ref if reserva_ref is not None else "sin reserva"
         return f"Alquiler {self.pk} - {reserva_ref}"
+

@@ -1,3 +1,4 @@
+from decimal import Decimal
 """ cabana models"""
 from django.db import models
 
