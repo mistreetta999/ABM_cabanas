@@ -1,5 +1,7 @@
 """Conexión a PostgreSQL para el proyecto de cabañas."""
+
 import os
+
 import psycopg2
 from psycopg2 import sql
 
@@ -9,6 +11,7 @@ DB_USER = os.getenv("DB_USER", "carolina")
 DB_PASSWORD = os.getenv("DB_PASSWORD", "1234")
 DB_HOST = os.getenv("DB_HOST", "localhost")
 DB_PORT = os.getenv("DB_PORT", "5432")
+
 
 def get_connection():
     """Devuelve una conexión activa a PostgreSQL."""
@@ -24,6 +27,7 @@ def get_connection():
     except Exception as e:
         raise RuntimeError(f"Error al conectar con PostgreSQL: {e}") from e
 
+
 def execute_query(query, params=None):
     """Ejecuta una consulta SQL y devuelve los resultados."""
     conn = get_connection()
@@ -35,6 +39,7 @@ def execute_query(query, params=None):
             conn.commit()
     finally:
         conn.close()
+
 
 def init_test():
     """Prueba rápida de conexión."""

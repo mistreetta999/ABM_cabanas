@@ -1,12 +1,15 @@
 from django.shortcuts import render
-from cabanas_api.clientes.forms import ClienteForm
-from cabanas_api.reservas.forms import ReservaForm
+
 from cabanas_api.cabanas.forms import CabanaForm
+from cabanas_api.clientes.forms import ClienteForm
 from cabanas_api.pagos.forms import PagoForm
+from cabanas_api.reservas.forms import ReservaForm
+
 
 # Vista para la página principal
 def pagina_principal(request):
     return render(request, "pagina_principal.html")
+
 
 # Vista para manejar los formularios
 def panel_forms(request):
@@ -22,6 +25,7 @@ def panel_forms(request):
         "pago_form": pago_form,
     }
     return render(request, "forms_panel.html", context)
+
 
 # Vista para el chatbot
 def panel_chatbot(request):

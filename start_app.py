@@ -1,8 +1,9 @@
-""" star"""
+"""star"""
+
 import os
 import subprocess
-import webbrowser
 import time
+import webbrowser
 
 # Activar entorno virtual (opcional si ya está activo)
 venv_path = os.path.join(os.getcwd(), ".venv", "Scripts", "python.exe")

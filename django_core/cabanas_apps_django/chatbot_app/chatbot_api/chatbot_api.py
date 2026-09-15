@@ -1,14 +1,16 @@
-""" este archivo contiene las rutas URL para la aplicación de chatbot."""
+"""este archivo contiene las rutas URL para la aplicación de chatbot."""
 
 # chatbot_api.py
 import json
+
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+
 
 # Vista principal del chatbot API
 @csrf_exempt
 def chatbot_api(request):
-    """"chatbot api"""
+    """ "chatbot api"""
     if request.method == "POST":
         try:
             data = json.loads(request.body.decode("utf-8"))

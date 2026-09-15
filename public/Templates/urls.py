@@ -1,4 +1,5 @@
 """URLs para agrupar las vistas que usan templates del sistema."""
+
 from django.urls import include, path
 
 app_name = "templates"

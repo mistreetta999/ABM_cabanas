@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Cabañas - Panel Interactivo</title>
+    <!-- Tailwind CSS & Flowbite para interactividad -->
+    <script src="https://tailwindcss.com"></script>
+    <link href="https://cloudflare.com" rel="stylesheet" />
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen font-sans">
+
+    <!-- Barra de Navegación Superior -->
+    <nav class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
+        <div class="flex flex-wrap justify-between items-center">
+            <span class="text-xl font-bold tracking-tight text-emerald-600 dark:text-emerald-500">🏡 Cabañas Espíndola</span>
+            <span class="text-sm text-gray-500 dark:text-gray-400">Usuario: {{ request.user.username }}</span>
+        </div>
+    </nav>
+
+    <!-- Contenedor Principal -->
+    <div class="p-4 pt-20 max-w-7xl mx-auto space-y-6">
+        
+        <!-- Tarjetas de Estado Rápido -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="p-4 bg-white rounded-lg shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                <p class="text-sm font-medium text-gray-500">Cabañas Registradas</p>
+                <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ total_cabanas }}</p>
+            </div>
+            <div class="p-4 bg-white rounded-lg shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                <p class="text-sm font-medium text-gray-500">Total Reservas</p>
+                <p class="text-2xl font-bold text-emerald-600">{{ total_reservas }}</p>
+            </div>
+            <div class="p-4 bg-white rounded-lg shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                <p class="text-sm font-medium text-gray-500">Clientes Activos</p>
+                <p class="text-2xl font-bold text-blue-600">{{ total_clientes }}</p>
+            </div>
+        </div>
+
+        <!-- Menú de Pestañas Interactivas (Tabs) -->
+        <div class="border-b border-gray-200 dark:border-gray-700">
+            <ul class="flex flex-wrap -b-px text-sm font-medium text-center" id="dashboard-tab" data-tabs-toggle="#dashboard-tab-content" role="tablist">
+                <li class="mr-2" role="presentation">
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="cabanas-tab" data-tabs-target="#cabanas-panel" type="button" role="tab" aria-controls="cabanas-panel" aria-selected="true">🏡 Mis Cabañas</button>
+                </li>
+                <li class="mr-2" role="presentation">
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg border-transparent" id="reservas-tab" data-tabs-target="#reservas-panel" type="button" role="tab" aria-controls="reservas-panel" aria-selected="false">📅 Calendario y Reservas</button>
+                </li>
+                <li class="mr-2" role="presentation">
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg border-transparent" id="clientes-tab" data-tabs-target="#clientes-panel" type="button" role="tab" aria-controls="clientes-panel" aria-selected="false">👥 Clientes</button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Contenido de los Paneles -->
+        <div id="dashboard-tab-content">
+            <!-- PANEL 1: CABAÑAS -->
+            <div class="hidden p-4 bg-white rounded-lg border border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700" id="cabanas-panel" role="tabpanel" aria-labelledby="cabanas-tab">
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Estado de las Cabañas</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {% for cabana in cabanas %}
+                    <div class="p-4 border rounded-lg bg-gray-50 hover:shadow transition-md">
+                        <h4 class="font-bold text-gray-800">{{ cabana.nombre }}</h4>
+                        <p class="text-sm text-gray-500">Capacidad: {{ cabana.capacidad }} personas</p>
+                        <span class="inline-block mt-2 px-2.5 py-0.5 text-xs font-semibold rounded bg-green-100 text-green-800">Disponible</span>
+                    </div>
+                    {% empty %}
+                    <p class="text-gray-500 text-sm">No hay cabañas dadas de alta aún.</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- PANEL 2: RESERVAS -->
+            <div class="hidden p-4 bg-white rounded-lg border border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700" id="reservas-panel" role="tabpanel" aria-labelledby="reservas-tab">
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Últimas Reservas</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th class="px-6 py-3">Cliente</th>
+                                <th class="px-6 py-3">Cabaña</th>
+                                <th class="px-6 py-3">Ingreso</th>
+                                <th class="px-6 py-3">Egreso</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for reserva in reservas %}
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="px-6 py-4 font-medium text-gray-900">{{ reserva.cliente }}</td>
+                                <td class="px-6 py-4">{{ reserva.cabana }}</td>
+                                <td class="px-6 py-4">{{ reserva.fecha_inicio }}</td>
+                                <td class="px-6 py-4">{{ reserva.fecha_fin }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr class="bg-white border-b"><td colspan="4" class="px-6 py-4 text-center">No hay reservas cargadas.</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PANEL 3: CLIENTES -->
+            <div class="hidden p-4 bg-white rounded-lg border border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700" id="clientes-panel" role="tabpanel" aria-labelledby="clientes-tab">
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Cartera de Clientes</h3>
+                <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+                    {% for cliente in clientes %}
+                    <li class="py-3 sm:py-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">{{ cliente.nombre }} {{ cliente.apellido }}</p>
+                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">{{ cliente.email }}</p>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script de Flowbite necesario para dar dinamismo a las pestañas -->
+    <script src="https://cloudflare.com"></script>
+</body>
+</html>

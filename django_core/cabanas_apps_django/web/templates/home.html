@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Principal - Gestión de Cabañas</title>
+    <!-- Bootstrap 5 e Iconos de Bootstrap -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <link rel="stylesheet" href="https://jsdelivr.net">
+</head>
+<body class="bg-light">
+
+    <!-- Menú de Navegación del Sistema Completo -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="/"><i class="bi bi-house-heart"></i> Gestión Cabañas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="/"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/cabanas/"><i class="bi bi-house"></i> Cabañas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/reservas/"><i class="bi bi-calendar-check"></i> Reservas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/clientes/"><i class="bi bi-people"></i> Clientes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/pagos/"><i class="bi bi-credit-card"></i> Pagos</a></li>
+                    <li class="nav-item"><a class="nav-link text-warning" href="/admin/"><i class="bi bi-lock-visible"></i> Admin Django</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cuerpo Principal del Dashboard -->
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col text-center text-md-start">
+                <h2 class="fw-bold text-secondary">Panel de Control General</h2>
+                <p class="text-muted">Bienvenida, Carolina. Aquí tenés el acceso total a los módulos de tu negocio.</p>
+            </div>
+        </div>
+
+        <!-- Fichas de Control de tus Aplicaciones Reales -->
+        <div class="row g-4 text-center">
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card p-3 border-0 bg-primary text-white shadow-sm h-100">
+                    <div class="card-body">
+                        <i class="bi bi-houses fs-1 mb-2"></i>
+                        <h4 class="card-title fw-bold">Módulo Cabañas</h4>
+                        <p class="card-text small opacity-75">Control de unidades, disponibilidad y mantenimiento.</p>
+                        <a href="/cabanas/" class="btn btn-light btn-sm text-primary fw-bold mt-2">Gestionar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card p-3 border-0 bg-success text-white shadow-sm h-100">
+                    <div class="card-body">
+                        <i class="bi bi-calendar3 fs-1 mb-2"></i>
+                        <h4 class="card-title fw-bold">Módulo Reservas</h4>
+                        <p class="card-text small opacity-75">Check-in, check-out y bloqueos de fechas de estadías.</p>
+                        <a href="/reservas/" class="btn btn-light btn-sm text-success fw-bold mt-2">Administrar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card p-3 border-0 bg-warning text-dark shadow-sm h-100">
+                    <div class="card-body">
+                        <i class="bi bi-people-fill fs-1 mb-2"></i>
+                        <h4 class="card-title fw-bold text-dark">Módulo Clientes</h4>
+                        <p class="card-text small opacity-75">Altas de huéspedes, registros de contacto y datos de DNI.</p>
+                        <a href="/clientes/" class="btn btn-dark btn-sm text-white fw-bold mt-2">Ver Base</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card p-3 border-0 bg-danger text-white shadow-sm h-100">
+                    <div class="card-body">
+                        <i class="bi bi-wallet2 fs-1 mb-2"></i>
+                        <h4 class="card-title fw-bold">Módulo Pagos</h4>
+                        <p class="card-text small opacity-75">Saldos señados, balances de caja y facturación.</p>
+                        <a href="/pagos/" class="btn btn-light btn-sm text-danger fw-bold mt-2">Caja</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script de Bootstrap para el correcto funcionamiento de menús móviles -->
+    <script src="https://jsdelivr.net"></script>
+</body>
+</html>

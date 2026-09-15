@@ -1,11 +1,11 @@
-""" mediador"""
+"""mediador"""
+
 from __future__ import annotations
 
 import subprocess
 import time
 import webbrowser
 from pathlib import Path
-
 
 PROJECT_DIR = Path(__file__).resolve().parent
 PYTHON = PROJECT_DIR / ".venv" / "Scripts" / "python.exe"
@@ -14,7 +14,7 @@ PUBLIC_DIR = PROJECT_DIR / "public"
 
 
 def ejecutar_check_django() -> bool:
-    """"def ejecutar chek """
+    """ "def ejecutar chek"""
     print("Verificando Django...")
     resultado = subprocess.run(
         [str(PYTHON), str(MANAGE), "check"],
@@ -26,7 +26,7 @@ def ejecutar_check_django() -> bool:
 
 
 def iniciar_django() -> subprocess.Popen[str] | None:
-    """ def iniciar"""
+    """def iniciar"""
     print("Levantando Django con la configuracion por defecto de runserver...")
     return subprocess.Popen(
         [
@@ -41,7 +41,7 @@ def iniciar_django() -> subprocess.Popen[str] | None:
 
 
 def validar_archivos() -> None:
-    """ validar archivos"""
+    """validar archivos"""
     faltantes = [
         ruta
         for ruta in (
@@ -59,7 +59,7 @@ def validar_archivos() -> None:
 
 
 def abrir_paginas() -> None:
-    """ def abrir"""
+    """def abrir"""
     paginas = [
         PUBLIC_DIR / "pagina_principal.html",
         PUBLIC_DIR / "index.html",
@@ -71,14 +71,14 @@ def abrir_paginas() -> None:
 
 
 def detener_procesos(procesos: list[subprocess.Popen[str]]) -> None:
-    """ detener"""
+    """detener"""
     for proceso in procesos:
         if proceso.poll() is None:
             proceso.terminate()
 
 
 def main() -> int:
-    """ def main"""
+    """def main"""
     procesos: list[subprocess.Popen[str]] = []
 
     try:

@@ -216,4 +216,13 @@ Get-ChildItem C:\Users\carol\OneDrive\Desktop\cabanas\Templates\migratios -Filte
 pip install djangorestframework
 pip uninstall djangorestframework -y
 pip install djangorestframework
+python -m pip install gunicorn
+python -m PyInstaller --hidden-import=django --hidden-import=django.core.management app.py
+.\venv\Scripts\Activate.ps1
+pip freeze > requirements.txt
+pip install -r requirements.txt
+para el despliegue
+cd C:\despliegue_cabanas
+.\iniciar_servidor.bat
+
 

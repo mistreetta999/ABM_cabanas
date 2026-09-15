@@ -1,19 +1,22 @@
 """archivo de urls para la app alquileres"""
-from django.shortcuts import render, get_object_or_404, redirect
-from django.db import models
-from pathlib import Path
+
 from logging import getLogger
+from pathlib import Path
+
+from django.db import models
+from django.shortcuts import get_object_or_404, redirect, render
 
 LOGGER = getLogger(__name__)
 from cabanas_apps.cabanas.models import Cabanas
-
 from cabanas_apps.clientes.models import Cliente
 from cabanas_apps.reservas.models import Reserva
 
 directories = Path(".").parents
 
+
 class Alquiler(models.Model):
     """class Alquiler models"""
+
     id = models.AutoField(primary_key=True)
     objects = models.Manager()
     cabanas = models.ForeignKey(Cabanas, on_delete=models.CASCADE)
@@ -31,16 +34,18 @@ def listar_alquileres(request):
     alquileres = Alquiler.objects.all()
     return render(request, "lista_cabanas.html", {"alquileres": alquileres})
 
+
 def detalle_alquiler(request, alquiler_id):
     """Muestra el detalle de un alquiler específico."""
     alquiler = get_object_or_404(Alquiler, pk=alquiler_id)
     return render(request, "pagina_principal/detalle.html", {"alquiler": alquiler})
 
+
 def crear_alquiler(request, reserva_id):
     """Crea un nuevo alquiler a partir de una reserva."""
     reserva = get_object_or_404(Reserva, pk=reserva_id)
     cliente = reserva.cliente
-    Cabanas= reserva.Cabanas
+    Cabanas = reserva.Cabanas
     if request.method == "POST":
         fecha_inicio = request.POST.get("fecha_inicio")
         fecha_fin = request.POST.get("fecha_fin")
@@ -49,16 +54,16 @@ def crear_alquiler(request, reserva_id):
         alquiler = Alquiler.objects.create(
             reserva=reserva,
             cliente=cliente,
-            Cabanas=Cabanas
-,
+            Cabanas=Cabanas,
             fecha_inicio=fecha_inicio,
             fecha_fin=fecha_fin,
             monto_total=monto_total,
-            estado="activo"
+            estado="activo",
         )
         return redirect("detalle_alquiler", alquiler_id=alquiler.id)
 
     return render(request, "pagina_principal/formulario.html", {"reserva": reserva})
+
 
 def borrar_alquiler(request, alquiler_id):
     """Elimina un alquiler existente."""
@@ -68,4 +73,6 @@ def borrar_alquiler(request, alquiler_id):
         alquiler.delete()
         return redirect("listar_alquileres")
 
-    return render(request, "pagina_principal/confirma_borrar.html", {"alquiler": alquiler})
+    return render(
+        request, "pagina_principal/confirma_borrar.html", {"alquiler": alquiler}
+    )

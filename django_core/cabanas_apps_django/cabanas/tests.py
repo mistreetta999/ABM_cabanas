@@ -1,11 +1,13 @@
-""" test cabanas"""
+"""test cabanas"""
+
 # pylint: disable=E1101
 from django.test import TestCase
+
 from .models import Cabana
 
 
 class CabanaModelTest(TestCase):
-    """ class cabanas test"""
+    """class cabanas test"""
 
     def setUp(self):
         self.cabana = Cabana.objects.create(
@@ -17,9 +19,9 @@ class CabanaModelTest(TestCase):
         )
 
     def test_cabana_str(self):
-        """ test cabanas"""
+        """test cabanas"""
         self.assertEqual(str(self.cabana), "Cabana Test")
 
     def test_cabana_disponible(self):
-        """  test disponibilidad"""
+        """test disponibilidad"""
         self.assertTrue(self.cabana.disponible)

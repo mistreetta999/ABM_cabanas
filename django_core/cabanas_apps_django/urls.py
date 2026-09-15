@@ -1,6 +1,6 @@
 """URLs principales de cabanas_apps_django"""
 
-from django.urls import path, include
+from django.urls import include, path
 
 urlpatterns = [
     # Rutas de cada app interna

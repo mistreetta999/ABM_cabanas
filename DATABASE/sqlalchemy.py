@@ -1,8 +1,10 @@
 """Módulo de conexión con SQLAlchemy"""
+
 import os
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
+
 from dotenv import load_dotenv
+from sqlalchemy import create_engine
+from sqlalchemy.orm import declarative_base, sessionmaker
 
 # Cargar variables de entorno desde .env
 load_dotenv()
@@ -23,6 +25,7 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Base para modelos
 Base = declarative_base()
+
 
 def get_db():
     """Devuelve una sesión de base de datos"""

@@ -1,15 +1,13 @@
 """archivo de urls del proyecto django_local"""
+
 from django.urls import include, path
 
 urlpatterns = [
     # Administración Django
-
     # Punto de entrada de gestión
     path("gestion/", include("cabanas_apps.gestion_cabanas.urls")),
-
     # Interfaz principal
     path("interfaz/", include("django_core.cabanas_apps_django_interfaz_urls")),
-
     # Apps del sistema de cabañas
     path("cabanas/", include("cabanas_apps.cabanas.urls")),
     path("reservas/", include("cabanas_apps.reservas.urls")),

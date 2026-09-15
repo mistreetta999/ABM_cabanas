@@ -12,7 +12,6 @@ from django.utils import timezone
 from django.utils.dateparse import parse_date
 from django.utils.translation import gettext_lazy as _
 
-
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 ONLY_DIGITS_RE = re.compile(r"\D+")
 
@@ -81,7 +80,11 @@ def validar_email(valor: Any, *, obligatorio: bool = True) -> str:
 def convertir_fecha(valor: Any, nombre_campo: str = "fecha") -> date:
     """Convierte date, datetime o texto YYYY-MM-DD en date."""
     if isinstance(valor, datetime):
-        return timezone.localtime(valor).date() if timezone.is_aware(valor) else valor.date()
+        return (
+            timezone.localtime(valor).date()
+            if timezone.is_aware(valor)
+            else valor.date()
+        )
     if isinstance(valor, date):
         return valor
     fecha = parse_date(limpiar_texto(valor))
@@ -123,4 +126,6 @@ def validar_monto(valor: Any, *, campo: str = "monto") -> Decimal:
 def esta_ocupado_en_rango(queryset: Any, fecha_inicio: Any, fecha_fin: Any) -> bool:
     """Comprueba superposicion de fechas en un queryset de reservas/alquileres."""
     pagina_principal, fin = validar_rango_fechas(fecha_inicio, fecha_fin)
-    return queryset.filter(fecha_inicio__lt=fin, fecha_fin__gt=pagina_principal).exists()
+    return queryset.filter(
+        fecha_inicio__lt=fin, fecha_fin__gt=pagina_principal
+    ).exists()

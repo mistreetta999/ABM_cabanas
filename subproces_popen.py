@@ -1,8 +1,10 @@
-""" popen"""
+"""popen"""
+
 import os
 import subprocess
-import webbrowser
 import time
+import webbrowser
+
 
 def iniciar_proyecto():
     """
@@ -10,7 +12,9 @@ def iniciar_proyecto():
     y abre el panel principal que conecta con todas las apps.
     """
     # Ruta al intérprete del entorno virtual
-    venv_python = os.path.join(os.getcwd(), "..", "..", ".venv", "Scripts", "python.exe")
+    venv_python = os.path.join(
+        os.getcwd(), "..", "..", ".venv", "Scripts", "python.exe"
+    )
 
     # Ruta al manage.py en la raíz del proyecto
     manage_py = os.path.join(os.getcwd(), "..", "..", "manage.py")
@@ -29,6 +33,7 @@ def iniciar_proyecto():
 
     # Mantiene el servidor activo
     servidor.wait()
+
 
 if __name__ == "__main__":
     iniciar_proyecto()

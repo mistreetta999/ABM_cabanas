@@ -1,5 +1,7 @@
 """Modelo que representa a un usuario registrado."""
+
 from django.db import models
+
 
 class Usuario(models.Model):
     """Representa a un usuario registrado."""

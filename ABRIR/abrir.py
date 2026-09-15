@@ -1,7 +1,8 @@
 import os
 import subprocess
-import webbrowser
 import time
+import webbrowser
+
 
 def abrir_django():
     # Ruta absoluta al manage.py
@@ -25,6 +26,7 @@ def abrir_django():
 
     # Mantener el servidor activo
     servidor.wait()
+
 
 if __name__ == "__main__":
     abrir_django()

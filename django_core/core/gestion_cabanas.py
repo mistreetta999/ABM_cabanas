@@ -1,9 +1,12 @@
-""" archivo para levantar el sistema de gestión de cabañas. """
+"""archivo para levantar el sistema de gestión de cabañas."""
+
 import os
 import sys
+
 import django
-from django.core.management import execute_from_command_line
 from django.core.exceptions import ImproperlyConfigured
+from django.core.management import execute_from_command_line
+
 
 def main():
     """Levanta todo el sistema de gestión de cabañas."""
@@ -18,6 +21,7 @@ def main():
 
     # Si se pasan argumentos (ej: runserver, migrate, etc.)
     execute_from_command_line(sys.argv)
+
 
 if __name__ == "__main__":
     main()

@@ -4,20 +4,30 @@ Contiene funciones auxiliares y lógica de negocio para integrarse con el sistem
 """
 
 from datetime import date
+
+from clientes.models import Cliente
 from django.core.exceptions import ValidationError
 from django.db import transaction
-from .models import Alquiler
-from reservas.models import Reserva
-from clientes.models import Cliente
 from facturas.models import Factura
+from reservas.models import Reserva
+
+from .models import Alquiler
 
 
-def crear_alquiler(cliente_id: int, cabana_id: int, fecha_inicio: date, fecha_fin: date, monto_total: float) -> Alquiler:
+def crear_alquiler(
+    cliente_id: int,
+    cabana_id: int,
+    fecha_inicio: date,
+    fecha_fin: date,
+    monto_total: float,
+) -> Alquiler:
     """
     Crea un nuevo alquiler asociado a un cliente y una cabaña.
     """
     if fecha_fin <= fecha_inicio:
-        raise ValidationError("La fecha de fin debe ser posterior a la fecha de inicio.")
+        raise ValidationError(
+            "La fecha de fin debe ser posterior a la fecha de inicio."
+        )
 
     cliente = Cliente.objects.get(pk=cliente_id)
 
@@ -62,6 +72,8 @@ def validar_alquiler(alquiler: Alquiler) -> None:
     if alquiler.monto_total <= 0:
         raise ValidationError("El monto del alquiler debe ser mayor a cero.")
     if alquiler.fecha_fin <= alquiler.fecha_inicio:
-        raise ValidationError("La fecha de fin debe ser posterior a la fecha de inicio.")
+        raise ValidationError(
+            "La fecha de fin debe ser posterior a la fecha de inicio."
+        )
     if alquiler.estado not in ["activo", "finalizado", "cancelado"]:
         raise ValidationError("El estado del alquiler no es válido.")

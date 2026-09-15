@@ -1,11 +1,13 @@
 from decimal import Decimal
+
 """archivo principal models"""
 from django.db import models
 from django.utils import timezone
 
 
 class Cabanas(models.Model):
-    """ Modelo que representa una cabaña """
+    """Modelo que representa una cabaña"""
+
     id = models.AutoField(primary_key=True)  # clave primaria automática
     nombre = models.CharField(max_length=100, unique=True)
     descripcion = models.TextField(blank=True, null=True)
@@ -13,12 +15,16 @@ class Cabanas(models.Model):
     precio_por_noche = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
-        """ class meta"""
+        """class meta"""
+
         db_table = "cabanas"
         verbose_name = "Cabaña"
         verbose_name_plural = "Cabañas"
+
+
 class Cliente(models.Model):
-    """ Modelo que representa un cliente """
+    """Modelo que representa un cliente"""
+
     id = models.AutoField(primary_key=True)  # clave primaria automática
     dni = models.IntegerField(max_length=100)
     nombre = models.CharField(max_length=100)
@@ -28,34 +34,47 @@ class Cliente(models.Model):
     email = models.EmailField(unique=True)
 
     class Meta:
+        """class meta"""  #        verbose_name = "Cliente"
 
-        """ class meta"""#        verbose_name = "Cliente"
         verbose_name_plural = "Clientes"
+
     def __str__(self) -> str:
         return f"{self.nombre} {self.apellido} - DNI: {self.dni}"
 
 
 class Chatbot(models.Model):
-    """"Modelo para representar un chatbot."""
+    """ "Modelo para representar un chatbot."""
+
     nombre = models.CharField(max_length=100, default="Chatbot Cabanas")
     descripcion = models.TextField(blank=True, null=True)
+
     class Meta:
-        """ class Meta para definir el nombre del modelo en singular y plural. """
+        """class Meta para definir el nombre del modelo en singular y plural."""
+
         verbose_name = "Chatbot"
         verbose_name_plural = "Chatbots"
+
     def __str__(self) -> str:
         return str(self.nombre)
 
+
 class Reserva(models.Model):
-    """ Modelo que representa una reserva de cabaña """
-    cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE, related_name="reservas")
-    Cabanas= models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="reservas")
+    """Modelo que representa una reserva de cabaña"""
+
+    cliente = models.ForeignKey(
+        "Cliente", on_delete=models.CASCADE, related_name="reservas"
+    )
+    Cabanas = models.ForeignKey(
+        Cabanas, on_delete=models.CASCADE, related_name="reservas"
+    )
     fecha_ingreso = models.DateField()
     fecha_salida = models.DateField()
     estado = models.CharField(max_length=30, default="pendiente")
     observaciones = models.TextField(blank=True)
+
     class Meta:
         """Metadatos del modelo Reserva."""
+
         verbose_name = "Reserva"
         verbose_name_plural = "Reservas"
 
@@ -64,16 +83,27 @@ class Reserva(models.Model):
 
 
 class Alquileres(models.Model):
-    """ Modelo que representa un alquiler de cabaña """
-    reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE, related_name="alquileres")
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="alquileres")
-    Cabanas= models.ForeignKey(Cabanas, on_delete=models.CASCADE, related_name="alquileres")
+    """Modelo que representa un alquiler de cabaña"""
+
+    reserva = models.ForeignKey(
+        Reserva, on_delete=models.CASCADE, related_name="alquileres"
+    )
+    cliente = models.ForeignKey(
+        Cliente, on_delete=models.CASCADE, related_name="alquileres"
+    )
+    Cabanas = models.ForeignKey(
+        Cabanas, on_delete=models.CASCADE, related_name="alquileres"
+    )
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
-    monto_total = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal("0.00"))
+    monto_total = models.DecimalField(
+        max_digits=10, decimal_places=2, default=Decimal("0.00")
+    )
     estado = models.CharField(max_length=30, default="activo")
+
     class Meta:
         """Metadatos del modelo Alquileres."""
+
         verbose_name = "Alquiler"
         verbose_name_plural = "Alquileres"
 
@@ -82,36 +112,48 @@ class Alquileres(models.Model):
 
 
 class Pago(models.Model):
-    """ Modelo que representa un pago de un alquiler """
-    alquiler = models.ForeignKey('Alquileres', on_delete=models.CASCADE, related_name="pagos")
+    """Modelo que representa un pago de un alquiler"""
+
+    alquiler = models.ForeignKey(
+        "Alquileres", on_delete=models.CASCADE, related_name="pagos"
+    )
     fecha = models.DateField()
     monto = models.DecimalField(max_digits=10, decimal_places=2)
     metodo = models.CharField(max_length=30)
     comprobante = models.CharField(max_length=200, blank=True)
+
     class Meta:
         """Metadatos del modelo Pago."""
+
         verbose_name = "Pago"
         verbose_name_plural = "Pagos"
+
     def __str__(self) -> str:
         return f"Pago {self.pk}"
 
 
 class Registro(models.Model):
-    """ Modelo que representa un registro de actividad en el sistema """
+    """Modelo que representa un registro de actividad en el sistema"""
+
     fecha = models.DateTimeField(default=timezone.now)
     modulo = models.CharField(max_length=100)
     descripcion = models.TextField()
     responsable = models.CharField(max_length=100)
     creado_en = models.DateTimeField(auto_now_add=True)
+
     class Meta:
         """Metadatos del modelo Registro."""
+
         verbose_name = "Registro"
         verbose_name_plural = "Registros"
 
     def __str__(self) -> str:
         return f"{self.modulo}: {self.responsable}"
+
+
 class TemplatesModels(models.Model):
     """Modelo para representar plantillas de correo electrónico."""
+
     nombre = models.CharField(max_length=100, unique=True)
     asunto = models.CharField(max_length=200)
     cuerpo = models.TextField()
@@ -120,13 +162,17 @@ class TemplatesModels(models.Model):
 
     class Meta:
         """Metadatos del modelo TemplatesModels."""
+
         verbose_name = "Plantilla"
         verbose_name_plural = "Plantillas"
 
     def __str__(self) -> str:
-        return (f"Plantilla: {self.nombre} - Asunto: {self.asunto} - Fecha de creación: {self.fecha_creacion}" )
+        return f"Plantilla: {self.nombre} - Asunto: {self.asunto} - Fecha de creación: {self.fecha_creacion}"
+
+
 class TempaltesModels(models.Model):
     """Modelo para representar plantillas de correo electrónico."""
+
     nombre = models.CharField(max_length=100, unique=True)
     asunto = models.CharField(max_length=200)
     cuerpo = models.TextField()
@@ -135,13 +181,17 @@ class TempaltesModels(models.Model):
 
     class Meta:
         """Metadatos del modelo TempaltesModels."""
+
         verbose_name = "Plantilla"
         verbose_name_plural = "Plantillas"
 
     def __str__(self) -> str:
-        return (f"Plantilla: {self.nombre} - Asunto: {self.asunto} - Fecha de creación: {self.fecha_creacion}" )
+        return f"Plantilla: {self.nombre} - Asunto: {self.asunto} - Fecha de creación: {self.fecha_creacion}"
+
+
 class Formulario(models.Model):
     """Modelo para representar un formulario de contacto."""
+
     nombre = models.CharField(max_length=100)
     email = models.EmailField()
     mensaje = models.TextField()
@@ -149,10 +199,9 @@ class Formulario(models.Model):
 
     class Meta:
         """Metadatos del modelo Formulario de contacto."""
+
         verbose_name = "Formulario de Contacto"
         verbose_name_plural = "Formularios de Contacto"
 
     def __str__(self) -> str:
-        return f"Formulario de {self.nombre} - Email: {self.email} - Fecha de envío: {self.fecha_envio}"    
-
-
+        return f"Formulario de {self.nombre} - Email: {self.email} - Fecha de envío: {self.fecha_envio}"

@@ -1,12 +1,13 @@
 """URLs de la aplicación Pagos, integradas con el sistema."""
 
-from django.urls import path, include
+from django.urls import include, path
+
 from .views import (
-    PagoListView,
     PagoCreateView,
-    PagoUpdateView,
     PagoDeleteView,
     PagoDetailView,
+    PagoListView,
+    PagoUpdateView,
 )
 
 # pylint: disable=invalid-name
@@ -19,7 +20,6 @@ urlpatterns = [
     path("<int:pk>/editar/", PagoUpdateView.as_view(), name="editar_pago"),
     path("<int:pk>/eliminar/", PagoDeleteView.as_view(), name="eliminar_pago"),
     path("alquileres/", include("django_core.cabanas_apps_django.alquileres.urls")),
-
     # 🔗 Integraciones con otras apps del sistema
     path("cabanas/", include("cabanas.urls")),
     path("clientes/", include("clientes.urls")),

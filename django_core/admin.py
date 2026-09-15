@@ -1,4 +1,5 @@
-""" administración de modelos en el panel de administración de Django."""
+"""administración de modelos en el panel de administración de Django."""
+
 from django.contrib import admin
 
 try:

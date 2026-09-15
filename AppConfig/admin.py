@@ -1,7 +1,9 @@
 """Configuración del panel de administración para AppConfig."""
 
 from django.contrib import admin
+
 from .models import Configuracion
+
 
 @admin.register(Configuracion)
 class ConfiguracionAdmin(admin.ModelAdmin):
@@ -11,10 +13,6 @@ class ConfiguracionAdmin(admin.ModelAdmin):
     ordering = ("nombre",)
 
     fieldsets = (
-        ("Información básica", {
-            "fields": ("nombre", "valor")
-        }),
-        ("Estado", {
-            "fields": ("activo",)
-        }),
+        ("Información básica", {"fields": ("nombre", "valor")}),
+        ("Estado", {"fields": ("activo",)}),
     )

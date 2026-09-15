@@ -6,6 +6,7 @@ Se utiliza para desplegar el proyecto en servidores compatibles con WSGI.
 """
 
 import os
+
 from django.core.wsgi import get_wsgi_application
 
 # Ajusta el nombre del módulo de settings a tu proyecto real

@@ -5,6 +5,7 @@ Script de inicialización del entorno Django para el Sistema de Gestión de Caba
 
 import os
 import sys
+
 import django
 
 

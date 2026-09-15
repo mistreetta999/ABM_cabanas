@@ -1,21 +1,29 @@
-"""Archivo de gestión principal de Django para el proyecto de cabañas."""
+#!/usr/bin/env python
+"""Django's command-line utility for administrative tasks."""
 
 import os
 import sys
+from pathlib import Path
+
 
 def main():
-    """Ejecuta las tareas administrativas de Django."""
+    # CORRECCIÓN DE RUTAS: Le enseñamos a Python a encontrar la carpeta 'config' que está afuera
+    base_dir = Path(__file__).resolve().parent.parent
+    if str(base_dir) not in sys.path:
+        sys.path.append(str(base_dir))
 
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cabanas_principal.settings")
-
+    # CAMBIO CRUCIAL: Apuntamos a tu carpeta real 'config' en lugar de 'cabanas_principal'
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
     try:
-        # Intentar importar Django y manejar el caso en que no esté instalado
-        from django.core.management import execute_from_command_line  # pylint: disable=import-outside-toplevel
+        from django.core.management import execute_from_command_line
     except ImportError as exc:
         raise ImportError(
-            "No se pudo importar Django. ¿Está instalado en tu entorno virtual?"
+            "Couldn't import Django. Are you sure it's installed and "
+            "available on your PYTHONPATH environment variable? Did you "
+            "forget to activate a virtual environment?"
         ) from exc
     execute_from_command_line(sys.argv)
+
 
 if __name__ == "__main__":
     main()

@@ -1,20 +1,23 @@
+import datetime
+
 from cryptography import x509
-from cryptography.x509.oid import NameOID
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
-import datetime
+from cryptography.x509.oid import NameOID
 
 # Generar clave privada
 key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
 
 # Datos del certificado autofirmado
-subject = issuer = x509.Name([
-    x509.NameAttribute(NameOID.COUNTRY_NAME, u"AR"),
-    x509.NameAttribute(NameOID.STATE_OR_PROVINCE_NAME, u"Córdoba"),
-    x509.NameAttribute(NameOID.LOCALITY_NAME, u"Mina Clavero"),
-    x509.NameAttribute(NameOID.ORGANIZATION_NAME, u"Alquileres Cabañas"),
-    x509.NameAttribute(NameOID.COMMON_NAME, u"localhost"),
-])
+subject = issuer = x509.Name(
+    [
+        x509.NameAttribute(NameOID.COUNTRY_NAME, "AR"),
+        x509.NameAttribute(NameOID.STATE_OR_PROVINCE_NAME, "Córdoba"),
+        x509.NameAttribute(NameOID.LOCALITY_NAME, "Mina Clavero"),
+        x509.NameAttribute(NameOID.ORGANIZATION_NAME, "Alquileres Cabañas"),
+        x509.NameAttribute(NameOID.COMMON_NAME, "localhost"),
+    ]
+)
 
 cert = (
     x509.CertificateBuilder()
@@ -23,18 +26,24 @@ cert = (
     .public_key(key.public_key())
     .serial_number(x509.random_serial_number())
     .not_valid_before(datetime.datetime.now(datetime.timezone.utc))
-    .not_valid_after(datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=365))
-    .add_extension(x509.SubjectAlternativeName([x509.DNSName(u"localhost")]), critical=False)
+    .not_valid_after(
+        datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=365)
+    )
+    .add_extension(
+        x509.SubjectAlternativeName([x509.DNSName("localhost")]), critical=False
+    )
     .sign(key, hashes.SHA256())
 )
 
 # Guardar clave privada
 with open("key.pem", "wb") as f:
-    f.write(key.private_bytes(
-        encoding=serialization.Encoding.PEM,
-        format=serialization.PrivateFormat.TraditionalOpenSSL,
-        encryption_algorithm=serialization.NoEncryption()
-    ))
+    f.write(
+        key.private_bytes(
+            encoding=serialization.Encoding.PEM,
+            format=serialization.PrivateFormat.TraditionalOpenSSL,
+            encryption_algorithm=serialization.NoEncryption(),
+        )
+    )
 
 # Guardar certificado
 with open("cert.pem", "wb") as f:

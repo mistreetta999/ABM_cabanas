@@ -1,11 +1,13 @@
 """URLs de la aplicación de reservas."""
+
 from django.urls import path
+
 from .views import (
-    ListaReservasView,
-    DetalleReservaView,
     CrearReservaView,
+    DetalleReservaView,
     EditarReservaView,
     EliminarReservaView,
+    ListaReservasView,
 )
 
 urlpatterns = [

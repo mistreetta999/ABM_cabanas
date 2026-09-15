@@ -1,69 +1,49 @@
 """Archivo de configuración principal de Django"""
+
 import os
 import sys
 from pathlib import Path
+
+from django.apps import AppConfig
 from dotenv import load_dotenv
 
-load_dotenv()  # carga el archivo .env en la raíz del proyecto
 
-SECRET_KEY = os.getenv("SECRET_KEY")
-DEBUG = os.getenv("DEBUG", "False") == "True"
+class WebConfig(AppConfig):
+    """web app configuration"""
+
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "django_core.cabanas_apps_django.web"
 
 
-base_dir
+# Cargar variables de entorno
+load_dotenv()
 
- = Path(__file__).resolve().parent
-if base_dir
-
-.name in ["settings", "cabanas_principal", "config"]:
-    base_dir
-
- = base_dir
-
-.parent
-
-# Cargar variables de entorno (.env)
-if load_dotenv is not None:
-    load_dotenv(base_dir
-
- / ".env")
-
-# Detector automático de carpetas
-sys.path.append(str(base_dir
-
-))
-for root, dirs, files in os.walk(base_dir
-
-):
-    if any(part in root for part in ["venv", ".git", "__pycache__", "staticfiles", "media"]):
-        continue
-    if root not in sys.path:
-        sys.path.append(root)
-
-sys.path.append(str(base_dir
-
- / "django_core" / "cabanas_apps_django"))
 
 def config(name, default=None):
     """Obtiene una variable de entorno de forma segura."""
     value = os.getenv(name)
     return default if value is None else value
 
-# Configuración de Seguridad
+
+# Base del proyecto (en minúsculas, consistente)
+base_dir = Path(__file__).resolve().parent.parent
+
+# Ajustar sys.path para que Django encuentre las apps
+sys.path.append(str(base_dir))
+sys.path.append(str(base_dir / "django_core" / "cabanas_apps_django"))
+
+# Seguridad
 SECRET_KEY = config("SECRET_KEY", default="django-insecure-default-key")
 DEBUG = str(config("DEBUG", "True")).lower() in ["true", "1", "yes"]
 
-# ALLOWED_HOSTS siempre como lista
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", "*").split(",")
 ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS if host.strip()]
 
-# Settings visuales del Admin
+# Admin visual
 ADMIN_SITE_HEADER = "Gestión de Cabañas"
 ADMIN_SITE_TITLE = "Panel de Administración"
 ADMIN_INDEX_TITLE = "Bienvenidos a cabanas"
 
-# Modelo de usuario personalizado
-#
 # Aplicaciones instaladas
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -72,28 +52,26 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.sites",
-    "cabanas_principal",
-    "cabanas_api",
-
     # Terceros
     "rest_framework",
     "drf_spectacular",
     "corsheaders",
     "django_extensions",
-
-    # Mis aplicaciones
+    "crispy_forms",
+    "crispy_bootstrap5",
+    # Mis aplicaciones reales
     "django_core.cabanas_apps_django.clientes",
     "django_core.cabanas_apps_django.reservas",
     "django_core.cabanas_apps_django.alquileres",
     "django_core.cabanas_apps_django.cabanas",
     "django_core.cabanas_apps_django.pagos",
+    "django_core.cabanas_apps_django.facturas",
     "django_core.cabanas_apps_django.web",
-    "django_core.cabanas_apps_django.chatbot_app","django_core.cabanas_apps_django.registros",
-
+    "django_core.cabanas_apps_django.chatbot_app",
+    "django_core.cabanas_apps_django.registros",
 ]
 
-# Configuración de DRF + drf-spectacular
+# DRF + drf-spectacular
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
@@ -116,31 +94,13 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+
 # Configuración CORS
 CORS_ALLOW_ALL_ORIGINS = True
 
+# URLs y WSGI
 ROOT_URLCONF = "django_core.core.urls"
-
-# Templates
-TEMPLATES = [
-    {
-        "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [base_dir
-
- / "Templates"],
-        "APP_DIRS": True,
-        "OPTIONS": {
-            "context_processors": [
-                "django.template.context_processors.debug",
-                "django.template.context_processors.request",
-                "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages",
-            ],
-        },
-    },
-]
-
-WSGI_APPLICATION = "cabanas_principal.wsgi.application"
+WSGI_APPLICATION = "django_core.core.wsgi.application"
 
 # Base de datos
 DJANGO_ENV = config("DJANGO_ENV", "development")
@@ -160,15 +120,15 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": base_dir
-
- / "db.sqlite3",
+            "NAME": base_dir / "db.sqlite3",
         },
     }
 
 # Validación de contraseñas
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+    },
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
@@ -182,15 +142,31 @@ USE_TZ = True
 
 # Archivos estáticos y multimedia
 STATIC_URL = "/static/"
-STATIC_ROOT = base_dir
+STATICFILES_DIRS = [base_dir / "static"]
+STATIC_ROOT = base_dir / "staticfiles"
 
- / "staticfiles"
-STATICFILES_DIRS = [base_dir
-
- / "static"]
-#MEDIA_URL = "/media/"
-MEDIA_ROOT = base_dir
-
- / "media"
+MEDIA_URL = "/media/"
+MEDIA_ROOT = base_dir / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Bootstrap 5 para formularios
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# Templates
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [base_dir / "Templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
+    },
+]

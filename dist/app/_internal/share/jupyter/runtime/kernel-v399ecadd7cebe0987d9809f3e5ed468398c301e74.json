@@ -1,0 +1,1 @@
+{"key":"7ea0edff-2641-4455-b6b5-c89d27c930d6","signature_scheme":"hmac-sha256","transport":"tcp","ip":"127.0.0.1","hb_port":9000,"control_port":9001,"shell_port":9002,"stdin_port":9003,"iopub_port":9004,"kernel_name":"python3143jvsc74a57bd031516324c5664f84bad94a7146e3cb04c6e8247cc1f20a9d070028e7b6fcb5c0"}

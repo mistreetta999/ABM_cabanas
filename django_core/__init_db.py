@@ -2,9 +2,9 @@
 Inicialización de la base de datos para el proyecto Cabañas.
 """
 
-from django.db import connections, DEFAULT_DB_ALIAS, DatabaseError
-from django.core.management import call_command, CommandError
+from django.core.management import CommandError, call_command
 from django.core.management.base import SystemCheckError
+from django.db import DEFAULT_DB_ALIAS, DatabaseError, connections
 
 
 def init_database():

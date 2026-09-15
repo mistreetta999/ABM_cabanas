@@ -1,0 +1,52 @@
+"""Vistas de la aplicación web principal."""
+
+from django.http import HttpResponse
+from django.views import View
+
+def home(request):
+    """Vista para la página de inicio que inyecta el HTML directamente."""
+    html_content = """
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gestión de Cabañas</title>
+        <link href="https://jsdelivr.net" rel="stylesheet">
+    </head>
+    <body class="bg-light">
+        <div class="container mt-5 text-center">
+            <div class="card p-5 shadow" style="max-width: 600px; margin: auto;">
+                <h1 class="text-primary fw-bold">🏡 Sistema de Alquiler de Cabañas</h1>
+                <p class="lead text-muted mt-3">¡Tu interfaz Django ya está corriendo con éxito total en la web local!</p>
+                <hr>
+                <div class="mt-4">
+                    <a href="/admin/" class="btn btn-dark mx-2">Ir al Panel de Administración</a>
+                    <a href="/consultas/" class="btn btn-primary mx-2">Ver Consultas</a>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    """
+    return HttpResponse(html_content)
+
+def consultas_view(request):
+    """Vista temporal para la sección de consultas."""
+    return HttpResponse("<h1>Sección de Consultas en Desarrollo</h1><a href='/'>Volver al inicio</a>")
+
+# Vistas secundarias requeridas por tu sistema
+class WebHomeView(View):
+    def get(self, request): return HttpResponse("Bienvenido al sistema de cabañas")
+
+class WebContactView(View):
+    def get(self, request): return HttpResponse("Formulario de contacto")
+
+class WebInfoView(View):
+    def get(self, request): return HttpResponse("Información sobre el sistema")
+
+class WebHelpView(View):
+    def get(self, request): return HttpResponse("Sección de ayuda y soporte")
+
+def ping(_request):
+    return HttpResponse("pong")

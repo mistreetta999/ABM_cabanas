@@ -1,11 +1,14 @@
 """URLs para la aplicación Registros."""
-from django.urls import path
-from django_core.cabanas_apps_django.reservas.views import ListaReservasView
-from django_core.cabanas_apps_django.reservas.views import DetalleReservaView
-from django_core.cabanas_apps_django.reservas.views import CrearReservaView
-from django_core.cabanas_apps_django.reservas.views import EditarReservaView
-from django_core.cabanas_apps_django.reservas.views import EliminarReservaView
 
+from django.urls import path
+
+from django_core.cabanas_apps_django.reservas.views import (
+    CrearReservaView,
+    DetalleReservaView,
+    EditarReservaView,
+    EliminarReservaView,
+    ListaReservasView,
+)
 
 urlpatterns = [
     path("lista/", ListaReservasView.as_view(), name="lista_reservas"),

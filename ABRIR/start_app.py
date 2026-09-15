@@ -1,11 +1,13 @@
-""" star apps"""
+"""star apps"""
+
 import os
 import subprocess
-import webbrowser
 import time
+import webbrowser
+
 
 def iniciar_servidor():
-    """ iniciar el servido"""
+    """iniciar el servido"""
     venv_python = os.path.join(os.getcwd(), ".venv", "Scripts", "python.exe")
 
     # Levantar servidor Django
@@ -19,6 +21,7 @@ def iniciar_servidor():
 
     # Mantener el servidor corriendo
     server.wait()
+
 
 if __name__ == "__main__":
     iniciar_servidor()

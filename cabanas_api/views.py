@@ -1,21 +1,24 @@
 """Vistas de la API de cabañas con class-based views."""
 
-from django.http import JsonResponse
 from django.apps import apps
+from django.http import JsonResponse
 from django.views import View
-from django.views.generic import ListView, DetailView
-from cabanas_api.models import Alquiler
-from cabanas_api.models import Factura
-from cabanas_api.models  import Cliente
-from cabanas_api.models import Pago
-from cabanas_api.models import Registro
+from django.views.generic import DetailView, ListView
+
+from cabanas_api.models import Alquiler, Cliente, Factura, Pago, Registro
+
+
 class FacturaListView(ListView):
     """Listado de facturas."""
+
     model = Factura
     template_name = "facturas/list.html"
     context_object_name = "facturas"
+
+
 class ApiHomeView(View):
     """Vista principal de la API."""
+
     def get(self, request, *_args, **_kwargs):
         """Devuelve un mensaje de bienvenida en formato JSON."""
         _ = request.method
@@ -24,6 +27,7 @@ class ApiHomeView(View):
 
 class AlquilerListView(ListView):
     """Listado de alquileres."""
+
     model = Alquiler
     template_name = "alquileres/list.html"
     context_object_name = "alquileres"
@@ -31,6 +35,7 @@ class AlquilerListView(ListView):
 
 class AlquilerDetailView(DetailView):
     """Detalle de un alquiler específico."""
+
     model = Alquiler
     template_name = "alquileres/detail.html"
     context_object_name = "alquiler"
@@ -38,6 +43,7 @@ class AlquilerDetailView(DetailView):
 
 class ClienteListView(ListView):
     """Listado de clientes."""
+
     model = Cliente
     template_name = "clientes/list.html"
     context_object_name = "clientes"
@@ -45,12 +51,15 @@ class ClienteListView(ListView):
 
 class PagoListView(ListView):
     """Listado de pagos."""
+
     model = Pago
     template_name = "pagos/list.html"
     context_object_name = "pagos"
 
+
 class RegistroListView(ListView):
     """Listado de registros de entrada."""
+
     model = Registro
     template_name = "registros/list.html"
     context_object_name = "registros"
@@ -58,6 +67,7 @@ class RegistroListView(ListView):
 
 class CabanaListView(ListView):
     """Listado de cabañas."""
+
     model = apps.get_model("cabanas_api", "Cabana")
     template_name = "cabanas/list.html"
     context_object_name = "cabanas"

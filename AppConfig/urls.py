@@ -1,6 +1,7 @@
 """URLs de la aplicación AppConfig."""
 
 from django.urls import path
+
 from . import views
 
 app_name = "appconfig"

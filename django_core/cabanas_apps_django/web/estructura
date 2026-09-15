@@ -1,0 +1,13 @@
+C:\Users\carol\OneDrive\Desktop\alquileres_cabanas\django_core\cabanas_apps_django\web\
+│
+├── templates/
+│   └── web/
+│       └── dashboard.html    <-- Aquí va tu pantalla con el menú de Bootstrap 5
+│
+├── __init__.py               <-- Archivo vacío obligatorio para que Python reconozca el módulo
+├── admin.py                  <-- Configuración del panel de administración para la app web
+├── apps.py                   <-- Configuración interna del nombre de la aplicación
+├── models.py                 <-- Modelos de base de datos específicos si los requiere la web
+├── tests.py                  <-- Pruebas de código de la aplicación
+├── urls.py                   <-- Enrutador interno para las páginas de la interfaz visual
+└── views.py                  <-- Controladores principales (home, clientes_list, reservas_list, etc.)

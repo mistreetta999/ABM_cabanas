@@ -1,15 +1,19 @@
-""" views"""
-from django.shortcuts import render, get_object_or_404, redirect
+"""views"""
+
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
-from django.views.generic import ListView, DetailView
+from django.views.generic import DetailView, ListView
 from rest_framework import viewsets
+
 from django_core.cabanas_apps_django.registros.models import Registro
+
 from .forms import RegistroForm
 
 
 # --- API REST ---
 class RegistroViewSet(viewsets.ModelViewSet):
     """API REST para gestionar registros."""
+
     queryset = Registro.objects.all()  # pylint: disable=no-member
     serializer_class = None  # ⚠️ reemplazar con tu serializer (ej: RegistroSerializer)
 
@@ -17,6 +21,7 @@ class RegistroViewSet(viewsets.ModelViewSet):
 # --- Vistas HTML ---
 class ListaRegistrosView(ListView):
     """Vista para listar todos los registros."""
+
     model = Registro
     template_name = "registros/lista.html"
     context_object_name = "registros"
@@ -24,6 +29,7 @@ class ListaRegistrosView(ListView):
 
 class DetalleRegistroView(DetailView):
     """Vista para mostrar el detalle de un registro."""
+
     model = Registro
     template_name = "registros/detalle.html"
     context_object_name = "registro"
@@ -31,6 +37,7 @@ class DetalleRegistroView(DetailView):
 
 class CrearRegistroView(View):
     """Vista para crear un nuevo registro."""
+
     def get(self, request):
         """Renderiza el formulario para crear un nuevo registro."""
         form = RegistroForm()
@@ -47,6 +54,7 @@ class CrearRegistroView(View):
 
 class EditarRegistroView(View):
     """Vista para editar un registro existente."""
+
     def get(self, request, pk):
         """Renderiza el formulario para editar un registro existente."""
         registro = get_object_or_404(Registro, pk=pk)
@@ -65,10 +73,13 @@ class EditarRegistroView(View):
 
 class EliminarRegistroView(View):
     """Vista para eliminar un registro existente."""
+
     def get(self, request, pk):
         """Renderiza la página de confirmación para eliminar un registro existente."""
         registro = get_object_or_404(Registro, pk=pk)
-        return render(request, "registros/confirmar_eliminar.html", {"registro": registro})
+        return render(
+            request, "registros/confirmar_eliminar.html", {"registro": registro}
+        )
 
     def post(self, _request, pk):
         """Elimina el registro existente después de la confirmación."""

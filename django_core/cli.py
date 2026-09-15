@@ -2,7 +2,9 @@
 
 import os
 import sys
+
 from django.core.management import execute_from_command_line
+
 
 def main():
     """Inicializa y ejecuta la CLI de Django para el proyecto."""
@@ -13,6 +15,7 @@ def main():
         execute_from_command_line(sys.argv)
     except Exception as exc:
         raise RuntimeError("Error al iniciar el proyecto Django") from exc
+
 
 if __name__ == "__main__":
     main()

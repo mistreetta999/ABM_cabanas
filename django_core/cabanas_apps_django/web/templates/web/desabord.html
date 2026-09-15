@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Alquileres Cabañas</title>
+    <!-- Bootstrap 5 e Iconos -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <link rel="stylesheet" href="https://jsdelivr.net">
+</head>
+<body class="bg-light">
+
+    <!-- Barra de Navegación con Todas tus Aplicaciones -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">🏡 Complejo Cabañas</a>
+            <button class="navbar-toggler" type="type" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="/"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/cabanas/"><i class="bi bi-house-door"></i> Cabañas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/reservas/"><i class="bi bi-calendar-check"></i> Reservas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/clientes/"><i class="bi bi-people"></i> Clientes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/pagos/"><i class="bi bi-credit-card"></i> Pagos y Facturas</a></li>
+                    <li class="nav-item"><a class="nav-link text-warning" href="/admin/"><i class="bi bi-lock"></i> Admin Django</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido del Dashboard principal -->
+    <div class="container mt-4">
+        <div class="row mb-4">
+            <div class="col">
+                <h2 class="fw-bold text-secondary">Panel de Gestión Integral</h2>
+                <p class="text-muted">Bienvenida, Carolina. Aquí tenés el control de todas las funciones desplegadas.</p>
+            </div>
+        </div>
+
+        <!-- Tarjetas de Estadísticas de tus Apps -->
+        <div class="row g-3 text-white text-center">
+            <div class="col-6 col-lg-3">
+                <div class="p-3 bg-primary rounded-3 shadow">
+                    <i class="bi bi-house shadow-sm p-2 bg-white text-primary rounded fs-3"></i>
+                    <h3 class="mt-2 fw-bold">{{ estadisticas.total_cabanas }}</h3>
+                    <p class="mb-0 small">Cabañas Totales</p>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="p-3 bg-success rounded-3 shadow">
+                    <i class="bi bi-calendar-event shadow-sm p-2 bg-white text-success rounded fs-3"></i>
+                    <h3 class="mt-2 fw-bold">{{ estadisticas.reservas_activas }}</h3>
+                    <p class="mb-0 small">Alquileres Activos</p>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="p-3 bg-warning rounded-3 shadow">
+                    <i class="bi bi-person-badge shadow-sm p-2 bg-white text-warning rounded fs-3"></i>
+                    <h3 class="mt-2 fw-bold">{{ estadisticas.clientes_registrados }}</h3>
+                    <p class="mb-0 small">Huéspedes</p>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="p-3 bg-danger rounded-3 shadow">
+                    <i class="bi bi-cash-stack shadow-sm p-2 bg-white text-danger rounded fs-3"></i>
+                    <h3 class="mt-2 fw-bold">{{ estadisticas.ingresos_mes }}</h3>
+                    <p class="mb-0 small">Caja Mensual</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accesos rápidos a Funciones de CRUD -->
+        <div class="row mt-4 g-4">
+            <div class="col-12 col-md-6">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold"><i class="bi bi-plus-circle text-primary"></i> Registrar Nueva Reserva</h5>
+                        <p class="card-text text-muted">Acceso directo al formulario para bloquear fechas, asignar cabaña y registrar la seña del cliente.</p>
+                        <a href="/reservas/" class="btn btn-outline-primary btn-sm">Abrir Módulo Reservas</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold"><i class="bi bi-file-earmark-text text-success"></i> Facturación y Reportes</h5>
+                        <p class="card-text text-muted">Módulo para emitir comprobantes de pagos, revisar balances e imprimir las consultas de control.</p>
+                        <a href="/pagos/" class="btn btn-outline-success btn-sm">Ver Finanzas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://jsdelivr.net"></script>
+</body>
+</html>

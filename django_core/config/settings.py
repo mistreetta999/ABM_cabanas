@@ -1,19 +1,23 @@
 """Archivo de configuración principal de Django"""
+
 import os
 import sys
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 # Cargar variables de entorno
 load_dotenv()
+
 
 def config(name, default=None):
     """Obtiene una variable de entorno de forma segura."""
     value = os.getenv(name)
     return default if value is None else value
 
+
 # Base del proyecto (en minúsculas, consistente)
-base_dir = Path(__file__).resolve().parent
+base_dir = Path(__file__).resolve().parent.parent
 
 # Ajustar sys.path para que Django encuentre las apps
 sys.path.append(str(base_dir))
@@ -39,7 +43,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     # Terceros
     "rest_framework",
     "drf_spectacular",
@@ -47,7 +50,6 @@ INSTALLED_APPS = [
     "django_extensions",
     "crispy_forms",
     "crispy_bootstrap5",
-
     # Mis aplicaciones reales
     "django_core.cabanas_apps_django.clientes",
     "django_core.cabanas_apps_django.reservas",
@@ -115,7 +117,9 @@ else:
 
 # Validación de contraseñas
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+    },
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
@@ -145,7 +149,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [base_dir / "templates"],
+        "DIRS": [base_dir / "Templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

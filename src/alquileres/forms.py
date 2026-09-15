@@ -1,6 +1,9 @@
-""" form"""
+"""form"""
+
 from django import forms
+
 from .models import Cabana
+
 
 class CabanaForm(forms.ModelForm):
     """Formulario para crear y editar cabañas."""
@@ -9,7 +12,13 @@ class CabanaForm(forms.ModelForm):
         """Configuración del modelo y la presentación del formulario."""
 
         model = Cabana
-        fields = ["nombre", "capacidad", "descripcion", "precio_por_noche", "disponible"]
+        fields = [
+            "nombre",
+            "capacidad",
+            "descripcion",
+            "precio_por_noche",
+            "disponible",
+        ]
 
         # Opcional: personalizar etiquetas y widgets
         labels = {

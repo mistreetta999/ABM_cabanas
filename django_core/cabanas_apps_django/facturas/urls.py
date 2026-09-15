@@ -1,12 +1,13 @@
 """URLs de la aplicación Facturas, integradas con el sistema."""
 
-from django.urls import path, include
-from cabanas_apps_django .facturas.views import FacturaListView
-from cabanas_apps_django .facturas.views import FacturaCreateView
-from cabanas_apps_django .facturas.views import FacturaDeleteView
-from cabanas_apps_django .facturas.views import FacturaDetailView
-from cabanas_apps_django .facturas.views import FacturaUpdateView
-
+from cabanas_apps_django.facturas.views import (
+    FacturaCreateView,
+    FacturaDeleteView,
+    FacturaDetailView,
+    FacturaListView,
+    FacturaUpdateView,
+)
+from django.urls import include, path
 
 app_name = "facturas"
 
@@ -17,14 +18,15 @@ urlpatterns = [
     path("<int:pk>/", FacturaDetailView.as_view(), name="factura_detail"),
     path("<int:pk>/editar/", FacturaUpdateView.as_view(), name="factura_update"),
     path("<int:pk>/borrar/", FacturaDeleteView.as_view(), name="factura_delete"),
-
     # 🔗 Integraciones con otras apps del sistema
-    path("cabanas/", include("cabanas.urls")),          # relación con cabañas
-    path("alquileres/", include("alquileres.urls")),    # relación con alquileres
-    path("reservas/", include("reservas.urls")),        # relación con reservas
-    path("clientes/", include("clientes.urls")),        # relación con clientes
-    path("pagos/", include("pagos.urls")),              # relación con pagos
-    path("usuarios/", include("usuarios.urls")),        # relación con usuarios
-    path("chatbot/", include("chatbot_app.urls")),      # relación con chatbot
-    path("gestion/", include("gestion_cabanas.urls")),  # relación con gestión de cabañas
+    path("cabanas/", include("cabanas.urls")),  # relación con cabañas
+    path("alquileres/", include("alquileres.urls")),  # relación con alquileres
+    path("reservas/", include("reservas.urls")),  # relación con reservas
+    path("clientes/", include("clientes.urls")),  # relación con clientes
+    path("pagos/", include("pagos.urls")),  # relación con pagos
+    path("usuarios/", include("usuarios.urls")),  # relación con usuarios
+    path("chatbot/", include("chatbot_app.urls")),  # relación con chatbot
+    path(
+        "gestion/", include("gestion_cabanas.urls")
+    ),  # relación con gestión de cabañas
 ]

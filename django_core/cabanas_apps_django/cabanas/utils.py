@@ -1,5 +1,7 @@
-""" utils"""
+"""utils"""
+
 from datetime import date
+
 
 def calcular_disponibilidad(cabana, fecha_inicio, fecha_fin):
     """
@@ -7,10 +9,10 @@ def calcular_disponibilidad(cabana, fecha_inicio, fecha_fin):
     Retorna True si no hay reservas que se solapen.
     """
     reservas = cabana.reserva_set.filter(
-        fecha_inicio__lt=fecha_fin,
-        fecha_fin__gt=fecha_inicio
+        fecha_inicio__lt=fecha_fin, fecha_fin__gt=fecha_inicio
     )
     return not reservas.exists()
+
 
 def calcular_precio_total(cabana, fecha_inicio, fecha_fin):
     """
@@ -18,6 +20,7 @@ def calcular_precio_total(cabana, fecha_inicio, fecha_fin):
     """
     dias = (fecha_fin - fecha_inicio).days
     return dias * cabana.precio
+
 
 def obtener_cabanas_disponibles(cabanas_queryset, fecha_inicio, fecha_fin):
     """
@@ -28,6 +31,7 @@ def obtener_cabanas_disponibles(cabanas_queryset, fecha_inicio, fecha_fin):
         if calcular_disponibilidad(cabana, fecha_inicio, fecha_fin):
             disponibles.append(cabana)
     return disponibles
+
 
 def generar_codigo_cabana(prefix="CAB"):
     """

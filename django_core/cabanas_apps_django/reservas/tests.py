@@ -1,9 +1,10 @@
-""" test"""
+"""test"""
+
 from django.test import TestCase
 
 
 class ReservaTestCase(TestCase):
-    """ reserva test"""
+    """reserva test"""
 
     def test_crear_reserva(self):
         """Prueba que la reserva puede crearse correctamente."""

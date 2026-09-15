@@ -1,4 +1,5 @@
 """Conexión simple a SQLite estilo .NET"""
+
 import os
 import sqlite3
 from pathlib import Path
@@ -7,6 +8,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 DB_PATH = os.getenv("DB_PATH", BASE_DIR / "db.sqlite3")
 
+
 def get_connection():
     """Devuelve una conexión a SQLite"""
     try:
@@ -14,6 +16,7 @@ def get_connection():
         return conn
     except Exception as e:
         raise RuntimeError(f"Error al conectar a la base de datos: {e}") from e
+
 
 def execute_query(query, params=None):
     """Ejecuta una consulta SELECT y devuelve resultados"""
@@ -24,6 +27,7 @@ def execute_query(query, params=None):
     cursor.close()
     conn.close()
     return results
+
 
 def execute_non_query(query, params=None):
     """Ejecuta un INSERT/UPDATE/DELETE"""

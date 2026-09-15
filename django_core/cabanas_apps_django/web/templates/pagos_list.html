@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finanzas y Facturación - Gestión de Cabañas</title>
+    <!-- Bootstrap 5 e Iconos -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <link rel="stylesheet" href="https://jsdelivr.net">
+</head>
+<body class="bg-light">
+
+    <!-- Menú de Navegación superior -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="/"><i class="bi bi-house-heart"></i> Gestión Cabañas</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/cabanas/"><i class="bi bi-house"></i> Cabañas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/reservas/"><i class="bi bi-calendar-check"></i> Reservas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/clientes/"><i class="bi bi-people"></i> Clientes</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/pagos/"><i class="bi bi-credit-card"></i> Pagos</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold text-secondary">💳 Finanzas y Facturación</h2>
+                <p class="text-muted mb-0">Control de cajas, señas de alquileres y comprobantes emitidos.</p>
+            </div>
+            <a href="/admin/pagos/pago/add/" class="btn btn-danger"><i class="bi bi-plus-circle"></i> Registrar Cobro</a>
+        </div>
+
+        <!-- Tabla de Pagos y Facturas -->
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped mb-0 align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th class="ps-3">Nº Factura</th>
+                                <th>Cliente</th>
+                                <th>Concepto / Alquiler</th>
+                                <th>Monto Total</th>
+                                <th>Estado de Pago</th>
+                                <th class="text-center pe-3">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="ps-3 fw-bold text-secondary">FAC-001</td>
+                                <td>Juan Pérez</td>
+                                <td>Reserva Cabaña Grande (Seña)</td>
+                                <td>$45.000</td>
+                                <td><span class="badge bg-warning text-dark">Señado</span></td>
+                                <td class="text-center pe-3">
+                                    <button class="btn btn-outline-danger btn-sm" disabled><i class="bi bi-file-pdf"></i> Recibo</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="ps-3 fw-bold text-secondary">FAC-002</td>
+                                <td>Carlos Gómez</td>
+                                <td>Estadía Completa - Alpina 2</td>
+                                <td>$120.000</td>
+                                <td><span class="badge bg-success">Pagado Total</span></td>
+                                <td class="text-center pe-3">
+                                    <button class="btn btn-outline-danger btn-sm" disabled><i class="bi bi-file-pdf"></i> Recibo</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón de retorno rápido -->
+        <div class="mt-4">
+            <a href="/" class="btn btn-secondary shadow-sm"><i class="bi bi-arrow-left"></i> Volver al Panel</a>
+        </div>
+    </div>
+
+    <script src="https://jsdelivr.net"></script>
+</body>
+</html>

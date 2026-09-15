@@ -3,8 +3,8 @@ Handlers para la aplicación Chatbot (pública).
 Se encargan de procesar mensajes, generar respuestas y manejar historial.
 """
 
-from registros.models import Registro
 from django.utils import timezone
+from registros.models import Registro
 
 
 class ChatbotHandler:
@@ -22,7 +22,7 @@ class ChatbotHandler:
             usuario=usuario,
             tipo="chatbot",
             descripcion=f"Usuario dijo: {mensaje} | Bot respondió: {respuesta}",
-            fecha=timezone.now()
+            fecha=timezone.now(),
         )
 
         return {"mensaje": mensaje, "respuesta": respuesta}
@@ -51,5 +51,7 @@ class ChatbotHandler:
         """
         Devuelve el historial de conversaciones del usuario.
         """
-        registros = Registro.objects.filter(usuario=usuario, tipo="chatbot").order_by("-fecha")
+        registros = Registro.objects.filter(usuario=usuario, tipo="chatbot").order_by(
+            "-fecha"
+        )
         return [{"fecha": r.fecha, "descripcion": r.descripcion} for r in registros]

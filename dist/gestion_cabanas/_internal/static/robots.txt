@@ -1,0 +1,13 @@
+# Permitir a todos los buscadores acceder al sitio
+User-agent: *
+Allow: /
+
+# Bloquear carpetas sensibles de Django
+Disallow: /admin/
+Disallow: /private/
+Disallow: /config/
+Disallow: /static/
+Disallow: /media/
+
+# Ubicación del sitemap para mejor indexación
+Sitemap: http://127.0.0.1:8000/static/sitemap.xml

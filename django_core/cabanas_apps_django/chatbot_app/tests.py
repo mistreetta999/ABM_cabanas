@@ -1,12 +1,13 @@
 from django.test import TestCase
+
 from .models import ChatbotResponse
+
 
 class ChatbotAppTests(TestCase):
     def setUp(self):
         # Crear un objeto de prueba
         ChatbotResponse.objects.create(
-            pregunta="¿Cuál es tu nombre?",
-            respuesta="Soy el chatbot de Cabañas."
+            pregunta="¿Cuál es tu nombre?", respuesta="Soy el chatbot de Cabañas."
         )
 
     def test_respuesta_se_guarda(self):

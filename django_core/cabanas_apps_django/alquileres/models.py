@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Alquiler(models.Model):
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()

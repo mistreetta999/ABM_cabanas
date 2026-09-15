@@ -1,12 +1,15 @@
 """Configuración central de bases de datos para el proyecto Django"""
+
 import os
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 DJANGO_ENV = os.getenv("DJANGO_ENV", "development")
+
 
 def get_database_config():
     """Devuelve la configuración de la base de datos según el entorno"""
@@ -28,6 +31,7 @@ def get_database_config():
                 "NAME": BASE_DIR / "db.sqlite3",
             }
         }
+
 
 # Exportar configuración
 DATABASES = get_database_config()

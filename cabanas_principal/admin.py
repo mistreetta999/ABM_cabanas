@@ -1,8 +1,16 @@
-
 """Configuración del panel de administración del proyecto."""
 
 from django.contrib import admin
-from cabanas_principal.models import Alquiler, Factura, Cliente, Cabana, Reserva, Registro, Pago
+
+from cabanas_principal.models import (
+    Alquiler,
+    Cabana,
+    Cliente,
+    Factura,
+    Pago,
+    Registro,
+    Reserva,
+)
 
 # Registrar los modelos en el panel de administración
 admin.site.register(Cliente)

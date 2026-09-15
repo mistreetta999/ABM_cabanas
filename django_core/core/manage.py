@@ -6,6 +6,7 @@ Punto de entrada para ejecutar comandos de Django.
 
 import os
 import sys
+
 from django.core.management import execute_from_command_line
 
 
@@ -15,9 +16,7 @@ def manage():
     try:
         execute_from_command_line(sys.argv)
     except Exception as exc:
-        raise RuntimeError(
-            f"Error al ejecutar comandos de Django: {exc}"
-        ) from exc
+        raise RuntimeError(f"Error al ejecutar comandos de Django: {exc}") from exc
 
 
 if __name__ == "__main__":

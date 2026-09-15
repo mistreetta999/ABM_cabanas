@@ -1,12 +1,16 @@
 """Formulario para el modelo Registro."""
+
 from django import forms
+
 from .models import Registro
 
 
 class RegistroForm(forms.ModelForm):
     """Formulario basado en el modelo Registro."""
+
     class Meta:
         """Configuración del formulario basado en el modelo Registro."""
+
         model = Registro
         fields = ["nombre", "descripcion", "fecha", "activo"]
 

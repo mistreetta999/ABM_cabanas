@@ -1,13 +1,18 @@
 """URLs Django relacionadas con las apps del sistema."""
-from django.urls import include, path
-from django.views.generic import TemplateView
+
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import include, path
+from django.views.generic import TemplateView
 
 app_name = "django_core"
 
 urlpatterns = [
-    path("pagina_principal.html", TemplateView.as_view(template_name="pagina_principal.html"), name="pagina_principal"),
+    path(
+        "pagina_principal.html",
+        TemplateView.as_view(template_name="pagina_principal.html"),
+        name="pagina_principal",
+    ),
     path("render/", include("django_core.render_support.urls")),
     path("api/", include("cabanas_api.urls")),
     path("apps/", include("cabanas_apps.urls")),
